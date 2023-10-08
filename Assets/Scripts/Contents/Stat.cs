@@ -17,9 +17,7 @@ public class Stat : MonoBehaviour
     protected int _attack;
     [SerializeField]
     protected int _defense;
-    //[SerializeField]
-    //GameObject AttackParticle;
-    
+   
     
     public int Level { get { return _level; } set {  _level = value; } }
     public int Hp { get { return _hp; } set { _hp = value; } }

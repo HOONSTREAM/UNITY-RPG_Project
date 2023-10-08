@@ -19,7 +19,6 @@ public enum EquipType
     Head,
     Chest,
     Weapon,
-
 }
 
 [System.Serializable]

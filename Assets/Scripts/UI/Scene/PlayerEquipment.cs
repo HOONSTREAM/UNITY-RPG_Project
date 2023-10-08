@@ -26,27 +26,36 @@ public class PlayerEquipment : MonoBehaviour
     {
         if (player_equip.Count < 20)  //아이템 추가할때 슬롯보다 작을때만 아이템 추가
         {
-            if (player_equip.TryGetValue(_item.equiptype, out Item item)) //해당 타입 이미 장착중인지?
+            if (player_equip.TryGetValue(_item.equiptype, out Item item)) //해당 타입 이미 장착중인지 검사 
             {
                 Debug.Log("해당 타입은 이미 장착되어 있습니다.");
                 stat.PrintUserText("해당 타입은 이미 장착되어 있습니다.");
+                _item.Equip = false;
                 return false;
             }
-            player_equip.Add(_item.equiptype,_item); // 그렇지않다면 장착 
-            Debug.Log("장착성공");
-            stat.PrintUserText("장착 성공!");
-            stat.SetWeaponAttackValue(stat.Level); // 장착장비 스텟 반영
-            
-            _item.Equip = true; //장착 bool 변수 true로 변경 
 
-            //if (OnequipItem != null)
-            //{
-            //    OnequipItem.Invoke();
-            //    return true;
-            //}
+            else
+            {
+                player_equip.Add(_item.equiptype, _item); // 그렇지않다면 장착 
+                Debug.Log("장착성공");
+                stat.PrintUserText("장착 성공!");
+                if(_item.equiptype == EquipType.Weapon) //TODO 임시. chest 장착 에러 방지 , 나머지 장착장비 스텟 반영시 코드 수정 필요 
+                {
+                    stat.SetWeaponAttackValue(stat.Level); // 장착장비 스텟 반영
+                }
+               
 
+                _item.Equip = true; //장착 bool 변수 true로 변경 
+                return true;
+            }
+             
         }
-        return false;
+
+        else
+        {
+            return false;
+        }
+            
     }
 
     public bool UnEquipItem(Item _item)
