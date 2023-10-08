@@ -52,6 +52,8 @@ public class Slot : MonoBehaviour, IPointerUpHandler
                 if (item.Equip) //이미 장착중인경우 다시 누를경우 장착해제
                 {
                     PlayerEquipment.Instance.UnEquipItem(item);
+                    equiped_image.gameObject.SetActive(false); //장착해제 후 체크표시 해제
+
                     return;
                 }
 

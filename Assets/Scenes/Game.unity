@@ -8100,7 +8100,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 781849354}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1856188203}
+        m_TargetAssemblyTypeName: Exit_Console, Assembly-CSharp
+        m_MethodName: ExitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &781849354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15284,7 +15296,7 @@ GameObject:
   - component: {fileID: 1508163325}
   - component: {fileID: 1508163324}
   m_Layer: 5
-  m_Name: VIT
+  m_Name: DEF
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15330,7 +15342,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'VIT :'
+  m_text: 'DEF :'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7af731a305306a448af8656270c54fd0, type: 2}
   m_sharedMaterial: {fileID: -6954940463186632848, guid: 7af731a305306a448af8656270c54fd0, type: 2}
@@ -19162,7 +19174,7 @@ GameObject:
   - component: {fileID: 1859590992}
   - component: {fileID: 1859590991}
   m_Layer: 5
-  m_Name: VITnum
+  m_Name: DEFnum
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -21979,7 +21991,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2076456125}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1856188203}
+        m_TargetAssemblyTypeName: Exit_Console, Assembly-CSharp
+        m_MethodName: NotExitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2076456125
 MonoBehaviour:
   m_ObjectHideFlags: 0

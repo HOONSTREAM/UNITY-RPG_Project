@@ -11,15 +11,16 @@ public class PlayerStat : Stat
     protected int _exp;
     [SerializeField]
     protected int _gold;
-    
-    public GameObject Weapon;
+   
     PlayerEquipment equipment;
 
-    #region GUISTAT
+    #region 게임 플레이시 GUISTAT창 세팅
     private void OnUpdateStatUI()
     {
         GameObject atktxt = GameObject.Find("ATKnum").gameObject;
+        GameObject deftxt = GameObject.Find("DEFnum").gameObject;
         atktxt.GetComponent<TextMeshProUGUI>().text = Attack.ToString();
+        deftxt.GetComponent<TextMeshProUGUI>().text = Defense.ToString();
     }
     #endregion
 
@@ -106,32 +107,55 @@ public class PlayerStat : Stat
     #region 스텟세팅 (장착장비검사까지)
 
     int WeaponAttackValue = 0; //장착무기 공격스텟 저장변수
+    int ChestDEFvalue = 0; //장착갑옷 방어스텟 저장변수
     public void SetStat(int level)
     {
         
- 
         Dictionary<int, Data.Stat> dict = Managers.Data.StatDict; //키가 레벨 
         Data.Stat stat = dict[level];
 
         _hp = stat.maxHP;
-        _maxHp = stat.maxHP;       
-        _defense = stat.defense;
+        _maxHp = stat.maxHP;
+        _defense = stat.defense + ChestDEFvalue;
         _movespeed = stat.movespeed;
         _attack = stat.attack + WeaponAttackValue; 
 
-
     }
 
-    public void SetWeaponAttackValue(int level)
+    public void SetEquipmentValue(int level)
     {
         Dictionary<int, Data.Stat> dict = Managers.Data.StatDict; //키가 레벨 
         Data.Stat stat = dict[level];
 
-        WeaponAttackValue = equipment.player_equip[EquipType.Weapon].num_1;
-        _attack = stat.attack + WeaponAttackValue;
+        #region 무기장착검사   
+        if (equipment.player_equip.TryGetValue(EquipType.Weapon , out Item _attackitem)) //장착무기 검사
+        { 
+            WeaponAttackValue = equipment.player_equip[EquipType.Weapon].num_1;
+            _attack = stat.attack + WeaponAttackValue;
+        }
+        else
+        {
+            WeaponAttackValue = 0;
+            _attack = stat.attack + WeaponAttackValue;
+        }
+        #endregion
+
+        #region 방어구장착검사
+        if (equipment.player_equip.TryGetValue(EquipType.Chest, out Item _defitem)) //장착방어구 검사
+        {
+            ChestDEFvalue = equipment.player_equip[EquipType.Chest].num_1;
+            _defense = stat.defense + ChestDEFvalue;
+        }
+
+        else
+        {
+            ChestDEFvalue = 0;
+            _defense = stat.defense + ChestDEFvalue;
+        }
+        #endregion
 
     }
-        
+
 
     #endregion
 

@@ -39,11 +39,8 @@ public class PlayerEquipment : MonoBehaviour
                 player_equip.Add(_item.equiptype, _item); // 그렇지않다면 장착 
                 Debug.Log("장착성공");
                 stat.PrintUserText("장착 성공!");
-                if(_item.equiptype == EquipType.Weapon) //TODO 임시. chest 장착 에러 방지 , 나머지 장착장비 스텟 반영시 코드 수정 필요 
-                {
-                    stat.SetWeaponAttackValue(stat.Level); // 장착장비 스텟 반영
-                }
-               
+    
+                stat.SetEquipmentValue(stat.Level); // 장착장비 스텟 반영
 
                 _item.Equip = true; //장착 bool 변수 true로 변경 
                 return true;
@@ -62,7 +59,9 @@ public class PlayerEquipment : MonoBehaviour
     {
         Debug.Log("아이템을 벗습니다.");
         stat.PrintUserText("장비를 해제합니다.");
-        //TODO, player_equip 딕셔너리에서 빼낸다. 체크표시 해제, Equip bool 변수 해제
+        player_equip.Remove(_item.equiptype);
+        _item.Equip = false;
+        stat.SetEquipmentValue(stat.Level);
         return true;
     }
 
