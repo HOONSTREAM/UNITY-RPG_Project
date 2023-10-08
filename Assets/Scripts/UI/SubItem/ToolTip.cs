@@ -16,12 +16,7 @@ public class ToolTip : MonoBehaviour
 
     public void SetupTooltip(string name, string stat1, string stat2 , int num, int num2, string des)
     {
-        Debug.Log(name);
-        Debug.Log(stat1);
-        Debug.Log(stat2);
-        Debug.Log(num);
-        Debug.Log(num2);
-        Debug.Log(des);
+        
        
         itemname.text= name;
         stat_1.text = stat1;

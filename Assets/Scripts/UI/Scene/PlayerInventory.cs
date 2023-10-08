@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerInventory : MonoBehaviour
 {
     public static PlayerInventory Instance = new PlayerInventory();
+    PlayerStat stat;
     public List<Item> player_items = new List<Item>();
 
     public delegate void OnChangeItem();
@@ -13,6 +14,7 @@ public class PlayerInventory : MonoBehaviour
     private void Awake()
     {
         Instance = this; 
+        stat = GetComponent<PlayerStat>();
     }
     public bool AddItem(Item _item)
     {
@@ -27,6 +29,8 @@ public class PlayerInventory : MonoBehaviour
             }
   
         }
+        Managers.Sound.Play("Coin");
+        stat.PrintUserText("∞°πÊ¿Ã ∞°µÊ√°Ω¿¥œ¥Ÿ.");
         return false;
     }
 

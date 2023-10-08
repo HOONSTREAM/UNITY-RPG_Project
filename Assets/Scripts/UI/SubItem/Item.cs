@@ -16,6 +16,7 @@ public enum ItemType
 
 public enum EquipType
 {
+    None,
     Head,
     Chest,
     Weapon,

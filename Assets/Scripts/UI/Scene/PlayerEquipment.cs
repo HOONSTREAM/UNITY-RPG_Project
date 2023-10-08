@@ -28,7 +28,7 @@ public class PlayerEquipment : MonoBehaviour
         {
             if (player_equip.TryGetValue(_item.equiptype, out Item item)) //해당 타입 이미 장착중인지 검사 
             {
-                Debug.Log("해당 타입은 이미 장착되어 있습니다.");
+               
                 stat.PrintUserText("해당 타입은 이미 장착되어 있습니다.");
                 _item.Equip = false;
                 return false;
@@ -37,7 +37,7 @@ public class PlayerEquipment : MonoBehaviour
             else
             {
                 player_equip.Add(_item.equiptype, _item); // 그렇지않다면 장착 
-                Debug.Log("장착성공");
+                
                 stat.PrintUserText("장착 성공!");
     
                 stat.SetEquipmentValue(stat.Level); // 장착장비 스텟 반영
@@ -57,7 +57,7 @@ public class PlayerEquipment : MonoBehaviour
 
     public bool UnEquipItem(Item _item)
     {
-        Debug.Log("아이템을 벗습니다.");
+        
         stat.PrintUserText("장비를 해제합니다.");
         player_equip.Remove(_item.equiptype);
         _item.Equip = false;

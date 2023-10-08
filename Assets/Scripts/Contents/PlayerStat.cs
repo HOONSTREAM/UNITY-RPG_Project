@@ -19,8 +19,11 @@ public class PlayerStat : Stat
     {
         GameObject atktxt = GameObject.Find("ATKnum").gameObject;
         GameObject deftxt = GameObject.Find("DEFnum").gameObject;
+        GameObject goldtxt = GameObject.Find("Goldnum").gameObject;
         atktxt.GetComponent<TextMeshProUGUI>().text = Attack.ToString();
         deftxt.GetComponent<TextMeshProUGUI>().text = Defense.ToString();
+        goldtxt.GetComponent<TextMeshProUGUI>().text = Gold.ToString();
+
     }
     #endregion
 
@@ -64,8 +67,7 @@ public class PlayerStat : Stat
             if(level != Level)
             {
                 Level = level;
-                SetStat(Level);
-                Debug.Log("Level Up!");
+                SetStat(Level);              
                GameObject go = GameObject.Find("Level_Text").gameObject;
                go.GetComponent<TextMeshProUGUI>().text = $"Lv . {Level}";
                Managers.Sound.Play("univ0007");

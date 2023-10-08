@@ -28,17 +28,14 @@ public class Stat : MonoBehaviour
 
     private void Start()
     {
-       
-
+ 
         _level = 1;
         _hp = 100;
         _maxHp = 100;
         _attack = 7;
         _defense = 5;
         _movespeed = 1.0f;
-       // AttackParticle = Managers.Resources.Load<GameObject>("PreFabs/Holy hit");
-        
-
+  
     }
 
    
@@ -62,16 +59,26 @@ public class Stat : MonoBehaviour
 
     protected virtual void OnDead(Stat attacker)
     {
-       PlayerStat playerstat = attacker as PlayerStat;
-       if(playerstat != null)
+        if(gameObject.name=="Slime")
         {
-            playerstat.EXP += 10;
-            GameObject dropitem = ItemDataBase.instance.DropFieldItem();
-            dropitem.transform.position = transform.position; //드랍아이템 위치
-            dropitem.transform.position += new Vector3(0, 0.4f , 0); //2D 스프라이트 잘림방지                                       
+            PlayerStat playerstat = attacker as PlayerStat;
+            if (playerstat != null)
+            {
+                playerstat.EXP += 5;
+                playerstat.Gold += 100;
+                GameObject dropitem = ItemDataBase.instance.SlimeDropFieldItem();
+                dropitem.transform.position = transform.position; //드랍아이템 위치
+                dropitem.transform.position += new Vector3(0, 0.4f, 0); //2D 스프라이트 잘림방지                                       
+            }
+
+
+            Managers.Game.DeSpawn(gameObject);
         }
-       
-     
-        Managers.Game.DeSpawn(gameObject);
+        else
+        {
+            //TODO 다른몬스터
+            Debug.Log("안죽어요");
+        }
+      
     }
 }

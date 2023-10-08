@@ -1793,7 +1793,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemDB:
-  - equiptype: 2
+  - equiptype: 3
     itemtype: 0
     itemname: "\uB3C4\uB07C"
     stat_1: ATK
@@ -1807,7 +1807,7 @@ MonoBehaviour:
     Equip: 0
     efts:
     - {fileID: 11400000, guid: 9b9c363957c666746aebffb59490991f, type: 2}
-  - equiptype: 2
+  - equiptype: 3
     itemtype: 0
     itemname: "\uBE0C\uB85C\uC774\uC758 \uC6B0\uB4E0\uBCF4\uC6B0"
     stat_1: ATK
@@ -1819,7 +1819,7 @@ MonoBehaviour:
     Equip: 0
     efts:
     - {fileID: 11400000, guid: 9b9c363957c666746aebffb59490991f, type: 2}
-  - equiptype: 1
+  - equiptype: 2
     itemtype: 0
     itemname: "\uBE0C\uB85C\uC774\uC758 \uC544\uBA38"
     stat_1: DEF
@@ -1832,7 +1832,7 @@ MonoBehaviour:
     Equip: 0
     efts:
     - {fileID: 11400000, guid: 9b9c363957c666746aebffb59490991f, type: 2}
-  - equiptype: 1
+  - equiptype: 0
     itemtype: 1
     itemname: "\uD3EC\uC158"
     stat_1: "HP\uD68C\uBCF5"
@@ -1844,6 +1844,19 @@ MonoBehaviour:
     Equip: 0
     efts:
     - {fileID: 11400000, guid: f1cbdb3fe273f4d4083b3c4d1f23a2b1, type: 2}
+  - equiptype: 0
+    itemtype: 1
+    itemname: "\uB3C8\uAC00\uBC29"
+    stat_1: "\uACE8\uB4DC\uD68D\uB4DD"
+    stat_2: "\uBD80\uC218\uD6A8\uACFC"
+    num_1: 1000
+    num_2: 0
+    Description: "\uACE8\uB4DC\uAC00 \uB4E4\uC5B4\uC788\uB294 \uAC00\uBC29\uC774\uB2E4.
+      \uAC00\uBC29\uC744 \uC5F4\uBA74 1000\uACE8\uB4DC\uB97C \uD68D\uB4DD\uD55C\uB2E4."
+    itemImage: {fileID: 21300000, guid: fe025e83f69d0b54f8a4fe3c7c128fd7, type: 3}
+    Equip: 0
+    efts:
+    - {fileID: 11400000, guid: 99ead2315750ff24aa86d441989326f9, type: 2}
   fielditemPrefab: {fileID: 7522970402254163847, guid: 825b2bdcabe5ab54b8f97fda1a1f79c2, type: 3}
   pos: {x: 0, y: 0, z: 0}
 --- !u!4 &163289491

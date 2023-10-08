@@ -8,9 +8,7 @@ public class Hp_Potion : ItemEffect
    
     public override bool ExecuteRole(ItemType itemtype)
     {
-        
-        Debug.Log("플레이어의 체력 100 을 회복합니다.");
-
+       
         GameObject go = GameObject.Find("UnityChan").gameObject;
         PlayerStat stat = go.GetComponent<PlayerStat>();
         stat.Hp += 100;
