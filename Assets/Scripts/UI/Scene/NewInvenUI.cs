@@ -39,13 +39,7 @@ public class NewInvenUI : MonoBehaviour
 
     private void Update()
     {
-        #region Gold UPDATE
-        //TODO
-        //GameObject goldPanel = GameObject.Find("GoldText").gameObject;
-        //TextMeshProUGUI goldPanelText = goldPanel.GetComponent<TextMeshProUGUI>();
-        //goldPanelText.text = stat.Gold.ToString();
-        #endregion
-
+       
 
         if (Input.GetKeyDown(KeyCode.I))
         {

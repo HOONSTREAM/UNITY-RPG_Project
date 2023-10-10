@@ -25,8 +25,8 @@ public class FieldItem : MonoBehaviour
         item.efts = _item.efts;
         item.Equip = _item.Equip;
         image.sprite = _item.itemImage;
+        item.amount = _item.amount;
         
-
     }
 
     public Item GetItem()

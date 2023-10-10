@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -10,6 +11,8 @@ public enum ItemType
 {
     Equipment,
     Consumables,
+    GoldBag,
+    HpPotion,
     Etc,
 
 }
@@ -35,6 +38,7 @@ public class Item
     public string Description;
     public Sprite itemImage;
     public bool Equip = false;
+    public int amount = 0;
     
 
     public List<ItemEffect> efts;
@@ -49,5 +53,29 @@ public class Item
             isUsed = effect.ExecuteRole(itemtype);
         }
         return isUsed;
+    }
+
+    public bool IsStackable() //TODO 확장성 고려해서 소모품스택 확장 필요 (지금으로는 안됨)
+    {
+
+         switch (itemtype)
+        {
+            case ItemType.Equipment:
+                return false;
+                
+            case ItemType.Consumables:
+                return true;
+            case ItemType.GoldBag:
+                return true;
+            case ItemType.HpPotion:
+                return true;
+
+            case ItemType.Etc:
+                return true;
+
+            default: return false;
+
+        }
+
     }
 }

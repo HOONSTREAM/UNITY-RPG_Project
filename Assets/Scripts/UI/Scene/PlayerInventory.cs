@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class PlayerInventory : MonoBehaviour
 {
@@ -18,22 +19,56 @@ public class PlayerInventory : MonoBehaviour
     }
     public bool AddItem(Item _item)
     {
-        if (player_items.Count < 20 )  //아이템 추가할때 슬롯보다 작을때만 아이템 추가
-        {           
-            player_items.Add(_item);
+        
+            if (player_items.Count < 20)  //아이템 추가할때 슬롯보다 작을때만 아이템 추가
+            {               
 
-            if(onChangeItem != null )
+            if (_item.IsStackable())
             {
-                onChangeItem.Invoke();
-                return true;
-            }
-  
-        }
-        Managers.Sound.Play("Coin");
-        stat.PrintUserText("가방이 가득찼습니다.");
-        return false;
-    }
+                bool ItemAlreadyInInventory = false;
+                foreach(Item InventoryItem in player_items)
+                {
+                    if(InventoryItem.itemtype == _item.itemtype)
+                    {
+                        InventoryItem.amount++;
+                        ItemAlreadyInInventory = true;
+                    }
+              
+                }
 
+                if (!ItemAlreadyInInventory)
+                {
+                    player_items.Add(_item);
+
+                    if (onChangeItem != null)
+                    {
+                        onChangeItem.Invoke();
+                        return true;
+                    }
+                }
+             
+            }
+
+            else
+            {
+                player_items.Add(_item);
+
+                if (onChangeItem != null)
+                {
+                    onChangeItem.Invoke();
+                    return true;
+                }
+
+            }
+
+            return true;
+            }
+
+            Managers.Sound.Play("Coin");
+            stat.PrintUserText("가방이 가득찼습니다.");
+            return false;
+     }
+     
     private void OnTriggerEnter(Collider collision)
     {
         
@@ -44,10 +79,9 @@ public class PlayerInventory : MonoBehaviour
             
             if (AddItem(fielditems.GetItem()))
             {
-               
-                fielditems.DestroyItem();
-                Managers.Sound.Play("Coin");
-
+               fielditems.DestroyItem();
+               Managers.Sound.Play("Coin");
+                
             }
             
         }
