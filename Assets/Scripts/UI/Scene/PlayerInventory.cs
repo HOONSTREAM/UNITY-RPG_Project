@@ -8,6 +8,7 @@ public class PlayerInventory : MonoBehaviour
     public static PlayerInventory Instance = new PlayerInventory();
     PlayerStat stat;
     public List<Item> player_items = new List<Item>();
+    public Slot slot;
 
     public delegate void OnChangeItem();
     public OnChangeItem onChangeItem;
@@ -16,6 +17,7 @@ public class PlayerInventory : MonoBehaviour
     {
         Instance = this; 
         stat = GetComponent<PlayerStat>();
+        slot = GetComponent<Slot>();
     }
     public bool AddItem(Item _item)
     {
@@ -28,10 +30,15 @@ public class PlayerInventory : MonoBehaviour
                 bool ItemAlreadyInInventory = false;
                 foreach(Item InventoryItem in player_items)
                 {
-                    if(InventoryItem.itemtype == _item.itemtype)
+                    if(InventoryItem.ItemID == _item.ItemID)
                     {
                         InventoryItem.amount++;
                         ItemAlreadyInInventory = true;
+
+                        if (onChangeItem != null)
+                        {
+                            onChangeItem.Invoke(); //소모품스택 갯수 업데이트                          
+                        }
                     }
               
                 }
@@ -87,11 +94,30 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    public void RemoveItem(int index)
+    public void RemoveItem(int index) // 갯수 파악하여 스택 사용 후 1개 남으면 아이템 삭제
     {
-        player_items.RemoveAt(index);
-        onChangeItem.Invoke();
-        //TODO . 아이템 정리하되 장비된 것은 체크표시 유지되도록,
+        if (player_items[index].itemtype == ItemType.Consumables)
+        {
+            if (player_items[index].amount > 1)
+            {
+                player_items[index].amount -= 1; // 사용 시 1개 감소 
+                onChangeItem.Invoke();
+            }
+
+            else if(player_items[index].amount == 1)
+            {
+                player_items.RemoveAt(index);
+                onChangeItem.Invoke();
+            }
+
+        }
+        else
+        {
+            player_items.RemoveAt(index);
+            onChangeItem.Invoke();
+        }
+       
+       
     }
 
 }

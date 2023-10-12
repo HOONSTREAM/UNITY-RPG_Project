@@ -23,11 +23,21 @@ public enum EquipType
     Head,
     Chest,
     Weapon,
+    Shield,
+    necklace,
+    Ring,
+    shoes,
+    vehicle
+
 }
 
-[System.Serializable]
+/*유니티 에디터의 인스펙터에는 사용자가 정의한 클래스 또는 구조체의 정보가 인스펙터에 노출되지 않지만,
+  System에서 제공하는 Serializable 키워드를 지정하여 인스펙터에 노출시킬 수 있음.*/
+
+[System.Serializable] 
 public class Item 
 {
+    public int ItemID;
     public EquipType equiptype;
     public ItemType itemtype;
     public string itemname;
@@ -65,11 +75,7 @@ public class Item
                 
             case ItemType.Consumables:
                 return true;
-            case ItemType.GoldBag:
-                return true;
-            case ItemType.HpPotion:
-                return true;
-
+                
             case ItemType.Etc:
                 return true;
 

@@ -63,7 +63,7 @@ public class NewInvenUI : MonoBehaviour
             slots[i].RemoveSlot();
         }
 
-        for (int i = 0; i < inven.player_items.Count; i++) //재정렬 //TODO 재정렬하는 방식을 없애자 
+        for (int i = 0; i < inven.player_items.Count; i++) //리스트배열로 저장되어있는 인벤토리의 아이템정보를 받아와 다시 재정렬 
         {
             slots[i].item = inven.player_items[i];
             slots[i].UpdateSlotUI();

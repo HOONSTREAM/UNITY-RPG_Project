@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -13,11 +14,13 @@ public class Slot : MonoBehaviour, IPointerUpHandler
     public Item item;
     public Image itemicon;
     public Image equiped_image;
+    public TextMeshProUGUI amount_text;
  
     void Start()
     {
         equiped_image.gameObject.SetActive(false); //초기화 (체크표시 안함)
         itemicon.gameObject.SetActive(false); //초기화 (아이콘 표시 안함)
+        amount_text.text = "";
 
     }
     public void UpdateSlotUI()
@@ -30,6 +33,18 @@ public class Slot : MonoBehaviour, IPointerUpHandler
             equiped_image.gameObject.SetActive(true);
 
         }
+        if (item.itemtype == ItemType.Equipment)
+        {
+            amount_text.text = "";
+        }
+
+        else if (item.itemtype == ItemType.Consumables)
+        {
+            amount_text.text = item.amount.ToString();
+        }
+
+       
+      
     }
        
    
@@ -38,6 +53,9 @@ public class Slot : MonoBehaviour, IPointerUpHandler
         item = null;
         itemicon.gameObject.SetActive(false);
         equiped_image.gameObject.SetActive(false); //체크표시 전체해제 (업데이트)
+        amount_text.text = "";
+       
+
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -80,6 +98,11 @@ public class Slot : MonoBehaviour, IPointerUpHandler
             {
 
                 PlayerInventory.Instance.RemoveItem(slotnum);
+                
+                if(item == null)
+                {
+                    return;
+                }
             }
 
         }

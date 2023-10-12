@@ -140,6 +140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotnum: 0
   item:
+    ItemID: 0
     equiptype: 0
     itemtype: 0
     itemname: 
@@ -154,6 +155,7 @@ MonoBehaviour:
     efts: []
   itemicon: {fileID: 5640563288215937748}
   equiped_image: {fileID: 6568518649789196341}
+  amount_text: {fileID: 7511269707199554870}
 --- !u!114 &-5559177489381000462
 MonoBehaviour:
   m_ObjectHideFlags: 0
