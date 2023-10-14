@@ -7,8 +7,8 @@ public class PlayerEquipment : MonoBehaviour
 {
     //TODO : 장착해제부분, 장착 후 스탯조정 , 소모품스택 , 아이템 버리기 , 상점구매/판매 , 장착에서 델리게이트 사용여부 
 
-    public static PlayerEquipment Instance = new PlayerEquipment();
-    public Dictionary<EquipType,Item> player_equip = new Dictionary<EquipType, Item>();
+    public static PlayerEquipment Instance;
+    public Dictionary<EquipType, Item> player_equip;
     PlayerStat stat;
     
 
@@ -18,6 +18,7 @@ public class PlayerEquipment : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        player_equip = new Dictionary<EquipType, Item>();
         stat = GetComponent<PlayerStat>(); //PrintUserText 함수 사용 
     }
 

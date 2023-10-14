@@ -5,9 +5,9 @@ using static UnityEditor.Progress;
 
 public class PlayerInventory : MonoBehaviour
 {
-    public static PlayerInventory Instance = new PlayerInventory();
+    public static PlayerInventory Instance;
     PlayerStat stat;
-    public List<Item> player_items = new List<Item>();
+    public List<Item> player_items;
     public Slot slot;
 
     public delegate void OnChangeItem();
@@ -16,6 +16,7 @@ public class PlayerInventory : MonoBehaviour
     private void Awake()
     {
         Instance = this; 
+        player_items = new List<Item>();
         stat = GetComponent<PlayerStat>();
         slot = GetComponent<Slot>();
     }
