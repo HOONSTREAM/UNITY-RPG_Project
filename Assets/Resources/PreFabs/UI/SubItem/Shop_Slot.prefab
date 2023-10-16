@@ -176,6 +176,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Quantity_num_text: {fileID: 5913444820931461276}
+  totalGold: 0
+  slotnum: 0
+  instance: {fileID: 0}
 --- !u!114 &7342567071086152275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -190,7 +193,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShopPanel: {fileID: 0}
   TotalGoldText: {fileID: 0}
-  ScrollViewText: {fileID: 0}
+  ScrollViewText1: {fileID: 0}
+  ScrollViewText2: {fileID: 0}
+  ScrollViewText3: {fileID: 0}
+  ScrollViewText4: {fileID: 0}
+  ScrollViewText5: {fileID: 0}
+  ScrollViewText6: {fileID: 0}
+  ScrollViewText7: {fileID: 0}
+  slotHolder: {fileID: 0}
 --- !u!1 &1228283583470667418
 GameObject:
   m_ObjectHideFlags: 0
@@ -526,7 +536,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8907164732604211598}
         m_TargetAssemblyTypeName: ShopSlot, Assembly-CSharp
-        m_MethodName: MinusButton
+        m_MethodName: TestItem_MinusButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1144,7 +1154,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 8907164732604211598}
         m_TargetAssemblyTypeName: ShopSlot, Assembly-CSharp
-        m_MethodName: PlusButton
+        m_MethodName: TestItem_PlusButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

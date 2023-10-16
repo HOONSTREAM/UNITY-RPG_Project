@@ -10,11 +10,22 @@ public class Shop : MonoBehaviour
 
     public GameObject ShopPanel; //RectTransform으로 해도 됨.
     public TextMeshProUGUI TotalGoldText;
-    public TextMeshProUGUI ScrollViewText;
+
+    public TextMeshProUGUI ScrollViewText1;
+    public TextMeshProUGUI ScrollViewText2;
+    public TextMeshProUGUI ScrollViewText3;
+    public TextMeshProUGUI ScrollViewText4;
+    public TextMeshProUGUI ScrollViewText5;
+    public TextMeshProUGUI ScrollViewText6;
+    public TextMeshProUGUI ScrollViewText7;
+
+
+
     GameObject Player;
     PlayerStat stat;
     ShopSlot[] slots;
     public Transform slotHolder;
+    ItemDataBase Instance;
     
     
 
@@ -67,10 +78,17 @@ public class Shop : MonoBehaviour
         int total = Convert.ToInt32(TotalGoldText.text);
         if(stat.Gold < total)
         {
-            Debug.Log($"{total}골드가 필요하지만 당신은 {stat.Gold}를 갖고 있으므로 돈이 부족하다.");
+         
             Managers.Sound.Play("Coin");
-            ScrollViewText.text = "소지금이 부족합니다.";
-            
+            ScrollViewText1.text = "소지금이 부족합니다.";
+            ScrollViewText2.text = "";
+            ScrollViewText3.text = "";
+            ScrollViewText4.text = "";
+            ScrollViewText5.text = "";
+            ScrollViewText6.text = "";
+            ScrollViewText7.text = "";
+
+           
             return;
 
         }
@@ -81,11 +99,35 @@ public class Shop : MonoBehaviour
             {
                 return;
             }
+
+            if (PlayerInventory.Instance.player_items.Count >= 20)
+            {
+                Managers.Sound.Play("Coin");
+                ScrollViewText1.text = "가방이 가득찼습니다.";
+                ScrollViewText2.text = "";
+                ScrollViewText3.text = "";
+                ScrollViewText4.text = "";
+                ScrollViewText5.text = "";
+                ScrollViewText6.text = "";
+                ScrollViewText7.text = "";
+                return;
+
+            }
+
             Debug.Log("구매 완료");
             Managers.Sound.Play("Coin");
-            ScrollViewText.text = "구매 완료하였습니다.";
+            ScrollViewText1.text = "구매 완료하였습니다.";           
+            ScrollViewText2.text = "";
+            ScrollViewText3.text = "";
+            ScrollViewText4.text = "";
+            ScrollViewText5.text = "";
+            ScrollViewText6.text = "";
+            ScrollViewText7.text = "";
             stat.Gold -= total;
             
+            PlayerInventory.Instance.AddItem(ItemDataBase.instance.itemDB[5]);
+
+            //TDOO 슬롯별로 아이템 , 갯수 비교하여 아이템 추가 
 
             return;
         }

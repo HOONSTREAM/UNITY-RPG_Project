@@ -52,7 +52,7 @@ public class NPC1script : MonoBehaviour
                     Debug.Log("NPC를 클릭합니다.!");
                     gamemanager.SelectedNPC = gameObject;
 
-                    gamemanager.TalkAction(); //이 컴포넌트가 붙어있는 게임오브젝트를 scanObject로 인자로 넘겨준다.
+                    //gamemanager.TalkAction(); //이 컴포넌트가 붙어있는 게임오브젝트를 scanObject로 인자로 넘겨준다.
                     Shop shop = GetComponent<Shop>();
                     shop.Enter();
                     Managers.Sound.Play("Inven_open");

@@ -21,20 +21,28 @@ public class NewInvenUI : MonoBehaviour
 
     private void Start()
     {
-        stat= GetComponent<PlayerStat>(); //골드 업데이트를 위한 플레이어 스텟 참조
+        
+
+        stat = GetComponent<PlayerStat>(); //골드 업데이트를 위한 플레이어 스텟 참조
         inven = PlayerInventory.Instance;
        
         slots= slotHolder.GetComponentsInChildren<Slot>();
         
         inventoryPanel.SetActive(activeInventory);
-        
         inven.onChangeItem += RedrawSlotUI;
 
-        
+
+        #region 슬롯버그방지 슬롯생성
+        inven.AddItem(ItemDataBase.instance.itemDB[0]);
+        inven.RemoveItem(0);
+        RedrawSlotUI();
+        #endregion
+
+
 
     }
 
-   
+
 
 
     private void Update()
@@ -46,7 +54,7 @@ public class NewInvenUI : MonoBehaviour
             activeInventory = !activeInventory;
             inventoryPanel.SetActive(activeInventory);
             Managers.Sound.Play("Inven_Open");
-
+            
         }
        
     }
