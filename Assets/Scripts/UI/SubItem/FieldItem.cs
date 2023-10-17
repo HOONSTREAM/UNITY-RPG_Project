@@ -26,6 +26,8 @@ public class FieldItem : MonoBehaviour
         item.Equip = _item.Equip; // 아이템 장착여부 변수
         image.sprite = _item.itemImage; //아이템 드랍시 필드이미지
         item.amount = _item.amount;  //아이템 갯수 (소비,기타재만)
+        item.buyprice = _item.buyprice;
+        item.sellprice = _item.sellprice;
         
     }
 

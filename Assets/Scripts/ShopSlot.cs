@@ -9,7 +9,6 @@ public class ShopSlot : MonoBehaviour
     
     Shop shop;
     public int quantity = 0;
-    int testprice = 3000;
     public int totalGold = 0;
     public int slotnum;
     public Item shopitem;
@@ -19,6 +18,7 @@ public class ShopSlot : MonoBehaviour
     void Start()
     {
         shop = GetComponent<Shop>();
+        ResetShop(); //»óÁ¡ ÃÊ±âÈ­ 1¹ø ÇÏ°í °ÔÀÓ½ÃÀÛ
 
     }
 
@@ -32,38 +32,57 @@ public class ShopSlot : MonoBehaviour
 
     public void TestItem_PlusButton()
     {
-        if (quantity >= 10)
+        if (quantity >= 10) 
         {
-            return;
+            if(shopitem.itemtype == ItemType.Consumables)
+            {
+                if(quantity >= 100) //¼Ò¸ðÇ°Àº 100°³±îÁö Çã¿ë
+                {
+                    return;
+                }
+            }
+            else
+            {
+                return;
+            }
+            
         }
 
         quantity++;       
-        totalGold = testprice*quantity;
-        Quantity_num_text.text = $"{quantity}/10";
+        totalGold = shopitem.buyprice*quantity;
 
-        switch (slotnum) 
+        if(shopitem.itemtype == ItemType.Consumables) //¼Ò¸ðÇ°ÀÏ°æ¿ì 100°³
+        {
+            Quantity_num_text.text = $"{quantity}/100";
+        }
+        else
+        {
+            Quantity_num_text.text = $"{quantity}/10";
+        }
+       
+        switch (slotnum)  //TODO
         {
 
             case 0:
-                shop.ScrollViewText1.text = $"Å×½ºÆ®°©¿Ê {quantity}";
+                shop.ScrollViewText.text = $"{shopitem.itemname} {quantity},";
                 break;
             case 1:
-                shop.ScrollViewText2.text = $"Å×½ºÆ®°©¿Ê2 {quantity}";
+                shop.ScrollViewText.text = $"{shopitem.itemname} {quantity},";
                 break;
             case 2:
-                shop.ScrollViewText3.text = $"Å×½ºÆ®°©¿Ê3 {quantity}";
+                shop.ScrollViewText.text = $"{shopitem.itemname} {quantity},";
                 break;
             case 3:
-                shop.ScrollViewText4.text = $"Å×½ºÆ®°©¿Ê4 {quantity}";
+                shop.ScrollViewText.text = $"{shopitem.itemname} {quantity},";
                 break;
             case 4:
-                shop.ScrollViewText5.text = $"Å×½ºÆ®°©¿Ê5 {quantity}";
+                shop.ScrollViewText.text = $"{shopitem.itemname} {quantity},";
                 break;
             case 5:
-                shop.ScrollViewText6.text = $"Å×½ºÆ®°©¿Ê6 {quantity}";
+                shop.ScrollViewText.text = $"{shopitem.itemname} {quantity},";
                 break;
             case 6:
-                shop.ScrollViewText7.text = $"Å×½ºÆ®°©¿Ê7 {quantity}";
+                shop.ScrollViewText.text = $"{shopitem.itemname} {quantity},";
                 break;
 
 
@@ -81,32 +100,40 @@ public class ShopSlot : MonoBehaviour
         }
 
         quantity--;
-        totalGold = testprice * quantity;
-        Quantity_num_text.text = $"{quantity}/10";
+        totalGold = shopitem.buyprice * quantity;
+
+        if (shopitem.itemtype == ItemType.Consumables) //¼Ò¸ðÇ°ÀÏ°æ¿ì 100°³
+        {
+            Quantity_num_text.text = $"{quantity}/100";
+        }
+        else
+        {
+            Quantity_num_text.text = $"{quantity}/10";
+        }
 
         switch (slotnum)
         {
 
             case 0:
-                shop.ScrollViewText1.text = $"Å×½ºÆ®°©¿Ê {quantity}";
+                shop.ScrollViewText.text += $"{shopitem.itemname} {quantity},";
                 break;
             case 1:
-                shop.ScrollViewText2.text = $"Å×½ºÆ®°©¿Ê2 {quantity}";
+                shop.ScrollViewText.text += $"{shopitem.itemname} {quantity},";
                 break;
             case 2:
-                shop.ScrollViewText3.text = $"Å×½ºÆ®°©¿Ê3 {quantity}";
+                shop.ScrollViewText.text += $"{shopitem.itemname} {quantity},";
                 break;
             case 3:
-                shop.ScrollViewText4.text = $"Å×½ºÆ®°©¿Ê4 {quantity}";
+                shop.ScrollViewText.text += $"{shopitem.itemname} {quantity},";
                 break;
             case 4:
-                shop.ScrollViewText5.text = $"Å×½ºÆ®°©¿Ê5 {quantity}";
+                shop.ScrollViewText.text += $"{shopitem.itemname} {quantity},";
                 break;
             case 5:
-                shop.ScrollViewText6.text = $"Å×½ºÆ®°©¿Ê6 {quantity}";
+                shop.ScrollViewText.text += $"{shopitem.itemname} {quantity},";
                 break;
             case 6:
-                shop.ScrollViewText7.text = $"Å×½ºÆ®°©¿Ê7 {quantity}";
+                shop.ScrollViewText.text += $"{shopitem.itemname} {quantity},";
                 break;
 
 
@@ -118,25 +145,25 @@ public class ShopSlot : MonoBehaviour
             {
 
                 case 0:
-                    shop.ScrollViewText1.text = $"Å×½ºÆ®°©¿Ê {quantity}";
+                    shop.ScrollViewText.text += $"{shopitem.itemname} {quantity},";
                     break;
                 case 1:
-                    shop.ScrollViewText2.text = $"Å×½ºÆ®°©¿Ê2 {quantity}";
+                    shop.ScrollViewText.text += $"{shopitem.itemname} {quantity},";
                     break;
                 case 2:
-                    shop.ScrollViewText3.text = $"Å×½ºÆ®°©¿Ê3 {quantity}";
+                    shop.ScrollViewText.text += $"{shopitem.itemname} {quantity},";
                     break;
                 case 3:
-                    shop.ScrollViewText4.text = $"Å×½ºÆ®°©¿Ê4 {quantity}";
+                    shop.ScrollViewText.text += $"{shopitem.itemname} {quantity},";
                     break;
                 case 4:
-                    shop.ScrollViewText5.text = $"Å×½ºÆ®°©¿Ê5 {quantity}";
+                    shop.ScrollViewText.text += $"{shopitem.itemname} {quantity},";
                     break;
                 case 5:
-                    shop.ScrollViewText6.text = $"Å×½ºÆ®°©¿Ê6 {quantity}";
+                    shop.ScrollViewText.text += $"{shopitem.itemname} {quantity},";
                     break;
                 case 6:
-                    shop.ScrollViewText7.text = $"Å×½ºÆ®°©¿Ê7 {quantity}";
+                    shop.ScrollViewText.text += $"{shopitem.itemname} {quantity},";
                     break;
 
 
@@ -153,18 +180,18 @@ public class ShopSlot : MonoBehaviour
     {
         quantity = 0;
         totalGold = 0;
-        Quantity_num_text.text = $"{quantity}/10";
+
+        if (shopitem.itemtype == ItemType.Consumables) //¼Ò¸ðÇ°ÀÏ°æ¿ì 100°³
+        {
+            Quantity_num_text.text = $"{quantity}/100";
+        }
+        else
+        {
+            Quantity_num_text.text = $"{quantity}/10";
+        }
+
         shop.TotalGoldText.text = $"{totalGold}";
-        shop.ScrollViewText1.text = "";
-        shop.ScrollViewText2.text = "";
-        shop.ScrollViewText3.text = "";
-        shop.ScrollViewText4.text = "";
-        shop.ScrollViewText5.text = "";
-        shop.ScrollViewText6.text = "";
-        shop.ScrollViewText7.text = "";
-
-
-
+  
     }
 
 

@@ -49,6 +49,8 @@ public class Item
     public Sprite itemImage;
     public bool Equip = false;
     public int amount = 0;
+    public int buyprice;
+    public int sellprice;
     
 
     public List<ItemEffect> efts;

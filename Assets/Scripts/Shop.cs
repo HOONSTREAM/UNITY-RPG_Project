@@ -11,13 +11,8 @@ public class Shop : MonoBehaviour
     public GameObject ShopPanel; //RectTransform으로 해도 됨.
     public TextMeshProUGUI TotalGoldText;
 
-    public TextMeshProUGUI ScrollViewText1;
-    public TextMeshProUGUI ScrollViewText2;
-    public TextMeshProUGUI ScrollViewText3;
-    public TextMeshProUGUI ScrollViewText4;
-    public TextMeshProUGUI ScrollViewText5;
-    public TextMeshProUGUI ScrollViewText6;
-    public TextMeshProUGUI ScrollViewText7;
+    public TextMeshProUGUI ScrollViewText;
+    
 
 
 
@@ -52,23 +47,16 @@ public class Shop : MonoBehaviour
 
     void Update()
     {
-        PrintTotalGold();
+        PrintTotalGold(); 
     }
-
 
     public void Enter()
-    {
-       
+    {      
         ShopPanel.SetActive(true);
         
-
-
     }
 
-    private void AddItemInShop()
-    {
-        
-    }
+    
 
     public void Exit()
     {
@@ -92,13 +80,8 @@ public class Shop : MonoBehaviour
         {
          
             Managers.Sound.Play("Coin");
-            ScrollViewText1.text = "소지금이 부족합니다.";
-            ScrollViewText2.text = "";
-            ScrollViewText3.text = "";
-            ScrollViewText4.text = "";
-            ScrollViewText5.text = "";
-            ScrollViewText6.text = "";
-            ScrollViewText7.text = "";
+            ScrollViewText.text = "소지금이 부족합니다.";
+            
   
             return;
 
@@ -114,13 +97,8 @@ public class Shop : MonoBehaviour
             if (PlayerInventory.Instance.player_items.Count >= 20) //가방 칸 갯수검사
             {
                 Managers.Sound.Play("Coin");
-                ScrollViewText1.text = "가방이 가득찼습니다.";
-                ScrollViewText2.text = "";
-                ScrollViewText3.text = "";
-                ScrollViewText4.text = "";
-                ScrollViewText5.text = "";
-                ScrollViewText6.text = "";
-                ScrollViewText7.text = "";
+                ScrollViewText.text = "가방이 가득찼습니다.";
+                
                 return;
 
             }
@@ -130,8 +108,8 @@ public class Shop : MonoBehaviour
             {
                 if (slots[i].shopitem.itemtype == ItemType.Consumables)
                 {
-                    break;
-                   //TODO 소모품은 스택을 사용하므로 1개로 가정한다. 
+                    int tempquantity = 1; //임시로 1개로 증가, 소모품은 스택사용하므로 가방칸 1개만 사용
+                    totalquantity += tempquantity;
                 }
                 else
                 {
@@ -146,13 +124,8 @@ public class Shop : MonoBehaviour
             if (totalquantity+ PlayerInventory.Instance.player_items.Count > 20)
             {
                 Managers.Sound.Play("Coin");
-                ScrollViewText1.text = "가방 칸이 모자라 구매할 수 없습니다.";
-                ScrollViewText2.text = "";
-                ScrollViewText3.text = "";
-                ScrollViewText4.text = "";
-                ScrollViewText5.text = "";
-                ScrollViewText6.text = "";
-                ScrollViewText7.text = "";
+                ScrollViewText.text = "가방 칸이 모자라 구매할 수 없습니다.";
+               
                 
                 totalquantity = 0; //토탈갯수 검사 초기화
                 return;
@@ -161,13 +134,8 @@ public class Shop : MonoBehaviour
             
             Debug.Log("구매 완료");
             Managers.Sound.Play("Coin");
-            ScrollViewText1.text = "구매 완료하였습니다.";           
-            ScrollViewText2.text = "";
-            ScrollViewText3.text = "";
-            ScrollViewText4.text = "";
-            ScrollViewText5.text = "";
-            ScrollViewText6.text = "";
-            ScrollViewText7.text = "";
+            ScrollViewText.text = "구매 완료하였습니다.";           
+            
             stat.Gold -= total;
 
             for(int i = 0; i < slots.Length; i++)
