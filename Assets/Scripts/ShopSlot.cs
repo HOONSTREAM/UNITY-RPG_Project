@@ -12,7 +12,7 @@ public class ShopSlot : MonoBehaviour
     int testprice = 3000;
     public int totalGold = 0;
     public int slotnum;
-    public ItemDataBase instance;
+    public Item shopitem;
 
 
 
@@ -162,6 +162,8 @@ public class ShopSlot : MonoBehaviour
         shop.ScrollViewText5.text = "";
         shop.ScrollViewText6.text = "";
         shop.ScrollViewText7.text = "";
+
+
 
     }
 
