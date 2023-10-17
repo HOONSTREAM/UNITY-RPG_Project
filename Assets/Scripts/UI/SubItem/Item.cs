@@ -67,7 +67,7 @@ public class Item
         return isUsed;
     }
 
-    public bool IsStackable() //TODO 확장성 고려해서 소모품스택 확장 필요 (지금으로는 안됨)
+    public bool IsStackable() 
     {
 
          switch (itemtype)

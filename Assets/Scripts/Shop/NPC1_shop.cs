@@ -5,7 +5,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Shop : MonoBehaviour
+public class NPC1_shop : MonoBehaviour
 {
 
     public GameObject ShopPanel; //RectTransform으로 해도 됨.
@@ -18,10 +18,10 @@ public class Shop : MonoBehaviour
 
     GameObject Player;
     PlayerStat stat;
-    ShopSlot[] slots;
+    NPC1_shopslot[] slots;
     public Transform slotHolder;
     public List<Item> shopitemDB;
-    public List<Item> shop_items;
+   // public List<Item> shop_items;
 
 
 
@@ -31,17 +31,17 @@ public class Shop : MonoBehaviour
         TotalGoldText.text = "0";
         Player = GameObject.Find("UnityChan").gameObject;
         stat =  Player.GetComponent<PlayerStat>();
-        slots = slotHolder.GetComponentsInChildren<ShopSlot>();
+        slots = slotHolder.GetComponentsInChildren<NPC1_shopslot>();
 
 
         for (int i = 0; i < slots.Length; i++)
         {
             slots[i].slotnum = i;
-            slots[i].shopitem = shopitemDB[i]; //각 슬롯에 샵아이템데이터 등록 
+            
         }
-
-        
-
+        //샵에 등록할 아이템
+        slots[0].shopitem = shopitemDB[3]; //각 슬롯에 샵아이템데이터 등록 
+        slots[1].shopitem = shopitemDB[5];
 
     }
 
@@ -153,7 +153,7 @@ public class Shop : MonoBehaviour
                         
                         for(int i0 = 0; i0<quan ; i0++)
                         {
-                            PlayerInventory.Instance.AddItem(shopitemDB[0]);
+                            PlayerInventory.Instance.AddItem(shopitemDB[3]);
                             
                         }
 
@@ -169,44 +169,12 @@ public class Shop : MonoBehaviour
                         
                         for (int i1= 0; i1<quan1; i1++)
                         {
-                            PlayerInventory.Instance.AddItem(shopitemDB[1]);
+                            PlayerInventory.Instance.AddItem(shopitemDB[5]);
                             
                         }
                         totalquantity = 0; //구매 후 토탈갯수 초기화
                         break;
-                    case 2:
-                        int quan2 = slots[2].quantity;
-                        Debug.Log(quan2);
-                        if (quan2 == 0)
-                        {
-                            break;
-                        }
-                        
-                        for (int i2= 0; i2<quan2; i2++)
-                        {
-                            PlayerInventory.Instance.AddItem(shopitemDB[2]);
-                            
-                        }
-                        totalquantity = 0; //구매 후 토탈갯수 초기화
-                        break;
-                    case 3:
-                        int quan3 = slots[3].quantity;
-                        Debug.Log(quan3);
-                        break;
-                    case 4:
-                        int quan4 = slots[4].quantity;
-                        Debug.Log(quan4);
-                        break;
-                    case 5:
-                        int quan5 = slots[5].quantity;
-                        Debug.Log(quan5);
-                        break;
-                    case 6:
-                        int quan6 = slots[6].quantity;
-                        Debug.Log(quan6);
-                        break;
-
-
+                    
                 }
             }
            
