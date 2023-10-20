@@ -67,6 +67,7 @@ public class NPC1_shop : MonoBehaviour
             slots[i].ResetShop();
 
         }
+      
     }
     #region 상점 구매/판매 코드
     //TODO : 각 아이템별 구매/판매가격 세팅, 갯수대로 구매 세팅 ,판매구현

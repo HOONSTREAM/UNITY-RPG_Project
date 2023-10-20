@@ -12,8 +12,7 @@ public class NewInvenUI : MonoBehaviour
     GameObject inventoryPanel;
     PlayerInventory inven; //플레이어 인벤토리 참조
     PlayerStat stat; //플레이어 스텟 참조 (골드업데이트)
-    
-
+   
     public Slot[] slots;
     public Transform slotHolder;
 
@@ -24,13 +23,14 @@ public class NewInvenUI : MonoBehaviour
         
 
         stat = GetComponent<PlayerStat>(); //골드 업데이트를 위한 플레이어 스텟 참조
-        inven = PlayerInventory.Instance;
-       
+        inven = PlayerInventory.Instance;       
         slots= slotHolder.GetComponentsInChildren<Slot>();
         
         inventoryPanel.SetActive(activeInventory);
         inven.onChangeItem += RedrawSlotUI;
 
+        //인벤토리 드래그이벤트 
+        UI_Base.BindEvent(inventoryPanel, (PointerEventData data) => { inventoryPanel.transform.position = data.position; }, Define.UIEvent.Drag);
 
         #region 슬롯버그방지 슬롯생성
         inven.AddItem(ItemDataBase.instance.itemDB[0]);
