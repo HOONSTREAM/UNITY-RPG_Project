@@ -42,9 +42,6 @@ public class NewInvenUI : MonoBehaviour
 
     }
 
-
-
-
     private void Update()
     {
        

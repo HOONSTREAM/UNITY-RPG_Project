@@ -19433,6 +19433,23 @@ MonoBehaviour:
   SellConsole: {fileID: 8317237929637635237}
   Amount_InputConsole: {fileID: 1778757033}
   slots: []
+  slot_item:
+    ItemID: 0
+    equiptype: 0
+    itemtype: 0
+    itemname: 
+    stat_1: 
+    stat_2: 
+    num_1: 0
+    num_2: 0
+    Description: 
+    itemImage: {fileID: 0}
+    Equip: 0
+    amount: 0
+    buyprice: 0
+    sellprice: 0
+    efts: []
+  slot_number: 0
   amount: 0
 --- !u!114 &1856188205
 MonoBehaviour:
@@ -19448,6 +19465,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputamounttext: {fileID: 661878017}
   inputamount: 0
+  amountinput_console: {fileID: 0}
 --- !u!1001 &1858682868
 PrefabInstance:
   m_ObjectHideFlags: 0

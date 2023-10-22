@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditor.Progress;
 // TODO 상점 확장성에 대한 고려를 해야함.
 public class Shop : MonoBehaviour
 {
@@ -157,11 +158,24 @@ public class Shop : MonoBehaviour
                         {
                             break;
                         }
-                        
-                        for(int i0 = 0; i0<quan ; i0++)
+
+                        #region 에러 문제
+                        /*리스트에는 클래스의 각 개별의 직렬화된 정보가 리스트에 저장되는 것이 아니라 참조주소가 저장되는 것이기 때문에 같은 아이템으로 인식하는 문제 발생 : 
+                          for(int i0 = 0; i0<quan ; i0++) //TODO : 상점에서 여러개를 구입하면 같은 아이템으로 인식하는 문제 
                         {
-                            PlayerInventory.Instance.AddItem(shopitemDB[0]);
-                            
+                            PlayerInventory.Instance.AddItem(shopitemDB[0]); 
+                            PlayerInventory.Instance.onChangeItem.Invoke();
+                        }                       
+
+                        깊은복사/ 얕은복사 문제, 클래스는 기본적으로 참조방식이다. 클론함수로 문제 해결 
+                        
+                         */
+                        #endregion
+
+                        for (int i0 = 0; i0<quan ; i0++) 
+                        {
+                            PlayerInventory.Instance.AddItem(shopitemDB[0].Clone()); 
+                            PlayerInventory.Instance.onChangeItem.Invoke();
                         }
 
                         totalquantity = 0; //구매 후 토탈갯수 초기화
@@ -176,8 +190,9 @@ public class Shop : MonoBehaviour
                         
                         for (int i1= 0; i1<quan1; i1++)
                         {
-                            PlayerInventory.Instance.AddItem(shopitemDB[1]);
-                            
+                            PlayerInventory.Instance.AddItem(shopitemDB[1].Clone());
+                            PlayerInventory.Instance.onChangeItem.Invoke();
+
                         }
                         totalquantity = 0; //구매 후 토탈갯수 초기화
                         break;
@@ -191,8 +206,9 @@ public class Shop : MonoBehaviour
                         
                         for (int i2= 0; i2<quan2; i2++)
                         {
-                            PlayerInventory.Instance.AddItem(shopitemDB[2]);
-                            
+                            PlayerInventory.Instance.AddItem(shopitemDB[2].Clone());
+                            PlayerInventory.Instance.onChangeItem.Invoke();
+
                         }
                         totalquantity = 0; //구매 후 토탈갯수 초기화
                         break;
