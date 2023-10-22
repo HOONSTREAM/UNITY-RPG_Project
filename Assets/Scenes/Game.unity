@@ -1693,7 +1693,7 @@ MonoBehaviour:
     Equip: 0
     amount: 1
     buyprice: 1000000
-    sellprice: 0
+    sellprice: 1000
     efts:
     - {fileID: 11400000, guid: 9b9c363957c666746aebffb59490991f, type: 2}
   fielditemPrefab: {fileID: 7522970402254163847, guid: 825b2bdcabe5ab54b8f97fda1a1f79c2, type: 3}
@@ -7285,7 +7285,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -100, y: -101}
+  m_AnchoredPosition: {x: -100, y: 0}
   m_SizeDelta: {x: 100.3528, y: 100}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &675821688
@@ -18446,7 +18446,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.4627437, y: 0.53300005}
   m_AnchorMax: {x: 0.4627437, y: 0.53300005}
-  m_AnchoredPosition: {x: -0.30737305, y: -0.017990112}
+  m_AnchoredPosition: {x: -0.30737305, y: 0}
   m_SizeDelta: {x: 186.6147, y: 129.9641}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1778757035
