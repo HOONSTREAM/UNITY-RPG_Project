@@ -4050,6 +4050,7 @@ MonoBehaviour:
   ScrollViewText: {fileID: 567708443}
   slotHolder: {fileID: 567708444}
   shopitemDB: []
+  playerslotHolder: {fileID: 0}
 --- !u!114 &421626192
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11325,6 +11326,7 @@ MonoBehaviour:
   ScrollViewText: {fileID: 567708443}
   slotHolder: {fileID: 567708444}
   shopitemDB: []
+  playerslotHolder: {fileID: 985210522}
 --- !u!1 &1048764665
 GameObject:
   m_ObjectHideFlags: 0
@@ -11691,6 +11693,37 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8539526175997767124, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
   m_PrefabInstance: {fileID: 1746851658820640929}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1088432931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088432926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50ae7781de35d2243a1be3c7a615729e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Equip_Drop_Selection: {fileID: 1741130063}
+  slot_item:
+    ItemID: 0
+    equiptype: 0
+    itemtype: 0
+    itemname: 
+    stat_1: 
+    stat_2: 
+    num_1: 0
+    num_2: 0
+    Description: 
+    itemImage: {fileID: 0}
+    Equip: 0
+    amount: 0
+    buyprice: 0
+    sellprice: 0
+    efts: []
+  slot_number: 0
+  slots: []
 --- !u!1 &1090509155
 GameObject:
   m_ObjectHideFlags: 0
@@ -17897,6 +17930,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 476176, guid: ae446b6954a0f884abadb75f6f8c3098, type: 3}
   m_PrefabInstance: {fileID: 1734237725}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1741130063 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1247987601766091938, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
+  m_PrefabInstance: {fileID: 1746851658820640929}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1742653264
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19465,7 +19503,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputamounttext: {fileID: 661878017}
   inputamount: 0
-  amountinput_console: {fileID: 0}
+  amountinput_console: {fileID: 1778757033}
 --- !u!1001 &1858682868
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19811,6 +19849,7 @@ MonoBehaviour:
   ScrollViewText: {fileID: 567708443}
   slotHolder: {fileID: 567708444}
   shopitemDB: []
+  playerslotHolder: {fileID: 0}
 --- !u!114 &1861905343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -20879,6 +20918,7 @@ MonoBehaviour:
   ScrollViewText: {fileID: 567708443}
   slotHolder: {fileID: 567708444}
   shopitemDB: []
+  playerslotHolder: {fileID: 985210522}
 --- !u!1001 &1940060892
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -22673,6 +22713,10 @@ PrefabInstance:
       propertyPath: Sell_Panel
       value: 
       objectReference: {fileID: 8317237929637635237}
+    - target: {fileID: 4664517194502377, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
+      propertyPath: Equip_Drop_Panel
+      value: 
+      objectReference: {fileID: 1741130063}
     - target: {fileID: 65394885856249053, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -22701,6 +22745,14 @@ PrefabInstance:
       propertyPath: Sell_Panel
       value: 
       objectReference: {fileID: 8317237929637635237}
+    - target: {fileID: 157868600740266562, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
+      propertyPath: Equip_Drop_Panel
+      value: 
+      objectReference: {fileID: 1741130063}
+    - target: {fileID: 459367608054707027, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
+      propertyPath: m_text
+      value: "\uC7A5\uCC29/\uD574\uC81C"
+      objectReference: {fileID: 0}
     - target: {fileID: 666518246012665815, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -22777,6 +22829,10 @@ PrefabInstance:
       propertyPath: Sell_Panel
       value: 
       objectReference: {fileID: 8317237929637635237}
+    - target: {fileID: 875307975178169617, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
+      propertyPath: Equip_Drop_Panel
+      value: 
+      objectReference: {fileID: 1741130063}
     - target: {fileID: 1142760244795277226, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -22799,6 +22855,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1142760244795277226, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
       propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1247987601766091938, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1356380273774668607, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
@@ -22829,6 +22889,10 @@ PrefabInstance:
       propertyPath: Sell_Panel
       value: 
       objectReference: {fileID: 8317237929637635237}
+    - target: {fileID: 1419373247461827126, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
+      propertyPath: Equip_Drop_Panel
+      value: 
+      objectReference: {fileID: 1741130063}
     - target: {fileID: 1645106923292485073, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -22881,10 +22945,18 @@ PrefabInstance:
       propertyPath: Sell_Panel
       value: 
       objectReference: {fileID: 8317237929637635237}
+    - target: {fileID: 2020043242844533658, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
+      propertyPath: Equip_Drop_Panel
+      value: 
+      objectReference: {fileID: 1741130063}
     - target: {fileID: 2131163929492468639, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
       propertyPath: Sell_Panel
       value: 
       objectReference: {fileID: 8317237929637635237}
+    - target: {fileID: 2131163929492468639, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
+      propertyPath: Equip_Drop_Panel
+      value: 
+      objectReference: {fileID: 1741130063}
     - target: {fileID: 2287921324006374248, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -22901,14 +22973,26 @@ PrefabInstance:
       propertyPath: Sell_Panel
       value: 
       objectReference: {fileID: 8317237929637635237}
+    - target: {fileID: 2418346539039932698, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
+      propertyPath: Equip_Drop_Panel
+      value: 
+      objectReference: {fileID: 1741130063}
     - target: {fileID: 2444635186964788320, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
       propertyPath: Sell_Panel
       value: 
       objectReference: {fileID: 8317237929637635237}
+    - target: {fileID: 2444635186964788320, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
+      propertyPath: Equip_Drop_Panel
+      value: 
+      objectReference: {fileID: 1741130063}
     - target: {fileID: 2555047714376719126, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
       propertyPath: Sell_Panel
       value: 
       objectReference: {fileID: 8317237929637635237}
+    - target: {fileID: 2555047714376719126, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
+      propertyPath: Equip_Drop_Panel
+      value: 
+      objectReference: {fileID: 1741130063}
     - target: {fileID: 2663965324939517182, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -22985,6 +23069,10 @@ PrefabInstance:
       propertyPath: Sell_Panel
       value: 
       objectReference: {fileID: 8317237929637635237}
+    - target: {fileID: 2946139638158646052, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
+      propertyPath: Equip_Drop_Panel
+      value: 
+      objectReference: {fileID: 1741130063}
     - target: {fileID: 3342503909792743371, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -23037,6 +23125,10 @@ PrefabInstance:
       propertyPath: Sell_Panel
       value: 
       objectReference: {fileID: 8317237929637635237}
+    - target: {fileID: 3766332808658270888, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
+      propertyPath: Equip_Drop_Panel
+      value: 
+      objectReference: {fileID: 1741130063}
     - target: {fileID: 4065941173095091830, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -23089,6 +23181,10 @@ PrefabInstance:
       propertyPath: Sell_Panel
       value: 
       objectReference: {fileID: 8317237929637635237}
+    - target: {fileID: 4204323755658000152, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
+      propertyPath: Equip_Drop_Panel
+      value: 
+      objectReference: {fileID: 1741130063}
     - target: {fileID: 4374646955232991315, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -23117,10 +23213,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: NewInvenUI
       objectReference: {fileID: 0}
-    - target: {fileID: 4425149056195967035, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4546611835425922906, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -23145,30 +23237,42 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4676884431946928248, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
-      propertyPath: m_Size
-      value: 0.88879794
-      objectReference: {fileID: 0}
-    - target: {fileID: 4676884431946928248, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
-      propertyPath: m_Value
-      value: 1.0000006
-      objectReference: {fileID: 0}
     - target: {fileID: 5150035492450591104, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
       propertyPath: Sell_Panel
       value: 
       objectReference: {fileID: 8317237929637635237}
+    - target: {fileID: 5150035492450591104, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
+      propertyPath: Equip_Drop_Panel
+      value: 
+      objectReference: {fileID: 1741130063}
     - target: {fileID: 5437812818845392045, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
       propertyPath: Sell_Panel
       value: 
       objectReference: {fileID: 8317237929637635237}
+    - target: {fileID: 5437812818845392045, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
+      propertyPath: Equip_Drop_Panel
+      value: 
+      objectReference: {fileID: 1741130063}
+    - target: {fileID: 5512126497930049284, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.0000038146973
+      objectReference: {fileID: 0}
     - target: {fileID: 6016200304255799258, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
       propertyPath: Sell_Panel
       value: 
       objectReference: {fileID: 8317237929637635237}
+    - target: {fileID: 6016200304255799258, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
+      propertyPath: Equip_Drop_Panel
+      value: 
+      objectReference: {fileID: 1741130063}
     - target: {fileID: 6072711487349718106, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
       propertyPath: Sell_Panel
       value: 
       objectReference: {fileID: 8317237929637635237}
+    - target: {fileID: 6072711487349718106, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
+      propertyPath: Equip_Drop_Panel
+      value: 
+      objectReference: {fileID: 1741130063}
     - target: {fileID: 6145520107843775860, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -23197,6 +23301,10 @@ PrefabInstance:
       propertyPath: Sell_Panel
       value: 
       objectReference: {fileID: 8317237929637635237}
+    - target: {fileID: 6500327888287605984, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
+      propertyPath: Equip_Drop_Panel
+      value: 
+      objectReference: {fileID: 1741130063}
     - target: {fileID: 6680810180102363752, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -23225,10 +23333,18 @@ PrefabInstance:
       propertyPath: Sell_Panel
       value: 
       objectReference: {fileID: 8317237929637635237}
+    - target: {fileID: 6825939310800458517, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
+      propertyPath: Equip_Drop_Panel
+      value: 
+      objectReference: {fileID: 1741130063}
     - target: {fileID: 7178217539517387848, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
       propertyPath: Sell_Panel
       value: 
       objectReference: {fileID: 8317237929637635237}
+    - target: {fileID: 7178217539517387848, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
+      propertyPath: Equip_Drop_Panel
+      value: 
+      objectReference: {fileID: 1741130063}
     - target: {fileID: 7229656283819107655, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -23245,6 +23361,38 @@ PrefabInstance:
       propertyPath: Sell_Panel
       value: 
       objectReference: {fileID: 8317237929637635237}
+    - target: {fileID: 8172466627140285916, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
+      propertyPath: Equip_Drop_Panel
+      value: 
+      objectReference: {fileID: 1741130063}
+    - target: {fileID: 8308777772345957621, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8308777772345957621, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8308777772345957621, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1088432931}
+    - target: {fileID: 8308777772345957621, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8308777772345957621, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Equip
+      objectReference: {fileID: 0}
+    - target: {fileID: 8308777772345957621, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Slot_Equip_Drop, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8308777772345957621, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8352283971349066570, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -23306,18 +23454,6 @@ PrefabInstance:
       value: 968.806
       objectReference: {fileID: 0}
     - target: {fileID: 8539526175997767124, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8539526175997767124, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8539526175997767124, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8539526175997767124, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -23369,14 +23505,13 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8611949963699717687, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.000045776367
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4425149056195967035, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1088432931}
   m_SourcePrefab: {fileID: 100100000, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
 --- !u!1001 &6197904226867889229
 PrefabInstance:

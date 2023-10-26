@@ -22,7 +22,6 @@ public class Shop : MonoBehaviour
     ShopSlot[] slots;
     public Transform slotHolder;
     public List<Item> shopitemDB;
-    // public List<Item> shop_items;
     Slot[] playerslots;
     public Transform playerslotHolder;
 
@@ -161,7 +160,7 @@ public class Shop : MonoBehaviour
 
                         #region 에러 문제
                         /*리스트에는 클래스의 각 개별의 직렬화된 정보가 리스트에 저장되는 것이 아니라 참조주소가 저장되는 것이기 때문에 같은 아이템으로 인식하는 문제 발생 : 
-                          for(int i0 = 0; i0<quan ; i0++) //TODO : 상점에서 여러개를 구입하면 같은 아이템으로 인식하는 문제 
+                          for(int i0 = 0; i0<quan ; i0++)  
                         {
                             PlayerInventory.Instance.AddItem(shopitemDB[0]); 
                             PlayerInventory.Instance.onChangeItem.Invoke();

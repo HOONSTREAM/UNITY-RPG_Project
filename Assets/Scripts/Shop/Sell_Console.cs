@@ -25,7 +25,7 @@ public class Sell_Console : MonoBehaviour
     }
    
 
-    public void Sell_Item() //TODO : 소모품인경우 갯수를 물어보고.. (Inputfield 활용)
+    public void Sell_Item() 
     {
         SellConsole.SetActive(false);
         if(slot_item.itemtype == ItemType.Consumables && slot_item.amount >1)

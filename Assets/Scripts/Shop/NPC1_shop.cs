@@ -21,7 +21,8 @@ public class NPC1_shop : MonoBehaviour
     NPC1_shopslot[] slots;
     public Transform slotHolder;
     public List<Item> shopitemDB;
-   // public List<Item> shop_items;
+    Slot[] playerslots;
+    public Transform playerslotHolder;
 
 
 
@@ -32,7 +33,7 @@ public class NPC1_shop : MonoBehaviour
         Player = GameObject.Find("UnityChan").gameObject;
         stat =  Player.GetComponent<PlayerStat>();
         slots = slotHolder.GetComponentsInChildren<NPC1_shopslot>();
-
+        playerslots = playerslotHolder.GetComponentsInChildren<Slot>(); //플레이어 슬롯 참조 (샵모드 불리언 검사)
 
         for (int i = 0; i < slots.Length; i++)
         {
@@ -53,7 +54,11 @@ public class NPC1_shop : MonoBehaviour
     public void Enter()
     {      
         ShopPanel.SetActive(true);
-        
+
+        for (int i = 0; i < playerslots.Length; i++)
+        {
+            playerslots[i].isShopMode = true;
+        }
     }
 
     
@@ -67,10 +72,15 @@ public class NPC1_shop : MonoBehaviour
             slots[i].ResetShop();
 
         }
-      
+
+        for (int i = 0; i < playerslots.Length; i++)
+        {
+            playerslots[i].isShopMode = false;
+        }
+
     }
     #region 상점 구매/판매 코드
-    //TODO : 각 아이템별 구매/판매가격 세팅, 갯수대로 구매 세팅 ,판매구현
+    
 
     int totalquantity = 0; // 토탈 구매갯수 검사하여 가방갯수보다 많으면 리턴
     public void Buy()
@@ -154,7 +164,7 @@ public class NPC1_shop : MonoBehaviour
                         
                         for(int i0 = 0; i0<quan ; i0++)
                         {
-                            PlayerInventory.Instance.AddItem(shopitemDB[3]);
+                            PlayerInventory.Instance.AddItem(shopitemDB[3].Clone());
                             
                         }
 
@@ -170,7 +180,7 @@ public class NPC1_shop : MonoBehaviour
                         
                         for (int i1= 0; i1<quan1; i1++)
                         {
-                            PlayerInventory.Instance.AddItem(shopitemDB[5]);
+                            PlayerInventory.Instance.AddItem(shopitemDB[5].Clone());
                             
                         }
                         totalquantity = 0; //구매 후 토탈갯수 초기화

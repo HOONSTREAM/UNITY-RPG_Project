@@ -17,6 +17,7 @@ public class Slot : MonoBehaviour, IPointerUpHandler
     public TextMeshProUGUI amount_text;
     public bool isShopMode = false;
     public GameObject Sell_Panel;
+    public GameObject Equip_Drop_Panel;
     
     
 
@@ -87,52 +88,37 @@ public class Slot : MonoBehaviour, IPointerUpHandler
 
         else //상점모드가 아닌경우 장착/해제 담당
         {
-            bool isUse = item.Use();
-
-            if (isUse)
+            if(PlayerInventory.Instance.player_items.Count == 0)
             {
-                if (item.itemtype == ItemType.Equipment)
+                return;
+            }
+
+            if(this.item.itemtype == ItemType.Equipment)
+            {
+                GameObject go = GameObject.Find("NewInvenUI").gameObject;
+                Slot_Equip_Drop equip_drop = go.GetComponent<Slot_Equip_Drop>();
+                equip_drop.Get_Slotnum(slotnum); //slot에 대한 정보를 sellconsole 스크립트에 넘겨줌
+                Equip_Drop_Panel.SetActive(true);
+                Equip_Drop_Panel.transform.position = Input.mousePosition;
+            }
+            else
+            {
+                bool isUse = item.Use();
+
+                if(isUse)
                 {
-                    if (item.Equip) //이미 장착중인경우 다시 누를경우 장착해제
-                    {
-                        PlayerEquipment.Instance.UnEquipItem(this);
-                        equiped_image.gameObject.SetActive(false); //장착해제 후 체크표시 해제
-
-                        return;
-                    }
-
-                    else
-                    {
-                        PlayerEquipment.Instance.EquipItem(this); //아이템 장착 함수
-                        if (item.Equip)
-                        {
-                            equiped_image.gameObject.SetActive(true); //체크표시
-                          
-                        }
-                        else //장착할 수 없을경우 (부위가 겹칠경우)
-                        {
-                            equiped_image.gameObject.SetActive(false); //체크표시 안함
-                        }
-
-                    }
-
-                }
-
-                else //소모품일경우
-                {
-
-                    PlayerInventory.Instance.RemoveItem(slotnum);
+                    PlayerInventory.Instance.RemoveItem(this.slotnum);
 
                     if (item == null)
                     {
                         return;
                     }
                 }
-
+               
             }
-        
-        }
 
+
+        }
       
 
     }
