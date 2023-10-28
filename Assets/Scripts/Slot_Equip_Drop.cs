@@ -10,11 +10,13 @@ public class Slot_Equip_Drop : MonoBehaviour
     public Item slot_item; // 슬롯에 해당하는 아이템 참조
     public int slot_number; // 슬롯의 번호 참조
     public Slot[] slots; //플레이어 슬롯 참조
+    public PlayerStat stat;
 
     void Start()
     {
         GameObject go = GameObject.Find("NewInvenUI").gameObject;
         slots = go.GetComponentsInChildren<Slot>();
+        stat = GameObject.Find("UnityChan").gameObject.GetComponent<PlayerStat>();
     }
 
 
@@ -65,6 +67,27 @@ public class Slot_Equip_Drop : MonoBehaviour
 
         }
 
+    }
+
+    public void Drop()
+    {
+        if (slot_item.itemtype == ItemType.Equipment)
+        {
+            if (slot_item.Equip) //이미 장착중인경우 버릴 수 없음.
+            {
+                stat.PrintUserText("장착중인 아이템은 버릴 수 없습니다.");
+                Equip_Drop_Selection.SetActive(false);
+                return;
+            }
+
+            else
+            {
+                PlayerInventory.Instance.RemoveItem(slot_number);
+                stat.PrintUserText("아이템을 버립니다.");
+                Equip_Drop_Selection.SetActive(false);
+            }
+
+        }
     }
 }
 

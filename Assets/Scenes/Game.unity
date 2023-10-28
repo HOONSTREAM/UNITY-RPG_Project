@@ -2720,7 +2720,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.8042088}
   m_AnchorMax: {x: 0.2521297, y: 0.8833957}
-  m_AnchoredPosition: {x: -0.080078125, y: 0}
+  m_AnchoredPosition: {x: 4.963623, y: 0}
   m_SizeDelta: {x: -0.16409302, y: 0.39250183}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &326401629
@@ -7286,7 +7286,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -100, y: 0}
+  m_AnchoredPosition: {x: -100.5, y: -99.8}
   m_SizeDelta: {x: 100.3528, y: 100}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &675821688
@@ -11724,6 +11724,7 @@ MonoBehaviour:
     efts: []
   slot_number: 0
   slots: []
+  stat: {fileID: 0}
 --- !u!1 &1090509155
 GameObject:
   m_ObjectHideFlags: 0
@@ -23256,6 +23257,34 @@ PrefabInstance:
     - target: {fileID: 5512126497930049284, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0.0000038146973
+      objectReference: {fileID: 0}
+    - target: {fileID: 5967465231198102893, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5967465231198102893, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5967465231198102893, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1088432931}
+    - target: {fileID: 5967465231198102893, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5967465231198102893, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Drop
+      objectReference: {fileID: 0}
+    - target: {fileID: 5967465231198102893, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Slot_Equip_Drop, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5967465231198102893, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6016200304255799258, guid: 3c944b22b959366468c7f7d543656d22, type: 3}
       propertyPath: Sell_Panel
