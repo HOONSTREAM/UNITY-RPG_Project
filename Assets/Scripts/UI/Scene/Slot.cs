@@ -18,8 +18,9 @@ public class Slot : MonoBehaviour, IPointerUpHandler
     public bool isShopMode = false;
     public GameObject Sell_Panel;
     public GameObject Equip_Drop_Panel;
-    
-    
+    public GameObject Use_Drop_Panel;
+
+
 
     void Start()
     {
@@ -93,7 +94,7 @@ public class Slot : MonoBehaviour, IPointerUpHandler
                 return;
             }
 
-            if(this.item.itemtype == ItemType.Equipment)
+            if(this.item.itemtype == ItemType.Equipment) //장비아이템인경우
             {
                 GameObject go = GameObject.Find("NewInvenUI").gameObject;
                 Slot_Equip_Drop equip_drop = go.GetComponent<Slot_Equip_Drop>();
@@ -101,20 +102,14 @@ public class Slot : MonoBehaviour, IPointerUpHandler
                 Equip_Drop_Panel.SetActive(true);
                 Equip_Drop_Panel.transform.position = Input.mousePosition;
             }
-            else
+            else // 소모품인경우 
             {
-                bool isUse = item.Use();
+                GameObject go = GameObject.Find("NewInvenUI").gameObject;
+                Slot_Equip_Drop equip_drop = go.GetComponent<Slot_Equip_Drop>();
+                equip_drop.Get_Slotnum(slotnum); //slot에 대한 정보를 sellconsole 스크립트에 넘겨줌
+                Use_Drop_Panel.SetActive(true);
+                Use_Drop_Panel.transform.position = Input.mousePosition;
 
-                if(isUse)
-                {
-                    PlayerInventory.Instance.RemoveItem(this.slotnum);
-
-                    if (item == null)
-                    {
-                        return;
-                    }
-                }
-               
             }
 
 

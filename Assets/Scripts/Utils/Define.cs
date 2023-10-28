@@ -42,6 +42,7 @@ public enum Layer
     {
         Bgm,
         Effect,
+        Ambiance,
         Maxcount 
 
     }

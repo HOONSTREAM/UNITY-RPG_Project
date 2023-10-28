@@ -13,7 +13,7 @@ public class Gold_Bag : ItemEffect
 
         GameObject go = GameObject.Find("UnityChan").gameObject;
         PlayerStat stat = go.GetComponent<PlayerStat>();
-        Managers.Sound.Play("Coin");
+        Managers.Sound.Play("CoinEffect");
         stat.Gold += 1000;
         stat.PrintUserText("1000°ñµå¸¦ È¹µæÇÏ¿´½À´Ï´Ù.");
         GetAtk();

@@ -8,7 +8,7 @@ public class InputConsole : MonoBehaviour
 {
     public TMP_InputField inputamounttext;
     public int inputamount;
-    private GameObject console;
+    private GameObject canvas; //스크립트가 등록되어있는 캔버스
     private Sell_Console sell_console;
     public GameObject amountinput_console;
 
@@ -16,8 +16,8 @@ public class InputConsole : MonoBehaviour
 
     private void Awake()
     {
-        console = GameObject.Find("GUI").gameObject;
-        sell_console = console.GetComponent<Sell_Console>();
+        canvas = GameObject.Find("GUI").gameObject;
+        sell_console = canvas.GetComponent<Sell_Console>();
     }
 
     public void Input()
@@ -35,6 +35,7 @@ public class InputConsole : MonoBehaviour
         if(sell_console.slot_item.amount < inputamount)
         {
             stat.PrintUserText("소지 중인 물품의 갯수가 부족합니다.");
+            amountinput_console.SetActive(false);
             return;
         }
 

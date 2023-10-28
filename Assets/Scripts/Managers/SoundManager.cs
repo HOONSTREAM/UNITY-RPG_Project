@@ -29,6 +29,8 @@ public class SoundManager
             }
 
             _audiosource[(int)Define.Sound.Bgm].loop = true; //bgm은 루프
+            _audiosource[(int)Define.Sound.Ambiance].loop = true; //Ambiance도 루프
+            _audiosource[(int)Define.Sound.Ambiance].volume = 0.5f; //환경음은 볼륨 절반
         }
     }
 
@@ -69,12 +71,23 @@ public class SoundManager
 
         }
 
-        else //Effect (이펙트)
+        else if(type == Define.Sound.Effect)
         {
             AudioSource audiosource = _audiosource[(int)Define.Sound.Effect];
             audiosource.pitch = pitch;
             audiosource.PlayOneShot(audioclip); //던지는개념 (중간에 중단할 수 없음) 
 
+        }
+
+        else if(type == Define.Sound.Ambiance)
+        {
+            AudioSource audiosource = _audiosource[(int)Define.Sound.Ambiance];
+            if (audiosource.isPlaying)
+                audiosource.Stop();
+
+            audiosource.pitch = pitch;
+            audiosource.clip = audioclip;
+            audiosource.Play();
         }
     }
 
@@ -91,6 +104,11 @@ public class SoundManager
         {
             audioclip = Managers.Resources.Load<AudioClip>(path);
 
+        }
+
+        else if (type == Define.Sound.Ambiance)
+        {
+            audioclip = Managers.Resources.Load<AudioClip>(path);
         }
 
         else //Effect (이펙트)
