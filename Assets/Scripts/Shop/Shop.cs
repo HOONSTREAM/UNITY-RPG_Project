@@ -24,11 +24,12 @@ public class Shop : MonoBehaviour
     public List<Item> shopitemDB;
     Slot[] playerslots;
     public Transform playerslotHolder;
-
+    public string NPCname;
 
 
     void Start()
     {
+        NPCname = "대장슬라임 케넨";
         shopitemDB = ItemDataBase.instance.itemDB; //데이터베이스 복사 
         TotalGoldText.text = "0";
         Player = GameObject.Find("UnityChan").gameObject;

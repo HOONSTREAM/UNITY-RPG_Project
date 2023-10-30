@@ -10,6 +10,8 @@ public class CursorController : MonoBehaviour
         None,
         Hand,
         AttackHand,
+        NPC,
+
 
     }
 
@@ -64,7 +66,12 @@ public class CursorController : MonoBehaviour
             }
             else 
             {
-                Cursor.SetCursor(_NPCIcon, new Vector2(_NPCIcon.width / 3, 0), CursorMode.Auto);
+                if (cursorType != CursorType.Hand)
+                {
+                    Cursor.SetCursor(_NPCIcon, new Vector2(_NPCIcon.width / 3, 0), CursorMode.Auto);
+                    cursorType = CursorType.NPC;
+                }
+               
 
             }
         }
