@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngineInternal;
 
 public class NPC_ToolTip_Controller : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
 
     public NPC_ToolTip tooltip;
 
-    private int _mask = (1 << (int)Define.Layer.Ground | 1 << (int)Define.Layer.Monster | 1<<(int)Define.Layer.NPC);
+    private int _mask = (1 << (int)Define.Layer.NPC1 | 1<<(int)Define.Layer.NPC);
 
     enum OnToolTipUpdated
     {
@@ -25,9 +27,14 @@ public class NPC_ToolTip_Controller : MonoBehaviour, IPointerEnterHandler, IPoin
         Debug.Log("OnPointerEnter È£Ãâ");
         if (ontooltip != OnToolTipUpdated.On)
         {
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            bool raycasthit = Physics.Raycast(ray, out hit, 100.0f, _mask);
 
-            //string name = "TEST";
-            //tooltip.SetupToolTip(name);
+            string name = hit.collider.gameObject.name;
+
+            
+            tooltip.SetupToolTip(name);
             tooltip.gameObject.SetActive(true);
             ontooltip = OnToolTipUpdated.On;
 
@@ -53,12 +60,7 @@ public class NPC_ToolTip_Controller : MonoBehaviour, IPointerEnterHandler, IPoin
     void Update()
     {
         
-        //RaycastHit hit;
-        //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        //bool raycasthit = Physics.Raycast(ray, out hit, 100.0f, _mask);
-
-        //Debug.Log(hit.collider.gameObject.name);
-
+        
       
     }
 }
