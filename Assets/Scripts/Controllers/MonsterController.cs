@@ -13,6 +13,8 @@ public class MonsterController : BaseController
 
     public override void Init()
     {
+       
+
         WorldObjectType = Define.WorldObject.Monster;
 
         _stat = gameObject.GetComponent<Stat>();
@@ -41,7 +43,7 @@ public class MonsterController : BaseController
 
         }
 
-        Debug.Log("Monster Idle");
+       
 
 
     }
@@ -104,7 +106,7 @@ public class MonsterController : BaseController
     
     protected override void UpdateSkill()
     {
-        Debug.Log("Monster Skill");
+       
 
         if (LockTarget != null)
         {
@@ -118,7 +120,7 @@ public class MonsterController : BaseController
     /* 데미지를 입는 것들은 데미지 입는 대상에다가 피격함수를 구현하는 것이 좋다. 향후 버프스킬 같은 것들 계산하기가 편리해짐 */
     void OnHitEvent()
     {
-        Debug.Log("Monster Hit Event");
+       
 
         if(LockTarget != null)
         {

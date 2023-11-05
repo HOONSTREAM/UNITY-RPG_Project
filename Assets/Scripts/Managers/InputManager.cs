@@ -45,6 +45,7 @@ public class InputManager
                     {
                         MouseAction.Invoke(Define.MouseEvent.Click);
                     }
+
                     MouseAction.Invoke(Define.MouseEvent.PointerUp);
 
                 }

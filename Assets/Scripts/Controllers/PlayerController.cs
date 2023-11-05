@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.AI;
@@ -15,17 +16,16 @@ public class PlayerController : BaseController
 
 
     private int _mask = (1 << (int)Define.Layer.Ground | 1 << (int)Define.Layer.Monster); //레이어마스크
-    bool _stopSkill = false; // 스킬사용 멈춤 변수
+    bool skill_is_stop = false; // 스킬사용 멈춤 변수
     PlayerStat _stat; // 플레이어의 스텟
     float attackRange = 2.0f;
-    
 
 
-
+  
 
     public override void Init()
     {
-        
+       
 
         WorldObjectType = Define.WorldObject.Player;
 
@@ -44,16 +44,16 @@ public class PlayerController : BaseController
  
     protected override void UpdateMoving()
     {
-
+        Debug.Log(State);
         if (LockTarget != null)
         {
-            
-           float distance = (_DesPos - transform.position).magnitude;
+
+            float distance = (_DesPos - transform.position).magnitude;
             if (distance <= attackRange)
             {
+               
                 State = Define.State.Skill;
                 return;
-
             }
         }
 
@@ -63,6 +63,7 @@ public class PlayerController : BaseController
         if (dir.magnitude < 0.1f) // 방향의 스칼라값이 0에 수렴하면 (목적지에 도착했으면)
         {
             State = Define.State.Idle;
+           
         }
 
         else
@@ -76,7 +77,7 @@ public class PlayerController : BaseController
             Debug.DrawRay(transform.position + Vector3.up * 0.5f, dir.normalized, Color.green);
             if (Physics.Raycast(transform.position + Vector3.up * 0.5f, dir, 1.0f, LayerMask.GetMask("Building")))
             {
-                Debug.Log("더이상 지나갈 수 없다.");
+               
                 transform.position += new Vector3(0, 0, -0.5f); //뒤로밀어내기 
                 State = Define.State.Idle;
                 return;
@@ -91,7 +92,7 @@ public class PlayerController : BaseController
   
     protected override void UpdateSkill()
     {
-
+        Debug.Log($"{State} 상태이고 , skill_is _ stop은 {skill_is_stop} 입니다.");
         if (LockTarget!=null)
         {
             Vector3 dir = LockTarget.transform.position-transform.position;
@@ -99,8 +100,11 @@ public class PlayerController : BaseController
             transform.rotation = Quaternion.Lerp(transform.rotation, quat, 20 * Time.deltaTime);
   
         }
+
+      
+
     }
-    void OnHitEvent() //애니메이션 Hit event로 등록되어 있는 함수 
+    void player_OnHitEvent() //애니메이션 Hit event로 등록되어 있는 함수 
     {
         if (LockTarget != null)
         {
@@ -109,18 +113,24 @@ public class PlayerController : BaseController
 
         }
 
-        if (_stopSkill)
+        if (skill_is_stop)
         {
+            Debug.Log("skill_is_stop = true");
             State = Define.State.Idle;
+            Debug.Log("Idle 전환 완료");
         }
-        else
+        else if (skill_is_stop == false)
         {
+            Debug.Log("skill_is_stop = false");
             State = Define.State.Skill;
+            Debug.Log("skill 상태 전환 완료");
         }
+
 
     }
     void OnMouseEvent(Define.MouseEvent evt)
     {
+        
         switch (State)
         {
             case Define.State.Idle:
@@ -131,28 +141,32 @@ public class PlayerController : BaseController
                 break;
             case Define.State.Skill:
                 {
-                    if(evt == Define.MouseEvent.PointerUp)
+                    if(evt == Define.MouseEvent.PointerUp || evt == Define.MouseEvent.Click)
                     {
-                        _stopSkill = true;
+                        Debug.Log("PointerUp OnMouseEvent");
 
+                        skill_is_stop = true;
                     }
+                   
                 }
                 break;
 
         }
 
+
      }
-    void HitSounds(Define.MouseEvent evt)
+
+
+    void player_HitSounds(Define.MouseEvent evt)
     {
         Managers.Sound.Play("Fight Hits 24", Define.Sound.Effect);
-        //Managers.Sound.Play("univ0001", Define.Sound.Effect);
-
+        
     }
 
 
     void OnMouseEvent_IdleRUN(Define.MouseEvent evt)
     {
-
+       
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
     
@@ -161,6 +175,7 @@ public class PlayerController : BaseController
 
         Debug.DrawRay(Camera.main.transform.position, ray.direction * 100.0f, Color.red, 1.0f);
 
+
         switch (evt)
         {
             case Define.MouseEvent.PointerDown:
@@ -168,20 +183,26 @@ public class PlayerController : BaseController
                    
                     if (raycasthit)
                     {
-                        _DesPos = hit.point;                                                             
+                        _DesPos = hit.point;
+
                         State = Define.State.Moving;
-                        _stopSkill = false;
+                        Debug.Log($"{State} : PointerDown 호출");
+                        Debug.Log(State);
+                       
+                        skill_is_stop = true;
+                        
+                       
 
                         if (hit.collider.gameObject.layer == (int)Define.Layer.Monster)
                         {
                             LockTarget = hit.collider.gameObject;
-                            Debug.Log("몬스터 클릭");
+                            
                         }                     
 
                         else
                         {
                             LockTarget = null;
-                            Debug.Log("그라운드 클릭");
+                           
                         }
 
                     }
@@ -189,6 +210,7 @@ public class PlayerController : BaseController
                 break;
             case Define.MouseEvent.Press:
                 {
+                    Debug.Log("Press 호출");
                     if (LockTarget==null && raycasthit)
                         {
                             _DesPos = hit.point;
@@ -198,10 +220,22 @@ public class PlayerController : BaseController
 
             case Define.MouseEvent.PointerUp:
                 {
-                    _stopSkill = true;
+                    
+                    Debug.Log("PointerUp 호출");
+
+                    skill_is_stop = true;
                 }
                 
                 break;
+
+            case Define.MouseEvent.Click:
+                {
+                    Debug.Log("Click 호출");
+
+                    skill_is_stop = true;
+                }
+                break;
+
 
         }
 

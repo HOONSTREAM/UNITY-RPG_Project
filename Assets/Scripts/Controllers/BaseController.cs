@@ -31,7 +31,7 @@ public abstract class BaseController : MonoBehaviour
                     anim.CrossFade("RUN", 0.1f);
                     break;
                 case Define.State.Skill:
-                    anim.CrossFade("ATTACK", 0.1f);
+                    anim.CrossFade("ATTACK", 0.1f, -1 , 0);
                     break;
                 case Define.State.Die:
                     anim.CrossFade("Die", 0.1f);
