@@ -132,7 +132,7 @@ Transform:
   - {fileID: 7001840216754182968}
   - {fileID: 5527520152596646770}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -156.334, z: 0}
 --- !u!95 &250075885241334046
 Animator:
@@ -190,7 +190,6 @@ MonoBehaviour:
   _movespeed: 0
   _attack: 0
   _defense: 0
-  AttackParticle: {fileID: 5803901520620274051, guid: 18a009064a1931e49a46923683cd4551, type: 3}
 --- !u!136 &4218460332432982868
 CapsuleCollider:
   m_ObjectHideFlags: 0

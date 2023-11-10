@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -19,6 +20,7 @@ public class PlayerController : BaseController
     bool skill_is_stop = false; // 스킬사용 멈춤 변수
     PlayerStat _stat; // 플레이어의 스텟
     float attackRange = 2.0f;
+    public TextMeshProUGUI DamageText;
 
 
   
@@ -44,7 +46,7 @@ public class PlayerController : BaseController
  
     protected override void UpdateMoving()
     {
-        Debug.Log(State);
+        
         if (LockTarget != null)
         {
 
@@ -92,7 +94,7 @@ public class PlayerController : BaseController
   
     protected override void UpdateSkill()
     {
-        Debug.Log($"{State} 상태이고 , skill_is _ stop은 {skill_is_stop} 입니다.");
+        
         if (LockTarget!=null)
         {
             Vector3 dir = LockTarget.transform.position-transform.position;
@@ -104,26 +106,30 @@ public class PlayerController : BaseController
       
 
     }
+  
     void player_OnHitEvent() //애니메이션 Hit event로 등록되어 있는 함수 
     {
         if (LockTarget != null)
         {
+            
+            
             Stat targetStat = LockTarget.GetComponent<Stat>();
             targetStat.OnAttacked(_stat); //나의 스텟을 인자로 넣어서 상대방의 체력을 깎는다.;
-
+            
+         
         }
 
         if (skill_is_stop)
         {
-            Debug.Log("skill_is_stop = true");
+            
             State = Define.State.Idle;
-            Debug.Log("Idle 전환 완료");
+            
         }
         else if (skill_is_stop == false)
         {
-            Debug.Log("skill_is_stop = false");
+            
             State = Define.State.Skill;
-            Debug.Log("skill 상태 전환 완료");
+            
         }
 
 
@@ -143,7 +149,7 @@ public class PlayerController : BaseController
                 {
                     if(evt == Define.MouseEvent.PointerUp || evt == Define.MouseEvent.Click)
                     {
-                        Debug.Log("PointerUp OnMouseEvent");
+                        
 
                         skill_is_stop = true;
                     }
@@ -186,8 +192,8 @@ public class PlayerController : BaseController
                         _DesPos = hit.point;
 
                         State = Define.State.Moving;
-                        Debug.Log($"{State} : PointerDown 호출");
-                        Debug.Log(State);
+                       
+                        
                        
                         skill_is_stop = true;
                         
@@ -196,7 +202,7 @@ public class PlayerController : BaseController
                         if (hit.collider.gameObject.layer == (int)Define.Layer.Monster)
                         {
                             LockTarget = hit.collider.gameObject;
-                            
+                           
                         }                     
 
                         else
@@ -210,7 +216,7 @@ public class PlayerController : BaseController
                 break;
             case Define.MouseEvent.Press:
                 {
-                    Debug.Log("Press 호출");
+                   
                     if (LockTarget==null && raycasthit)
                         {
                             _DesPos = hit.point;
@@ -221,8 +227,6 @@ public class PlayerController : BaseController
             case Define.MouseEvent.PointerUp:
                 {
                     
-                    Debug.Log("PointerUp 호출");
-
                     skill_is_stop = true;
                 }
                 
@@ -230,8 +234,7 @@ public class PlayerController : BaseController
 
             case Define.MouseEvent.Click:
                 {
-                    Debug.Log("Click 호출");
-
+                   
                     skill_is_stop = true;
                 }
                 break;

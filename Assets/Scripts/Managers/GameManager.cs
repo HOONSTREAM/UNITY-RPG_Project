@@ -82,6 +82,7 @@ public class GameManager : MonoBehaviour
                     OnSpawnEvent.Invoke(1);
                 break;
             case Define.WorldObject.Player:
+
                 _player = go;
                 break;
 

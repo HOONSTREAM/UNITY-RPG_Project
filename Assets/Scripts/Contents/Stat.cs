@@ -17,6 +17,8 @@ public class Stat : MonoBehaviour
     protected int _attack;
     [SerializeField]
     protected int _defense;
+
+    PlayerController controller;
    
     
     public int Level { get { return _level; } set {  _level = value; } }
@@ -35,6 +37,8 @@ public class Stat : MonoBehaviour
         _attack = 7;
         _defense = 5;
         _movespeed = 1.0f;
+
+        controller = GetComponent<PlayerController>();
   
     }
 
@@ -45,6 +49,7 @@ public class Stat : MonoBehaviour
         int damage = Mathf.Max(0, attacker.Attack - Defense);        
         Hp -= damage;
         
+
         if (Hp <= 0)
         {
             Hp = 0;

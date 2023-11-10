@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,11 +9,12 @@ public class UI_HPBar :UI_Base
     enum GameObjects 
     { 
         HPBar,
-        Monster_name
-
+        Monster_name,
+        Damage_Text
     }
 
     Stat _stat;
+   
 
     public override void Init()
     {
@@ -20,10 +22,14 @@ public class UI_HPBar :UI_Base
      
        _stat = transform.parent.GetComponent<Stat>();
 
+        //TODO 몬스터 별 이름세팅 필요 
        Text text = GetGameobject((int)GameObjects.Monster_name).gameObject.GetComponent<Text>();
-        text.text = "Lv 1. 슬라임";
-        
+       
 
+        text.text = "레드슬라임";
+
+        
+        
     }
 
     private void Update()
@@ -35,6 +41,7 @@ public class UI_HPBar :UI_Base
         float ratio = _stat.Hp /(float)_stat.MaxHp;
 
         SetHPRatio(ratio);
+
     }
 
    public void SetHPRatio(float ratio)
@@ -43,4 +50,5 @@ public class UI_HPBar :UI_Base
        Get<GameObject>((int)GameObjects.HPBar).GetComponent<Slider>().value = ratio;
 
    }
+
 }
