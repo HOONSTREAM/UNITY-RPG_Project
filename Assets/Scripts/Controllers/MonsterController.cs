@@ -21,6 +21,7 @@ public class MonsterController : BaseController
         if(gameObject.GetComponentInChildren<UI_HPBar>() == null)
         {
             Managers.UI.MakeWorldSpaceUI<UI_HPBar>(transform);
+            
             _stat.MoveSpeed = 2.0f; //몬스터의 이동속도 초기세팅 
 
         }
@@ -153,7 +154,7 @@ public class MonsterController : BaseController
 
     void HitSounds(Define.MouseEvent evt)
     {
-        Managers.Sound.Play("Fight Hits 15", Define.Sound.Effect);
+        //Managers.Sound.Play("Fight Hits 15", Define.Sound.Effect);
 
     }
 }

@@ -10,12 +10,12 @@ public class UI_HPBar :UI_Base
     { 
         HPBar,
         Monster_name,
-        Damage_Text
+       
     }
 
     Stat _stat;
    
-
+  
     public override void Init()
     {
        Bind<GameObject>(typeof(GameObjects));

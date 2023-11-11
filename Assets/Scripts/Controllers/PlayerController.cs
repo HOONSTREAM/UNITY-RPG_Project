@@ -20,7 +20,7 @@ public class PlayerController : BaseController
     bool skill_is_stop = false; // 스킬사용 멈춤 변수
     PlayerStat _stat; // 플레이어의 스텟
     float attackRange = 2.0f;
-    public TextMeshProUGUI DamageText;
+    public GameObject DamageText;
 
 
   
@@ -115,8 +115,18 @@ public class PlayerController : BaseController
             
             Stat targetStat = LockTarget.GetComponent<Stat>();
             targetStat.OnAttacked(_stat); //나의 스텟을 인자로 넣어서 상대방의 체력을 깎는다.;
+
+            Debug.Log($"데미지 :{_stat.Attack - targetStat.Defense} ");
+            int damagenumber = _stat.Attack - targetStat.Defense;
+
             
-         
+
+            TextMesh text = DamageText.gameObject.GetComponent<TextMesh>();
+            text.text = damagenumber.ToString();
+
+            Instantiate(DamageText, LockTarget.transform.position, Quaternion.identity, LockTarget.transform);
+
+
         }
 
         if (skill_is_stop)

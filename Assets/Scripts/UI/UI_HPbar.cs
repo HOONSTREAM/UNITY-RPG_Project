@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class UI_HPbar : MonoBehaviour
 {
+    //UI 상단에 떠있는 HPBAR임 
+
+
     [SerializeField]
     GameObject _player;
     [SerializeField]
