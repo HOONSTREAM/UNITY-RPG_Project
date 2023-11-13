@@ -8,12 +8,19 @@ public class Minimap_Script : MonoBehaviour
 {
     [SerializeField]
     private Camera minicam;
+    [SerializeField]
+    private GameObject player;
     bool activeminimap = false;
     private int _mask = (1 << (int)Define.Layer.Ground | 1 << (int)Define.Layer.Monster); //레이어마스크
     public TextMeshProUGUI scenename; 
-    private string scene_name; 
+    private string scene_name;
 
-   
+
+    private void Start()
+    {
+        player = GameObject.Find("UnityChan").gameObject;
+    }
+
     public void Open_Exit_Minimap()
 
     {
@@ -38,14 +45,12 @@ public class Minimap_Script : MonoBehaviour
             Debug.Log("미니맵을 클릭하여 지정된 좌표로 이동합니다.");
 
             RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
+            Ray ray = minicam.ScreenPointToRay(Input.mousePosition);
+            Debug.Log(Input.mousePosition);
 
             bool raycasthit = Physics.Raycast(ray, out hit, 100.0f, _mask);
 
-            Debug.DrawRay(Camera.main.transform.position, ray.direction * 100.0f, Color.red, 1.0f);
-
-
+            Debug.DrawRay(minicam.transform.position, ray.direction * 100.0f, Color.red, 1.0f);
 
 
 

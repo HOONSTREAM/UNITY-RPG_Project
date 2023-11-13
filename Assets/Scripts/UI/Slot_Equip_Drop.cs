@@ -130,5 +130,15 @@ public class Slot_Equip_Drop : MonoBehaviour
                
         
     }
+
+    public void consoleExit()
+    {
+        Equip_Drop_Selection.gameObject.SetActive(false);
+        Consumable_use_Drop_Selection.gameObject.SetActive(false);
+        Drop_Input_console.gameObject.SetActive(false);
+
+        return;
+
+    }
 }
 

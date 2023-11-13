@@ -12,7 +12,12 @@ public class NewInvenUI : MonoBehaviour
     GameObject inventoryPanel;
     PlayerInventory inven; //플레이어 인벤토리 참조
     PlayerStat stat; //플레이어 스텟 참조 (골드업데이트)
-   
+
+
+    public GameObject Equip_Drop_Selection; // 장비품 클릭시 뜨는 콘솔 참조 (장비창 종료시 같이 초기화)
+    public GameObject Consumable_use_Drop_Selection; // 소모품 클릭시 뜨는 콘솔 참조 (장비창 종료시 같이 초기화)
+
+
     public Slot[] slots;
     public Transform slotHolder;
 
@@ -51,6 +56,12 @@ public class NewInvenUI : MonoBehaviour
             activeInventory = !activeInventory;
             inventoryPanel.SetActive(activeInventory);
             Managers.Sound.Play("Inven_Open");
+
+            if(inventoryPanel.activeSelf == false)
+            {
+                Equip_Drop_Selection.gameObject.SetActive(false);
+                Consumable_use_Drop_Selection.gameObject.SetActive(false);
+            }
             
         }
        
