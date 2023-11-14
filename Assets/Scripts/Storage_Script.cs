@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -7,9 +8,16 @@ public class Storage_Script : MonoBehaviour
 {
     [SerializeField]
     private GameObject StoragePanel;
+    [SerializeField]
+    private GameObject Deposit_amount_panel; //맡기거나, 찾을때 골드 입력
+    [SerializeField]
+    private GameObject WithDraw_amount_panel;
+    
 
     PlayerStorage storage; //플레이어 인벤토리 참조
     PlayerStat stat; //플레이어 스텟 참조 (골드업데이트)
+
+
 
     public Slot[] slots;
     public Transform slotHolder;
@@ -82,6 +90,29 @@ public class Storage_Script : MonoBehaviour
             slots[i].UpdateSlotUI();
 
         }
+    }
+
+
+    public void Deposit()
+    {
+        Managers.Sound.Play("Coin");
+
+        if(Deposit_amount_panel.activeSelf == false)
+        {
+            Deposit_amount_panel.SetActive(true);
+        }
+        
+    }
+
+    public void WithDraw()
+    {
+        Managers.Sound.Play("Coin");
+
+        if (WithDraw_amount_panel.activeSelf == false)
+        {
+            WithDraw_amount_panel.SetActive(true);
+        }
+
     }
 
 
