@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class Slot : MonoBehaviour, IPointerUpHandler
 {
-    private int _mask = (1 << (int)Define.Layer.Ground | 1 << (int)Define.Layer.Monster | 1 << (int)Define.Layer.NPC1 | 1<< (int) Define.Layer.NPC);
+   
 
     public int slotnum;
     
@@ -68,19 +68,7 @@ public class Slot : MonoBehaviour, IPointerUpHandler
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        #region Debugging RayCast
-        Vector3 _DesPos;
-        RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        bool raycasthit = Physics.Raycast(ray, out hit, 100.0f, _mask);
-        _DesPos = hit.point;
-        Vector3 dir = _DesPos - transform.position;
-
-
-
-        Debug.DrawRay(transform.position + Vector3.up * 0.5f, dir.normalized, Color.green,2.0f);
-        #endregion
-
+       
 
         if (isShopMode) 
         {
