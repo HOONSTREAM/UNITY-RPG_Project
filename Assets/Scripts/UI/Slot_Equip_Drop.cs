@@ -113,7 +113,7 @@ public class Slot_Equip_Drop : MonoBehaviour
         {
             if (slot_item.amount > 1) //갯수가 1개보다 많은경우 버릴 갯수 조사
             {
-                //TODO
+                
                 Consumable_use_Drop_Selection.SetActive(false);
                 Drop_Input_console.SetActive(true); // 버릴갯수를 입력받는 창 열기
 

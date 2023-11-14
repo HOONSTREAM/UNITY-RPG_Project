@@ -18,7 +18,7 @@ public class GameScene : BaseScene
         Dictionary<int, Data.Stat> dict = Managers.Data.StatDict;
 
         Managers.Sound.Play("Town",Define.Sound.Bgm);
-        Managers.Sound.Play("Nature Ambiance Sound", Define.Sound.Ambiance); //TODO : 두개 사운드 동시반복재생?
+        Managers.Sound.Play("Nature Ambiance Sound", Define.Sound.Ambiance);
        
 
         gameObject.GetAddComponent<CursorController>();
@@ -41,8 +41,5 @@ public class GameScene : BaseScene
         
     }
 
-   
-
-    
   
 }

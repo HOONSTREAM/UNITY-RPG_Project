@@ -37,7 +37,7 @@ public class UI_EXPbar : MonoBehaviour
 
         if (Managers.Data.StatDict.TryGetValue(level, out Data.Stat stats))
         {
-            //TODO
+          
 
         }
         float minustotalexp = Managers.Data.StatDict[level].totalexp; //µñ¼Å³Ê¸® ÂüÁ¶

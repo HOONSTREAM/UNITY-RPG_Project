@@ -43,6 +43,7 @@ public class PlayerStat : Stat
     }
     #endregion
 
+    /*https://jeongkyun-it.tistory.com/23 */
     public int EXP //레벨업체크 까지 관리  
     { 
         
@@ -50,7 +51,10 @@ public class PlayerStat : Stat
         
         set 
         { _exp = value;
-            //레벨업체크
+            //setter에 의해 값이 할당되면 레벨업체크를 한다.
+            
+            
+            //레벨업체크로직
 
           int level = Level;        
             while (true)

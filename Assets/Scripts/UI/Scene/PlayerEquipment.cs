@@ -5,7 +5,7 @@ using static PlayerInventory;
 
 public class PlayerEquipment : MonoBehaviour
 {
-    //TODO :  아이템 버리기 
+   
 
     public static PlayerEquipment Instance;
     public Dictionary<EquipType, Item> player_equip;

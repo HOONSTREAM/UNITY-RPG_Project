@@ -34,10 +34,10 @@ public class NewInvenUI : MonoBehaviour
         inventoryPanel.SetActive(activeInventory);
         inven.onChangeItem += RedrawSlotUI;
 
-        //인벤토리 드래그이벤트 
+        //인벤토리 드래그 가능하도록 하는 이벤트
         UI_Base.BindEvent(inventoryPanel, (PointerEventData data) => { inventoryPanel.transform.position = data.position; }, Define.UIEvent.Drag);
 
-        #region 슬롯버그방지 슬롯생성
+        #region 슬롯버그방지 슬롯생성후 삭제
         inven.AddItem(ItemDataBase.instance.itemDB[0]);
         inven.RemoveItem(0);
         RedrawSlotUI();
