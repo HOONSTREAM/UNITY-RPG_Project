@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: f44bbaca9cb014045879f890a2b427b8
+timeCreated: 1510496528
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - mmiPlayer: {fileID: 1169787661746246, guid: 1f9a448a6fa659f4da2a50e81f7c15fa,
+      type: 2}
+  - mmiEnemy: {fileID: 1169787661746246, guid: f4081a5423a9b5444add200d282cc2a4, type: 2}
+  - mmiPOI: {fileID: 1169787661746246, guid: 7304e81a2f54c914bb1325f888029d5a, type: 2}
+  - mmiPickup: {fileID: 1169787661746246, guid: 43d669e16cc744a42a93b41dd88bc377,
+      type: 2}
+  - mmiExit: {fileID: 1169787661746246, guid: ef3fbe23e80d5f24e84b9f02c05b1e74, type: 2}
+  - mmiPOIAni: {fileID: 1867516001203322, guid: 57516e6a0ae802842a368f48a37f1076,
+      type: 2}
+  - iconContainer: {fileID: 11400000, guid: 110da47f58b8f624eb31b075869cb163, type: 2}
+  executionOrder: 0
+  icon: {fileID: 2800000, guid: 5e8e10b867d51cf40a5369ca9b71a65b, type: 3}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

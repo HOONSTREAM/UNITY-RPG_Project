@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3576dc30bb91784abb2b2afcd1aef3e, type: 3}
+  m_Name: Mini Map Icon Container
+  m_EditorClassIdentifier: 
+  icons:
+  - name: Player
+    prefab: {fileID: 1169787661746246, guid: 1f9a448a6fa659f4da2a50e81f7c15fa, type: 3}
+  - name: Enemy
+    prefab: {fileID: 1169787661746246, guid: f4081a5423a9b5444add200d282cc2a4, type: 3}
+  - name: Pickup
+    prefab: {fileID: 1169787661746246, guid: 43d669e16cc744a42a93b41dd88bc377, type: 3}
+  - name: Exit
+    prefab: {fileID: 1169787661746246, guid: ef3fbe23e80d5f24e84b9f02c05b1e74, type: 3}
+  - name: Point of Interest
+    prefab: {fileID: 1169787661746246, guid: 7304e81a2f54c914bb1325f888029d5a, type: 3}
+  - name: Point of Interest (Animated)
+    prefab: {fileID: 1867516001203322, guid: 57516e6a0ae802842a368f48a37f1076, type: 3}

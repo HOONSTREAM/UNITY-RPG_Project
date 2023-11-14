@@ -1,0 +1,17 @@
+{
+    "name": "SMS.Editor",
+    "references": [
+        "GUID:be3cccf90c6e9e54c9ce0719afa7c8bb"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
