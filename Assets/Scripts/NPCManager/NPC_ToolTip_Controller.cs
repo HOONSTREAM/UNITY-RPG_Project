@@ -10,7 +10,7 @@ public class NPC_ToolTip_Controller : MonoBehaviour, IPointerEnterHandler, IPoin
 
     public NPC_ToolTip tooltip;
 
-    private int _mask = (1 << (int)Define.Layer.NPC1 | 1<<(int)Define.Layer.NPC);
+    private int _mask = (1 << (int)Define.Layer.NPC1 | 1 << (int)Define.Layer.NPC | 1 << (int)Define.Layer.NPC2);
 
     enum OnToolTipUpdated
     {
@@ -51,16 +51,5 @@ public class NPC_ToolTip_Controller : MonoBehaviour, IPointerEnterHandler, IPoin
         }
 
     }
-    void Start()
-    {
-        
-    }
-
-    
-    void Update()
-    {
-        
-        
-      
-    }
+  
 }

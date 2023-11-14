@@ -13,7 +13,7 @@ public class Gold_WithDraw_Console : MonoBehaviour
 
     public int StorageGoldAmount;
 
-    void Start()
+    void Awake()
     {
         canvas = GameObject.Find("StorageUI").gameObject;
     }

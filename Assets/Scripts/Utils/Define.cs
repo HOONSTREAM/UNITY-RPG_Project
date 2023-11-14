@@ -27,6 +27,8 @@ public enum Layer
         Block = 10,
         NPC = 12,
         NPC1 = 13,
+        NPC2 = 14
+
 
     }
     public enum Scene

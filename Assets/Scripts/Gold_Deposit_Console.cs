@@ -14,7 +14,7 @@ public class Gold_Deposit_Console : MonoBehaviour
     public TextMeshProUGUI Storage_gold_text;
 
     public int StorageGoldAmount;
-    void Start()
+    void Awake()
     {
         canvas = GameObject.Find("StorageUI").gameObject;
     }
