@@ -22,7 +22,7 @@ public class NPC_ToolTip_Controller : MonoBehaviour, IPointerEnterHandler, IPoin
 
     OnToolTipUpdated ontooltip = OnToolTipUpdated.None;
 
-    public void OnPointerEnter(PointerEventData eventData) //TODO : 실행조건 정확하게 캐치 필요 
+    public void OnPointerEnter(PointerEventData eventData) 
     {
         Debug.Log("OnPointerEnter 호출");
         if (ontooltip != OnToolTipUpdated.On)

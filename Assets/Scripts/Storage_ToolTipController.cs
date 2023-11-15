@@ -4,17 +4,17 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class ToolTipController : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 
+public class Storage_ToolTipController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
-    
 {
     public ToolTip tooltip;
     public Slot[] player_slots;
     public Transform Player_SlotHolder;
     public Storage_Slots[] storage_slots;
     public Transform Storage_SlotHolder;
-    
+    public GameObject StorageUI;
+
     enum OnToolTipUpdated
     {
         None,
@@ -22,6 +22,7 @@ public class ToolTipController : MonoBehaviour,IPointerEnterHandler,IPointerExit
         off,
 
     }
+
     OnToolTipUpdated ontooltip = OnToolTipUpdated.None;
 
     void Start()
@@ -29,37 +30,39 @@ public class ToolTipController : MonoBehaviour,IPointerEnterHandler,IPointerExit
         player_slots = Player_SlotHolder.GetComponentsInChildren<Slot>();
         storage_slots = Storage_SlotHolder.GetComponentsInChildren<Storage_Slots>();
     }
-   
+
     public void OnPointerEnter(PointerEventData eventData)
     {
-        if(ontooltip != OnToolTipUpdated.On)
+        if (ontooltip != OnToolTipUpdated.On)
         {
 
-         
-            Item item = GetComponent<Slot>().item;
-
-
-            if (item != null)
+            if (StorageUI.activeSelf)
             {
+                Item storage_item = GetComponent<Storage_Slots>().item;
 
-                tooltip.gameObject.SetActive(true);
+                if (storage_item != null)
+                {
 
-                tooltip.SetupTooltip(item.itemname, item.stat_1, item.stat_2, item.num_1, item.num_2, item.Description);
+                    tooltip.gameObject.SetActive(true);
 
-                
+                    tooltip.SetupTooltip(storage_item.itemname, storage_item.stat_1, storage_item.stat_2, storage_item.num_1, storage_item.num_2, storage_item.Description);
+
+                }
+
             }
 
+            ontooltip = OnToolTipUpdated.On;
+
+            return;
+
         }
-
-        ontooltip = OnToolTipUpdated.On;
-
-        return;
-    }
-       
     
+    }
+
+
     public void OnPointerExit(PointerEventData eventData)
     {
-        if(ontooltip != OnToolTipUpdated.off)
+        if (ontooltip != OnToolTipUpdated.off)
         {
             tooltip.gameObject.SetActive(false);
             ontooltip = OnToolTipUpdated.off;
@@ -68,5 +71,5 @@ public class ToolTipController : MonoBehaviour,IPointerEnterHandler,IPointerExit
         return;
     }
 
-  
+
 }
