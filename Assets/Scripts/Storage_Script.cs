@@ -19,8 +19,10 @@ public class Storage_Script : MonoBehaviour
 
 
 
-    public Slot[] slots;
-    public Transform slotHolder;
+    public Slot[] storage_slots;
+    public Transform storage_slotHolder;
+    public Slot[] Player_slots;
+    public Transform player_slotHolder;
 
     bool activestorage = false;
 
@@ -29,11 +31,12 @@ public class Storage_Script : MonoBehaviour
     void Start()
     {
         stat = GetComponent<PlayerStat>(); //골드 업데이트를 위한 플레이어 스텟 참조
-        storage = PlayerStorage.Instance; 
-        slots = slotHolder.GetComponentsInChildren<Slot>();
+        storage = PlayerStorage.Instance;
+        storage_slots = storage_slotHolder.GetComponentsInChildren<Slot>();
+        Player_slots = player_slotHolder.GetComponentsInChildren<Slot>() ;
 
         StoragePanel.SetActive(activestorage);
-        storage.onChangeItem += RedrawSlotUI;  
+        storage.onChangeItem += RedrawSlotUI;  // Invoke 함수 등록 이벤트 발생마다 함수 호출
 
         //인벤토리 드래그 가능하도록 하는 이벤트
         UI_Base.BindEvent(StoragePanel, (PointerEventData data) => { StoragePanel.transform.position = data.position; }, Define.UIEvent.Drag);
@@ -47,16 +50,21 @@ public class Storage_Script : MonoBehaviour
     }
 
 
+    public void Enter()
+    {
+        activestorage = !activestorage;
+        StoragePanel.SetActive(activestorage);
+        Managers.Sound.Play("Inven_Open");
+
+        for(int i = 0; i<Player_slots.Length; i++)
+        {
+            Player_slots[i].isStorageMode = true;
+        }
+
+    }
     void Update()
     {
-        //TEST
-
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            activestorage = !activestorage;
-            StoragePanel.SetActive(activestorage);
-            Managers.Sound.Play("Inven_Open");
-        }
+        
     }
 
    
@@ -64,8 +72,15 @@ public class Storage_Script : MonoBehaviour
     {
         if (StoragePanel.activeSelf)
         {
-            StoragePanel.SetActive(false);
+            activestorage = !activestorage;
+            StoragePanel.SetActive(activestorage);
             Managers.Sound.Play("Inven_Open");
+
+        }
+
+        for (int i = 0; i < Player_slots.Length; i++)
+        {
+            Player_slots[i].isStorageMode = false;
         }
 
         return;
@@ -74,20 +89,20 @@ public class Storage_Script : MonoBehaviour
 
     void RedrawSlotUI()
     {
-        for (int i = 0; i < slots.Length; i++)
+        for (int i = 0; i < storage_slots.Length; i++)
         {
-            slots[i].slotnum = i;
+            storage_slots[i].slotnum = i;
         }
 
-        for (int i = 0; i < slots.Length; i++) //싹 밀어버리고
+        for (int i = 0; i < storage_slots.Length; i++) //싹 밀어버리고
         {
-            slots[i].RemoveSlot();
+            storage_slots[i].RemoveSlot();
         }
 
         for (int i = 0; i < storage.storage_item.Count; i++) //리스트배열로 저장되어있는 인벤토리의 아이템정보를 받아와 다시 재정렬 
         {
-            slots[i].item = storage.storage_item[i];
-            slots[i].UpdateSlotUI();
+            storage_slots[i].item = storage.storage_item[i];
+            storage_slots[i].UpdateSlotUI();
 
         }
     }

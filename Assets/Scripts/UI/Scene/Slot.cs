@@ -17,6 +17,7 @@ public class Slot : MonoBehaviour, IPointerUpHandler
     public Image equiped_image;
     public TextMeshProUGUI amount_text;
     public bool isShopMode = false;
+    public bool isStorageMode = false;
     public GameObject Sell_Panel;
     public GameObject Equip_Drop_Panel;
     public GameObject Use_Drop_Panel;
@@ -88,6 +89,24 @@ public class Slot : MonoBehaviour, IPointerUpHandler
             Sell_Panel.gameObject.SetActive(true);
             
             return;
+        }
+
+        else if (isStorageMode)
+        {
+            Debug.Log("Storage Mode에 진입하였습니다.");
+
+            if (item.Equip) //장착중인 장비는 금고에 맡길 수 없음.
+            {
+                GameObject gos = GameObject.Find("UnityChan").gameObject;
+                PlayerStat stats = gos.GetComponent<PlayerStat>();
+                stats.PrintUserText("장착중인 장비는 맡길 수 없습니다.");
+                return;
+            }
+            //TODO 소모품맡기기
+            
+            PlayerStorage.Instance.AddItem(this.item);
+            PlayerInventory.Instance.RemoveItem(this.slotnum);
+            
         }
 
         else //상점모드가 아닌경우 장착/해제 담당
