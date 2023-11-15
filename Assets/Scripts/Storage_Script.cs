@@ -19,7 +19,7 @@ public class Storage_Script : MonoBehaviour
 
 
 
-    public Slot[] storage_slots;
+    public Storage_Slots[] storage_slots;
     public Transform storage_slotHolder;
     public Slot[] Player_slots;
     public Transform player_slotHolder;
@@ -32,7 +32,7 @@ public class Storage_Script : MonoBehaviour
     {
         stat = GetComponent<PlayerStat>(); //골드 업데이트를 위한 플레이어 스텟 참조
         storage = PlayerStorage.Instance;
-        storage_slots = storage_slotHolder.GetComponentsInChildren<Slot>();
+        storage_slots = storage_slotHolder.GetComponentsInChildren<Storage_Slots>();
         Player_slots = player_slotHolder.GetComponentsInChildren<Slot>() ;
 
         StoragePanel.SetActive(activestorage);
@@ -42,8 +42,8 @@ public class Storage_Script : MonoBehaviour
         UI_Base.BindEvent(StoragePanel, (PointerEventData data) => { StoragePanel.transform.position = data.position; }, Define.UIEvent.Drag);
 
         #region 슬롯버그방지 슬롯생성후 삭제
-        storage.AddItem(ItemDataBase.instance.itemDB[0]);  // PlayerStorage 스크립트 만들어야함
-        storage.RemoveItem(0);  // PlayerStorage 스크립트 만들어야함
+        storage.AddItem(ItemDataBase.instance.itemDB[0]);  
+        storage.RemoveItem(0);  
         RedrawSlotUI(); 
         #endregion
 
