@@ -24,7 +24,7 @@ public class NPC_ToolTip_Controller : MonoBehaviour, IPointerEnterHandler, IPoin
 
     public void OnPointerEnter(PointerEventData eventData) 
     {
-        Debug.Log("OnPointerEnter 호출");
+        Debug.Log("NPC_ OnPointerEnter 호출");
         if (ontooltip != OnToolTipUpdated.On)
         {
             RaycastHit hit;

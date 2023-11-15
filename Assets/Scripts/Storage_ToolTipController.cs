@@ -33,11 +33,10 @@ public class Storage_ToolTipController : MonoBehaviour, IPointerEnterHandler, IP
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        Debug.Log("Storage_OnPointerEnter ¡¯¿‘");
         if (ontooltip != OnToolTipUpdated.On)
         {
 
-            if (StorageUI.activeSelf)
-            {
                 Item storage_item = GetComponent<Storage_Slots>().item;
 
                 if (storage_item != null)
@@ -56,8 +55,6 @@ public class Storage_ToolTipController : MonoBehaviour, IPointerEnterHandler, IP
             return;
 
         }
-    
-    }
 
 
     public void OnPointerExit(PointerEventData eventData)
@@ -71,5 +68,10 @@ public class Storage_ToolTipController : MonoBehaviour, IPointerEnterHandler, IP
         return;
     }
 
-
 }
+
+
+   
+
+
+

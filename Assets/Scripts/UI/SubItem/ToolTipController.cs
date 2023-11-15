@@ -6,8 +6,7 @@ using UnityEngine.UI;
 
 public class ToolTipController : MonoBehaviour,IPointerEnterHandler,IPointerExitHandler
 
-
-    
+   
 {
     public ToolTip tooltip;
     public Slot[] player_slots;
