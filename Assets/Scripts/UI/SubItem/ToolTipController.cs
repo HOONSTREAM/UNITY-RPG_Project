@@ -38,7 +38,7 @@ public class ToolTipController : MonoBehaviour,IPointerEnterHandler,IPointerExit
             if (StorageUI.activeSelf)
             {
                 Item storage_item = GetComponent<Storage_Slots>().item;
-
+                
                 if (storage_item != null)
                 {
 
@@ -46,11 +46,12 @@ public class ToolTipController : MonoBehaviour,IPointerEnterHandler,IPointerExit
 
                     tooltip.SetupTooltip(storage_item.itemname, storage_item.stat_1, storage_item.stat_2, storage_item.num_1, storage_item.num_2, storage_item.Description);
 
-                    ontooltip = OnToolTipUpdated.On;
+                    
 
                 }
+
             }
-               
+
             Item item = GetComponent<Slot>().item;
 
 
@@ -61,13 +62,16 @@ public class ToolTipController : MonoBehaviour,IPointerEnterHandler,IPointerExit
 
                 tooltip.SetupTooltip(item.itemname, item.stat_1, item.stat_2, item.num_1, item.num_2, item.Description);
 
-                ontooltip = OnToolTipUpdated.On;
+                
 
             }
+
         }
 
-            
-     }
+        ontooltip = OnToolTipUpdated.On;
+
+        return;
+    }
        
     
     public void OnPointerExit(PointerEventData eventData)
