@@ -50,7 +50,7 @@ public class Storage_Script : MonoBehaviour
     }
 
 
-    public void Enter() // TODO 나무금고를 눌러 껐을 때 스토리지모드가 안꺼지는 현상
+    public void Enter() 
     {
         activestorage = !activestorage;
         StoragePanel.SetActive(activestorage);

@@ -107,7 +107,7 @@ public class Slot : MonoBehaviour, IPointerUpHandler
                 stats.PrintUserText("장착중인 장비는 맡길 수 없습니다.");
                 return;
             }
-            //TODO 소모품맡기기, 스택검사, 창 제작
+            
             
             if(item.itemtype == ItemType.Consumables)
             {
