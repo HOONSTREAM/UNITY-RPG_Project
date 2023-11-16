@@ -21,7 +21,7 @@ public class Slot : MonoBehaviour, IPointerUpHandler
     public GameObject Sell_Panel;
     public GameObject Equip_Drop_Panel;
     public GameObject Use_Drop_Panel;
-
+    public GameObject Storage_Input_Console;
 
 
     void Start()
@@ -71,7 +71,7 @@ public class Slot : MonoBehaviour, IPointerUpHandler
     {
        
 
-        if (isShopMode) 
+        if (isShopMode) //상점창이 열려있을경우 진행하는 로직
         {
             Debug.Log("상점에 판매합니다.");
             if (item.Equip)
@@ -91,9 +91,14 @@ public class Slot : MonoBehaviour, IPointerUpHandler
             return;
         }
 
-        else if (isStorageMode)
+        else if (isStorageMode) //창고모드인경우 (금고창이 열려있을 경우)
         {
             Debug.Log("Storage Mode에 진입하였습니다.");
+
+            if(item == null)
+            {
+                return;
+            }
 
             if (item.Equip) //장착중인 장비는 금고에 맡길 수 없음.
             {
@@ -104,9 +109,32 @@ public class Slot : MonoBehaviour, IPointerUpHandler
             }
             //TODO 소모품맡기기, 스택검사, 창 제작
             
+            if(item.itemtype == ItemType.Consumables)
+            {
+                if(item.amount > 1)
+                {
+                    GameObject GUI = GameObject.Find("GUI").gameObject;
+                    Storage_Input_Console storage = GUI.GetComponent<Storage_Input_Console>();
+                    storage.Get_Slotnum(slotnum); //slot에 대한 정보를 storage_input_console 스크립트에 넘겨줌
+                    Managers.Sound.Play("Coin");
+                    Storage_Input_Console.SetActive(true); //갯수입력창 오픈 후 갯수입력창 스크립트에서 로직 처리
+                    return;
+                }
+
+                else
+                {
+
+                    PlayerStorage.Instance.AddItem(this.item);
+                    PlayerInventory.Instance.RemoveItem(this.slotnum);
+                    return;
+                }
+            }
+            // 장비인 경우
+
             PlayerStorage.Instance.AddItem(this.item);
             PlayerInventory.Instance.RemoveItem(this.slotnum);
-            
+
+            return;
         }
 
         else //상점모드가 아닌경우 장착/해제 담당
@@ -137,10 +165,8 @@ public class Slot : MonoBehaviour, IPointerUpHandler
 
         }
       
-
     }
 
    
-
 }
 
