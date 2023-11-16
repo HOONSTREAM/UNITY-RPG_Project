@@ -50,17 +50,20 @@ public class Storage_Script : MonoBehaviour
     }
 
 
-    public void Enter()
+    public void Enter() // TODO 나무금고를 눌러 껐을 때 스토리지모드가 안꺼지는 현상
     {
         activestorage = !activestorage;
         StoragePanel.SetActive(activestorage);
         Managers.Sound.Play("Inven_Open");
 
-        for(int i = 0; i<Player_slots.Length; i++)
+        
+        for (int i = 0; i < Player_slots.Length; i++)
         {
-            Player_slots[i].isStorageMode = true;
+                Player_slots[i].isStorageMode = activestorage;
         }
+        
 
+        return;
     }
     void Update()
     {

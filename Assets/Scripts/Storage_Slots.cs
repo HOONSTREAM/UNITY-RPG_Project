@@ -58,12 +58,22 @@ public class Storage_Slots : MonoBehaviour, IPointerUpHandler
     public void OnPointerUp(PointerEventData eventData)
     {
 
-        Debug.Log("창고 슬롯을 눌렀습니다.");
+       if(item.itemtype == ItemType.Consumables)
+        {
+            //몇개를 찾을건지, 스택검사, 소지량 검사
+
+            Debug.Log("소모품을 찾습니다.");
+
+            return;
+        }
+
+       else if(item.itemtype == ItemType.Equipment)
+        {
+            Debug.Log("장비아이템을 찾습니다.");
+
+            return;
+        }
 
     }
 
-        void Update()
-    {
-        
-    }
 }

@@ -123,7 +123,6 @@ public class Slot : MonoBehaviour, IPointerUpHandler
 
                 else
                 {
-
                     PlayerStorage.Instance.AddItem(this.item);
                     PlayerInventory.Instance.RemoveItem(this.slotnum);
                     return;

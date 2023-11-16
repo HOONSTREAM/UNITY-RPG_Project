@@ -44,13 +44,23 @@ public class Storage_Input_Console : MonoBehaviour
 
         if (inputamount > slot_item.amount)
         {
-            Debug.Log("맡기려는 갯수보다 갖고있는 갯수가 적습니다.");
+            GameObject go = GameObject.Find("UnityChan").gameObject;
+            PlayerStat stat = go.GetComponent<PlayerStat>();
+            stat.PrintUserText("맡기려는 갯수에 비해 소지중인 물품 갯수가 적습니다.");
             return;
         }
 
-        Debug.Log("맡겼습니다.");
-
+        for(int i = 0; i< inputamount; i++) // 클론함수(같은것을 참조방지)를 이용하여 입력된 갯수만큼 창고에 생성
+        {
+            PlayerStorage.Instance.AddItem(slot_item.Clone());
+        }
+        for(int i = 0; i<inputamount; i++) // 입력된 갯수만큼 인벤토리에서 제거
+        {
+            PlayerInventory.Instance.RemoveItem(slot_number);
+        }
+        
         return;
+
     }
   
 }
