@@ -48,7 +48,7 @@ public class Item
     public string Description;
     public Sprite itemImage;
     public bool Equip = false;
-    public int amount = 0;
+    public int amount = 1;
     public int buyprice;
     public int sellprice;
 
