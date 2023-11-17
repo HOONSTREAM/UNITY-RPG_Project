@@ -102,7 +102,7 @@ public class Item
         item.Description = this.Description;
         item.itemImage = this.itemImage;
         item.Equip = this.Equip;
-        item.amount = this.amount;
+        item.amount = 1; //복사본은 1개만 복사한다.
         item.buyprice = this.buyprice;
         item.sellprice = this.sellprice;
 

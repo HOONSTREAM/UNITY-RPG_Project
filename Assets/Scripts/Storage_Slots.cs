@@ -60,7 +60,7 @@ public class Storage_Slots : MonoBehaviour, IPointerUpHandler
 
        if(item.itemtype == ItemType.Consumables)
         {
-            //몇개를 찾을건지, 스택검사, 소지량 검사
+            //TODO : 몇개를 찾을건지, 스택검사, 소지량 검사
 
             Debug.Log("소모품을 찾습니다.");
 
