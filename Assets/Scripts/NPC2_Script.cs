@@ -43,9 +43,9 @@ public class NPC2_Script : MonoBehaviour
 
     private void OnNPCTalking()
     {
-        if (Input.GetMouseButtonUp(0) == true)
+       if (Input.GetMouseButtonUp(0) == true)
         {
-
+            
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
