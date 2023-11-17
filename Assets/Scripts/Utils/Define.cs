@@ -22,12 +22,15 @@ public class Define
 
 public enum Layer
     {
+        UI = 5,
         Monster = 8,
         Ground = 9,
         Block = 10,
         NPC = 12,
         NPC1 = 13,
-        NPC2 = 14
+        NPC2 = 14,
+        Console = 15,
+        
 
 
     }

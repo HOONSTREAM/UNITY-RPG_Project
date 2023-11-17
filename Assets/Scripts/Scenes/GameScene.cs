@@ -17,8 +17,8 @@ public class GameScene : BaseScene
                                   
         Dictionary<int, Data.Stat> dict = Managers.Data.StatDict;
 
-        Managers.Sound.Play("Town",Define.Sound.Bgm);
-        Managers.Sound.Play("Nature Ambiance Sound", Define.Sound.Ambiance);
+       // Managers.Sound.Play("Town",Define.Sound.Bgm);
+       // Managers.Sound.Play("Nature Ambiance Sound", Define.Sound.Ambiance);
        
 
         gameObject.GetAddComponent<CursorController>();

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Storage_Input_Console : MonoBehaviour
 {
@@ -20,6 +21,13 @@ public class Storage_Input_Console : MonoBehaviour
         
     }
 
+    private void Update()
+    {
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
+    }
     public Item Get_Slotnum(int slotnum) //슬롯에 있는 아이템을 참조받아 private Item 변수에 저장해두고, 그 슬롯의 넘버도 보관
     {
         slot_number = slotnum;
