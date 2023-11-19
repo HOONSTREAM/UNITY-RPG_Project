@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class NPC2_Script : MonoBehaviour
+public class NPC2_Script : MonoBehaviour , IPointerClickHandler
 {
     private int _mask = (1 << (int)Define.Layer.NPC2);
     Texture2D _attackIcon;
@@ -16,61 +16,29 @@ public class NPC2_Script : MonoBehaviour
         
     }
 
-    
-    void Update()
+ /*IPointer 인터페이스를 사용하고, MainCamera Physics Raycaster를 활용하면 UI 뒤 3D오브젝트를 뚫지않게끔 할수 있다.*/
+    public void OnPointerClick(PointerEventData eventData)
     {
-        
-       OnNPCTalking();
-        
-    }
 
-    public bool IsPointerOverUIObject(Vector2 touchPos)
-    {
-        PointerEventData eventDataCurrentPosition
-            = new PointerEventData(EventSystem.current);
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
 
-        eventDataCurrentPosition.position = touchPos;
-
-        List<RaycastResult> results = new List<RaycastResult>();
-
-
-        EventSystem.current
-        .RaycastAll(eventDataCurrentPosition, results);
-
-        return results.Count > 0;
-    }
-
-
-    private void OnNPCTalking()
-    {
-       if (Input.GetMouseButtonUp(0) == true)
+        if (Physics.Raycast(ray, out hit, 100.0f, _mask))
         {
-            
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, 100.0f, _mask))
+            if (hit.collider.gameObject.layer == (int)Define.Layer.NPC2)
             {
-                if (hit.collider.gameObject.layer == (int)Define.Layer.NPC2)
-                {
 
-                    PlayerController pc = _player.GetComponent<PlayerController>();
-                    pc.State = Define.State.Idle;
-                    Debug.Log($"{hit.collider.gameObject.name}을(를) 클릭합니다.!");
+                PlayerController pc = _player.GetComponent<PlayerController>();
+                pc.State = Define.State.Idle;
+                Debug.Log($"{hit.collider.gameObject.name}을(를) 클릭합니다.!");
 
-                    GameObject go = GameObject.Find("Storage CANVAS").gameObject;
-                    Storage_Script storage = go.GetComponent<Storage_Script>();
-                    storage.Enter();
-
-                }
+                GameObject go = GameObject.Find("Storage CANVAS").gameObject;
+                Storage_Script storage = go.GetComponent<Storage_Script>();
+                storage.Enter();
 
             }
 
         }
-
-        return;
     }
-
-        
- }
+}
 
