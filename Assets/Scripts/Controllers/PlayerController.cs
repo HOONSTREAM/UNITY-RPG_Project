@@ -175,7 +175,7 @@ public class PlayerController : BaseController
 
     void player_HitSounds(Define.MouseEvent evt)
     {
-        Managers.Sound.Play("Fight Hits 24", Define.Sound.Effect);
+        Managers.Sound.Play("sword-unsheathe", Define.Sound.Effect);
         
     }
 

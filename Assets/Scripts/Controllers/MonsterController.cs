@@ -154,7 +154,7 @@ public class MonsterController : BaseController
 
     void HitSounds(Define.MouseEvent evt)
     {
-        //Managers.Sound.Play("Fight Hits 15", Define.Sound.Effect);
+        Managers.Sound.Play("hit23.mp3", Define.Sound.Effect);
 
     }
 }
