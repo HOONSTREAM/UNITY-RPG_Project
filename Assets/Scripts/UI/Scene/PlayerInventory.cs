@@ -89,7 +89,7 @@ public class PlayerInventory : MonoBehaviour
             {
                fielditems.DestroyItem();
                Managers.Sound.Play("Coin");
-                
+              
             }
             
         }
