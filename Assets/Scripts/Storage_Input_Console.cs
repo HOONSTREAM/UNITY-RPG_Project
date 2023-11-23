@@ -61,7 +61,6 @@ public class Storage_Input_Console : MonoBehaviour
             return;
         }
 
-        //TODO : 처음 갯수를 넣으면 갯수가 추가되서 들어가는 버그 수정 완료 (Clone 함수 amount도 그대로 가져오는것이 아닌 복사본이므로 1개로 수정) 
 
         for(int i = 0; i< inputamount; i++) // 클론함수(같은것을 참조방지)를 이용하여 입력된 갯수만큼 창고에 생성
         {

@@ -131,6 +131,17 @@ public class Slot_Equip_Drop : MonoBehaviour
         
     }
 
+    public void RegisterQuickSlot()
+    {
+        Consumable_use_Drop_Selection.gameObject.SetActive(false);
+        Managers.Sound.Play("Coin");
+
+        //TODO : 인벤토리와 연동
+        
+        PlayerQuickSlot.Instance.AddItem(slot_item);
+        
+    }
+
     public void consoleExit()
     {
         Equip_Drop_Selection.gameObject.SetActive(false);

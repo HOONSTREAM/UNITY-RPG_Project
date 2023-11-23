@@ -1,84 +1,70 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 
 public class Quick_Slot : MonoBehaviour
 {
-    public static Quick_Slot instance;
     public int slotnum;
 
-    public Quick_Slot[] slots;
     public Item item;
     public Image itemicon;
-    public List<Item> quick_slot; 
+    public TextMeshProUGUI amount_text;
 
-    void Awake()
+    void Start()
     {
-        slots = GetComponentsInChildren<Quick_Slot>();
-        instance = this;
-        quick_slot = new List<Item>();
+        
+        itemicon.gameObject.SetActive(false); //초기화 (아이콘 표시 안함)
+        amount_text.text = "";
     }
 
-    public void registerQuickSlot(Item item)
+
+    public void UpdateSlotUI()
     {
-        quick_slot.Add(item);
         itemicon.sprite = item.itemImage;
+        itemicon.gameObject.SetActive(true);
+
+        if (item.itemtype == ItemType.Equipment)
+        {
+            amount_text.text = "";
+        }
+
+        else if (item.itemtype == ItemType.Consumables)
+        {
+            amount_text.text = item.amount.ToString();
+        }
+
     }
 
-    //public void registerQuickSlot(Skill skill)
-    //{
-
-    //}
-
-    public void Execute()
+    public void RemoveSlot()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            Debug.Log("1번 누름");           
-        }
-
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            Debug.Log("2번 누름");
-        }
-
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            Debug.Log("3번 누름");
-        }
-
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            Debug.Log("4번 누름");
-        }
-
-        else if (Input.GetKeyDown(KeyCode.Alpha5))
-        {
-            Debug.Log("5번 누름");
-        }
-
-        else if (Input.GetKeyDown(KeyCode.Alpha6))
-        {
-            Debug.Log("6번 누름");
-        }
-
-        else if (Input.GetKeyDown(KeyCode.Alpha7))
-        {
-            Debug.Log("7번 누름");
-        }
-
-        else if (Input.GetKeyDown(KeyCode.Alpha8))
-        {
-            Debug.Log("8번 누름");
-        }
-
-
-        return;
+        item = null;
+        itemicon.gameObject.SetActive(false);
+        amount_text.text = "";
     }
-    void Update()
+
+    public void OnPointerUp(PointerEventData eventData)
     {
-        Execute();
+
+        if (item.itemtype == ItemType.Consumables)
+        {
+
+            //TODO
+        }
+
+        
     }
+
+
+
+
+
+
+
+
+
+
 }

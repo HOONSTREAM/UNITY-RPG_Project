@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class NewInvenUI : MonoBehaviour
 {
+    //TODO : 소모품 사용시 퀵슬롯과 연동
     
     [SerializeField]
     GameObject inventoryPanel;
@@ -69,7 +70,8 @@ public class NewInvenUI : MonoBehaviour
 
     void RedrawSlotUI()
     {
-        for(int i = 0; i < slots.Length; i++)
+        
+        for (int i = 0; i < slots.Length; i++)
         {
             slots[i].slotnum = i;
         }
