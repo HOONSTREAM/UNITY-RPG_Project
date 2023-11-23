@@ -136,9 +136,10 @@ public class Slot_Equip_Drop : MonoBehaviour
         Consumable_use_Drop_Selection.gameObject.SetActive(false);
         Managers.Sound.Play("Coin");
 
-        //TODO : 인벤토리와 연동
-        
-        PlayerQuickSlot.Instance.AddItem(slot_item);
+        //TODO : 인벤토리와 연동 , 기존의 아이템 삭제
+
+               
+        PlayerQuickSlot.Instance.AddItem(slot_item); //새로 등록
         
     }
 

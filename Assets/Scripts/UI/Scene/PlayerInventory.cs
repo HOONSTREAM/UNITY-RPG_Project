@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
 using static UnityEditor.Progress;
 
@@ -43,6 +45,8 @@ public class PlayerInventory : MonoBehaviour
                     }
               
                 }
+
+                
 
                 if (!ItemAlreadyInInventory)
                 {
@@ -102,20 +106,28 @@ public class PlayerInventory : MonoBehaviour
             if (player_items[index].amount > 1)
             {
                 player_items[index].amount -= 1; // 사용 시 1개 감소 
+
+                
                 onChangeItem.Invoke();
+               
             }
 
             else if(player_items[index].amount == 1)
             {
+                
+
                 player_items.RemoveAt(index);
                 onChangeItem.Invoke();
+               
             }
 
         }
         else
         {
+            
             player_items.RemoveAt(index);
             onChangeItem.Invoke();
+            
         }
        
        
