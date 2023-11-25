@@ -11,6 +11,8 @@ public class Slot_Equip_Drop : MonoBehaviour
     public Item slot_item; // 슬롯에 해당하는 아이템 참조
     public int slot_number; // 슬롯의 번호 참조
     public Slot[] slots; //플레이어 슬롯 참조
+    public Quick_Slot[] quick_slot; //플레이어의 퀵슬롯 참조
+    public Transform quickslot_holder;
     public PlayerStat stat;
     public GameObject Drop_Input_console;
     public int amount; //소모품 판매 갯수
@@ -20,6 +22,7 @@ public class Slot_Equip_Drop : MonoBehaviour
         GameObject go = GameObject.Find("NewInvenUI").gameObject;
         slots = go.GetComponentsInChildren<Slot>();
         stat = GameObject.Find("UnityChan").gameObject.GetComponent<PlayerStat>();
+        quick_slot = quickslot_holder.GetComponentsInChildren<Quick_Slot>();
     }
 
 
@@ -136,10 +139,17 @@ public class Slot_Equip_Drop : MonoBehaviour
         Consumable_use_Drop_Selection.gameObject.SetActive(false);
         Managers.Sound.Play("Coin");
 
-        //TODO : 인벤토리와 연동 , 기존의 아이템 삭제
+        //TODO : 인벤토리와 연동 
 
-               
-        PlayerQuickSlot.Instance.AddItem(slot_item); //새로 등록
+        for(int i = 0; i < quick_slot.Length; i++) //퀵슬롯에 이미 해당아이템이 있는지 검사
+        {
+            if (quick_slot[i].item == slot_item)
+            {
+                PlayerQuickSlot.Instance.Quick_slot_RemoveItem(quick_slot[i].slotnum); // 그 해당아이템 데이터를 전부 삭제하고
+            }
+        }
+             
+        PlayerQuickSlot.Instance.Quick_slot_AddItem(slot_item); //새로 갱신하여 등록
         
     }
 

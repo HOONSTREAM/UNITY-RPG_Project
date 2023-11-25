@@ -26,8 +26,8 @@ public class QuickSlot_Script : MonoBehaviour
         quickslot.onChangeItem += RedrawSlotUI;  // Invoke 함수 등록 이벤트 발생마다 함수 호출
 
         #region 슬롯버그방지 슬롯생성후 삭제
-        quickslot.AddItem(ItemDataBase.instance.itemDB[0]);
-        quickslot.RemoveItem(0);
+        quickslot.Quick_slot_AddItem(ItemDataBase.instance.itemDB[0]);
+        quickslot.Quick_slot_RemoveItem(0);
         RedrawSlotUI();
         #endregion
 
@@ -53,8 +53,5 @@ public class QuickSlot_Script : MonoBehaviour
 
         }
     }
-    void Update()
-    {
-        
-    }
+  
 }
