@@ -69,8 +69,7 @@ public class PlayerInventory : MonoBehaviour
 
                 if (onChangeItem != null)
                 {
-                    onChangeItem.Invoke();
-                    PlayerQuickSlot.Instance.onChangeItem.Invoke();
+                    onChangeItem.Invoke();                  
                     return true;
                 }
 
@@ -141,7 +140,7 @@ public class PlayerInventory : MonoBehaviour
             
             player_items.RemoveAt(index);
             onChangeItem.Invoke();
-            PlayerQuickSlot.Instance.onChangeItem.Invoke();
+           
 
         }
        
