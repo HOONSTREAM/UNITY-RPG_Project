@@ -27,16 +27,21 @@ public class PlayerQuickSlot : MonoBehaviour
     public bool Quick_slot_AddItem(Item _item, int index = 0)
     {
 
+        if (quick_slot_item.Count == 4) 
+        {
+            quick_slot_item.RemoveAt(0); //맨 앞에있는 슬롯을 밀어낸다.
+            PlayerQuickSlot.Instance.onChangeItem.Invoke();
+        }
       quick_slot_item.Add(_item);
       onChangeItem.Invoke();
-
 
       return true;
                         
     }
 
-    public void Quick_slot_RemoveItem(int index) // 갯수 파악하여 스택 사용 후 1개 남으면 아이템 삭제
+    public void Quick_slot_RemoveItem(int index)
     {
+
         if (quick_slot_item[index] == null)
         {
             return;
