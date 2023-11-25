@@ -42,6 +42,7 @@ public class PlayerQuickSlot : MonoBehaviour
             return;
         }
 
+
         quick_slot_item.RemoveAt(index);
         onChangeItem.Invoke();
         
