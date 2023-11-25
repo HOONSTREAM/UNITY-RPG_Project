@@ -32,7 +32,7 @@ public class PlayerQuickSlot : MonoBehaviour
             quick_slot_item.RemoveAt(0); //맨 앞에있는 슬롯을 밀어낸다.
             PlayerQuickSlot.Instance.onChangeItem.Invoke();
         }
-      quick_slot_item.Add(_item);
+      quick_slot_item.Add(_item); //clone 함수 쓰지않고 같은 아이템을 참조해야한다. (Clone함수 사용하지않음)
       onChangeItem.Invoke();
 
       return true;
@@ -50,6 +50,7 @@ public class PlayerQuickSlot : MonoBehaviour
 
         quick_slot_item.RemoveAt(index);
         onChangeItem.Invoke();
+        
         
     }
 

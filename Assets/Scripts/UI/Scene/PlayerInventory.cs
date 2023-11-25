@@ -40,7 +40,8 @@ public class PlayerInventory : MonoBehaviour
 
                         if (onChangeItem != null)
                         {
-                            onChangeItem.Invoke(); //소모품스택 갯수 업데이트                          
+                            onChangeItem.Invoke(); //소모품스택 갯수 업데이트
+                            PlayerQuickSlot.Instance.onChangeItem.Invoke();
                         }
                     }
               
@@ -55,6 +56,7 @@ public class PlayerInventory : MonoBehaviour
                     if (onChangeItem != null)
                     {
                         onChangeItem.Invoke();
+                        PlayerQuickSlot.Instance.onChangeItem.Invoke();
                         return true;
                     }
                 }
@@ -68,6 +70,7 @@ public class PlayerInventory : MonoBehaviour
                 if (onChangeItem != null)
                 {
                     onChangeItem.Invoke();
+                    PlayerQuickSlot.Instance.onChangeItem.Invoke();
                     return true;
                 }
 
@@ -109,12 +112,23 @@ public class PlayerInventory : MonoBehaviour
 
                 
                 onChangeItem.Invoke();
-               
+                PlayerQuickSlot.Instance.onChangeItem.Invoke();
+
             }
 
             else if(player_items[index].amount == 1)
             {
-                
+
+                for (int i = 0; i < PlayerQuickSlot.Instance.quick_slot_item.Count; i++)
+                {
+
+                    if (player_items[index].ItemID == PlayerQuickSlot.Instance.quick_slot_item[i].ItemID) //퀵슬롯에 지우고자하는 아이템이 동일하게 존재하면 퀵슬롯도 같이 삭제
+                    {
+                        PlayerQuickSlot.Instance.Quick_slot_RemoveItem(i);
+                        PlayerQuickSlot.Instance.onChangeItem.Invoke();
+                    }
+
+                }
 
                 player_items.RemoveAt(index);
                 onChangeItem.Invoke();
@@ -127,7 +141,8 @@ public class PlayerInventory : MonoBehaviour
             
             player_items.RemoveAt(index);
             onChangeItem.Invoke();
-            
+            PlayerQuickSlot.Instance.onChangeItem.Invoke();
+
         }
        
        
