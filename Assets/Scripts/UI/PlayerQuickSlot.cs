@@ -47,11 +47,25 @@ public class PlayerQuickSlot : MonoBehaviour
             return;
         }
 
+        if (quick_slot_item[index].amount > 1)
+        {
+            quick_slot_item[index].amount -= 1; // 사용 시 1개 감소 
 
-        quick_slot_item.RemoveAt(index);
-        onChangeItem.Invoke();
-        
-        
+            onChangeItem.Invoke();
+
+            return;
+        }
+
+        else if (quick_slot_item[index].amount == 1)
+        {
+            quick_slot_item.RemoveAt(index);
+            onChangeItem.Invoke();
+            return;
+
+        }
+
+      
+                      
     }
 
 }

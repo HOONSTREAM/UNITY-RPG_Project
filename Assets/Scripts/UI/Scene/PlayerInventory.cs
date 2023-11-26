@@ -113,6 +113,7 @@ public class PlayerInventory : MonoBehaviour
                 onChangeItem.Invoke();
                 PlayerQuickSlot.Instance.onChangeItem.Invoke();
 
+                return;
             }
 
             else if(player_items[index].amount == 1)
@@ -131,17 +132,19 @@ public class PlayerInventory : MonoBehaviour
 
                 player_items.RemoveAt(index);
                 onChangeItem.Invoke();
-               
+
+                return;
             }
 
         }
-        else
+
+        else //소모품이 아닌경우
         {
             
             player_items.RemoveAt(index);
             onChangeItem.Invoke();
-           
 
+            return;
         }
        
        

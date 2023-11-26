@@ -6,19 +6,22 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 
-public class Quick_Slot : MonoBehaviour
+public class Quick_Slot : MonoBehaviour, IPointerUpHandler
 {
     public int slotnum;
 
     public Item item;
     public Image itemicon;
     public TextMeshProUGUI amount_text;
+    public Slot[] playerslots;
+    public Transform playerslot_holder;
 
-    void Start()
+    void Awake()
     {
         
         itemicon.gameObject.SetActive(false); //초기화 (아이콘 표시 안함)
         amount_text.text = "";
+        playerslots = playerslot_holder.GetComponentsInChildren<Slot>();
     }
 
 
@@ -58,8 +61,26 @@ public class Quick_Slot : MonoBehaviour
         }
         if (item.itemtype == ItemType.Consumables)
         {
+           bool isUsed =  this.item.Use();
 
+            if (isUsed)
             
+            {
+                for(int i = 0; i< playerslots.Length; i++)
+                {
+                    if (playerslots[i].item == this.item) //인벤토리에 같은 아이템이 있는지 검사하고 그 같은아이템도 삭제(invoke 포함됨)
+                    {
+                        PlayerInventory.Instance.RemoveItem(playerslots[i].slotnum);
+                        break; //한번 만족했으면 반복문을 빠져나가야 한다. (선택된 퀵슬롯 기준 뒷 퀵슬롯 전부 사라지는 문제 해결)
+                    }
+                    
+                }
+                //PlayerQuickSlot.Instance.Quick_slot_RemoveItem(this.slotnum);
+                PlayerQuickSlot.Instance.onChangeItem.Invoke();
+                               
+            }
+           
+            return;
         }
 
         else

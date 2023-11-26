@@ -16,8 +16,5 @@ public class Axe : ItemEffect
         return true;
     }
 
-    public override int GetAtk()
-    {
-        return 75;
-    }
+ 
 }
