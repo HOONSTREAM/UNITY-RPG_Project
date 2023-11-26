@@ -48,14 +48,24 @@ public class Quick_Slot : MonoBehaviour
 
     public void OnPointerUp(PointerEventData eventData)
     {
+        if(this.item == null)
+        {
+            GameObject go = GameObject.Find("UnityChan").gameObject;
+            PlayerStat stat = go.GetComponent<PlayerStat>();
+            stat.PrintUserText("퀵슬롯에 아이템이 없습니다.");
 
+            return;
+        }
         if (item.itemtype == ItemType.Consumables)
         {
 
-            //TODO
+            
         }
 
-        
+        else
+        {
+            return;
+        }
     }
 
 
