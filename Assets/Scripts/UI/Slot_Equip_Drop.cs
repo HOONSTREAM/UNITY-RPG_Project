@@ -21,7 +21,7 @@ public class Slot_Equip_Drop : MonoBehaviour
     {
         GameObject go = GameObject.Find("NewInvenUI").gameObject;
         slots = go.GetComponentsInChildren<Slot>();
-        stat = GameObject.Find("UnityChan").gameObject.GetComponent<PlayerStat>();
+        stat = Managers.Game.GetPlayer().gameObject.GetComponent<PlayerStat>();
         quick_slot = quickslot_holder.GetComponentsInChildren<Quick_Slot>();
     }
 

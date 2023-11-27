@@ -32,7 +32,7 @@ public class Shop : MonoBehaviour
         NPCname = "대장슬라임 케넨";
         shopitemDB = ItemDataBase.instance.itemDB; //데이터베이스 복사 
         TotalGoldText.text = "0";
-        Player = GameObject.Find("UnityChan").gameObject;
+        Player = Managers.Game.GetPlayer();
         stat =  Player.GetComponent<PlayerStat>();
         slots = slotHolder.GetComponentsInChildren<ShopSlot>();
         playerslots = playerslotHolder.GetComponentsInChildren<Slot>(); //플레이어 슬롯 참조 (샵모드 불리언 검사)
@@ -145,8 +145,9 @@ public class Shop : MonoBehaviour
             ScrollViewText.text = "구매 완료하였습니다.";           
             
             stat.Gold -= total;
+            stat.onchangestat.Invoke();
 
-            for(int i = 0; i < slots.Length; i++)
+            for (int i = 0; i < slots.Length; i++)
             {
                 switch (slots[i].slotnum) // 각 슬롯별 구매 갯수 인식
                 {

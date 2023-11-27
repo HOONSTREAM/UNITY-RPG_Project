@@ -9,12 +9,8 @@ public class PlayerEquipment : MonoBehaviour
 
     public static PlayerEquipment Instance;
     public Dictionary<EquipType, Item> player_equip;
-    PlayerStat stat;
-    
-    
-
-    //public delegate void OnEquipItem();
-    //public OnEquipItem OnequipItem;
+    private PlayerStat stat;
+      
    
     private void Awake()
     {
@@ -45,7 +41,9 @@ public class PlayerEquipment : MonoBehaviour
     
                 stat.SetEquipmentValue(stat.Level); // 장착장비 스텟 반영
 
-                _item.item.Equip = true; //장착 bool 변수 true로 변경 
+                _item.item.Equip = true; //장착 bool 변수 true로 변경
+                                         
+                stat.onchangestat.Invoke();
                 return true;
             }
              
@@ -65,13 +63,14 @@ public class PlayerEquipment : MonoBehaviour
         player_equip.Remove(_item.item.equiptype);
         _item.item.Equip = false;
         stat.SetEquipmentValue(stat.Level);
+        stat.onchangestat.Invoke();
         return true;
     }
 
     public void RemoveItem(EquipType equiptype)
     {
         player_equip.Remove(equiptype);
-       // OnequipItem.Invoke();
+      
     }
 
 }

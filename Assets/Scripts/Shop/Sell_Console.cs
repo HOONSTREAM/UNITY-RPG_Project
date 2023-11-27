@@ -35,9 +35,10 @@ public class Sell_Console : MonoBehaviour
             return;
         }
         //캐릭터 오브젝트를 찾아 플레이어 스텟 스크립트를 참조하여 골드 증가 
-        GameObject go = GameObject.Find("UnityChan").gameObject;
-        PlayerStat stat = go.GetComponent<PlayerStat>();
+        GameObject player = Managers.Game.GetPlayer();
+        PlayerStat stat = player.GetComponent<PlayerStat>();
         stat.Gold += slot_item.sellprice;
+        stat.onchangestat.Invoke();
         stat.PrintUserText($"상점에 판매하여{slot_item.sellprice}골드를 얻었습니다.");
         PlayerInventory.Instance.RemoveItem(slot_number);
 

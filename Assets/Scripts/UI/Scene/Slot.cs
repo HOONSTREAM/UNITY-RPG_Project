@@ -76,8 +76,8 @@ public class Slot : MonoBehaviour, IPointerUpHandler
             Debug.Log("상점에 판매합니다.");
             if (item.Equip)
             {
-                GameObject gos = GameObject.Find("UnityChan").gameObject;
-                PlayerStat stats = gos.GetComponent<PlayerStat>();
+                GameObject player = Managers.Game.GetPlayer();
+                PlayerStat stats = player.GetComponent<PlayerStat>();
                 stats.PrintUserText("장착중인 장비는 판매할 수 없습니다.");
                 return;
             }
@@ -102,8 +102,8 @@ public class Slot : MonoBehaviour, IPointerUpHandler
 
             if (item.Equip) //장착중인 장비는 금고에 맡길 수 없음.
             {
-                GameObject gos = GameObject.Find("UnityChan").gameObject;
-                PlayerStat stats = gos.GetComponent<PlayerStat>();
+                GameObject player = Managers.Game.GetPlayer();
+                PlayerStat stats = player.GetComponent<PlayerStat>();
                 stats.PrintUserText("장착중인 장비는 맡길 수 없습니다.");
                 return;
             }

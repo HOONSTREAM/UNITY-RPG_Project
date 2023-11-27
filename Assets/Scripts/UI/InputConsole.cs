@@ -28,9 +28,9 @@ public class InputConsole : MonoBehaviour
         
         sell_console.amount = inputamount;
 
-       
-        GameObject go = GameObject.Find("UnityChan").gameObject;
-        PlayerStat stat = go.GetComponent<PlayerStat>();
+
+        GameObject player = Managers.Game.GetPlayer();
+        PlayerStat stat = player.GetComponent<PlayerStat>();
         
         if(sell_console.slot_item.amount < inputamount)
         {
@@ -43,6 +43,7 @@ public class InputConsole : MonoBehaviour
         for(int i = 0; i<inputamount ; i++)
         {
             stat.Gold += sell_console.slot_item.sellprice;
+            stat.onchangestat.Invoke();
             totalsellgold += sell_console.slot_item.sellprice;
         }
         

@@ -24,8 +24,8 @@ public class Drop_Input_Console : MonoBehaviour
         inputamounttext.text = "";
         slot_equip_drop.amount = inputamount;
 
-        GameObject go = GameObject.Find("UnityChan").gameObject;
-        PlayerStat stat = go.GetComponent<PlayerStat>();
+        GameObject player = Managers.Game.GetPlayer();
+        PlayerStat stat = player.GetComponent<PlayerStat>();
 
         if (slot_equip_drop.slot_item.amount < inputamount)
         {

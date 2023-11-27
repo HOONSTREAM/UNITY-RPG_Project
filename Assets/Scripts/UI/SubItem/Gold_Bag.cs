@@ -11,10 +11,11 @@ public class Gold_Bag : ItemEffect
         
         Debug.Log("∞ÒµÂ∏¶ »πµÊ«’¥œ¥Ÿ.");
 
-        GameObject go = GameObject.Find("UnityChan").gameObject;
-        PlayerStat stat = go.GetComponent<PlayerStat>();
+        GameObject player = Managers.Game.GetPlayer();
+        PlayerStat stat = player.GetComponent<PlayerStat>();
         Managers.Sound.Play("CoinEffect");
         stat.Gold += 1000;
+        stat.onchangestat.Invoke();
         stat.PrintUserText("1000∞ÒµÂ∏¶ »πµÊ«œø¥Ω¿¥œ¥Ÿ.");
        
         return true;

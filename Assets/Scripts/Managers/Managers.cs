@@ -80,7 +80,6 @@ public class Managers : MonoBehaviour
         Input.Clear();
         UI.Clear();
         Scene.Clear();
-
         Pool.Clear();
     }
 }

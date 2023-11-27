@@ -4,7 +4,6 @@ using UnityEngine;
 
 public abstract class BaseController : MonoBehaviour
 {
-
     [SerializeField]
     protected Vector3 _DesPos; //목적지 포지션
     [SerializeField]

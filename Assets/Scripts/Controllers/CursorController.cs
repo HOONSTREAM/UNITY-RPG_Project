@@ -11,8 +11,6 @@ public class CursorController : MonoBehaviour
         Hand,
         AttackHand,
         NPC,
-
-
     }
 
     CursorType cursorType = CursorType.None;
@@ -27,7 +25,6 @@ public class CursorController : MonoBehaviour
         _attackIcon = Managers.Resources.Load<Texture2D>("Textures/Cursor/cursor(12)");
         _handIcon = Managers.Resources.Load<Texture2D>("Textures/Cursor/cursor(1)");
         _NPCIcon = Managers.Resources.Load<Texture2D>("Textures/Cursor/cursor(10)");
-
     }
 
 

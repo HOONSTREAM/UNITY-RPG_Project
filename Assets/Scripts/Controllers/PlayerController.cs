@@ -15,20 +15,15 @@ using UnityEngineInternal;
 public class PlayerController : BaseController
 {
 
-
     private int _mask = (1 << (int)Define.Layer.Ground | 1 << (int)Define.Layer.Monster); //레이어마스크
     bool skill_is_stop = false; // 스킬사용 멈춤 변수
     PlayerStat _stat; // 플레이어의 스텟
     float attackRange = 2.0f;
     public GameObject DamageText;
 
-
-  
-
     public override void Init()
     {
        
-
         WorldObjectType = Define.WorldObject.Player;
 
         _stat = gameObject.GetComponent<PlayerStat>();
@@ -40,7 +35,6 @@ public class PlayerController : BaseController
         //if (gameObject.GetComponentInChildren<UI_HPBar>() == null)
         //{
         //    Managers.UI.MakeWorldSpaceUI<UI_HPBar>(transform);
-
         //}
     }
  
@@ -78,18 +72,13 @@ public class PlayerController : BaseController
 
             Debug.DrawRay(transform.position + Vector3.up * 0.5f, dir.normalized, Color.green);
             if (Physics.Raycast(transform.position + Vector3.up * 0.5f, dir, 1.0f, LayerMask.GetMask("Building")))
-            {
-               
+            {               
                 transform.position += new Vector3(0, 0, -0.5f); //뒤로밀어내기 
                 State = Define.State.Idle;
                 return;
             }
-            /*========================================================================================================================*/
-
-         
+            /*========================================================================================================================*/       
         }
-
-
     }
   
     protected override void UpdateSkill()
@@ -102,8 +91,6 @@ public class PlayerController : BaseController
             transform.rotation = Quaternion.Lerp(transform.rotation, quat, 20 * Time.deltaTime);
   
         }
-
-      
 
     }
   
@@ -119,13 +106,10 @@ public class PlayerController : BaseController
             Debug.Log($"데미지 :{_stat.Attack - targetStat.Defense} ");
             int damagenumber = _stat.Attack - targetStat.Defense;
 
-            
-
             TextMesh text = DamageText.gameObject.GetComponent<TextMesh>();
             text.text = damagenumber.ToString();
 
             Instantiate(DamageText, LockTarget.transform.position, Quaternion.identity, LockTarget.transform);
-
 
         }
 
@@ -158,9 +142,7 @@ public class PlayerController : BaseController
             case Define.State.Skill:
                 {
                     if(evt == Define.MouseEvent.PointerUp || evt == Define.MouseEvent.Click)
-                    {
-                        
-
+                    {                      
                         skill_is_stop = true;
                     }
                    
@@ -175,8 +157,7 @@ public class PlayerController : BaseController
 
     void player_HitSounds(Define.MouseEvent evt)
     {
-        Managers.Sound.Play("sword-unsheathe", Define.Sound.Effect);
-        
+        Managers.Sound.Play("sword-unsheathe", Define.Sound.Effect);        
     }
 
 

@@ -71,6 +71,5 @@ public class SpawningPool : MonoBehaviour
         obj.transform.position = randPos;
         reserveCount--;
         
-
     }
 }

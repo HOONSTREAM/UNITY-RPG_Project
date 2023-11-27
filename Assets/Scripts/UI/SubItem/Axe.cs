@@ -9,8 +9,8 @@ public class Axe : ItemEffect
     public override bool ExecuteRole(ItemType itemtype)
     {
  
-        GameObject go = GameObject.Find("UnityChan").gameObject;
-        PlayerStat stat = go.GetComponent<PlayerStat>();
+        GameObject player = Managers.Game.GetPlayer();
+        PlayerStat stat = player.GetComponent<PlayerStat>();
         
 
         return true;

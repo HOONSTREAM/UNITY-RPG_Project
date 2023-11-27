@@ -18,7 +18,7 @@ public class Stat : MonoBehaviour
     [SerializeField]
     protected int _defense;
 
-    PlayerController controller;
+    private PlayerController controller;
    
     
     public int Level { get { return _level; } set {  _level = value; } }
@@ -43,7 +43,7 @@ public class Stat : MonoBehaviour
     }
 
    
-    public virtual void OnAttacked(Stat attacker)
+    public virtual void OnAttacked(Stat attacker) //인자로 상대방의 공격력을 받는다.
     
     {
         int damage = Mathf.Max(0, attacker.Attack - Defense);        
@@ -62,7 +62,7 @@ public class Stat : MonoBehaviour
 
     
 
-    protected virtual void OnDead(Stat attacker)
+    protected virtual void OnDead(Stat attacker) //TODO : 몬스터확장
     {
         if(gameObject.name=="Slime")
         {
@@ -71,18 +71,19 @@ public class Stat : MonoBehaviour
             {
                 playerstat.EXP += 5;
                 playerstat.Gold += 100;
+                playerstat.onchangestat.Invoke();
                 GameObject dropitem = ItemDataBase.instance.SlimeDropFieldItem();
                 dropitem.transform.position = transform.position; //드랍아이템 위치
-                dropitem.transform.position += new Vector3(0, 0.4f, 0); //2D 스프라이트 잘림방지                                       
-            }
+                dropitem.transform.position += new Vector3(0, 0.4f, 0); //2D 스프라이트 잘림방지
 
+               
+            }
 
             Managers.Game.DeSpawn(gameObject);
         }
         else
         {
-            //TODO 다른몬스터
-            Debug.Log("안죽어요");
+
         }
       
     }

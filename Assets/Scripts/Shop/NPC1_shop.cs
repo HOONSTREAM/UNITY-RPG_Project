@@ -32,7 +32,7 @@ public class NPC1_shop : MonoBehaviour
         NPCname = "농부 헤리안";
         shopitemDB = ItemDataBase.instance.itemDB; //데이터베이스 복사 
         TotalGoldText.text = "0";
-        Player = GameObject.Find("UnityChan").gameObject;
+        Player = Managers.Game.GetPlayer();
         stat =  Player.GetComponent<PlayerStat>();
         slots = slotHolder.GetComponentsInChildren<NPC1_shopslot>();
         playerslots = playerslotHolder.GetComponentsInChildren<Slot>(); //플레이어 슬롯 참조 (샵모드 불리언 검사)
@@ -50,7 +50,7 @@ public class NPC1_shop : MonoBehaviour
 
     void Update()
     {
-        PrintTotalGold(); 
+        PrintTotalGold(); //TDOO :성능저하  
     }
 
     public void Enter()
@@ -150,6 +150,7 @@ public class NPC1_shop : MonoBehaviour
             ScrollViewText.text = "구매 완료하였습니다.";           
             
             stat.Gold -= total;
+            stat.onchangestat.Invoke();
 
             for(int i = 0; i < slots.Length; i++)
             {
@@ -191,9 +192,6 @@ public class NPC1_shop : MonoBehaviour
                 }
             }
            
-
-            //TDOO 슬롯별로 아이템 , 갯수 비교하여 아이템 추가 
-
             return;
         }
     }

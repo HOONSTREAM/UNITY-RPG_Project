@@ -17,7 +17,7 @@ public class UI_HPbar : MonoBehaviour
 
     void Start()
     {
-        _player = GameObject.Find("UnityChan").gameObject;
+        _player = Managers.Game.GetPlayer();
         _silder = GameObject.Find("HPBar").gameObject.GetComponent<Slider>();
 
         _stat = _player.GetComponent<Stat>();

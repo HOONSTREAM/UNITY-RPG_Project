@@ -8,10 +8,9 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    GameObject _player;
+    private GameObject _player;
     /*나중에 서버랑 연동되면 딕셔너리로 int ID로 관리*/
     //Dictionary<int,GameObject> _players = new Dictionary<int,GameObject>();
-
 
     #region NPC대화
     /*================================NPC대화관련 스크립트===============================*/
@@ -61,8 +60,6 @@ public class GameManager : MonoBehaviour
     /*==================================================================================*/
     #endregion
 
-
-
     HashSet<GameObject> _monsters = new HashSet<GameObject>(); //딕셔너리랑 유사하지만 key가 없음
 
     public Action<int> OnSpawnEvent; //액션에 인트전달 ->몬스터 개체 숫자를 의미
@@ -82,7 +79,6 @@ public class GameManager : MonoBehaviour
                     OnSpawnEvent.Invoke(1);
                 break;
             case Define.WorldObject.Player:
-
                 _player = go;
                 break;
 

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class NewInvenUI : MonoBehaviour
 {
-    //TODO : 소모품 사용시 퀵슬롯과 연동
+    
     
     [SerializeField]
     GameObject inventoryPanel;

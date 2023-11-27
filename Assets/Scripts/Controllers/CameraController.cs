@@ -12,12 +12,7 @@ public class CameraController : MonoBehaviour
     GameObject _player = null;
 
     public void SetPlayer(GameObject player) { _player = player; }
-    void Start()
-    {
-        
-    }
-
-    
+   
     void LateUpdate()
     {
         if(_player.IsValid()==false)

@@ -17,7 +17,7 @@ namespace Data
         public float movespeed;
 
     }
-    [Serializable]
+    [Serializable] //클래스 또는 구조체를 인스펙터상으로 노출시킬 때 사용하는 키워드.
     public class StatData : ILoader<int, Stat>
     {
         public List<Stat> stats = new List<Stat>();

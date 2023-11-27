@@ -26,8 +26,8 @@ public class Gold_WithDraw_Console : MonoBehaviour
         inputamounttext.text = "";
 
 
-        GameObject go = GameObject.Find("UnityChan").gameObject;
-        PlayerStat stat = go.GetComponent<PlayerStat>();
+        GameObject player = Managers.Game.GetPlayer();
+        PlayerStat stat = player.GetComponent<PlayerStat>();
 
         if (StorageGoldAmount < inputamount)
         {
@@ -38,7 +38,7 @@ public class Gold_WithDraw_Console : MonoBehaviour
 
         StorageGoldAmount -= inputamount;
         stat.Gold += inputamount;
-
+        stat.onchangestat.Invoke();
         Storage_gold_text.text = StorageGoldAmount.ToString();
 
         stat.PrintUserText($"{inputamount}골드를 찾아 현재 소지중인 골드는 {stat.Gold} 골드 입니다. ");

@@ -15,7 +15,7 @@ public class UI_EXPbar : MonoBehaviour
 
     void Start()
     {
-        _player = GameObject.Find("UnityChan").gameObject;
+        _player = Managers.Game.GetPlayer();
         _slider = GameObject.Find("EXPBar").gameObject.GetComponent<Slider>();       
         _stat = _player.GetComponent<PlayerStat>();
         

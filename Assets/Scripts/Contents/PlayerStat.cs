@@ -7,12 +7,22 @@ using UnityEngine.UI;
 public class PlayerStat : Stat
 
 {
+    
     [SerializeField]
     protected int _exp;
     [SerializeField]
     protected int _gold;
-   
-    PlayerEquipment equipment;
+
+    private const int start_user_level = 1;
+    private const int start_user_gold = 0;
+    private const int start_user_exp = 0;
+
+
+    private PlayerEquipment equipment;
+
+    public delegate void OnChangePlayerStat();
+
+    public OnChangePlayerStat onchangestat;
 
     #region 게임 플레이시 GUISTAT창 세팅
     private void OnUpdateStatUI()
@@ -24,7 +34,7 @@ public class PlayerStat : Stat
         deftxt.GetComponent<TextMeshProUGUI>().text = Defense.ToString();
         goldtxt.GetComponent<TextMeshProUGUI>().text = Gold.ToString();
 
-    }
+    } //string 성능이슈
     #endregion
 
     #region PrintUserText
@@ -33,30 +43,31 @@ public class PlayerStat : Stat
         GameObject text = GameObject.Find("Text_User").gameObject;
         text.GetComponent<TextMeshProUGUI>().text = " ";
     }
-   
+
     public void PrintUserText(string Input)
     {
         GameObject text = GameObject.Find("Text_User").gameObject;
         text.GetComponent<TextMeshProUGUI>().text = Input;
         Managers.Sound.Play("Coin", Define.Sound.Effect);
         Invoke("TextClear", 2.0f);
-    }
+    } //TODO : 과연 이것이 여기 있는 게 맞는가 ?
     #endregion
 
     /*https://jeongkyun-it.tistory.com/23 */
     public int EXP //레벨업체크 까지 관리  
-    { 
-        
+    {
+
         get { return _exp; }
-        
-        set 
-        { _exp = value;
+
+        set
+        {
+            _exp = value;
             //setter에 의해 값이 할당되면 레벨업체크를 한다.
-            
-            
+
+
             //레벨업체크로직
 
-          int level = Level;        
+            int level = Level;
             while (true)
             {
                 Data.Stat stat;
@@ -67,42 +78,42 @@ public class PlayerStat : Stat
                 level++;
 
             }
-            
-            if(level != Level)
+
+            if (level != Level)
             {
                 Level = level;
-                SetStat(Level);              
-               GameObject go = GameObject.Find("Level_Text").gameObject;
-               go.GetComponent<TextMeshProUGUI>().text = $"Lv . {Level}";
-               Managers.Sound.Play("univ0007");
+                SetStat(Level);
+                GameObject go = GameObject.Find("Level_Text").gameObject;
+                go.GetComponent<TextMeshProUGUI>().text = $"Lv . {Level}";
+                Managers.Sound.Play("univ0007");
                 PrintUserText("레벨이 올랐습니다.");
-               Invoke("TextClear", 2.0f);
+                Invoke("TextClear", 2.0f);
                 //23.09.26 수정 (exp 초기화)
                 _exp -= (int)Managers.Data.StatDict[level].totalexp;
-            }
+
+
+                onchangestat.Invoke();
             
-        } 
-    
-    
-    
+            }
+
+        }
+
+
+
     }
     public int Gold { get { return _gold; } set { _gold = value; } }
 
     private void Start()
     {
-        _level = 1;   
-        _gold = 0;
-        _exp = 0;
+        
+        _level = start_user_level;
+        _gold = start_user_gold;
+        _exp = start_user_exp;
         SetStat(_level);
         equipment = GetComponent<PlayerEquipment>();
-    }
-    private void Update()
-
-    {
-        //TODO 성능상 좋지않다. 이벤트가 발생하면 스텟 업데이트 할수 있도록 수정해야할 듯.
         OnUpdateStatUI();
+        onchangestat += OnUpdateStatUI;
     }
-
 
     protected override void OnDead(Stat attacker)
     {
@@ -112,11 +123,11 @@ public class PlayerStat : Stat
 
     #region 스텟세팅 (장착장비검사까지)
 
-    int WeaponAttackValue = 0; //장착무기 공격스텟 저장변수
-    int ChestDEFvalue = 0; //장착갑옷 방어스텟 저장변수
+    private int WeaponAttackValue = 0; //장착무기 공격스텟 저장변수
+    private int ChestDEFvalue = 0; //장착갑옷 방어스텟 저장변수
     public void SetStat(int level)
     {
-        
+
         Dictionary<int, Data.Stat> dict = Managers.Data.StatDict; //키가 레벨 
         Data.Stat stat = dict[level];
 
@@ -124,7 +135,7 @@ public class PlayerStat : Stat
         _maxHp = stat.maxHP;
         _defense = stat.defense + ChestDEFvalue;
         _movespeed = stat.movespeed;
-        _attack = stat.attack + WeaponAttackValue; 
+        _attack = stat.attack + WeaponAttackValue;
 
     }
 
@@ -134,8 +145,8 @@ public class PlayerStat : Stat
         Data.Stat stat = dict[level];
 
         #region 무기장착검사   
-        if (equipment.player_equip.TryGetValue(EquipType.Weapon , out Item _attackitem)) //장착무기 검사
-        { 
+        if (equipment.player_equip.TryGetValue(EquipType.Weapon, out Item _attackitem)) //장착무기 검사
+        {
             WeaponAttackValue = equipment.player_equip[EquipType.Weapon].num_1;
             _attack = stat.attack + WeaponAttackValue;
         }

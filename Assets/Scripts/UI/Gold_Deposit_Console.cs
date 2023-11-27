@@ -27,10 +27,10 @@ public class Gold_Deposit_Console : MonoBehaviour
 
         inputamount = int.Parse(inputamounttext.text);
         inputamounttext.text = "";
-        
 
-        GameObject go = GameObject.Find("UnityChan").gameObject;
-        PlayerStat stat = go.GetComponent<PlayerStat>();
+
+        GameObject player = Managers.Game.GetPlayer(); //Find 함수는 느림.
+        PlayerStat stat = player.GetComponent<PlayerStat>();
 
         if (stat.Gold < inputamount)
         {
@@ -40,6 +40,7 @@ public class Gold_Deposit_Console : MonoBehaviour
         }
 
         stat.Gold -= inputamount;
+        stat.onchangestat.Invoke();
         StorageGoldAmount += inputamount;
 
         Storage_gold_text.text = StorageGoldAmount.ToString();

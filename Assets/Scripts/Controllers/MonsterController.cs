@@ -11,10 +11,9 @@ public class MonsterController : BaseController
     [SerializeField]
     float attackRange = 2;
 
-    public override void Init()
+    public override void Init() //가상함수
     {
        
-
         WorldObjectType = Define.WorldObject.Monster;
 
         _stat = gameObject.GetComponent<Stat>();
@@ -44,31 +43,21 @@ public class MonsterController : BaseController
 
         }
 
-       
-
-
     }
-    /*UpdateDie 함수에서 사용할 변수*/
-    
-    /*=============================*/
+
+ 
+
     protected override void UpdateDie() //TODO
     {
-        //Debug.Log("Monster Die");
-        //Managers.Sound.Play("Slime_Die2",Define.Sound.Effect);
-        
-        //nowTime += Time.deltaTime;
-
-        //if(nowTime >= DieTime)
-        //{
-        //    Managers.Game.DeSpawn(gameObject);
-        //}
+        Debug.Log("Monster Die");
+     
     }
     protected override void UpdateMoving()
     {
         //공격범위
         if (LockTarget != null)
         {
-            _DesPos = LockTarget.transform.position;
+            _DesPos = LockTarget.transform.position; //타겟에서 내 포지션을 빼면 가야할 방향벡터가 나온다.
             float distance = (_DesPos - transform.position).magnitude;
             if (distance <= attackRange)
             {
@@ -102,13 +91,10 @@ public class MonsterController : BaseController
         }
     }
         
-
-       
-    
+  
     protected override void UpdateSkill()
     {
        
-
         if (LockTarget != null)
         {
             Vector3 dir = LockTarget.transform.position - transform.position;
@@ -122,7 +108,6 @@ public class MonsterController : BaseController
     void OnHitEvent()
     {
        
-
         if(LockTarget != null)
         {
             Stat targetStat = LockTarget.GetComponent<Stat>();
@@ -155,6 +140,5 @@ public class MonsterController : BaseController
     void HitSounds(Define.MouseEvent evt)
     {
         Managers.Sound.Play("hit23.mp3", Define.Sound.Effect);
-
     }
 }

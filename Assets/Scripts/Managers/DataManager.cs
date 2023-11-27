@@ -13,7 +13,7 @@ public class DataManager
     public Dictionary<int, Data.Stat> StatDict { get; private set; } = new Dictionary<int, Data.Stat>(); // 데이터 추가 
     public void Init()
     {
-        StatDict = LoadJson<Data.StatData, int, Data.Stat>("StatData").MakeDict(); //데이터 추가
+        StatDict = LoadJson<Data.StatData, int, Data.Stat>("StatData").MakeDict(); //JSON 데이터 추가
   
     }
 

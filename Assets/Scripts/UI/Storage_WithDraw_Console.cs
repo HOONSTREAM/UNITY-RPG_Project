@@ -49,8 +49,8 @@ public class Storage_WithDraw_Console : MonoBehaviour
 
         if (inputamount > slot_item.amount)
         {
-            GameObject go = GameObject.Find("UnityChan").gameObject;
-            PlayerStat stat = go.GetComponent<PlayerStat>();
+            GameObject player = Managers.Game.GetPlayer();
+            PlayerStat stat = player.GetComponent<PlayerStat>();
             stat.PrintUserText("찾으려는 갯수에 비해 보관중인 물품 갯수가 적습니다.");
             return;
         }
