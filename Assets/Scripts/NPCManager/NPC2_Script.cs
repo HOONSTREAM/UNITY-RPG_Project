@@ -11,17 +11,19 @@ using UnityEngine.EventSystems;
  * 전자는 모든 클릭 이벤트를 감지하는 반면, 후자는 UI 요소 위에서의 클릭 이벤트만을 감지한다는 점입니다. 
  * 이로 인해 IPointerClickHandler를 사용하면 UI 창 뒤의 3D 오브젝트 클릭을 방지할 수 있습니다.
  */
+
+//나무금고
+
 public class NPC2_Script : MonoBehaviour , IPointerClickHandler
 {
     private int _mask = (1 << (int)Define.Layer.NPC2);
     Texture2D _attackIcon;
     GameObject _player;
    
-
     void Awake()
     {
         _player = Managers.Resources.Load<GameObject>("PreFabs/UnityChan"); // 플레이어 세팅 
-        
+        _attackIcon = Managers.Resources.Load<Texture2D>("Textures/Cursor/cursor(10)");
     }
 
  /*IPointer 인터페이스를 사용하고, MainCamera Physics Raycaster를 활용하면 UI 뒤 3D오브젝트를 뚫지않게끔 할수 있다.*/

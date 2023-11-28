@@ -6,9 +6,12 @@ using UnityEngine.UI;
 
 public class NPC1script : MonoBehaviour
 {
+    //대장슬라임 케넨
+
     private int _mask = (1 << (int)Define.Layer.NPC1);
     Texture2D _attackIcon;
     GameObject _player;
+
     #region NPC대화
     /*=========NPC대화 관련 변수===============*/
    
@@ -24,15 +27,12 @@ public class NPC1script : MonoBehaviour
     void Start()
     {
         _player = Managers.Resources.Load<GameObject>("PreFabs/UnityChan"); // 플레이어 세팅 
-
+        _attackIcon = Managers.Resources.Load<Texture2D>("Textures/Cursor/cursor(10)");
     }
     
     void Update()
     {
-
         OnNPCTalking();
-
-
     }
 
     private void OnNPCTalking()
@@ -46,23 +46,17 @@ public class NPC1script : MonoBehaviour
             {
                 if (hit.collider.gameObject.layer == (int)Define.Layer.NPC1)
                 {
-
-                    PlayerController pc = _player.GetComponent<PlayerController>();
-                    pc.State = Define.State.Idle;
-                    Debug.Log("NPC를 클릭합니다.!");
                     gamemanager.SelectedNPC = gameObject;
-
                     //gamemanager.TalkAction(); //이 컴포넌트가 붙어있는 게임오브젝트를 scanObject로 인자로 넘겨준다.
                     Shop shop = GetComponent<Shop>();
                     shop.Enter();
-                    Managers.Sound.Play("Inven_open");
-
-
-      
+                    Managers.Sound.Play("Inven_open");    
                 }
 
             }
         }
+
+        return;
     }
 }
 

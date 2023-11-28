@@ -13,11 +13,6 @@ public class TalkManager : MonoBehaviour
         GenerateData();
     }
 
-    void Update()
-    {
-        
-    }
-
     void GenerateData()
     {
         TalkData.Add(1000, new string[] { "안녕?", "이 곳에 처음 왔구나?" ,"NPC 처음 클릭해보니?"}); //대화 하나에는 여러문장이 들어있으므로 배열을 사용
@@ -28,14 +23,12 @@ public class TalkManager : MonoBehaviour
     public string GetTalk(int id, int talkIndex)
     {
         if (talkIndex == TalkData[id].Length)
-        {
-            
+        {           
             return null;
         }
             
         else
-        {
-            
+        {          
             return TalkData[id][talkIndex];
         }
         

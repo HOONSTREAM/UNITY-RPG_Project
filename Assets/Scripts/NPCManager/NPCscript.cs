@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class NPCscript : MonoBehaviour
 {
+
+    //³óºÎ Çì¸®¾È
+
     private int _mask = (1 << (int)Define.Layer.NPC);
     Texture2D _attackIcon;
     GameObject _player;

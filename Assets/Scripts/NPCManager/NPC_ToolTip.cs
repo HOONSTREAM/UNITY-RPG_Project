@@ -11,8 +11,8 @@ public class NPC_ToolTip : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI NPC_name;
+
    
-    
     public void SetupToolTip(string name)
     {
         NPC_name.text = name;

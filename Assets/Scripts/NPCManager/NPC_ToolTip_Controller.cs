@@ -36,10 +36,10 @@ public class NPC_ToolTip_Controller : MonoBehaviour, IPointerEnterHandler, IPoin
             
             tooltip.SetupToolTip(name);
             tooltip.gameObject.SetActive(true);
-            ontooltip = OnToolTipUpdated.On;
-
-            
+            ontooltip = OnToolTipUpdated.On;      
         }
+
+        return;
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -50,6 +50,7 @@ public class NPC_ToolTip_Controller : MonoBehaviour, IPointerEnterHandler, IPoin
             ontooltip = OnToolTipUpdated.off;
         }
 
+        return;
     }
   
 }
