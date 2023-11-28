@@ -5,9 +5,7 @@ using UnityEngine.UIElements;
 using static Define;
 
 public class GameScene : BaseScene
-{
-
-    
+{  
     protected override void Init()
     {
        
@@ -23,10 +21,10 @@ public class GameScene : BaseScene
 
         gameObject.GetAddComponent<CursorController>(); //커서컨트롤러 스크립트를 코드상으로 AddComponent하고, Load 함수를 통해 등록
 
-        //Test
+        
        GameObject player = Managers.Game.Spawn(Define.WorldObject.Player, "UnityChan");
-        Camera.main.gameObject.GetAddComponent<CameraController>().SetPlayer(player);
-        //Managers.Game.Spawn(Define.WorldObject.Monster, "Slime");
+       Camera.main.gameObject.GetAddComponent<CameraController>().SetPlayer(player);
+       //Managers.Game.Spawn(Define.WorldObject.Monster, "Slime");
 
         GameObject go = new GameObject { name = "Spawning Pool" };
         SpawningPool pool = go.GetAddComponent<SpawningPool>();
@@ -34,12 +32,9 @@ public class GameScene : BaseScene
     
     }
 
-   
-
     public override void Clear()
     {
         
     }
 
-  
 }

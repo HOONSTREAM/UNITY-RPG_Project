@@ -13,11 +13,7 @@ public abstract class BaseScene : MonoBehaviour //모든 Scene의 최상위 부모
     }
 
     public Define.Scene SceneType { get; protected set; } = Define.Scene.Unknown;
-    void Start()
-    {
-        
-    }
-
+    
     protected virtual void Init() //EventSystem object가 없으면 UI가 활성화 되지 않는다.
     {
        Object obj = GameObject.FindObjectOfType(typeof(EventSystem));
@@ -25,10 +21,8 @@ public abstract class BaseScene : MonoBehaviour //모든 Scene의 최상위 부모
         if (obj == null)
             Managers.Resources.Instantiate("UI/EventSystem").name = "@EventSystem";
             
-
     }
 
     public abstract void Clear();
-
-   
+  
 }
