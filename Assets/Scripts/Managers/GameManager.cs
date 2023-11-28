@@ -8,9 +8,9 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    private GameObject _player;
-    /*나중에 서버랑 연동되면 딕셔너리로 int ID로 관리*/
-    //Dictionary<int,GameObject> _players = new Dictionary<int,GameObject>();
+    private GameObject _player; //나중에 서버랑 연동되면 딕셔너리로 int ID로 관리
+
+
 
     #region NPC대화
     /*================================NPC대화관련 스크립트===============================*/

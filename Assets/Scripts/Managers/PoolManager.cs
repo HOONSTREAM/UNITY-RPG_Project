@@ -13,7 +13,7 @@ public class PoolManager
         public Transform Root { get; set; } // 풀 이름 지정 
 
 
-        Stack<Poolable> _poolStack = new Stack<Poolable>();
+        private Stack<Poolable> _poolStack = new Stack<Poolable>();
 
         public void Init(GameObject original, int count = 5)
         {
@@ -25,7 +25,6 @@ public class PoolManager
             {
                 Push(Create());
             }
-
         }
 
         Poolable Create()
@@ -45,7 +44,7 @@ public class PoolManager
             poolable.gameObject.SetActive(false); //비활성화 대기상태
             poolable.IsUsing = false;
 
-            _poolStack.Push(poolable); //풀스택에다가 넣는다.
+            _poolStack.Push(poolable); //Pool Stack 에다가 넣는다.
         }
 
 

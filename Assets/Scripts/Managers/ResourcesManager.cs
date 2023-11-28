@@ -16,6 +16,7 @@ public class ResourcesManager
 {
     public T Load<T>(string path) where T : Object //유니티에서 참조할수 있는 모든 개체의 기본 클래스
     {
+        
         if (typeof(T) == typeof(GameObject))  // 개선사항 1 . original 을 이미 들고 있으면 바로 사용
         {
             string name = path;
@@ -41,7 +42,7 @@ public class ResourcesManager
             Debug.Log($"Failed to load prefab : {path}");
             return null;
         }
-        //2. 만약 풀링된 오브젝트가 있는지 검사
+        //2. 만약 풀링된 오브젝트가 있는지 검사하고, 풀링이면 풀에서 꺼내온다.
         if (original.GetComponent<Poolable>() != null)
         {
             return Managers.Pool.Pop(original, parent).gameObject;
@@ -51,7 +52,7 @@ public class ResourcesManager
         
         go.name = original.name; 
 
-        return go; //Object.을 안붙이면 리소스매니저 클래스 안의 랩핑함수 Instatiate를 재귀호출 해버리기 때문.
+        return go; //Object.을 안붙이면 리소스매니저 클래스 안의 랩핑함수 Instatiate를 재귀호출 해버리기 때문. 랩핑 Instantiate를 호출하는것이다.
     }
 
     public void Destroy(GameObject go)
@@ -68,6 +69,7 @@ public class ResourcesManager
             return;
         }
 
+        // 풀링대상이 아니라면 바로 Destroy
         Object.Destroy(go);
     }
 }

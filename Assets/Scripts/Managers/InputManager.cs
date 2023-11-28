@@ -8,11 +8,11 @@ using UnityEngine.EventSystems;
 //Input을 관리하는 매니저
 public class InputManager
 {
-
     public Action KeyAction = null; //델리게이트 (옵저버패턴 -> 입력이되는지 감시 후 입력되면 이벤트발생)
     public Action<Define.MouseEvent> MouseAction = null;
     bool _pressed = false;
     float _pressedTime = 0;
+
    public void OnUpdate()
     {
         if (EventSystem.current.IsPointerOverGameObject())
@@ -57,7 +57,6 @@ public class InputManager
 
 
     }
-
 
     public void Clear()
     {

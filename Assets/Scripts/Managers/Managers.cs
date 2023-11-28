@@ -46,7 +46,7 @@ public class Managers : MonoBehaviour
 
     void Update()
     {
-        _input.OnUpdate();
+        _input.OnUpdate(); //마우스 입력 이벤트 매 프레임마다 실행
     }
 
     static void Init() //인스턴스가 null일때 발생하는 crash 방지

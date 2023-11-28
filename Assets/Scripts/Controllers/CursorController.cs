@@ -16,8 +16,11 @@ public class CursorController : MonoBehaviour
     CursorType cursorType = CursorType.None;
 
     private int _mask = (1 << (int)Define.Layer.Ground | 1 << (int)Define.Layer.Monster | 1 << (int)Define.Layer.NPC);
+    [SerializeField]
     Texture2D _attackIcon;
+    [SerializeField]
     Texture2D _handIcon;
+    [SerializeField]
     Texture2D _NPCIcon;
 
     void Start()
