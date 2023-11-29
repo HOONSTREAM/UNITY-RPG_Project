@@ -5781,7 +5781,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8539526175997767124
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5893,6 +5893,8 @@ MonoBehaviour:
     efts: []
   slot_number: 0
   slots: []
+  quick_slot: []
+  quickslot_holder: {fileID: 0}
   stat: {fileID: 0}
   Drop_Input_console: {fileID: 0}
   amount: 0
