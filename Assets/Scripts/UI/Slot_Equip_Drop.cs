@@ -53,8 +53,7 @@ public class Slot_Equip_Drop : MonoBehaviour
 
                     return;
                 }
-
-                else
+               
                 {
                     PlayerEquipment.Instance.EquipItem(slots[slot_number]); //아이템 장착 함수
                     if (slot_item.Equip)
@@ -69,7 +68,8 @@ public class Slot_Equip_Drop : MonoBehaviour
 
                 }
 
-            }         
+            }
+                      
 
         }
 

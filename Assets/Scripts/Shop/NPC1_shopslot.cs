@@ -22,12 +22,6 @@ public class NPC1_shopslot : MonoBehaviour
 
     }
 
-    void Update()
-    {
-        
-    }
-
-
 #region Shop_ItemList
 
     public void TestItem_PlusButton()

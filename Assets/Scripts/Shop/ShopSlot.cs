@@ -22,11 +22,6 @@ public class ShopSlot : MonoBehaviour
 
     }
 
-    void Update()
-    {
-        
-    }
-
 
 #region Shop_ItemList
 

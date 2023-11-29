@@ -8,6 +8,7 @@ public class PlayerEquipment : MonoBehaviour
    
 
     public static PlayerEquipment Instance;
+    [SerializeField]
     public Dictionary<EquipType, Item> player_equip;
     private PlayerStat stat;
       
@@ -39,10 +40,8 @@ public class PlayerEquipment : MonoBehaviour
                 
                 stat.PrintUserText("장착 성공!");
     
-                stat.SetEquipmentValue(stat.Level); // 장착장비 스텟 반영
-
-                _item.item.Equip = true; //장착 bool 변수 true로 변경
-                                         
+                stat.SetEquipmentValue(stat.Level,_item.item); // 장착장비 스텟 반영
+                _item.item.Equip = true; //장착 bool 변수 true로 변경                                       
                 stat.onchangestat.Invoke();
                 return true;
             }
@@ -59,10 +58,10 @@ public class PlayerEquipment : MonoBehaviour
     public bool UnEquipItem(Slot _item)
     {
         
-        stat.PrintUserText("장비를 해제합니다.");
+        stat.PrintUserText("장비를 해제합니다.");       
+        stat.SetEquipmentValue(stat.Level, _item.item);
         player_equip.Remove(_item.item.equiptype);
         _item.item.Equip = false;
-        stat.SetEquipmentValue(stat.Level);
         stat.onchangestat.Invoke();
         return true;
     }

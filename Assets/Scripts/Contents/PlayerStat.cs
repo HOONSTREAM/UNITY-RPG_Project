@@ -139,38 +139,76 @@ public class PlayerStat : Stat
 
     }
 
-    public void SetEquipmentValue(int level)
+    public void SetEquipmentValue(int level, Item item)
     {
         Dictionary<int, Data.Stat> dict = Managers.Data.StatDict; //키가 레벨 
         Data.Stat stat = dict[level];
 
-        #region 무기장착검사   
-        if (equipment.player_equip.TryGetValue(EquipType.Weapon, out Item _attackitem)) //장착무기 검사
+        #region 무기장착검사
+        if(item.equiptype == EquipType.Weapon)
         {
-            WeaponAttackValue = equipment.player_equip[EquipType.Weapon].num_1;
-            _attack = stat.attack + WeaponAttackValue;
+            if (equipment.player_equip.TryGetValue(EquipType.Weapon, out Item _attackitem)) //장착무기 검사
+            {
+                if (_attackitem.Equip)
+                {
+                    WeaponAttackValue -= equipment.player_equip[EquipType.Weapon].num_1;
+                    _attack = stat.attack + WeaponAttackValue;
+                }
+                else if (_attackitem.Equip == false)
+                {
+                    WeaponAttackValue += equipment.player_equip[EquipType.Weapon].num_1;
+                    _attack = stat.attack + WeaponAttackValue;
+                }
+            }
         }
-        else
-        {
-            WeaponAttackValue = 0;
-            _attack = stat.attack + WeaponAttackValue;
-        }
+       
         #endregion
 
         #region 방어구장착검사
-        if (equipment.player_equip.TryGetValue(EquipType.Chest, out Item _defitem)) //장착방어구 검사
+        if(item.equiptype == EquipType.Chest)
         {
-            ChestDEFvalue = equipment.player_equip[EquipType.Chest].num_1;
-            _defense = stat.defense + ChestDEFvalue;
+            if (equipment.player_equip.TryGetValue(EquipType.Chest, out Item _chest_def_item)) //장착방어구 검사
+            {
+                if (_chest_def_item.Equip)
+                {
+                    ChestDEFvalue -= equipment.player_equip[EquipType.Chest].num_1;
+                    _defense = stat.defense + ChestDEFvalue;
+                }
+                else if(_chest_def_item.Equip == false)
+                {
+                    ChestDEFvalue += equipment.player_equip[EquipType.Chest].num_1;
+                    _defense = stat.defense + ChestDEFvalue;
+                }
+            }
         }
+       
+        if(item.equiptype == EquipType.Head)
+        {
+            if (equipment.player_equip.TryGetValue(EquipType.Head, out Item _head_def_item))
+            {
+                if (_head_def_item.Equip)
+                {
+                    ChestDEFvalue -= equipment.player_equip[EquipType.Head].num_1;
+                    _defense = stat.defense + ChestDEFvalue;
+                }
 
-        else
-        {
-            ChestDEFvalue = 0;
-            _defense = stat.defense + ChestDEFvalue;
+                else if (_head_def_item.Equip == false)
+                {
+                    ChestDEFvalue += equipment.player_equip[EquipType.Head].num_1;
+                    _defense = stat.defense + ChestDEFvalue;
+                }
+
+            }
         }
+       
         #endregion
+        //else
+        //{
+        //    ChestDEFvalue = 0;
+        //    _defense = stat.defense + ChestDEFvalue;
+        //}
 
+        return;
     }
 
 

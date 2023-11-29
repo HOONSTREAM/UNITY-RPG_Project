@@ -14,23 +14,19 @@ public class NPC1_shop : MonoBehaviour
     public TextMeshProUGUI ScrollViewText;
     
 
-
-
-    GameObject Player;
-    PlayerStat stat;
-    NPC1_shopslot[] slots;
+    private GameObject Player;
+    private PlayerStat stat;
+    private NPC1_shopslot[] slots;
     public Transform slotHolder;
     public List<Item> shopitemDB;
-    Slot[] playerslots;
-    public Transform playerslotHolder;
+    private Slot[] playerslots;
+    public Transform playerslotHolder; //content 이며 인벤토리 슬롯
     public string NPCname;
-
-
 
     void Start()
     {
         NPCname = "농부 헤리안";
-        shopitemDB = ItemDataBase.instance.itemDB; //데이터베이스 복사 
+        shopitemDB = ItemDataBase.instance.itemDB; //아이템 데이터베이스 복사 
         TotalGoldText.text = "0";
         Player = Managers.Game.GetPlayer();
         stat =  Player.GetComponent<PlayerStat>();
@@ -39,13 +35,16 @@ public class NPC1_shop : MonoBehaviour
 
         for (int i = 0; i < slots.Length; i++)
         {
-            slots[i].slotnum = i;
-            
+            slots[i].slotnum = i;            
         }
-        //샵에 등록할 아이템
-        slots[0].shopitem = shopitemDB[3]; //각 슬롯에 샵아이템데이터 등록 
-        slots[1].shopitem = shopitemDB[5];
-
+        
+        if(slots.Length >= 3 && slots != null)
+        {
+            slots[0].shopitem = shopitemDB[3]; //각 슬롯에 샵아이템데이터 등록 
+            slots[1].shopitem = shopitemDB[5];
+            slots[2].shopitem = shopitemDB[10];
+        }
+       
     }
 
     void Update()
@@ -190,7 +189,23 @@ public class NPC1_shop : MonoBehaviour
                         }
                         totalquantity = 0; //구매 후 토탈갯수 초기화
                         break;
-                    
+
+                    case 2:
+                        int quan2 = slots[2].quantity;
+                        Debug.Log(quan2);
+                        if (quan2 == 0)
+                        {
+                            break;
+                        }
+
+                        for (int i1 = 0; i1 < quan2; i1++)
+                        {
+                            PlayerInventory.Instance.AddItem(shopitemDB[10].Clone());
+
+                        }
+                        totalquantity = 0; //구매 후 토탈갯수 초기화
+                        break;
+
                 }
             }
            
