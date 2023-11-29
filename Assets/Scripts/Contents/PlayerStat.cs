@@ -202,11 +202,7 @@ public class PlayerStat : Stat
         }
        
         #endregion
-        //else
-        //{
-        //    ChestDEFvalue = 0;
-        //    _defense = stat.defense + ChestDEFvalue;
-        //}
+      
 
         return;
     }

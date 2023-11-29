@@ -59,28 +59,21 @@ public class ShopSlot : MonoBehaviour
         {
 
             case 0:
-                shop.ScrollViewText.text = $"{shopitem.itemname} {quantity},";
+                shop.ScrollViewText_item1.text = $"{shopitem.itemname} {quantity}";
                 break;
             case 1:
-                shop.ScrollViewText.text = $"{shopitem.itemname} {quantity},";
+                shop.ScrollViewText_item2.text = $"{shopitem.itemname} {quantity}";
                 break;
             case 2:
-                shop.ScrollViewText.text = $"{shopitem.itemname} {quantity},";
+                shop.ScrollViewText_item3.text = $"{shopitem.itemname} {quantity}";
                 break;
             case 3:
-                shop.ScrollViewText.text = $"{shopitem.itemname} {quantity},";
+                shop.ScrollViewText_item4.text = $"{shopitem.itemname} {quantity}";
                 break;
             case 4:
-                shop.ScrollViewText.text = $"{shopitem.itemname} {quantity},";
+                shop.ScrollViewText_item5.text = $"{shopitem.itemname} {quantity}";
                 break;
-            case 5:
-                shop.ScrollViewText.text = $"{shopitem.itemname} {quantity},";
-                break;
-            case 6:
-                shop.ScrollViewText.text = $"{shopitem.itemname} {quantity},";
-                break;
-
-
+           
         }
        
   
@@ -109,58 +102,43 @@ public class ShopSlot : MonoBehaviour
         switch (slotnum)
         {
 
+
             case 0:
-                shop.ScrollViewText.text += $"{shopitem.itemname} {quantity},";
+                shop.ScrollViewText_item1.text = $"{shopitem.itemname} {quantity}";
                 break;
             case 1:
-                shop.ScrollViewText.text += $"{shopitem.itemname} {quantity},";
+                shop.ScrollViewText_item2.text = $"{shopitem.itemname} {quantity}";
                 break;
             case 2:
-                shop.ScrollViewText.text += $"{shopitem.itemname} {quantity},";
+                shop.ScrollViewText_item3.text = $"{shopitem.itemname} {quantity}";
                 break;
             case 3:
-                shop.ScrollViewText.text += $"{shopitem.itemname} {quantity},";
+                shop.ScrollViewText_item4.text = $"{shopitem.itemname} {quantity}";
                 break;
             case 4:
-                shop.ScrollViewText.text += $"{shopitem.itemname} {quantity},";
+                shop.ScrollViewText_item5.text = $"{shopitem.itemname} {quantity}";
                 break;
-            case 5:
-                shop.ScrollViewText.text += $"{shopitem.itemname} {quantity},";
-                break;
-            case 6:
-                shop.ScrollViewText.text += $"{shopitem.itemname} {quantity},";
-                break;
-
-
         }
 
         if (quantity == 0)
         {
             switch (slotnum)
             {
-
                 case 0:
-                    shop.ScrollViewText.text += $"{shopitem.itemname} {quantity},";
+                    shop.ScrollViewText_item1.text = "";
                     break;
                 case 1:
-                    shop.ScrollViewText.text += $"{shopitem.itemname} {quantity},";
+                    shop.ScrollViewText_item2.text = "";
                     break;
                 case 2:
-                    shop.ScrollViewText.text += $"{shopitem.itemname} {quantity},";
+                    shop.ScrollViewText_item3.text = "";
                     break;
                 case 3:
-                    shop.ScrollViewText.text += $"{shopitem.itemname} {quantity},";
+                    shop.ScrollViewText_item4.text = "";
                     break;
                 case 4:
-                    shop.ScrollViewText.text += $"{shopitem.itemname} {quantity},";
+                    shop.ScrollViewText_item5.text = "";
                     break;
-                case 5:
-                    shop.ScrollViewText.text += $"{shopitem.itemname} {quantity},";
-                    break;
-                case 6:
-                    shop.ScrollViewText.text += $"{shopitem.itemname} {quantity},";
-                    break;
-
 
             }
         }

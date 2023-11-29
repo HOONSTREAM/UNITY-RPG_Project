@@ -11,8 +11,14 @@ public class Shop : MonoBehaviour
 
     public GameObject ShopPanel; //RectTransform으로 해도 됨.
     public TextMeshProUGUI TotalGoldText;
-    public TextMeshProUGUI ScrollViewText;
-    
+
+
+    public TextMeshProUGUI ScrollViewText_item1;
+    public TextMeshProUGUI ScrollViewText_item2;
+    public TextMeshProUGUI ScrollViewText_item3;
+    public TextMeshProUGUI ScrollViewText_item4;
+    public TextMeshProUGUI ScrollViewText_item5;
+
 
     private GameObject Player;
     private PlayerStat stat;
@@ -98,9 +104,14 @@ public class Shop : MonoBehaviour
         {
          
             Managers.Sound.Play("Coin");
-            ScrollViewText.text = "소지금이 부족합니다.";
-            
-  
+            ScrollViewText_item1.text = "소지금이 부족합니다.";
+            ScrollViewText_item2.text = "";
+            ScrollViewText_item3.text = "";
+            ScrollViewText_item4.text = "";
+            ScrollViewText_item5.text = "";
+
+
+
             return;
 
         }
@@ -115,8 +126,12 @@ public class Shop : MonoBehaviour
             if (PlayerInventory.Instance.player_items.Count >= 20) //가방 칸 갯수검사
             {
                 Managers.Sound.Play("Coin");
-                ScrollViewText.text = "가방이 가득찼습니다.";
-                
+                ScrollViewText_item1.text = "가방이 가득찼습니다.";
+                ScrollViewText_item2.text = "";
+                ScrollViewText_item3.text = "";
+                ScrollViewText_item4.text = "";
+                ScrollViewText_item5.text = "";
+
                 return;
 
             }
@@ -142,9 +157,13 @@ public class Shop : MonoBehaviour
             if (totalquantity+ PlayerInventory.Instance.player_items.Count > 20)
             {
                 Managers.Sound.Play("Coin");
-                ScrollViewText.text = "가방 칸이 모자라 구매할 수 없습니다.";
-               
-                
+                ScrollViewText_item1.text = "가방 칸이 모자라 구매할 수 없습니다.";
+                ScrollViewText_item2.text = "";
+                ScrollViewText_item3.text = "";
+                ScrollViewText_item4.text = "";
+                ScrollViewText_item5.text = "";
+
+
                 totalquantity = 0; //토탈갯수 검사 초기화
                 return;
             }
@@ -152,8 +171,12 @@ public class Shop : MonoBehaviour
             
             Debug.Log("구매 완료");
             Managers.Sound.Play("Coin");
-            ScrollViewText.text = "구매 완료하였습니다.";           
-            
+            ScrollViewText_item1.text = "구매 완료";
+            ScrollViewText_item2.text = "";
+            ScrollViewText_item3.text = "";
+            ScrollViewText_item4.text = "";
+            ScrollViewText_item5.text = "";
+
             stat.Gold -= total;
             stat.onchangestat.Invoke();
 

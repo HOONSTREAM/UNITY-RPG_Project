@@ -11,8 +11,10 @@ public class NPC1_shop : MonoBehaviour
     public GameObject ShopPanel; //RectTransform으로 해도 됨.
     public TextMeshProUGUI TotalGoldText;
 
-    public TextMeshProUGUI ScrollViewText;
-    
+    public TextMeshProUGUI ScrollViewText_item1;
+    public TextMeshProUGUI ScrollViewText_item2;
+    public TextMeshProUGUI ScrollViewText_item3;
+
 
     private GameObject Player;
     private PlayerStat stat;
@@ -65,7 +67,6 @@ public class NPC1_shop : MonoBehaviour
     }
 
     
-
     public void Exit()
     {
         ShopPanel.SetActive(false);
@@ -94,9 +95,10 @@ public class NPC1_shop : MonoBehaviour
         {
          
             Managers.Sound.Play("Coin");
-            ScrollViewText.text = "소지금이 부족합니다.";
+            ScrollViewText_item1.text = "소지금이 부족합니다.";
+            ScrollViewText_item2.text = "";
+            ScrollViewText_item3.text = "";
             
-  
             return;
 
         }
@@ -111,8 +113,10 @@ public class NPC1_shop : MonoBehaviour
             if (PlayerInventory.Instance.player_items.Count >= 20) //가방 칸 갯수검사
             {
                 Managers.Sound.Play("Coin");
-                ScrollViewText.text = "가방이 가득찼습니다.";
-                
+                ScrollViewText_item1.text = "가방 칸이 부족합니다.";
+                ScrollViewText_item2.text = "";
+                ScrollViewText_item3.text = "";
+
                 return;
 
             }
@@ -131,16 +135,14 @@ public class NPC1_shop : MonoBehaviour
                 }
                 
             }
-            Debug.Log($"구매하려는 갯수 (소모품은1개) : {totalquantity}");
-            Debug.Log($"가방 채워진 수 : {PlayerInventory.Instance.player_items.Count}");
-
-
             if (totalquantity+ PlayerInventory.Instance.player_items.Count > 20)
             {
                 Managers.Sound.Play("Coin");
-                ScrollViewText.text = "가방 칸이 모자라 구매할 수 없습니다.";
-               
-                
+                ScrollViewText_item1.text = "가방 칸이 모자라 구매 할 수 없습니다.";
+                ScrollViewText_item2.text = "";
+                ScrollViewText_item3.text = "";
+
+
                 totalquantity = 0; //토탈갯수 검사 초기화
                 return;
             }
@@ -148,8 +150,10 @@ public class NPC1_shop : MonoBehaviour
             
             Debug.Log("구매 완료");
             Managers.Sound.Play("Coin");
-            ScrollViewText.text = "구매 완료하였습니다.";           
-            
+            ScrollViewText_item1.text = "구매완료";
+            ScrollViewText_item2.text = "";
+            ScrollViewText_item3.text = "";
+
             stat.Gold -= total;
             stat.onchangestat.Invoke();
 

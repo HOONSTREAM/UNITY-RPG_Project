@@ -14,18 +14,18 @@ public class NPC1_shopslot : MonoBehaviour
     public Item shopitem;
 
 
-
     void Start()
     {
         shop = GetComponent<NPC1_shop>();
         ResetShop(); //상점 초기화 1번 하고 게임시작
-
     }
 
-#region Shop_ItemList
+    #region Shop_ItemList
 
-    public void TestItem_PlusButton()
+    
+    public void Item_PlusButton()
     {
+        
         if (quantity >= 10) 
         {
             if(shopitem.itemtype == ItemType.Consumables)
@@ -58,38 +58,23 @@ public class NPC1_shopslot : MonoBehaviour
         {
 
             case 0:
-                shop.ScrollViewText.text = $"{shopitem.itemname} {quantity},";
+                shop.ScrollViewText_item1.text = $"{shopitem.itemname} {quantity}";
                 break;
             case 1:
-                shop.ScrollViewText.text = $"{shopitem.itemname} {quantity},";
+                shop.ScrollViewText_item2.text = $" {shopitem.itemname} {quantity}";
                 break;
             case 2:
-                shop.ScrollViewText.text = $"{shopitem.itemname} {quantity},";
+                shop.ScrollViewText_item3.text = $"{shopitem.itemname} {quantity}";
                 break;
-            case 3:
-                shop.ScrollViewText.text = $"{shopitem.itemname} {quantity},";
-                break;
-            case 4:
-                shop.ScrollViewText.text = $"{shopitem.itemname} {quantity},";
-                break;
-            case 5:
-                shop.ScrollViewText.text = $"{shopitem.itemname} {quantity},";
-                break;
-            case 6:
-                shop.ScrollViewText.text = $"{shopitem.itemname} {quantity},";
-                break;
-
-
         }
        
   
     }
 
-    public void TestItem_MinusButton()
+    public void Item_MinusButton()
     {
         if (quantity <= 0)
-        {
-            
+        {          
             return;
         }
 
@@ -109,58 +94,30 @@ public class NPC1_shopslot : MonoBehaviour
         {
 
             case 0:
-                shop.ScrollViewText.text += $"{shopitem.itemname} {quantity},";
+                shop.ScrollViewText_item1.text = $"{shopitem.itemname} {quantity}";
                 break;
             case 1:
-                shop.ScrollViewText.text += $"{shopitem.itemname} {quantity},";
+                shop.ScrollViewText_item2.text = $"{shopitem.itemname} {quantity}";
                 break;
             case 2:
-                shop.ScrollViewText.text += $"{shopitem.itemname} {quantity},";
+                shop.ScrollViewText_item3.text = $"{shopitem.itemname} {quantity}";
                 break;
-            case 3:
-                shop.ScrollViewText.text += $"{shopitem.itemname} {quantity},";
-                break;
-            case 4:
-                shop.ScrollViewText.text += $"{shopitem.itemname} {quantity},";
-                break;
-            case 5:
-                shop.ScrollViewText.text += $"{shopitem.itemname} {quantity},";
-                break;
-            case 6:
-                shop.ScrollViewText.text += $"{shopitem.itemname} {quantity},";
-                break;
-
-
+        
         }
 
         if (quantity == 0)
         {
             switch (slotnum)
             {
-
                 case 0:
-                    shop.ScrollViewText.text += $"{shopitem.itemname} {quantity},";
+                    shop.ScrollViewText_item1.text = "";
                     break;
                 case 1:
-                    shop.ScrollViewText.text += $"{shopitem.itemname} {quantity},";
+                    shop.ScrollViewText_item2.text = "";
                     break;
                 case 2:
-                    shop.ScrollViewText.text += $"{shopitem.itemname} {quantity},";
-                    break;
-                case 3:
-                    shop.ScrollViewText.text += $"{shopitem.itemname} {quantity},";
-                    break;
-                case 4:
-                    shop.ScrollViewText.text += $"{shopitem.itemname} {quantity},";
-                    break;
-                case 5:
-                    shop.ScrollViewText.text += $"{shopitem.itemname} {quantity},";
-                    break;
-                case 6:
-                    shop.ScrollViewText.text += $"{shopitem.itemname} {quantity},";
-                    break;
-
-
+                    shop.ScrollViewText_item3.text = "";
+                    break;      
             }
         }
 
