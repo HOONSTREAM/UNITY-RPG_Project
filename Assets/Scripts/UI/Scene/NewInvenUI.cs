@@ -8,11 +8,10 @@ using UnityEngine.UI;
 public class NewInvenUI : MonoBehaviour
 {
     
-    
     [SerializeField]
-    GameObject inventoryPanel;
-    PlayerInventory inven; //플레이어 인벤토리 참조
-    PlayerStat stat; //플레이어 스텟 참조 (골드업데이트)
+    private GameObject inventoryPanel;
+    private PlayerInventory inven; //플레이어 인벤토리 참조
+    private PlayerStat stat; //플레이어 스텟 참조 (골드업데이트)
 
 
     public GameObject Equip_Drop_Selection; // 장비품 클릭시 뜨는 콘솔 참조 (장비창 종료시 같이 초기화)
@@ -27,11 +26,9 @@ public class NewInvenUI : MonoBehaviour
     private void Start()
     {
         
-
         stat = GetComponent<PlayerStat>(); //골드 업데이트를 위한 플레이어 스텟 참조
         inven = PlayerInventory.Instance;       
-        slots= slotHolder.GetComponentsInChildren<Slot>();
-        
+        slots= slotHolder.GetComponentsInChildren<Slot>();    
         inventoryPanel.SetActive(activeInventory);
         inven.onChangeItem += RedrawSlotUI;
 
@@ -43,8 +40,6 @@ public class NewInvenUI : MonoBehaviour
         inven.RemoveItem(0);
         RedrawSlotUI();
         #endregion
-
-
 
     }
 

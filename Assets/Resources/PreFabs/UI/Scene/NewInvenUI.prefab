@@ -5775,6 +5775,7 @@ GameObject:
   - component: {fileID: 1333254368770350078}
   - component: {fileID: 8502532417120258853}
   - component: {fileID: 3231900796330930937}
+  - component: {fileID: -7880184660427458303}
   m_Layer: 5
   m_Name: NewInvenUI
   m_TagString: Untagged
@@ -5898,6 +5899,18 @@ MonoBehaviour:
   stat: {fileID: 0}
   Drop_Input_console: {fileID: 0}
   amount: 0
+--- !u!114 &-7880184660427458303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4425149056195967035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ac56e81deb726749875c1325eaab7f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4494725996474909298
 GameObject:
   m_ObjectHideFlags: 0
