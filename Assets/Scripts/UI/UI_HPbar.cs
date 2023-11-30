@@ -9,11 +9,11 @@ public class UI_HPbar : MonoBehaviour
 
 
     [SerializeField]
-    GameObject _player;
+    private GameObject _player;
     [SerializeField]
-    Slider _silder;
+    private Slider _silder;
 
-    Stat _stat;
+    private Stat _stat;
 
     void Start()
     {

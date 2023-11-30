@@ -4,11 +4,9 @@ using UnityEngine.UI;
 public class UI_EXPbar : MonoBehaviour
 {
     [SerializeField]
-    GameObject _player;
+    private GameObject _player;
     [SerializeField]
-    Slider _slider;
-
-  
+    private Slider _slider;
     private  PlayerStat _stat;
     
    

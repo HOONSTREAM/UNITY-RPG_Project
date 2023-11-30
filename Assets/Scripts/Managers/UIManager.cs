@@ -28,7 +28,7 @@ public class UIManager
     }
     public void SetCanvas(GameObject go, bool sort = true) // 창이 열릴건데, 우선순위를 정하는 것
     {
-        Canvas canvas = Util.GetAddComponent<Canvas>(go);
+        Canvas canvas = Util.GetorAddComponent<Canvas>(go);
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
         canvas.overrideSorting = true;
 
@@ -59,7 +59,7 @@ public class UIManager
         canvas.renderMode = RenderMode.WorldSpace;
         canvas.worldCamera = Camera.main;
 
-        return Util.GetAddComponent<T>(go); //script component 추가해서 리턴
+        return Util.GetorAddComponent<T>(go); //script component 추가해서 리턴
     }
 
     public T MakeSubItem<T>(Transform parent , string name = null) where T : UI_Base //Transform을 인자로 받는 것은 SetParent 함수와 합치기 위해서
@@ -73,7 +73,7 @@ public class UIManager
             go.transform.SetParent(parent);
             
 
-        return Util.GetAddComponent<T>(go); //script component 추가해서 리턴
+        return Util.GetorAddComponent<T>(go); //script component 추가해서 리턴
     }
     public T ShowSceneUI<T>(string name = null) where T : UI_Scene
     {
@@ -81,7 +81,7 @@ public class UIManager
             name = typeof(T).Name;
 
         GameObject go = Managers.Resources.Instantiate($"UI/Scene/{name}");
-        T sceneUI = Util.GetAddComponent<T>(go);
+        T sceneUI = Util.GetorAddComponent<T>(go);
         _scene = sceneUI; //_scene변수에 sceneUI를 넣는작업
   
          go.transform.SetParent(Root.transform);
@@ -96,7 +96,7 @@ public class UIManager
             name = typeof(T).Name;
 
        GameObject go =  Managers.Resources.Instantiate($"UI/Popup/{name}");
-        T popup = Util.GetAddComponent<T>(go);
+        T popup = Util.GetorAddComponent<T>(go);
         _popupstack.Push(popup);
 
         go.transform.SetParent(Root.transform);

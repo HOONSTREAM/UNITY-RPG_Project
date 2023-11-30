@@ -12,12 +12,7 @@ public class FieldItem : MonoBehaviour
     public SpriteRenderer image;
     public GameObject fielditemPrefab;
     public Vector3 pos;
-    public List<Item> itemDB;
-
-    private void Start()
-    {
-        itemDB = ItemDataBase.instance.itemDB;
-    }
+   
     public void SetItem(Item _item)
     {
         item.ItemID = _item.ItemID; //아이템 코드 아이디
@@ -52,7 +47,7 @@ public class FieldItem : MonoBehaviour
     public GameObject SlimeDropFieldItem() //필드에 아이템 생성
     {
         GameObject go = Instantiate(fielditemPrefab, pos, Quaternion.identity); //Quaternion.identity는 회전없음을 나타내는 쿼터니언
-        go.GetComponent<FieldItem>().SetItem(itemDB[Random.Range(0, 10)]);
+        go.GetComponent<FieldItem>().SetItem(ItemDataBase.instance.itemDB[Random.Range(0,10)]);
 
         return go;
 

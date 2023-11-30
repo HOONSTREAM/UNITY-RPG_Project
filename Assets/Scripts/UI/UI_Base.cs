@@ -75,7 +75,7 @@ public abstract class UI_Base : MonoBehaviour
 
     public static void BindEvent(GameObject go, Action<PointerEventData> action,Define.UIEvent type = Define.UIEvent.Click)
     {
-        UI_EventHandler evt = Util.GetAddComponent<UI_EventHandler>(go);
+        UI_EventHandler evt = Util.GetorAddComponent<UI_EventHandler>(go);
 
         switch (type)
         {

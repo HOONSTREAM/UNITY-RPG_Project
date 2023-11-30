@@ -14,7 +14,7 @@ public static class Extension
     public static T GetAddComponent<T>(this GameObject go) where T : Component
     {
        
-        return Util.GetAddComponent<T>(go);
+        return Util.GetorAddComponent<T>(go);
     }
 
     public static bool IsValid (this GameObject go)

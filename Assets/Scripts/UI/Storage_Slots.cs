@@ -61,10 +61,7 @@ public class Storage_Slots : MonoBehaviour, IPointerUpHandler
 
        if(item.itemtype == ItemType.Consumables)
         {
-            
-
-            Debug.Log("소모품을 찾습니다.");
-
+   
             if(item.amount > 1)
             {
 
@@ -86,7 +83,7 @@ public class Storage_Slots : MonoBehaviour, IPointerUpHandler
 
        else if(item.itemtype == ItemType.Equipment)
         {
-            Debug.Log("장비아이템을 찾습니다.");
+            
 
             PlayerInventory.Instance.AddItem(item.Clone());
             PlayerStorage.Instance.RemoveItem(this.slotnum);

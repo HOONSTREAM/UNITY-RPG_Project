@@ -2184,8 +2184,7 @@ MonoBehaviour:
     sellprice: 100
     efts:
     - {fileID: 11400000, guid: 9b9c363957c666746aebffb59490991f, type: 2}
-  fielditemPrefab: {fileID: 7522970402254163847, guid: 825b2bdcabe5ab54b8f97fda1a1f79c2, type: 3}
-  pos: {x: 0, y: 0, z: 0}
+  itemBackupDatabase: []
 --- !u!4 &163289491
 Transform:
   m_ObjectHideFlags: 0
@@ -27332,7 +27331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 214cc9d4987e5a947bf584ae7e7b3a77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Inventory: {fileID: 0}
+  Inventory: {fileID: 1088432926}
 --- !u!114 &1856188210
 MonoBehaviour:
   m_ObjectHideFlags: 0

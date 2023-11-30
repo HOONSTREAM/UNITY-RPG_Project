@@ -26,10 +26,6 @@ public class Slot_Equip_Drop : MonoBehaviour
     }
 
 
-    void Update()
-    {
-
-    }
     public Item Get_Slotnum(int slotnum) //슬롯에 있는 아이템을 참조받아 private Item 변수에 저장해두고, 그 슬롯의 넘버도 보관
     {
         slot_number = slotnum;
@@ -139,7 +135,7 @@ public class Slot_Equip_Drop : MonoBehaviour
         Consumable_use_Drop_Selection.gameObject.SetActive(false);
         Managers.Sound.Play("Coin");
 
-        //TODO : 인벤토리와 연동 
+        
 
         for(int i = 0; i < quick_slot.Length; i++) //퀵슬롯에 이미 해당아이템이 있는지 검사
         {

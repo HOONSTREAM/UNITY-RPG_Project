@@ -8,11 +8,6 @@ public class Exit_Console : MonoBehaviour
 {
     public GameObject ExitConsole;
 
-    private void Start()
-    {
-        
-    }
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -26,7 +21,6 @@ public class Exit_Console : MonoBehaviour
 
             ExitConsole.gameObject.SetActive(true);
             
-
         }
     }
 

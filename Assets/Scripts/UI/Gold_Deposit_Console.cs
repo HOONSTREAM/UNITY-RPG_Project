@@ -20,7 +20,6 @@ public class Gold_Deposit_Console : MonoBehaviour
     }
 
     
-
     public void Input()
     {
         StorageGoldAmount = int.Parse(Storage_gold_text.text);

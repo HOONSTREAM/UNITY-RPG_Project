@@ -30,12 +30,8 @@ public class Storage_Input_Console : MonoBehaviour
     }
     public Item Get_Slotnum(int slotnum) //슬롯에 있는 아이템을 참조받아 private Item 변수에 저장해두고, 그 슬롯의 넘버도 보관
     {
-        slot_number = slotnum;
-        Debug.Log($"참조된 아이템 슬롯넘버{slot_number}이고, 아이템은 {slots[slotnum].item.itemname} 입니다.");
-        Debug.Log($"참조된 아이템의 amount : {slot_item.amount}");
-       
+        slot_number = slotnum;     
         return slot_item = slots[slotnum].item;
-
     }
 
     public void ButtonInput()
@@ -43,16 +39,13 @@ public class Storage_Input_Console : MonoBehaviour
         Input_Console.SetActive(false);
 
         if (slot_item == null)
-        {
-            Debug.Log("slot_item이 null값 입니다.");
+        {          
             return;
         }
-
-       
+     
         inputamount = int.Parse(inputamounttext.text);
 
-        Debug.Log($"콘솔창에 입력된 갯수 :{inputamount} ");
-
+        
         if (inputamount > slot_item.amount)
         {
             GameObject player = Managers.Game.GetPlayer();

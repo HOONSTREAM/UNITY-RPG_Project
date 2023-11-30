@@ -65,12 +65,6 @@ public class Storage_Script : MonoBehaviour
 
         return;
     }
-    void Update()
-    {
-        
-    }
-
-   
     public void PanelExit()
     {
         if (StoragePanel.activeSelf)

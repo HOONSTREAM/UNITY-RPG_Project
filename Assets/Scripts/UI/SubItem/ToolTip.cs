@@ -17,15 +17,13 @@ public class ToolTip : MonoBehaviour
     public void SetupTooltip(string name, string stat1, string stat2 , int num, int num2, string des)
     {
         
-       
         itemname.text= name;
         stat_1.text = stat1;
         stat_2.text = stat2;
         num_1.text = num.ToString();
         num_2.text = num2.ToString();
         Description.text = des;
-
-      
+    
     }
 
     private void Update()
