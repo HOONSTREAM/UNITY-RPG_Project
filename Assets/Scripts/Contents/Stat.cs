@@ -19,6 +19,7 @@ public class Stat : MonoBehaviour
     protected int _defense;
 
     private PlayerController controller;
+    public GameObject Fielditem;
    
     
     public int Level { get { return _level; } set {  _level = value; } }
@@ -39,6 +40,7 @@ public class Stat : MonoBehaviour
         _movespeed = 1.0f;
 
         controller = GetComponent<PlayerController>();
+        Fielditem = Managers.Resources.Load<GameObject>("PreFabs/UI/SubItem/FieldItem");
   
     }
 
@@ -72,7 +74,7 @@ public class Stat : MonoBehaviour
                 playerstat.EXP += 5;
                 playerstat.Gold += 100;
                 playerstat.onchangestat.Invoke();
-                GameObject dropitem = ItemDataBase.instance.SlimeDropFieldItem();
+                GameObject dropitem = Fielditem.GetComponent<FieldItem>().SlimeDropFieldItem();
                 dropitem.transform.position = transform.position; //드랍아이템 위치
                 dropitem.transform.position += new Vector3(0, 0.4f, 0); //2D 스프라이트 잘림방지
 

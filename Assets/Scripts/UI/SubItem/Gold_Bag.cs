@@ -8,9 +8,7 @@ public class Gold_Bag : ItemEffect
     
     public override bool ExecuteRole(ItemType itemtype)
     {
-        
-        Debug.Log("∞ÒµÂ∏¶ »πµÊ«’¥œ¥Ÿ.");
-
+      
         GameObject player = Managers.Game.GetPlayer();
         PlayerStat stat = player.GetComponent<PlayerStat>();
         Managers.Sound.Play("CoinEffect");

@@ -25,15 +25,12 @@ public class Slot : MonoBehaviour, IPointerUpHandler
 
 
     void Start()
-    {
-        
+    {      
         equiped_image.gameObject.SetActive(false); //초기화 (체크표시 안함)
         itemicon.gameObject.SetActive(false); //초기화 (아이콘 표시 안함)
-        amount_text.text = "";
-        
-        
-
+        amount_text.text = "";      
     }
+
     public void UpdateSlotUI()
     {
         itemicon.sprite = item.itemImage;
@@ -53,9 +50,7 @@ public class Slot : MonoBehaviour, IPointerUpHandler
         {
             amount_text.text = item.amount.ToString();
         }
-
-       
-      
+    
     }
        
     public void RemoveSlot()
@@ -72,8 +67,7 @@ public class Slot : MonoBehaviour, IPointerUpHandler
        
 
         if (isShopMode) //상점창이 열려있을경우 진행하는 로직
-        {
-            Debug.Log("상점에 판매합니다.");
+        {          
             if (item.Equip)
             {
                 GameObject player = Managers.Game.GetPlayer();
@@ -86,15 +80,14 @@ public class Slot : MonoBehaviour, IPointerUpHandler
             Sell_Console sell = GUI.GetComponent<Sell_Console>();
             sell.Get_Slotnum(slotnum); //slot에 대한 정보를 sellconsole 스크립트에 넘겨줌
             Managers.Sound.Play("Coin");
-            Sell_Panel.gameObject.SetActive(true);
-            
+            Sell_Panel.gameObject.SetActive(true);           
             return;
+
         }
 
         else if (isStorageMode) //창고모드인경우 (금고창이 열려있을 경우)
         {
-            Debug.Log("Storage Mode에 진입하였습니다.");
-
+            
             if(item == null)
             {
                 return;
@@ -160,7 +153,6 @@ public class Slot : MonoBehaviour, IPointerUpHandler
                 Use_Drop_Panel.transform.position = Input.mousePosition;
 
             }
-
 
         }
       

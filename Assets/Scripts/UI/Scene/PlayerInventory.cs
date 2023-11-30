@@ -48,7 +48,6 @@ public class PlayerInventory : MonoBehaviour
                 }
 
                 
-
                 if (!ItemAlreadyInInventory)
                 {
                     player_items.Add(_item);

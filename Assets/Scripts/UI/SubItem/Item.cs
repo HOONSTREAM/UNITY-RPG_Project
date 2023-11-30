@@ -11,10 +11,7 @@ public enum ItemType
 {
     Equipment,
     Consumables,
-    GoldBag,
-    HpPotion,
     Etc,
-
 }
 
 public enum EquipType

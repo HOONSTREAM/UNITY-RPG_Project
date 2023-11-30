@@ -14,8 +14,8 @@ public class NewInvenUI : MonoBehaviour
     private PlayerStat stat; //플레이어 스텟 참조 (골드업데이트)
 
 
-    public GameObject Equip_Drop_Selection; // 장비품 클릭시 뜨는 콘솔 참조 (장비창 종료시 같이 초기화)
-    public GameObject Consumable_use_Drop_Selection; // 소모품 클릭시 뜨는 콘솔 참조 (장비창 종료시 같이 초기화)
+    public GameObject Equip_Drop_Selection; // 장비품 클릭시 뜨는 콘솔 참조 (장비창 종료시 같이 초기화 목적)
+    public GameObject Consumable_use_Drop_Selection; // 소모품 클릭시 뜨는 콘솔 참조 (장비창 종료시 같이 초기화 목적)
 
 
     public Slot[] slots;
@@ -46,7 +46,6 @@ public class NewInvenUI : MonoBehaviour
     private void Update()
     {
        
-
         if (Input.GetKeyDown(KeyCode.I))
         {
             activeInventory = !activeInventory;

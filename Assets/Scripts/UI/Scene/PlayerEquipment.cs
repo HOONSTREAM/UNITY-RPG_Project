@@ -3,22 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using static PlayerInventory;
 
+[System.Serializable]
+public class EquipTypeItem : SerializableDictionary<EquipType, Item> { }
+
 public class PlayerEquipment : MonoBehaviour
 {
    
-
     public static PlayerEquipment Instance;
+
     [SerializeField]
-    public Dictionary<EquipType, Item> player_equip;
+    public EquipTypeItem player_equip; 
+
     private PlayerStat stat;
       
    
     private void Awake()
     {
         Instance = this;
-        player_equip = new Dictionary<EquipType, Item>();
         stat = GetComponent<PlayerStat>(); //PrintUserText 함수 사용
-        
+       
     }
 
  

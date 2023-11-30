@@ -116,6 +116,9 @@ MonoBehaviour:
     sellprice: 0
     efts: []
   image: {fileID: 414807468510548996}
+  fielditemPrefab: {fileID: 7522970402254163847}
+  pos: {x: 0, y: 0, z: 0}
+  itemDB: []
 --- !u!65 &-4780361837457706222
 BoxCollider:
   m_ObjectHideFlags: 0

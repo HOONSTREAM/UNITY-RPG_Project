@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 using static UnityEditor.Progress;
 
 
@@ -9,16 +10,23 @@ public class FieldItem : MonoBehaviour
 {
     public Item item;
     public SpriteRenderer image;
-    
+    public GameObject fielditemPrefab;
+    public Vector3 pos;
+    public List<Item> itemDB;
+
+    private void Start()
+    {
+        itemDB = ItemDataBase.instance.itemDB;
+    }
     public void SetItem(Item _item)
     {
         item.ItemID = _item.ItemID; //아이템 코드 아이디
         item.itemname = _item.itemname; //아이템 이름
-        item.stat_1 = _item.stat_1; // ATK
-        item.stat_2 = _item.stat_2; // DEF
+        item.stat_1 = _item.stat_1; // 무기 : ATK , 방어구 : DEF
+        item.stat_2 = _item.stat_2; // 수치미정
         item.Description = _item.Description; // 아이템 설명
-        item.num_1 = _item.num_1; // ATK 수치
-        item.num_2 = _item.num_2; // DEF 수치
+        item.num_1 = _item.num_1; // 무기 : ATK , 방어구 DEF
+        item.num_2 = _item.num_2; // 수치미정
         item.itemImage = _item.itemImage; // 아이템 스프라이트 이미지
         item.equiptype = _item.equiptype; // 장비아이템 장착부위 
         item.itemtype = _item.itemtype; // 아이템 타입 (장비,소비,기타)
@@ -26,14 +34,13 @@ public class FieldItem : MonoBehaviour
         item.Equip = _item.Equip; // 아이템 장착여부 변수
         image.sprite = _item.itemImage; //아이템 드랍시 필드이미지
         item.amount = _item.amount;  //아이템 갯수 (소비,기타재만)
-        item.buyprice = _item.buyprice;
-        item.sellprice = _item.sellprice;
+        item.buyprice = _item.buyprice; //구매가격
+        item.sellprice = _item.sellprice; //판매가격
         
     }
 
     public Item GetItem()
     {
-
         return item;
     }
 
@@ -41,4 +48,14 @@ public class FieldItem : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+    public GameObject SlimeDropFieldItem() //필드에 아이템 생성
+    {
+        GameObject go = Instantiate(fielditemPrefab, pos, Quaternion.identity); //Quaternion.identity는 회전없음을 나타내는 쿼터니언
+        go.GetComponent<FieldItem>().SetItem(itemDB[Random.Range(0, 10)]);
+
+        return go;
+
+    }
+
 }
