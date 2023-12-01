@@ -20,6 +20,8 @@ public class PlayerController : BaseController
     PlayerStat _stat; // 플레이어의 스텟
     float attackRange = 2.0f;
     public GameObject DamageText;
+    public GameObject clickMarker;
+    private GameObject clickMarker_global_variable;
 
     public override void Init()
     {
@@ -47,7 +49,7 @@ public class PlayerController : BaseController
             float distance = (_DesPos - transform.position).magnitude;
             if (distance <= attackRange)
             {
-               
+                Destroy(clickMarker_global_variable); //전투중에는 마우스Marker가 뜨지않도록 Destroy 
                 State = Define.State.Skill;
                 return;
             }
@@ -57,9 +59,9 @@ public class PlayerController : BaseController
         dir.y = 0;
 
         if (dir.magnitude < 0.1f) // 방향의 스칼라값이 0에 수렴하면 (목적지에 도착했으면)
-        {
+        {         
             State = Define.State.Idle;
-           
+            Destroy(clickMarker_global_variable); //도착 시 마우스Marker 오브젝트 파괴
         }
 
         else
@@ -102,8 +104,7 @@ public class PlayerController : BaseController
             
             Stat targetStat = LockTarget.GetComponent<Stat>();
             targetStat.OnAttacked(_stat); //나의 스텟을 인자로 넣어서 상대방의 체력을 깎는다.;
-
-            Debug.Log($"데미지 :{_stat.Attack - targetStat.Defense} ");
+       
             int damagenumber = _stat.Attack - targetStat.Defense;
 
             TextMesh text = DamageText.gameObject.GetComponent<TextMesh>();
@@ -180,20 +181,22 @@ public class PlayerController : BaseController
                    
                     if (raycasthit)
                     {
+                         Vector3 vector3 =new Vector3(0f, 0.7f, 0f);
                         _DesPos = hit.point;
-
-                        State = Define.State.Moving;
-                       
                         
-                       
+                        GameObject go = Instantiate(clickMarker,_DesPos + vector3, Quaternion.identity); //목적지 마우스Marker
+                        clickMarker_global_variable = go;
+                        go.SetActive(true);
+                        Destroy(go, 3.0f);
+                        State = Define.State.Moving;
+                                                                    
                         skill_is_stop = true;
                         
                        
 
                         if (hit.collider.gameObject.layer == (int)Define.Layer.Monster)
                         {
-                            LockTarget = hit.collider.gameObject;
-                           
+                            LockTarget = hit.collider.gameObject;                          
                         }                     
 
                         else
