@@ -15,7 +15,7 @@ public class GameScene : BaseScene
                                   
         Dictionary<int, Data.Stat> dict = Managers.Data.StatDict;
 
-        Managers.Sound.Play("Magic Town", Define.Sound.Bgm);
+        Managers.Sound.Play("Calm2 - Childhood Friends", Define.Sound.Bgm);
         Managers.Sound.Play("Nature Ambiance Sound", Define.Sound.Ambiance);
        
 
