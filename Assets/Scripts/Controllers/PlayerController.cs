@@ -187,7 +187,7 @@ public class PlayerController : BaseController
                         GameObject go = Instantiate(clickMarker,_DesPos + vector3, Quaternion.identity); //목적지 마우스Marker
                         clickMarker_global_variable = go;
                         go.SetActive(true);
-                        Destroy(go, 3.0f);
+                        Destroy(go, 1.5f);
                         State = Define.State.Moving;
                                                                     
                         skill_is_stop = true;
