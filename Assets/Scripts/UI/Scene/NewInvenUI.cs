@@ -10,6 +10,8 @@ public class NewInvenUI : MonoBehaviour
     
     [SerializeField]
     private GameObject inventoryPanel;
+    [SerializeField]
+    private GameObject Inventory_canvas;
     private PlayerInventory inven; //플레이어 인벤토리 참조
     private PlayerStat stat; //플레이어 스텟 참조 (골드업데이트)
 
@@ -31,9 +33,10 @@ public class NewInvenUI : MonoBehaviour
         slots= slotHolder.GetComponentsInChildren<Slot>();    
         inventoryPanel.SetActive(activeInventory);
         inven.onChangeItem += RedrawSlotUI;
-
+        Managers.UI.SetCanvas(Inventory_canvas, true);
         //인벤토리 드래그 가능하도록 하는 이벤트
         UI_Base.BindEvent(inventoryPanel, (PointerEventData data) => { inventoryPanel.transform.position = data.position; }, Define.UIEvent.Drag);
+        
 
         #region 슬롯버그방지 슬롯생성후 삭제
         inven.AddItem(ItemDataBase.instance.itemDB[0]);
@@ -56,6 +59,7 @@ public class NewInvenUI : MonoBehaviour
             {
                 Equip_Drop_Selection.gameObject.SetActive(false);
                 Consumable_use_Drop_Selection.gameObject.SetActive(false);
+                
             }
             
         }

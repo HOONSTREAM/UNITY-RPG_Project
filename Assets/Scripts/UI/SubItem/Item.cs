@@ -14,6 +14,16 @@ public enum ItemType
     Etc,
 }
 
+public enum WeaponType
+{
+    One_Hand,
+    Two_Hand,
+    Bow,
+    Axe,
+    Kanata,
+    No_Weapon
+}
+
 public enum EquipType
 {
     None,
@@ -36,6 +46,7 @@ public class Item
 {
     public int ItemID;
     public EquipType equiptype;
+    public WeaponType weapontype;
     public ItemType itemtype;
     public string itemname;
     public string stat_1;

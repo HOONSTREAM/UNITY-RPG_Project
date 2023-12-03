@@ -6,7 +6,7 @@ public class Inventory_Button_Script : MonoBehaviour
 {
 
     public GameObject Inventory;
-    bool activeinventory = false;
+    public bool activeinventory = false;
 
   
     public void Inventory_Open()
@@ -14,5 +14,6 @@ public class Inventory_Button_Script : MonoBehaviour
         activeinventory = !activeinventory;
         Managers.Sound.Play("Inven_Open");
         Inventory.SetActive(activeinventory);
+        
     }
 }

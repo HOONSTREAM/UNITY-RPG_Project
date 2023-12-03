@@ -72,6 +72,8 @@ public class Managers : MonoBehaviour
         //데이터베이스 파괴방지
         GameObject ItemDB = GameObject.Find("@ItemDatabase");
         DontDestroyOnLoad(ItemDB);
+        GameObject SkillDB = GameObject.Find("@SkillDatabase");
+        DontDestroyOnLoad(SkillDB);
     }
 
     public static void Clear()

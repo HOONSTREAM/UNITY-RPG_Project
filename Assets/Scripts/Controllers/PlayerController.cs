@@ -112,6 +112,7 @@ public class PlayerController : BaseController
 
             Instantiate(DamageText, LockTarget.transform.position, Quaternion.identity, LockTarget.transform);
 
+
         }
 
         if (skill_is_stop)

@@ -12,7 +12,8 @@ public class Storage_Script : MonoBehaviour
     private GameObject Deposit_amount_panel; //맡기거나, 찾을때 골드 입력
     [SerializeField]
     private GameObject WithDraw_amount_panel;
-    
+    [SerializeField]
+    private GameObject Storage_Canvas;
 
     PlayerStorage storage; //플레이어 인벤토리 참조
     PlayerStat stat; //플레이어 스텟 참조 (골드업데이트)
@@ -37,7 +38,7 @@ public class Storage_Script : MonoBehaviour
 
         StoragePanel.SetActive(activestorage);
         storage.onChangeItem += RedrawSlotUI;  // Invoke 함수 등록 이벤트 발생마다 함수 호출
-
+        Managers.UI.SetCanvas(Storage_Canvas, true);
         //인벤토리 드래그 가능하도록 하는 이벤트
         UI_Base.BindEvent(StoragePanel, (PointerEventData data) => { StoragePanel.transform.position = data.position; }, Define.UIEvent.Drag);
 

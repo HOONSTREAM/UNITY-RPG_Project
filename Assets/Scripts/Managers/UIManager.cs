@@ -36,7 +36,6 @@ public class UIManager
         {
             canvas.sortingOrder = _order;
             _order++;
-
         }
 
         else
