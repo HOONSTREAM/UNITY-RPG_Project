@@ -1,3 +1,4 @@
+using Data;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -9,6 +10,7 @@ using UnityEngine.Rendering;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 using UnityEngineInternal;
+using static UnityEditor.Progress;
 
 //참고 : https://geojun.tistory.com/64
 
@@ -22,18 +24,20 @@ public class PlayerController : BaseController
     public GameObject DamageText;
     public GameObject clickMarker;
     private GameObject clickMarker_global_variable;
-
+    public Abillity_Script abillity_script; //TODO
+    private double abillity = 0.00f;
     public override void Init()
     {
-       
         WorldObjectType = Define.WorldObject.Player;
 
         _stat = gameObject.GetComponent<PlayerStat>();
 
         Managers.Input.MouseAction -= OnMouseEvent; //Inputmanager에게 키액션이 발생하면 OnMouseClicked 함수를 실행할 것을 요청.
         Managers.Input.MouseAction += OnMouseEvent;
-        
-        /* 플레이어 체력바 보류 / 게임 전체 인터페이스로 대체 */ 
+
+       
+
+        /* 플레이어 체력바 보류 / 게임 전체 인터페이스로 대체 */
         //if (gameObject.GetComponentInChildren<UI_HPBar>() == null)
         //{
         //    Managers.UI.MakeWorldSpaceUI<UI_HPBar>(transform);
@@ -100,8 +104,8 @@ public class PlayerController : BaseController
     {
         if (LockTarget != null)
         {
-            
-            
+
+            abillity += 0.01f;
             Stat targetStat = LockTarget.GetComponent<Stat>();
             targetStat.OnAttacked(_stat); //나의 스텟을 인자로 넣어서 상대방의 체력을 깎는다.;
        
@@ -111,8 +115,7 @@ public class PlayerController : BaseController
             text.text = damagenumber.ToString();
 
             Instantiate(DamageText, LockTarget.transform.position, Quaternion.identity, LockTarget.transform);
-
-
+          
         }
 
         if (skill_is_stop)
@@ -159,7 +162,10 @@ public class PlayerController : BaseController
 
     void player_HitSounds(Define.MouseEvent evt)
     {
-        Managers.Sound.Play("sword-unsheathe", Define.Sound.Effect);        
+        
+        Managers.Sound.Play("sword-unsheathe", Define.Sound.Effect);
+    
+        return;
     }
 
 
