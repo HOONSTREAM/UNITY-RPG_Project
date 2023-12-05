@@ -101,6 +101,7 @@ public class Item
         Item item = new Item();
         item.ItemID = this.ItemID;
         item.equiptype = this.equiptype;
+        item.weapontype = this.weapontype;
         item.itemtype = this.itemtype;
         item.itemname = this.itemname;
         item.stat_1 = this.stat_1;

@@ -24,11 +24,15 @@ public class PlayerController : BaseController
     public GameObject DamageText;
     public GameObject clickMarker;
     private GameObject clickMarker_global_variable;
-    public Abillity_Script abillity_script; //TODO
-    private double abillity = 0.00f;
+    public GameObject Abillity_CANVAS;
+    public Abillity_Script abillity_script; 
+   
     public override void Init()
     {
+              
         WorldObjectType = Define.WorldObject.Player;
+
+        abillity_script = Abillity_CANVAS.GetComponent<Abillity_Script>();
 
         _stat = gameObject.GetComponent<PlayerStat>();
 
@@ -105,7 +109,7 @@ public class PlayerController : BaseController
         if (LockTarget != null)
         {
 
-            abillity += 0.01f;
+            
             Stat targetStat = LockTarget.GetComponent<Stat>();
             targetStat.OnAttacked(_stat); //나의 스텟을 인자로 넣어서 상대방의 체력을 깎는다.;
        
@@ -115,7 +119,10 @@ public class PlayerController : BaseController
             text.text = damagenumber.ToString();
 
             Instantiate(DamageText, LockTarget.transform.position, Quaternion.identity, LockTarget.transform);
-          
+
+            abillity_script.Accumulate_abillity_Func();
+
+
         }
 
         if (skill_is_stop)

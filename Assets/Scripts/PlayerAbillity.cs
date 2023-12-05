@@ -10,6 +10,7 @@ public class PlayerAbillity : MonoBehaviour
     private PlayerStat stat;
     public List<Skill> PlayerSkill;
     
+    
 
     public delegate void OnChangeSkill();
     public OnChangeSkill onChangeSkill;
@@ -18,6 +19,7 @@ public class PlayerAbillity : MonoBehaviour
 
     private void Awake()
     {
+       
         Instance = this;
         PlayerSkill = new List<Skill>();
         stat = GetComponent<PlayerStat>();

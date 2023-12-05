@@ -71,4 +71,29 @@ public class Abillity_Script : MonoBehaviour
 
         }
     }
+
+    public void Accumulate_abillity_Func()
+    {
+        if(PlayerEquipment.Instance.player_equip.TryGetValue(EquipType.Weapon, out Item value) && value.weapontype == WeaponType.One_Hand) // 무기를 장착중이고, 한손검인경우
+        {
+            Debug.Log("한손검 어빌을 올립니다.");
+
+            return;
+        }
+
+        else if (PlayerEquipment.Instance.player_equip.TryGetValue(EquipType.Weapon, out Item value2) && value2.weapontype == WeaponType.Two_Hand) // 무기를 장착중이고, 두손검인경우
+        {
+            Debug.Log("두손검 어빌을 올립니다.");
+
+            return;
+
+        }
+
+        else
+        {
+            Debug.Log("맨손 입니다.");
+
+            return;
+        }
+    }
 }

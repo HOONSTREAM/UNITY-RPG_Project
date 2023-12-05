@@ -24,6 +24,7 @@ public class FieldItem : MonoBehaviour
         item.num_2 = _item.num_2; // 수치미정
         item.itemImage = _item.itemImage; // 아이템 스프라이트 이미지
         item.equiptype = _item.equiptype; // 장비아이템 장착부위 
+        item.weapontype = _item.weapontype; //무기의 타입
         item.itemtype = _item.itemtype; // 아이템 타입 (장비,소비,기타)
         item.efts = _item.efts; // 아이템 사용 시 발생하는 이펙트
         item.Equip = _item.Equip; // 아이템 장착여부 변수
@@ -31,6 +32,7 @@ public class FieldItem : MonoBehaviour
         item.amount = _item.amount;  //아이템 갯수 (소비,기타재만)
         item.buyprice = _item.buyprice; //구매가격
         item.sellprice = _item.sellprice; //판매가격
+        
         
     }
 
@@ -47,7 +49,7 @@ public class FieldItem : MonoBehaviour
     public GameObject SlimeDropFieldItem() //필드에 아이템 생성
     {
         GameObject go = Instantiate(fielditemPrefab, pos, Quaternion.identity); //Quaternion.identity는 회전없음을 나타내는 쿼터니언
-        go.GetComponent<FieldItem>().SetItem(ItemDataBase.instance.itemDB[Random.Range(0,10)]);
+        go.GetComponent<FieldItem>().SetItem(ItemDataBase.instance.itemDB[Random.Range(0,13)]);
 
         return go;
 

@@ -111,6 +111,7 @@ public class PlayerStat : Stat
         _exp = start_user_exp;
         SetStat(_level);
         equipment = GetComponent<PlayerEquipment>();
+
         OnUpdateStatUI();
         onchangestat += OnUpdateStatUI;
     }
