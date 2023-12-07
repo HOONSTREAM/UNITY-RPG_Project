@@ -28,6 +28,7 @@ using UnityEngine;
         public int num_2;
         public string Description;
         public Sprite skill_image;
+        public double abillity = 0.00;
   
         public List<SkillEffect> efts;
 
@@ -58,7 +59,7 @@ using UnityEngine;
            skill.Description = this.Description;
            skill.skill_image = this.skill_image;          
            skill.efts = this.efts;
-
+           skill.abillity = this.abillity;
             return skill;
         }
     }

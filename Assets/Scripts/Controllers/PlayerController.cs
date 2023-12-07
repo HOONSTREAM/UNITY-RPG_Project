@@ -24,22 +24,20 @@ public class PlayerController : BaseController
     public GameObject DamageText;
     public GameObject clickMarker;
     private GameObject clickMarker_global_variable;
-    public GameObject Abillity_CANVAS;
-    public Abillity_Script abillity_script; 
+    
+
    
     public override void Init()
     {
               
         WorldObjectType = Define.WorldObject.Player;
 
-        abillity_script = Abillity_CANVAS.GetComponent<Abillity_Script>();
-
         _stat = gameObject.GetComponent<PlayerStat>();
 
         Managers.Input.MouseAction -= OnMouseEvent; //Inputmanager에게 키액션이 발생하면 OnMouseClicked 함수를 실행할 것을 요청.
         Managers.Input.MouseAction += OnMouseEvent;
 
-       
+        
 
         /* 플레이어 체력바 보류 / 게임 전체 인터페이스로 대체 */
         //if (gameObject.GetComponentInChildren<UI_HPBar>() == null)
@@ -120,9 +118,9 @@ public class PlayerController : BaseController
 
             Instantiate(DamageText, LockTarget.transform.position, Quaternion.identity, LockTarget.transform);
 
-            abillity_script.Accumulate_abillity_Func();
 
-
+            //TODO : 어빌 업데이트 
+            
         }
 
         if (skill_is_stop)

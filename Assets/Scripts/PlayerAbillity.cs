@@ -9,8 +9,7 @@ public class PlayerAbillity : MonoBehaviour
 
     private PlayerStat stat;
     public List<Skill> PlayerSkill;
-    
-    
+   
 
     public delegate void OnChangeSkill();
     public OnChangeSkill onChangeSkill;

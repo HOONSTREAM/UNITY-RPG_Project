@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using static SerializableDictionary;
@@ -10,34 +11,35 @@ public class Abillity_Script : MonoBehaviour
     public GameObject Abillity_canvas;
 
 
-    private PlayerAbillity abillity; //플레이어 인벤토리 참조
+    private PlayerAbillity abillity; 
     private PlayerStat stat; //플레이어 스텟 참조 (골드업데이트)
 
-
+    public delegate void OnUpdateAbillity();
+    public OnUpdateAbillity onupdate_abillity;
 
     public Abillity_Slot[] abillity_Slots;
     public Transform abillity_slotHolder;
-   
+    
 
-    private void Start()
+    private void Start() //Player Controller에 붙이면, 프리펩이므로 Start 전의 프리펩이 붙어서 slot이 업데이트가 안됨. 
     {
         stat = GetComponent<PlayerStat>(); //골드 업데이트를 위한 플레이어 스텟 참조
         abillity = PlayerAbillity.Instance;
-        abillity_Slots = abillity_slotHolder.GetComponentsInChildren<Abillity_Slot>();
-
+        abillity_Slots = abillity_slotHolder.GetComponentsInChildren<Abillity_Slot>();       
         abillity.onChangeSkill += RedrawSlotUI;
-
+        Debug.Log($"Abillity_Slot의 갯수는 : {abillity_Slots.Length} ");
         UI_Base.BindEvent(Abillity_Panel, (PointerEventData data) => { Abillity_Panel.transform.position = data.position; }, Define.UIEvent.Drag);
         Managers.UI.SetCanvas(Abillity_canvas, true);
 
-        #region 슬롯버그방지 슬롯생성후 삭제
-        abillity.AddSkill(SkillDataBase.instance.SkillDB[0]);
-        abillity.RemoveSkill(0);      
-        RedrawSlotUI();
-        #endregion
+        onupdate_abillity += Accumulate_abillity_Func; //delegate
+
 
         PlayerAbillity.Instance.AddSkill(SkillDataBase.instance.SkillDB[0]);
         PlayerAbillity.Instance.AddSkill(SkillDataBase.instance.SkillDB[1]);
+
+        Debug.Log($"Abillity_Slot의 갯수는 : {abillity_Slots.Length} ");
+
+
     }
     public void Exit()
     {
@@ -72,13 +74,28 @@ public class Abillity_Script : MonoBehaviour
         }
     }
 
-    public void Accumulate_abillity_Func()
+    public void Accumulate_abillity_Func() //TODO : PlayerController에서 참조하는 방법
     {
-        if(PlayerEquipment.Instance.player_equip.TryGetValue(EquipType.Weapon, out Item value) && value.weapontype == WeaponType.One_Hand) // 무기를 장착중이고, 한손검인경우
-        {
-            Debug.Log("한손검 어빌을 올립니다.");
+        Debug.Log($"어빌리티 함수 진입 ; Abillity_Slot의 갯수는 : {abillity_Slots.Length} ");
 
-            return;
+        if (PlayerEquipment.Instance.player_equip.TryGetValue(EquipType.Weapon, out Item value) && value.weapontype == WeaponType.One_Hand) // 무기를 장착중이고, 한손검인경우
+        {
+            
+            Debug.Log("한손검 어빌을 올립니다.");
+            
+            for (int i = 0; i < abillity_Slots.Length; i++)
+            {
+                if (abillity_Slots[i].skill_name.text == "한손검")
+                {
+                    Debug.Log("한손검 어빌 발견");
+                    Debug.Log($"{abillity_Slots[i].slotnum}번 스킬슬롯 입니다.");
+                    Debug.Log("어빌을 올립니다.");
+                    abillity_Slots[i].Level.text = $"LEVEL                  {abillity_Slots[i].skill.abillity+=0.01}";
+                }
+              
+            }
+            
+           
         }
 
         else if (PlayerEquipment.Instance.player_equip.TryGetValue(EquipType.Weapon, out Item value2) && value2.weapontype == WeaponType.Two_Hand) // 무기를 장착중이고, 두손검인경우
@@ -96,4 +113,6 @@ public class Abillity_Script : MonoBehaviour
             return;
         }
     }
+
+  
 }
