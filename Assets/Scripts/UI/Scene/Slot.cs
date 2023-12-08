@@ -76,7 +76,7 @@ public class Slot : MonoBehaviour, IPointerUpHandler
                 return;
             }
 
-            GameObject GUI = GameObject.Find("GUI").gameObject;
+            GameObject GUI = GameObject.Find("GUI_Console").gameObject;
             Sell_Console sell = GUI.GetComponent<Sell_Console>();
             sell.Get_Slotnum(slotnum); //slot에 대한 정보를 sellconsole 스크립트에 넘겨줌
             Managers.Sound.Play("Coin");
@@ -106,7 +106,7 @@ public class Slot : MonoBehaviour, IPointerUpHandler
             {
                 if(item.amount > 1)
                 {
-                    GameObject GUI = GameObject.Find("GUI").gameObject;
+                    GameObject GUI = GameObject.Find("GUI_Console").gameObject;
                     Storage_Input_Console storage = GUI.GetComponent<Storage_Input_Console>();
                     storage.Get_Slotnum(slotnum); //slot에 대한 정보를 storage_input_console 스크립트에 넘겨줌
                     Managers.Sound.Play("Coin");

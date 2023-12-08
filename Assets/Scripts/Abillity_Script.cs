@@ -27,7 +27,6 @@ public class Abillity_Script : MonoBehaviour
         abillity = PlayerAbillity.Instance;
         abillity_Slots = abillity_slotHolder.GetComponentsInChildren<Abillity_Slot>();       
         abillity.onChangeSkill += RedrawSlotUI;
-        Debug.Log($"Abillity_Slot의 갯수는 : {abillity_Slots.Length} ");
         UI_Base.BindEvent(Abillity_Panel, (PointerEventData data) => { Abillity_Panel.transform.position = data.position; }, Define.UIEvent.Drag);
         Managers.UI.SetCanvas(Abillity_canvas, true);
 
@@ -37,16 +36,14 @@ public class Abillity_Script : MonoBehaviour
         PlayerAbillity.Instance.AddSkill(SkillDataBase.instance.SkillDB[0]);
         PlayerAbillity.Instance.AddSkill(SkillDataBase.instance.SkillDB[1]);
 
-        Debug.Log($"Abillity_Slot의 갯수는 : {abillity_Slots.Length} ");
-
-
+        
     }
     public void Exit()
     {
         if (Abillity_Panel.activeSelf)
         {
             Abillity_Panel.SetActive(false);
-            GameObject go = GameObject.Find("GUI").gameObject;
+            GameObject go = GameObject.Find("GUI_User_Interface").gameObject;
             go.GetComponent<Abillity_Button_Script>().active_abillity_panel = false;
             Managers.Sound.Play("Inven_Open");
         }
@@ -74,7 +71,7 @@ public class Abillity_Script : MonoBehaviour
         }
     }
 
-    public void Accumulate_abillity_Func() //TODO : PlayerController에서 참조하는 방법
+    public void Accumulate_abillity_Func()
     {
         Debug.Log($"어빌리티 함수 진입 ; Abillity_Slot의 갯수는 : {abillity_Slots.Length} ");
 
@@ -102,7 +99,17 @@ public class Abillity_Script : MonoBehaviour
         {
             Debug.Log("두손검 어빌을 올립니다.");
 
-            return;
+            for (int i = 0; i < abillity_Slots.Length; i++)
+            {
+                if (abillity_Slots[i].skill_name.text == "양손검")
+                {
+                    Debug.Log("두손검 어빌 발견");
+                    Debug.Log($"{abillity_Slots[i].slotnum}번 스킬슬롯 입니다.");
+                    Debug.Log("어빌을 올립니다.");
+                    abillity_Slots[i].Level.text = $"LEVEL                  {abillity_Slots[i].skill.abillity += 0.01}";
+                }
+
+            }
 
         }
 

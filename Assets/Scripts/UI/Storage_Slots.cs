@@ -65,7 +65,7 @@ public class Storage_Slots : MonoBehaviour, IPointerUpHandler
             if(item.amount > 1)
             {
 
-                GameObject GUI = GameObject.Find("GUI").gameObject;
+                GameObject GUI = GameObject.Find("GUI_Console").gameObject;
                 Storage_WithDraw_Console storage = GUI.GetComponent<Storage_WithDraw_Console>();
                 storage.Get_Slotnum(slotnum); //slot에 대한 정보를 storage_input_console 스크립트에 넘겨줌
                 Managers.Sound.Play("Coin");

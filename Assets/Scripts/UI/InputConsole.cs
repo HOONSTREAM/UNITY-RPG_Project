@@ -16,7 +16,7 @@ public class InputConsole : MonoBehaviour
 
     private void Awake()
     {
-        canvas = GameObject.Find("GUI").gameObject;
+        canvas = GameObject.Find("GUI_Console").gameObject;
         sell_console = canvas.GetComponent<Sell_Console>();
     }
 

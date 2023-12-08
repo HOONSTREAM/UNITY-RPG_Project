@@ -15,7 +15,7 @@ public class Storage_Input_Console : MonoBehaviour
     public GameObject Input_Console; //해당 인풋콘솔
     void Awake()
     {
-        canvas = GameObject.Find("GUI").gameObject;
+        canvas = GameObject.Find("GUI_User_Interface").gameObject;
         GameObject go = GameObject.Find("NewInvenUI").gameObject;
         slots = go.GetComponentsInChildren<Slot>();
         
