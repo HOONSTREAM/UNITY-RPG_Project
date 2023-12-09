@@ -72,6 +72,8 @@ public class Abillity_Script : MonoBehaviour
     }
 
     public void Accumulate_abillity_Func()
+
+        //TODO : 어빌 1.00 당 해당 무기 고정데미지 향상 +5 , 게임저장 방법(유니티교과서) , 그레이드
     {
         Debug.Log($"어빌리티 함수 진입 ; Abillity_Slot의 갯수는 : {abillity_Slots.Length} ");
 
