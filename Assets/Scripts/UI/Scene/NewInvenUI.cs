@@ -14,6 +14,8 @@ public class NewInvenUI : MonoBehaviour
     private GameObject Inventory_canvas;
     private PlayerInventory inven; //플레이어 인벤토리 참조
     private PlayerStat stat; //플레이어 스텟 참조 (골드업데이트)
+    public TextMeshProUGUI inven_amount_text; // 인벤토리 칸 텍스트
+    public int inven_amount; //인벤토리 칸 참조
 
 
     public GameObject Equip_Drop_Selection; // 장비품 클릭시 뜨는 콘솔 참조 (장비창 종료시 같이 초기화 목적)
@@ -85,6 +87,9 @@ public class NewInvenUI : MonoBehaviour
             slots[i].UpdateSlotUI();
             
         }
+
+        inven_amount = inven.player_items.Count;
+        inven_amount_text.text = $"갯수 :  {inven_amount.ToString()}/20"; //인벤토리 갯수 업데이트
     }
 
 
