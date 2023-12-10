@@ -8,6 +8,8 @@
       "attack": "50",
       "totalexp": "20",
       "defense": "5",
+      "STR": "5",
+      "DEX": "5",
       "movespeed": "5.0f"
 
     },
@@ -17,6 +19,8 @@
       "attack": "60",
       "totalexp": "20",
       "defense": "10",
+      "STR": "5",
+      "DEX": "5",
       "movespeed": "5.0f"
     },
     {
@@ -25,6 +29,8 @@
       "attack": "70",
       "totalexp": "30",
       "defense": "15",
+      "STR": "5",
+      "DEX": "5",
       "movespeed": "5.0f"
     },
     {
@@ -33,6 +39,8 @@
       "attack": "100",
       "totalexp": "40",
       "defense": "30",
+      "STR": "5",
+      "DEX": "5",
       "movespeed": "5.0f"
     },
     {
@@ -41,6 +49,8 @@
       "attack": "120",
       "totalexp": "50",
       "defense": "30",
+      "STR": "5",
+      "DEX": "5",
       "movespeed": "5.0f"
     }
 

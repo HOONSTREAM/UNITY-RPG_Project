@@ -122,6 +122,7 @@ public class PlayerController : BaseController
             //TODO : 어빌 업데이트 
             Abillity_Script abillity_script = FindObjectOfType<Abillity_Script>();
             abillity_script.Accumulate_abillity_Func();
+            Debug.Log($"데미지{_stat.Attack}");
             
         }
 

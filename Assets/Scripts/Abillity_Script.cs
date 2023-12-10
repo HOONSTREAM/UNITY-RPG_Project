@@ -27,7 +27,7 @@ public class Abillity_Script : MonoBehaviour
         abillity = PlayerAbillity.Instance;
         abillity_Slots = abillity_slotHolder.GetComponentsInChildren<Abillity_Slot>();       
         abillity.onChangeSkill += RedrawSlotUI;
-        UI_Base.BindEvent(Abillity_Panel, (PointerEventData data) => { Abillity_Panel.transform.position = data.position; }, Define.UIEvent.Drag);
+        UI_Base.BindEvent(Abillity_Panel, (PointerEventData data) => {Abillity_Panel.transform.position = data.position; }, Define.UIEvent.Drag);
         Managers.UI.SetCanvas(Abillity_canvas, true);
 
         onupdate_abillity += Accumulate_abillity_Func; //delegate
@@ -75,11 +75,12 @@ public class Abillity_Script : MonoBehaviour
 
         //TODO : 어빌 1.00 당 해당 무기 고정데미지 향상 +5 , 게임저장 방법(유니티교과서) , 그레이드
     {
+       
         Debug.Log($"어빌리티 함수 진입 ; Abillity_Slot의 갯수는 : {abillity_Slots.Length} ");
 
         if (PlayerEquipment.Instance.player_equip.TryGetValue(EquipType.Weapon, out Item value) && value.weapontype == WeaponType.One_Hand) // 무기를 장착중이고, 한손검인경우
         {
-            
+           
             Debug.Log("한손검 어빌을 올립니다.");
             
             for (int i = 0; i < abillity_Slots.Length; i++)
@@ -90,10 +91,12 @@ public class Abillity_Script : MonoBehaviour
                     Debug.Log($"{abillity_Slots[i].slotnum}번 스킬슬롯 입니다.");
                     Debug.Log("어빌을 올립니다.");
                     abillity_Slots[i].Level.text = $"LEVEL                  {abillity_Slots[i].skill.abillity+=0.01}";
+                                      
                 }
-              
+                
             }
-            
+
+       
            
         }
 

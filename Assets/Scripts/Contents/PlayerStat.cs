@@ -12,10 +12,18 @@ public class PlayerStat : Stat
     protected int _exp;
     [SerializeField]
     protected int _gold;
+    [SerializeField]
+    protected int _str;
+    [SerializeField]
+    protected int _dex;
+
 
     private const int start_user_level = 1;
     private const int start_user_gold = 0;
     private const int start_user_exp = 0;
+    private const int start_user_str = 5;
+    private const int start_user_dex = 5;
+   
 
 
     private PlayerEquipment equipment;
@@ -27,12 +35,18 @@ public class PlayerStat : Stat
     #region 게임 플레이시 GUISTAT창 세팅
     private void OnUpdateStatUI()
     {
+
+        GameObject dextxt = GameObject.Find("DEXnum").gameObject;
+        GameObject strtxt = GameObject.Find("STRnum").gameObject;
         GameObject atktxt = GameObject.Find("ATKnum").gameObject;
         GameObject deftxt = GameObject.Find("DEFnum").gameObject;
         GameObject goldtxt = GameObject.Find("Goldnum").gameObject;
+
         atktxt.GetComponent<TextMeshProUGUI>().text = Attack.ToString();
         deftxt.GetComponent<TextMeshProUGUI>().text = Defense.ToString();
         goldtxt.GetComponent<TextMeshProUGUI>().text = Gold.ToString();
+        strtxt.GetComponent<TextMeshProUGUI>().text = STR.ToString();
+        dextxt.GetComponent<TextMeshProUGUI>().text = DEX.ToString();
 
     } //string 성능이슈
     #endregion
@@ -102,6 +116,9 @@ public class PlayerStat : Stat
 
     }
     public int Gold { get { return _gold; } set { _gold = value; } }
+    public int STR { get { return _str; } set { _str = value; } }
+    public int DEX { get { return _dex; } set { _dex = value; } }
+
 
     private void Start()
     {
@@ -109,6 +126,9 @@ public class PlayerStat : Stat
         _level = start_user_level;
         _gold = start_user_gold;
         _exp = start_user_exp;
+        _str = start_user_str;
+        _dex = start_user_dex;
+
         SetStat(_level);
         equipment = GetComponent<PlayerEquipment>();
 
@@ -126,6 +146,8 @@ public class PlayerStat : Stat
 
     private int WeaponAttackValue = 0; //장착무기 공격스텟 저장변수
     private int ChestDEFvalue = 0; //장착갑옷 방어스텟 저장변수
+    private int WeaponSTRValue = 0; //장착무기 STR 스텟 저장변수
+    private int DEXValue = 0; //장착갑옷 DEX 스텟 저장변수
     public void SetStat(int level)
     {
 
@@ -134,9 +156,9 @@ public class PlayerStat : Stat
 
         _hp = stat.maxHP;
         _maxHp = stat.maxHP;
-        _defense = stat.defense + ChestDEFvalue;
-        _movespeed = stat.movespeed;
-        _attack = stat.attack + WeaponAttackValue;
+        _defense = stat.defense + ChestDEFvalue + (DEXValue / 10); //총 DEX의 1/10을 데미지에 기여함
+        _movespeed = stat.movespeed; 
+        _attack = stat.attack + WeaponAttackValue + (WeaponSTRValue/10); //총 STR의 1/10을 데미지에 기여함
 
     }
 
@@ -152,13 +174,18 @@ public class PlayerStat : Stat
             {
                 if (_attackitem.Equip)
                 {
-                    WeaponAttackValue -= equipment.player_equip[EquipType.Weapon].num_1;
-                    _attack = stat.attack + WeaponAttackValue;
+                    WeaponAttackValue -= equipment.player_equip[EquipType.Weapon].num_1;                  
+                    WeaponSTRValue -= equipment.player_equip[EquipType.Weapon].num_2;
+                    _str = stat.STR + WeaponSTRValue;
+                    _attack = stat.attack + WeaponAttackValue + (WeaponSTRValue / 10); //총 STR의 1/10을 데미지에 기여함
+
                 }
                 else if (_attackitem.Equip == false)
                 {
-                    WeaponAttackValue += equipment.player_equip[EquipType.Weapon].num_1;
-                    _attack = stat.attack + WeaponAttackValue;
+                    WeaponAttackValue += equipment.player_equip[EquipType.Weapon].num_1;                 
+                    WeaponSTRValue += equipment.player_equip[EquipType.Weapon].num_2;
+                    _str = stat.STR + WeaponSTRValue;
+                    _attack = stat.attack + WeaponAttackValue + (WeaponSTRValue / 10); //총 STR의 1/10을 데미지에 기여함
                 }
             }
         }
@@ -173,12 +200,16 @@ public class PlayerStat : Stat
                 if (_chest_def_item.Equip)
                 {
                     ChestDEFvalue -= equipment.player_equip[EquipType.Chest].num_1;
-                    _defense = stat.defense + ChestDEFvalue;
+                    DEXValue -= equipment.player_equip[EquipType.Chest].num_2;
+                    _defense = stat.defense + ChestDEFvalue + (DEXValue / 10); //총 DEX의 1/10을 데미지에 기여함                   
+                    _dex = stat.DEX + DEXValue;
                 }
                 else if(_chest_def_item.Equip == false)
                 {
                     ChestDEFvalue += equipment.player_equip[EquipType.Chest].num_1;
-                    _defense = stat.defense + ChestDEFvalue;
+                    DEXValue += equipment.player_equip[EquipType.Chest].num_2;
+                    _defense = stat.defense + ChestDEFvalue + (DEXValue / 10); //총 DEX의 1/10을 데미지에 기여함                   
+                    _dex = stat.DEX + DEXValue;
                 }
             }
         }
@@ -189,14 +220,18 @@ public class PlayerStat : Stat
             {
                 if (_head_def_item.Equip)
                 {
-                    ChestDEFvalue -= equipment.player_equip[EquipType.Head].num_1;
-                    _defense = stat.defense + ChestDEFvalue;
+                    ChestDEFvalue -= equipment.player_equip[EquipType.Head].num_1;                  
+                    DEXValue -= equipment.player_equip[EquipType.Head].num_2;
+                    _defense = stat.defense + ChestDEFvalue + (DEXValue / 10); //총 DEX의 1/10을 데미지에 기여함;
+                    _dex = stat.DEX + DEXValue;
                 }
 
                 else if (_head_def_item.Equip == false)
                 {
-                    ChestDEFvalue += equipment.player_equip[EquipType.Head].num_1;
-                    _defense = stat.defense + ChestDEFvalue;
+                    ChestDEFvalue += equipment.player_equip[EquipType.Head].num_1;         
+                    DEXValue += equipment.player_equip[EquipType.Head].num_2;
+                    _defense = stat.defense + ChestDEFvalue + (DEXValue / 10); //총 DEX의 1/10을 데미지에 기여함;
+                    _dex = stat.DEX + DEXValue;
                 }
 
             }
