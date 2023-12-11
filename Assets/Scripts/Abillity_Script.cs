@@ -9,6 +9,7 @@ public class Abillity_Script : MonoBehaviour
 {
     public GameObject Abillity_Panel;
     public GameObject Abillity_canvas;
+    public GameObject Abillity_Explaination_Panel;
 
 
     private PlayerAbillity abillity; 
@@ -127,4 +128,16 @@ public class Abillity_Script : MonoBehaviour
     }
 
   
+    public void Explaination_Panel_Open()
+    {
+        Abillity_Explaination_Panel.SetActive(true);
+    }
+
+    public void Explaination_Panel_Close()
+    {
+        if (Abillity_Explaination_Panel.activeSelf)
+        {
+            Abillity_Explaination_Panel.SetActive(false);
+        }
+    }
 }
