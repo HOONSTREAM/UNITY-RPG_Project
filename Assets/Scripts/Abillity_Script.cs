@@ -83,10 +83,15 @@ public class Abillity_Script : MonoBehaviour
             {
                 if (abillity_Slots[i].skill_name.text == "한손검")
                 {                                                 
-
+                    if(double.Parse(abillity_Slots[i].Level.text) == 50.00)
+                    {
+                        abillity_Slots[i].Name_grade.text = "SENIOR";
+                    }
                     if (double.Parse(abillity_Slots[i].Level.text) == 100.00)
                     {
                         Debug.Log("어빌이 100에 달성하였습니다.");
+                        // TODO : 그레이드 진행
+                        abillity_Slots[i].Name_grade.text = "MASTER";
                         return;
                     }
 

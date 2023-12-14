@@ -163,7 +163,7 @@ public class PlayerStat : Stat
         _maxHp = stat.maxHP;
         _defense = stat.defense + ChestDEFvalue + (DEXValue / 10); //총 DEX의 1/10을 데미지에 기여함
         _movespeed = stat.movespeed; 
-        _attack = stat.attack + WeaponAttackValue + (WeaponSTRValue/10); //총 STR의 1/10을 데미지에 기여함
+        _attack = stat.attack + WeaponAttackValue + (WeaponSTRValue/10) + Onupdate_Abillity_attack(); //총 STR의 1/10을 데미지에 기여함+ 무기 어빌리티별 향상데미지
 
     }
 

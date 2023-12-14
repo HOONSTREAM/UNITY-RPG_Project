@@ -30,6 +30,7 @@ public enum Layer
         NPC1 = 13,
         NPC2 = 14,
         Console = 15,
+        NPC3 = 16,
         
 
 

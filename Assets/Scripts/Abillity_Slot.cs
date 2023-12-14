@@ -16,13 +16,20 @@ public class Abillity_Slot : MonoBehaviour , IPointerUpHandler
     public TextMeshProUGUI skill_name;
     public TextMeshProUGUI grade_amount;
     public TextMeshProUGUI Level;
+    public TextMeshProUGUI Name_grade;
     [SerializeField]
     private Slider _slider;
 
     private void Start()
     {
-       // skill_icon.gameObject.SetActive(false); //초기화 (아이콘 표시 안함)
+       
         _slider = GameObject.Find("Abillity_Slider").gameObject.GetComponent<Slider>();
+ 
+    }
+
+    private void Update()
+    {
+        
     }
 
     public void UpdateSlotUI()

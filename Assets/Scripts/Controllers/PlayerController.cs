@@ -123,7 +123,8 @@ public class PlayerController : BaseController
             Abillity_Script abillity_script = FindObjectOfType<Abillity_Script>();
             abillity_script.Accumulate_abillity_Func();           
             Debug.Log($"데미지{_stat.Attack}");
-            
+            _stat.SetStat(_stat.Level); // 무기 어빌리티가 즉시 적용되도록 스크립트 실행
+            _stat.onchangestat.Invoke(); // 유저 스텟 인터페이스 업데이트
         }
 
         if (skill_is_stop)
