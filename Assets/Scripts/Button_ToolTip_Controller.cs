@@ -7,7 +7,7 @@ public class Button_ToolTip_Controller : MonoBehaviour, IPointerEnterHandler, IP
 {
     public Button_ToolTip tooltip;
 
-    private int _mask = (1 << (int)Define.Layer.UI);
+    
     enum OnToolTipUpdated
     {
         None,

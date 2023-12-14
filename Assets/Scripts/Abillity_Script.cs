@@ -10,8 +10,7 @@ public class Abillity_Script : MonoBehaviour
     public GameObject Abillity_Panel;
     public GameObject Abillity_canvas;
     public GameObject Abillity_Explaination_Panel;
-
-
+   
     private PlayerAbillity abillity; 
     private PlayerStat stat; //플레이어 스텟 참조 (골드업데이트)
 
@@ -77,24 +76,23 @@ public class Abillity_Script : MonoBehaviour
         //TODO : 어빌 1.00 당 해당 무기 고정데미지 향상 +5 , 게임저장 방법(유니티교과서) , 그레이드
     {
        
-        Debug.Log($"어빌리티 함수 진입 ; Abillity_Slot의 갯수는 : {abillity_Slots.Length} ");
-
         if (PlayerEquipment.Instance.player_equip.TryGetValue(EquipType.Weapon, out Item value) && value.weapontype == WeaponType.One_Hand) // 무기를 장착중이고, 한손검인경우
         {
-           
-            Debug.Log("한손검 어빌을 올립니다.");
-            
+                                 
             for (int i = 0; i < abillity_Slots.Length; i++)
             {
                 if (abillity_Slots[i].skill_name.text == "한손검")
-                {
-                    Debug.Log("한손검 어빌 발견");
-                    Debug.Log($"{abillity_Slots[i].slotnum}번 스킬슬롯 입니다.");
-                    Debug.Log("어빌을 올립니다.");
-                    abillity_Slots[i].Level.text = $"LEVEL                  {abillity_Slots[i].skill.abillity+=0.01}";
-                                      
-                }
-                
+                {                                                 
+
+                    if (double.Parse(abillity_Slots[i].Level.text) == 100.00)
+                    {
+                        Debug.Log("어빌이 100에 달성하였습니다.");
+                        return;
+                    }
+
+                    abillity_Slots[i].Level.text = $"{abillity_Slots[i].skill.abillity += 10.00}"; //TEST TODO
+
+                }               
             }
 
        
