@@ -18,7 +18,7 @@ public class Stat : MonoBehaviour
     [SerializeField]
     protected int _defense;
    
-
+    private PlayerStat _stat;
     private PlayerController controller;
     public GameObject Fielditem;
    
@@ -41,7 +41,7 @@ public class Stat : MonoBehaviour
         _defense = 5;
         _movespeed = 1.0f;
         
-
+        
         controller = GetComponent<PlayerController>();
         Fielditem = Managers.Resources.Load<GameObject>("PreFabs/UI/SubItem/FieldItem");
   

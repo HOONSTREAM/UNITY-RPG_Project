@@ -17,6 +17,14 @@ public class PlayerStat : Stat
     [SerializeField]
     protected int _dex;
 
+    private int WeaponAttackValue = 0; //장착무기 공격스텟 저장변수
+    private int ChestDEFvalue = 0; //장착갑옷 방어스텟 저장변수
+    private int WeaponSTRValue = 0; //장착무기 STR 스텟 저장변수
+    private int DEXValue = 0; //장착갑옷 DEX 스텟 저장변수   
+    public int one_hand_sword_abillityAttack = 0; //어빌리티 별 향상공격력 저장변수 (한손검)
+    public int two_hand_sword_abillityAttack = 0; //어빌리티 별 향상공격력 저장변수 (양손검)
+    public int improvement_abillity_attack;
+
 
     private const int start_user_level = 1;
     private const int start_user_gold = 0;
@@ -135,19 +143,16 @@ public class PlayerStat : Stat
         OnUpdateStatUI();
         onchangestat += OnUpdateStatUI;
     }
-
+   
     protected override void OnDead(Stat attacker)
     {
         Debug.Log("Player Dead");
 
     }
 
-    #region 스텟세팅 (장착장비검사까지)
+    #region 스텟세팅 (장착장비검사,어빌리티검사)
+    //TODO : 어빌리티검사 필요
 
-    private int WeaponAttackValue = 0; //장착무기 공격스텟 저장변수
-    private int ChestDEFvalue = 0; //장착갑옷 방어스텟 저장변수
-    private int WeaponSTRValue = 0; //장착무기 STR 스텟 저장변수
-    private int DEXValue = 0; //장착갑옷 DEX 스텟 저장변수
     public void SetStat(int level)
     {
 
@@ -174,18 +179,18 @@ public class PlayerStat : Stat
             {
                 if (_attackitem.Equip)
                 {
-                    WeaponAttackValue -= equipment.player_equip[EquipType.Weapon].num_1;                  
-                    WeaponSTRValue -= equipment.player_equip[EquipType.Weapon].num_2;
+                    WeaponAttackValue = equipment.player_equip[EquipType.Weapon].num_1;                  
+                    WeaponSTRValue = equipment.player_equip[EquipType.Weapon].num_2;
                     _str = stat.STR + WeaponSTRValue;
-                    _attack = stat.attack + WeaponAttackValue + (WeaponSTRValue / 10); //총 STR의 1/10을 데미지에 기여함
+                    _attack = stat.attack; //총 STR의 1/10을 데미지에 기여함 + 무기 어빌리티별 향상데미지
 
                 }
                 else if (_attackitem.Equip == false)
                 {
-                    WeaponAttackValue += equipment.player_equip[EquipType.Weapon].num_1;                 
-                    WeaponSTRValue += equipment.player_equip[EquipType.Weapon].num_2;
+                    WeaponAttackValue = equipment.player_equip[EquipType.Weapon].num_1;                 
+                    WeaponSTRValue = equipment.player_equip[EquipType.Weapon].num_2;
                     _str = stat.STR + WeaponSTRValue;
-                    _attack = stat.attack + WeaponAttackValue + (WeaponSTRValue / 10); //총 STR의 1/10을 데미지에 기여함
+                    _attack = stat.attack + WeaponAttackValue + (WeaponSTRValue / 10) + Onupdate_Abillity_attack(); //총 STR의 1/10을 데미지에 기여함 + 무기 어빌리티별 향상데미지
                 }
             }
         }
@@ -243,6 +248,39 @@ public class PlayerStat : Stat
         return;
     }
 
+
+    public int Onupdate_Abillity_attack() //각 도구별 어빌리티 검사하고, 능력치 향상 , TODO : 그리고 향상 되면 바로 업데이트 되도록
+    {
+
+        if (PlayerEquipment.Instance.player_equip.TryGetValue(EquipType.Weapon, out Item One_hand_value) && One_hand_value.weapontype == WeaponType.One_Hand) // 무기를 장착중이고, 한손검인경우
+        {
+            Abillity_Script abillity_script = FindObjectOfType<Abillity_Script>();
+            for(int i = 0; i < abillity_script.abillity_Slots.Length; i++)
+            {
+                if (abillity_script.abillity_Slots[i].skill_name.text == "한손검")
+                {
+                    double abillity_attack_improvement = (double.Parse(abillity_script.abillity_Slots[i].Level.text)*5);
+
+                    Debug.Log($"향상된 데미지, 무기종류 :{abillity_script.abillity_Slots[i].skill_name.text}, {abillity_attack_improvement}");
+                    one_hand_sword_abillityAttack = (int)abillity_attack_improvement;
+                    
+                 break;
+                }
+            }
+
+            
+            return improvement_abillity_attack = one_hand_sword_abillityAttack;
+        }
+        
+        else if (PlayerEquipment.Instance.player_equip.TryGetValue(EquipType.Weapon, out Item two_hand_value) && two_hand_value.weapontype == WeaponType.Two_Hand)
+        {
+
+            return improvement_abillity_attack = two_hand_sword_abillityAttack;
+        }
+
+
+        return improvement_abillity_attack = 0;
+    }
 
     #endregion
 
