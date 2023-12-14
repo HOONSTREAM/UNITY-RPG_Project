@@ -167,7 +167,7 @@ public class PlayerStat : Stat
 
     }
 
-    public void SetEquipmentValue(int level, Item item)
+    public void SetEquipmentValue(int level,Item item)
     {
         Dictionary<int, Data.Stat> dict = Managers.Data.StatDict; //키가 레벨 
         Data.Stat stat = dict[level];
@@ -182,7 +182,7 @@ public class PlayerStat : Stat
                     WeaponAttackValue = equipment.player_equip[EquipType.Weapon].num_1;                  
                     WeaponSTRValue = equipment.player_equip[EquipType.Weapon].num_2;
                     _str = stat.STR + WeaponSTRValue;
-                    _attack = stat.attack; //총 STR의 1/10을 데미지에 기여함 + 무기 어빌리티별 향상데미지
+                    _attack = stat.attack; // 무기 해제이므로 순수 레벨에 해당하는 무기수치로 기록함.
 
                 }
                 else if (_attackitem.Equip == false)
@@ -259,7 +259,7 @@ public class PlayerStat : Stat
             {
                 if (abillity_script.abillity_Slots[i].skill_name.text == "한손검")
                 {
-                    double abillity_attack_improvement = (double.Parse(abillity_script.abillity_Slots[i].Level.text)*5);
+                    double abillity_attack_improvement = (double.Parse(abillity_script.abillity_Slots[i].Level.text)*5); //TODO :여기서 Grade 수치 * 500 도 더해야함 
 
                     Debug.Log($"향상된 데미지, 무기종류 :{abillity_script.abillity_Slots[i].skill_name.text}, {abillity_attack_improvement}");
                     one_hand_sword_abillityAttack = (int)abillity_attack_improvement;
@@ -280,6 +280,7 @@ public class PlayerStat : Stat
 
 
         return improvement_abillity_attack = 0;
+
     }
 
     #endregion
