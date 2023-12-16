@@ -40,7 +40,9 @@ public enum Layer
         Unknown,
         Login,
         Lobby,
-        Game,
+        Rudencia,
+        Rudencia_shop,
+
 
     }
 
