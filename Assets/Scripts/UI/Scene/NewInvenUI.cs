@@ -38,21 +38,17 @@ public class NewInvenUI : MonoBehaviour
         Managers.UI.SetCanvas(Inventory_canvas, true);
         //인벤토리 드래그 가능하도록 하는 이벤트
         UI_Base.BindEvent(inventoryPanel, (PointerEventData data) => { inventoryPanel.transform.position = data.position; }, Define.UIEvent.Drag);
-        
-
-        #region 슬롯버그방지 슬롯생성후 삭제
-        inven.AddItem(ItemDataBase.instance.itemDB[0]);
-        inven.RemoveItem(0);
         RedrawSlotUI();
-        #endregion
 
     }
 
     private void Update()
     {
        
+
         if (Input.GetKeyDown(KeyCode.I))
         {
+            RedrawSlotUI();
             activeInventory = !activeInventory;
             inventoryPanel.SetActive(activeInventory);
             Managers.Sound.Play("Inven_Open");

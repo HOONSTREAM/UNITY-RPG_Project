@@ -82,7 +82,7 @@ public class PlayerInventory : MonoBehaviour
             return false;
      }
      
-    private void OnTriggerEnter(Collider collision)
+    private void OnTriggerEnter(Collider collision) // 아이템 습득 함수 
     {
         
         if (collision.CompareTag("FieldItem"))
@@ -94,10 +94,13 @@ public class PlayerInventory : MonoBehaviour
             {
                fielditems.DestroyItem();
                Managers.Sound.Play("Coin");
-              
-            }
-            
+               
+            }            
         }
+
+        onChangeItem.Invoke();
+
+        return;
     }
 
     public void RemoveItem(int index) // 갯수 파악하여 스택 사용 후 1개 남으면 아이템 삭제

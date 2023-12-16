@@ -41,18 +41,15 @@ public class Storage_Script : MonoBehaviour
         Managers.UI.SetCanvas(Storage_Canvas, true);
         //인벤토리 드래그 가능하도록 하는 이벤트
         UI_Base.BindEvent(StoragePanel, (PointerEventData data) => { StoragePanel.transform.position = data.position; }, Define.UIEvent.Drag);
+        RedrawSlotUI();
 
-        #region 슬롯버그방지 슬롯생성후 삭제
-        storage.AddItem(ItemDataBase.instance.itemDB[0]);  
-        storage.RemoveItem(0);  
-        RedrawSlotUI(); 
-        #endregion
 
     }
 
 
     public void Enter() 
     {
+        RedrawSlotUI();
         activestorage = !activestorage;
         StoragePanel.SetActive(activestorage);
         Managers.Sound.Play("Inven_Open");

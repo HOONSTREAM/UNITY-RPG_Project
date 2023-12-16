@@ -8,7 +8,9 @@ public class Rudencia_in_Script : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        
+        GameObject player = Managers.Game.GetPlayer();
+        player.transform.position = new Vector3(8.4f, 0, -43.34f);
+       
         SceneManager.LoadScene("·çµ§½Ã¾È");
     }
 }

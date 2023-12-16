@@ -33,6 +33,7 @@ public class Abillity_Script : MonoBehaviour
         onupdate_abillity += Accumulate_abillity_Func; //delegate
 
 
+
         PlayerAbillity.Instance.AddSkill(SkillDataBase.instance.SkillDB[0]);
         PlayerAbillity.Instance.AddSkill(SkillDataBase.instance.SkillDB[1]);
 

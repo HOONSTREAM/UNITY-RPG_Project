@@ -20,7 +20,8 @@ public abstract class BaseScene : MonoBehaviour //모든 Scene의 최상위 부모
 
         if (obj == null)
             Managers.Resources.Instantiate("UI/EventSystem").name = "@EventSystem";
-            
+
+       
     }
 
     public abstract void Clear();
