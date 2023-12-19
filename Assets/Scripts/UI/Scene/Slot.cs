@@ -27,12 +27,13 @@ public class Slot : MonoBehaviour, IPointerUpHandler
     void Start()
     {      
         equiped_image.gameObject.SetActive(false); //초기화 (체크표시 안함)
-        itemicon.gameObject.SetActive(false); //초기화 (아이콘 표시 안함)
+        //itemicon.gameObject.SetActive(false); //초기화 (아이콘 표시 안함)
         amount_text.text = "";      
     }
 
     public void UpdateSlotUI()
     {
+        
         itemicon.sprite = item.itemImage;
         itemicon.gameObject.SetActive(true);
 

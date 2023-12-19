@@ -21,7 +21,9 @@ public class PlayerInventory : MonoBehaviour
         player_items = new List<Item>();
         stat = GetComponent<PlayerStat>();
         slot = GetComponent<Slot>();
+
     }
+
     public bool AddItem(Item _item)
     {
         
