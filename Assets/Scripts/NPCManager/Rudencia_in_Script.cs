@@ -24,6 +24,9 @@ public class Rudencia_in_Script : MonoBehaviour
         GameObject.Find("NPC Folder_Rudencia_shop").gameObject.SetActive(false);
         GameObject player = Managers.Game.GetPlayer();
         player.transform.position = new Vector3(8.4f, 0, -43.34f);
+
+        PlayerController pc = player.gameObject.GetComponent<PlayerController>();
+        pc.State = Define.State.Idle;
       
         SceneManager.LoadScene("·çµ§½Ã¾È");
     }
