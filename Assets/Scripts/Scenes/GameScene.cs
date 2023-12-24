@@ -13,7 +13,7 @@ public class GameScene : BaseScene
 
         if (Init_player != null) //새로 게임이 시작 된 것이아니라면 Init함수를 생략함.
         {
-            
+           
             Camera.main.gameObject.GetAddComponent<CameraController>().SetPlayer(Init_player);
             SceneType = Define.Scene.Rudencia;
             Managers.Sound.Play("Calm2 - Childhood Friends", Define.Sound.Bgm);
@@ -32,7 +32,7 @@ public class GameScene : BaseScene
 
         Managers.Resources.Instantiate("Save_Data"); //Save_Data 오브젝트 새로 생성
         Dictionary<int, Data.Stat> dict = Managers.Data.StatDict;
-
+        GameObject.Find("NPC Folder_Rudencia_shop").gameObject.SetActive(false);
         Managers.Sound.Play("Calm2 - Childhood Friends", Define.Sound.Bgm);
         Managers.Sound.Play("Nature Ambiance Sound", Define.Sound.Ambiance);
        

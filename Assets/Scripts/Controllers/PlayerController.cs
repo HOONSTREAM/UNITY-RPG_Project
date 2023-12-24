@@ -81,7 +81,7 @@ public class PlayerController : BaseController
             Debug.DrawRay(transform.position + Vector3.up * 0.5f, dir.normalized, Color.green);
             if (Physics.Raycast(transform.position + Vector3.up * 0.5f, dir, 1.0f, LayerMask.GetMask("Building")))
             {               
-                transform.position += new Vector3(0, 0, -0.5f); //뒤로밀어내기 
+                transform.position -= dir * 0.2f; //뒤로밀어내기 
                 State = Define.State.Idle;
                 return;
             }
