@@ -66,6 +66,10 @@ public class Quest_Script : MonoBehaviour
     }
 
 
+   public void Quest_Complete_Button_Func()
+    {
+
+    }
     
 
 }

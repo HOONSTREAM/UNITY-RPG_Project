@@ -27,6 +27,7 @@ using UnityEngine;
         public int num_1;
         public int num_2;
         public string Description;
+        public string summing_up_Description;
         public Sprite quest_image; //Main or Sub
        
 
@@ -57,11 +58,13 @@ using UnityEngine;
             quest.num_1 = this.num_1;
             quest.num_2 = this.num_2;
             quest.Description = this.Description;
+            quest.summing_up_Description = this.summing_up_Description;
             quest.efts = this.efts;
             quest.quest_image = this.quest_image;
 
 
-          return quest;  
+
+           return quest;  
         
         }
     }

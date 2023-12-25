@@ -16,6 +16,7 @@ public class Quest_Slot : MonoBehaviour , IPointerUpHandler
     public TextMeshProUGUI quest_name;
     public TextMeshProUGUI main_or_sub;
     public TextMeshProUGUI explaination_quest;
+    public TextMeshProUGUI summing_up_explaination;
     
    
 
@@ -58,5 +59,7 @@ public class Quest_Slot : MonoBehaviour , IPointerUpHandler
         //TODO : 버튼 누르면 발생하는 것 구현
         Debug.Log("버튼을 눌렀습니다.");
         explaination_quest.text = quest.Description;
+        summing_up_explaination.text = quest.summing_up_Description;
+
     }
 }
