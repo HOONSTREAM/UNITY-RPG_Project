@@ -15,6 +15,7 @@ public class Quest_Slot : MonoBehaviour , IPointerUpHandler
     public Image quest_icon;
     public TextMeshProUGUI quest_name;
     public TextMeshProUGUI main_or_sub;
+    public TextMeshProUGUI explaination_quest;
     
    
 
@@ -24,6 +25,21 @@ public class Quest_Slot : MonoBehaviour , IPointerUpHandler
         quest_name.text = quest.quest_name;       
         quest_icon.gameObject.SetActive(true);
 
+        if(quest.questtype == QuestType.Main)
+        {
+            main_or_sub.text = "<메인퀘스트>";
+
+        }
+        else if (quest.questtype == QuestType.Sub)
+        {
+            main_or_sub.text = "<서브퀘스트>";
+
+        }
+
+        else
+        {
+            main_or_sub.text = "<반복퀘스트>";
+        }
         return;
     }
     public void RemoveSlot()
@@ -41,6 +57,6 @@ public class Quest_Slot : MonoBehaviour , IPointerUpHandler
 
         //TODO : 버튼 누르면 발생하는 것 구현
         Debug.Log("버튼을 눌렀습니다.");
-
+        explaination_quest.text = quest.Description;
     }
 }
