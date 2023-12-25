@@ -477,6 +477,7 @@ GameObject:
   - component: {fileID: -2233123235949597533}
   - component: {fileID: 7189812019318363395}
   - component: {fileID: 95924747896008823}
+  - component: {fileID: -8154162978037671755}
   m_Layer: 7
   m_Name: UnityChan
   m_TagString: Player
@@ -539,7 +540,6 @@ MonoBehaviour:
   LockTarget: {fileID: 0}
   DamageText: {fileID: 8686495338984817061, guid: d29c83bc196958e4fb74a22149af85b6, type: 3}
   clickMarker: {fileID: 1675652709042656, guid: 034d14aff9fb5f54fbbed4f83e53e77b, type: 3}
-  Abillity_CANVAS: {fileID: 1405341768310995980, guid: 992eec881f8f905469f58b32f66a298f, type: 3}
 --- !u!64 &9192941997316697614
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -596,6 +596,11 @@ MonoBehaviour:
   Fielditem: {fileID: 0}
   _exp: 0
   _gold: 0
+  _str: 0
+  _dex: 0
+  one_hand_sword_abillityAttack: 0
+  two_hand_sword_abillityAttack: 0
+  improvement_abillity_attack: 0
 --- !u!143 &-1757547866063384474
 CharacterController:
   m_ObjectHideFlags: 0
@@ -710,6 +715,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerSkill: []
+--- !u!114 &-8154162978037671755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4609101336896642054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11194278a5c882749acf3c870c738906, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4609101336896642056
 GameObject:
   m_ObjectHideFlags: 0
