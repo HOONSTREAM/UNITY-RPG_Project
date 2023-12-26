@@ -56,7 +56,7 @@ public class Abillity_Slot : MonoBehaviour , IPointerUpHandler
         {
             Managers.Sound.Play("spell", Define.Sound.Effect);
 
-           GameObject effect = Managers.Resources.Instantiate("Skill_Effect/Buff");
+           GameObject effect = Managers.Resources.Instantiate("Skill_Effect/Lightning aura");
             effect.transform.parent = Managers.Game.GetPlayer().transform; // 부모설정
             effect.transform.position = Managers.Game.GetPlayer().gameObject.transform.position;
             
