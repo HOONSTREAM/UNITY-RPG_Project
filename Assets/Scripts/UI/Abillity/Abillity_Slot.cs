@@ -52,6 +52,17 @@ public class Abillity_Slot : MonoBehaviour , IPointerUpHandler
         //TODO : 버튼 누르면 발생하는 것 구현
         Debug.Log("버튼을 눌렀습니다.");
 
+        if(skill_name.text == "한손검")
+        {
+            Managers.Sound.Play("spell", Define.Sound.Effect);
+
+           GameObject effect = Managers.Resources.Instantiate("Skill_Effect/Buff");
+            effect.transform.parent = Managers.Game.GetPlayer().transform; // 부모설정
+            effect.transform.position = Managers.Game.GetPlayer().gameObject.transform.position;
+            
+            Destroy(effect, 5.0f);
+        }
+
     }
 
 }
