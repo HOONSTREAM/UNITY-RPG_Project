@@ -10,7 +10,7 @@ public class Abillity_Slot : MonoBehaviour , IPointerUpHandler
 {
     public int slotnum;
 
-
+    public GameObject Skill_Quickslot_Panel;
     public Skill skill;
     public Image skill_icon;
     public TextMeshProUGUI skill_name;
@@ -52,15 +52,22 @@ public class Abillity_Slot : MonoBehaviour , IPointerUpHandler
         //TODO : 버튼 누르면 발생하는 것 구현
         Debug.Log("버튼을 눌렀습니다.");
 
-        if(skill_name.text == "한손검")
-        {
-            Managers.Sound.Play("spell", Define.Sound.Effect);
+       
 
-           GameObject effect = Managers.Resources.Instantiate("Skill_Effect/Lightning aura");
-            effect.transform.parent = Managers.Game.GetPlayer().transform; // 부모설정
-            effect.transform.position = Managers.Game.GetPlayer().gameObject.transform.position;
-            
-            Destroy(effect, 5.0f);
+        if (this.skill.skilltype == SkillType.Abillity) // 어빌리티 인경우
+        {
+            //TODO : 100이 넘었을 경우 그레이드 과정 등록
+
+            return;
+        }
+        else if(this.skill.skilltype == SkillType.Buff) 
+        { 
+            GameObject go = GameObject.Find("Skill_Slot_UI").gameObject;
+            Skill_QuickSlot_Register quick_slot = go.GetComponent<Skill_QuickSlot_Register>();
+            quick_slot.Get_Slotnum(slotnum); //slot에 대한 정보를 sellconsole 스크립트에 넘겨줌
+            Skill_Quickslot_Panel.SetActive(true);
+            Skill_Quickslot_Panel.transform.position = Input.mousePosition;
+
         }
 
     }

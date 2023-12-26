@@ -36,7 +36,7 @@ public class Abillity_Script : MonoBehaviour
         //기본적인 세팅 (한손검,양손검)
         PlayerAbillity.Instance.AddSkill(SkillDataBase.instance.SkillDB[0]);
         PlayerAbillity.Instance.AddSkill(SkillDataBase.instance.SkillDB[1]);
-
+        PlayerAbillity.Instance.AddSkill(SkillDataBase.instance.SkillDB[2]);
         
     }
     public void Exit()
