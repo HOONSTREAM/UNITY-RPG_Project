@@ -119,7 +119,8 @@ public class PlayerController : BaseController
             Instantiate(DamageText, LockTarget.transform.position, Quaternion.identity, LockTarget.transform);
 
 
-            //TODO : 어빌 업데이트 
+            // 어빌리티 업데이트 
+            
             Abillity_Script abillity_script = FindObjectOfType<Abillity_Script>();
             abillity_script.Accumulate_abillity_Func();           
             Debug.Log($"데미지{_stat.Attack}");

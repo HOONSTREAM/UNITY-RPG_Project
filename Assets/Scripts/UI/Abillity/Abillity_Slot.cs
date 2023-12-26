@@ -41,7 +41,7 @@ public class Abillity_Slot : MonoBehaviour , IPointerUpHandler
         skill = null;
         skill_icon.gameObject.SetActive(false); //초기화 (아이콘 표시 안함)
         skill_name.text = "";
-
+        
         return;
     }
 

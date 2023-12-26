@@ -29,6 +29,7 @@ public class Abillity_Script : MonoBehaviour
         abillity.onChangeSkill += RedrawSlotUI;
         UI_Base.BindEvent(Abillity_Panel, (PointerEventData data) => {Abillity_Panel.transform.position = data.position; }, Define.UIEvent.Drag);
         Managers.UI.SetCanvas(Abillity_canvas, true);
+        
 
         onupdate_abillity += Accumulate_abillity_Func; //delegate
 
@@ -116,7 +117,7 @@ public class Abillity_Script : MonoBehaviour
                     Debug.Log("두손검 어빌 발견");
                     Debug.Log($"{abillity_Slots[i].slotnum}번 스킬슬롯 입니다.");
                     Debug.Log("어빌을 올립니다.");
-                    abillity_Slots[i].Level.text = $"LEVEL                  {abillity_Slots[i].skill.abillity += 0.01}";
+                    abillity_Slots[i].Level.text = $"{abillity_Slots[i].skill.abillity += 0.01}";
                 }
 
             }
