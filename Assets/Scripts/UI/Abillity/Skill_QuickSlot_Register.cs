@@ -1,6 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+using static UnityEditor.Progress;
+
 
 public class Skill_QuickSlot_Register : MonoBehaviour
 {
@@ -12,6 +16,9 @@ public class Skill_QuickSlot_Register : MonoBehaviour
     //public Quick_Slot[] quick_slot; //플레이어의 퀵슬롯 참조
    // public Transform quickslot_holder;
     public PlayerStat stat;
+
+    public Image skill_icon;
+    public int skill_sustainment_time;
 
 
     public Skill Get_Slotnum(int slotnum) //슬롯에 있는 아이템을 참조받아 private Item 변수에 저장해두고, 그 슬롯의 넘버도 보관
@@ -37,7 +44,22 @@ public class Skill_QuickSlot_Register : MonoBehaviour
         {
             //TODO : 스킬 사용 후 로직
             Register_selection.SetActive(false);
+
+            if(skill_info.skilltype == SkillType.Buff)
+            {
+               
+                skill_icon.sprite = skill_info.skill_image;
+ 
+            }
         }
+        else if (!isUse)
+        {
+            Register_selection.SetActive(false); // 콘솔창만 종료하고 함수 종료
+            return;
+        }
+
+        return;
+
     }
     public void RegisterQuickSlot()
     {

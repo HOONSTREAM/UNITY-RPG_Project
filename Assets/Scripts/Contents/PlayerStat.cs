@@ -179,8 +179,8 @@ public class PlayerStat : Stat
             {
                 if (_attackitem.Equip)
                 {
-                    WeaponAttackValue = equipment.player_equip[EquipType.Weapon].num_1;                  
-                    WeaponSTRValue = equipment.player_equip[EquipType.Weapon].num_2;
+                    WeaponAttackValue -= equipment.player_equip[EquipType.Weapon].num_1;                  
+                    WeaponSTRValue -= equipment.player_equip[EquipType.Weapon].num_2;
                     _str = stat.STR + WeaponSTRValue;
                     _attack = stat.attack; // 무기 해제이므로 순수 레벨에 해당하는 무기수치로 기록함.
 
