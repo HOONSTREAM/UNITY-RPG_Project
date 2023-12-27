@@ -1,6 +1,7 @@
 using Data;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "SkillEffect/Buff/Advanced_Attack")]
@@ -35,38 +36,36 @@ public class Advanced_Attack : SkillEffect
         effect.transform.parent = Managers.Game.GetPlayer().transform; // 부모설정
         effect.transform.position = Managers.Game.GetPlayer().gameObject.transform.position;
 
-        Destroy(effect, 5.0f);
+        Destroy(effect, 10.0f);
 
         stat.SetStat(stat.Level);
         stat.onchangestat.Invoke();
 
-        Debuff_update();
+        DelayedAction();
+       
 
         return true;
     }
 
-    void Debuff_update()
+
+    public async Task DelayedAction()
+    {
+        await Task.Delay(10000); // 10 second
+        Debug.Log("Delayed action!");
+        Debuff_update();
+    }
+
+
+    private void Debuff_update()
     {
 
-        float _nowtime = 0;
-        float _skilltime = 10.0f;
+         GameObject player = Managers.Game.GetPlayer();
+         PlayerStat stat = player.GetComponent<PlayerStat>();
 
-        while (true)
-        {
-            _nowtime += Time.deltaTime;
-            if(_nowtime > _skilltime)
-            {
-                GameObject player = Managers.Game.GetPlayer();
-                PlayerStat stat = player.GetComponent<PlayerStat>();
-
-                stat.buff_damage -= 50;
-                stat.SetStat(stat.Level);
-                stat.onchangestat.Invoke();
-                skillusing = false;
-
-                break;
-            }
-        }
+         stat.buff_damage -= 50;
+         stat.SetStat(stat.Level);
+         stat.onchangestat.Invoke();
+         skillusing = false;
 
         return;
     }

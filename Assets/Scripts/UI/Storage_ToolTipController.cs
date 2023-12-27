@@ -41,11 +41,11 @@ public class Storage_ToolTipController : MonoBehaviour, IPointerEnterHandler, IP
 
                 if (storage_item != null)
                 {
-
+                    
                     tooltip.gameObject.SetActive(true);
-
+                    
                     tooltip.SetupTooltip(storage_item.itemname, storage_item.stat_1, storage_item.stat_2, storage_item.num_1, storage_item.num_2, storage_item.Description);
-
+                    
                 }
 
             }
