@@ -7,10 +7,13 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "SkillEffect/Buff/Advanced_Attack")]
 public class Advanced_Attack : SkillEffect
 {
-    
-    bool skillusing = false;
+
+     public bool skillusing = false;
+
     public override bool ExecuteRole(SkillType skilltype) //TODO : 쿨타임 설정 
     {
+        
+
         GameObject player = Managers.Game.GetPlayer();
         PlayerStat stat = player.GetComponent<PlayerStat>();
 
