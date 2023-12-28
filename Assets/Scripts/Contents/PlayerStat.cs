@@ -25,6 +25,7 @@ public class PlayerStat : Stat
     public int two_hand_sword_abillityAttack = 0; //어빌리티 별 향상공격력 저장변수 (양손검)
     public int improvement_abillity_attack;
     public int buff_damage = 0; // 스킬 사용 시 버프데미지
+    public int buff_defense = 0; // 스킬 사용 시 버프방어력
 
     private const int start_user_level = 1;
     private const int start_user_gold = 0;
@@ -161,7 +162,7 @@ public class PlayerStat : Stat
 
         _hp = stat.maxHP;
         _maxHp = stat.maxHP;
-        _defense = stat.defense + ChestDEFvalue + (DEXValue / 10); //총 DEX의 1/10을 데미지에 기여함
+        _defense = stat.defense + ChestDEFvalue + (DEXValue / 10) + buff_defense; //총 DEX의 1/10을 데미지에 기여함
         _movespeed = stat.movespeed;
         _attack = stat.attack + WeaponAttackValue + (WeaponSTRValue / 10) + Onupdate_Abillity_attack() + buff_damage; //총 STR의 1/10을 데미지에 기여함+ 무기 어빌리티별 향상데미지
 

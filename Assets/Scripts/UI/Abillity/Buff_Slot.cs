@@ -40,29 +40,6 @@ public class Buff_Slot : MonoBehaviour, IPointerUpHandler
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (this.skill == null)
-        {
-            GameObject player = Managers.Game.GetPlayer();
-            PlayerStat stat = player.GetComponent<PlayerStat>();
-            stat.PrintUserText("퀵슬롯에 스킬이 없습니다.");
-
-            return;
-        }
-        if (skill.skilltype == SkillType.Buff)
-        {
-            bool isUsed = this.skill.Skill_Use();
-
-            if (isUsed)
-
-            {
-                //TODO             
-            }
-
-            return;
-        }
-
-
+        
     }
-
-
 }

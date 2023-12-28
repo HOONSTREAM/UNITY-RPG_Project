@@ -23,8 +23,7 @@ public class Abillity_Script : MonoBehaviour
     public Transform abillity_slotHolder;
 
     #region 버프스킬 지속시간 UI 관련 변수
-    public Image skill_icon; // 버프스킬 사용 시 맵 패널 하단에 표시되는 버프 이미지 (확장 필요)
-    public TextMeshProUGUI timerText; // 타이머를 표시할 텍스트
+
     public delegate void StartBuffSkill();
     public StartBuffSkill startbuffskill;
     private int skill_slot_number;
@@ -175,24 +174,34 @@ public class Abillity_Script : MonoBehaviour
     IEnumerator StartCountdown()
     {
         float currentTime = skill_info.skill_cool_time;
+        Skill currentskill = skill_info; // 현재 스킬 참조
 
         while (currentTime > 0)
         {
             if (Time.timeScale > 0)
             {
-                timerText.text = currentTime.ToString("0"); // TODO : 각 버프 별 시간 
-                currentTime -= Time.deltaTime;
-                yield return null;
+                for (int i = 0; i < buff_slot.Length; i++)
+                {
+                    if (buff_slot[i].skill == currentskill)
+                    {
+                        buff_slot[i].skill_time_text.text = currentTime.ToString("0");
+                        currentTime -= Time.deltaTime;
+                        yield return null;
+                    }
+                }
             }
 
         }
 
-        timerText.text = "0";
-
+     
         for(int i = 0; i<buff_slot.Length; i++)
         {
-           // TODO  : 시간이 다된 스킬을 지워야 함 
+            if (buff_slot[i].skill_time_text.text == "0")
+            {
+                PlayerBuff_Slot.Instance.Buff_Slot_RemoveBuffSkill(i);
+            }
         }
+
        
     }
 

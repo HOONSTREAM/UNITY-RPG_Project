@@ -8,7 +8,7 @@ using UnityEngine;
 public class Advanced_Defense : SkillEffect
 {
     public bool skillusing = false;
-    public int skill_sustainment_time = 10;
+    public int skill_sustainment_time = 5;
 
     public override bool ExecuteRole(SkillType skilltype) //TODO : 쿨타임 설정 
     {
@@ -31,7 +31,7 @@ public class Advanced_Defense : SkillEffect
         stat.PrintUserText("방어력을 일시적으로 강화합니다.");
 
 
-        stat.buff_damage += 50; // TODO
+        stat.buff_defense += 50; // TODO
 
         Managers.Sound.Play("spell", Define.Sound.Effect);
 
@@ -53,7 +53,7 @@ public class Advanced_Defense : SkillEffect
 
     public async Task DelayedAction()
     {
-        await Task.Delay(10000); // 10 second        
+        await Task.Delay(5000); // 10 second        
         Debuff_update();
     }
 
@@ -64,7 +64,7 @@ public class Advanced_Defense : SkillEffect
         GameObject player = Managers.Game.GetPlayer();
         PlayerStat stat = player.GetComponent<PlayerStat>();
 
-        stat.buff_damage -= 50;
+        stat.buff_defense -= 50;
         stat.SetStat(stat.Level);
         stat.onchangestat.Invoke();
         skillusing = false;
