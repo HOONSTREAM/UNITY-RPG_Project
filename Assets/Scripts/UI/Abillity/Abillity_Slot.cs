@@ -64,7 +64,9 @@ public class Abillity_Slot : MonoBehaviour , IPointerUpHandler
         { 
             GameObject go = GameObject.Find("Skill_Slot_UI").gameObject;
             Skill_QuickSlot_Register quick_slot = go.GetComponent<Skill_QuickSlot_Register>();
-            quick_slot.Get_Slotnum(slotnum); //slot에 대한 정보를 sellconsole 스크립트에 넘겨줌
+            Abillity_Script abs = GameObject.Find("Abillity_Slot_CANVAS ").gameObject.GetComponent<Abillity_Script>();
+            abs.Get_Slotnum(slotnum);  //slot에 대한 정보를 넘겨줌
+            quick_slot.Get_Slotnum(slotnum); //slot에 대한 정보를 넘겨줌
             Skill_Quickslot_Panel.SetActive(true);
             Skill_Quickslot_Panel.transform.position = Input.mousePosition;
 

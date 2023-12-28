@@ -478,6 +478,7 @@ GameObject:
   - component: {fileID: 7189812019318363395}
   - component: {fileID: 95924747896008823}
   - component: {fileID: -8154162978037671755}
+  - component: {fileID: 4084477758585813273}
   m_Layer: 7
   m_Name: UnityChan
   m_TagString: Player
@@ -601,6 +602,7 @@ MonoBehaviour:
   one_hand_sword_abillityAttack: 0
   two_hand_sword_abillityAttack: 0
   improvement_abillity_attack: 0
+  buff_damage: 0
 --- !u!143 &-1757547866063384474
 CharacterController:
   m_ObjectHideFlags: 0
@@ -728,6 +730,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerQuest: []
+--- !u!114 &4084477758585813273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4609101336896642054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20c5c281595ccb74383dbc4bd0849d95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buff_slot: []
+  slot: {fileID: 0}
 --- !u!1 &4609101336896642056
 GameObject:
   m_ObjectHideFlags: 0

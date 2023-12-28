@@ -19,32 +19,8 @@ public class Skill_QuickSlot_Register : MonoBehaviour
    // public Transform quickslot_holder;
     public PlayerStat stat;
 
-    public Image skill_icon; // 버프스킬 사용 시 맵 패널 하단에 표시되는 버프 이미지 (확장 필요)    
-    public TextMeshProUGUI timerText; // 타이머를 표시할 텍스트
-
-    IEnumerator StartCountdown()
-    {
-        float currentTime = skill_info.skill_cool_time;
-
-        while (currentTime > 0)
-        {
-            if(Time.timeScale > 0)
-            {
-                timerText.text = currentTime.ToString("0");
-                currentTime -= Time.deltaTime;
-                yield return null;
-            }
-           
-        }
-
-        timerText.text = "0";
-      
-        Abillity_Script abs = GameObject.Find("Abillity_Slot_CANVAS ").gameObject.GetAddComponent<Abillity_Script>();
-        abs.skill_icon.gameObject.SetActive(false); // 버프가 종료되면 스킬아이콘 비활성화
-
-
-    }
-    public Skill Get_Slotnum(int slotnum) //슬롯에 있는 아이템을 참조받아 private Item 변수에 저장해두고, 그 슬롯의 넘버도 보관
+  
+    public Skill Get_Slotnum(int slotnum) //슬롯에 있는 스킬을 참조받아 변수에 저장해두고, 그 슬롯의 넘버도 보관
     {
         slot_number = slotnum;
         return skill_info = slots[slotnum].skill;
@@ -72,10 +48,7 @@ public class Skill_QuickSlot_Register : MonoBehaviour
             if(skill_info.skilltype == SkillType.Buff)
             {
                 Abillity_Script abs = GameObject.Find("Abillity_Slot_CANVAS ").gameObject.GetAddComponent<Abillity_Script>();
-                abs.skill_icon.gameObject.SetActive(true);
-                abs.skill_icon.sprite = skill_info.skill_image;
-                StartCoroutine("StartCountdown");
- 
+                abs.startbuffskill.Invoke(); // 버프스킬 지속시간 타이머 UI 진행을 위한 대리자 함수 호출
             }
 
             return;
