@@ -29,6 +29,7 @@ using UnityEngine;
         public string Description;
         public Sprite skill_image;
         public double abillity = 0.00;
+        public int skill_cool_time = 0;
   
         public List<SkillEffect> efts;
 
@@ -60,6 +61,8 @@ using UnityEngine;
            skill.skill_image = this.skill_image;          
            skill.efts = this.efts;
            skill.abillity = this.abillity;
+           skill.skill_cool_time = this.skill_cool_time;
+
             return skill;
         }
     }

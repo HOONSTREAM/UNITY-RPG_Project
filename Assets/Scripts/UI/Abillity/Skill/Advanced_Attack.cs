@@ -9,6 +9,7 @@ public class Advanced_Attack : SkillEffect
 {
 
      public bool skillusing = false;
+     public int skill_sustainment_time = 10;
 
     public override bool ExecuteRole(SkillType skilltype) //TODO : 쿨타임 설정 
     {
@@ -39,7 +40,7 @@ public class Advanced_Attack : SkillEffect
         effect.transform.parent = Managers.Game.GetPlayer().transform; // 부모설정
         effect.transform.position = Managers.Game.GetPlayer().gameObject.transform.position;
 
-        Destroy(effect, 10.0f);
+        Destroy(effect, skill_sustainment_time);
 
         stat.SetStat(stat.Level);
         stat.onchangestat.Invoke();
@@ -53,8 +54,7 @@ public class Advanced_Attack : SkillEffect
 
     public async Task DelayedAction()
     {
-        await Task.Delay(10000); // 10 second
-        Debug.Log("Delayed action!");
+        await Task.Delay(10000); // 10 second        
         Debuff_update();
     }
 

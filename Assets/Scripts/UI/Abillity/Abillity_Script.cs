@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using static SerializableDictionary;
 
 public class Abillity_Script : MonoBehaviour
@@ -19,7 +20,9 @@ public class Abillity_Script : MonoBehaviour
 
     public Abillity_Slot[] abillity_Slots;
     public Transform abillity_slotHolder;
-    
+
+    public Image skill_icon; // 버프스킬 사용 시 맵 패널 하단에 표시되는 버프 이미지 (확장 필요)
+    public int skill_sustainment_time;
 
     private void Start() //Player Controller에 붙이면, 프리펩이므로 Start 전의 프리펩이 붙어서 slot이 업데이트가 안됨. 
     {
@@ -29,7 +32,8 @@ public class Abillity_Script : MonoBehaviour
         abillity.onChangeSkill += RedrawSlotUI;
         UI_Base.BindEvent(Abillity_Panel, (PointerEventData data) => {Abillity_Panel.transform.position = data.position; }, Define.UIEvent.Drag);
         Managers.UI.SetCanvas(Abillity_canvas, true);
-        
+
+        skill_icon.gameObject.SetActive(false);
 
         onupdate_abillity += Accumulate_abillity_Func; //delegate
 
