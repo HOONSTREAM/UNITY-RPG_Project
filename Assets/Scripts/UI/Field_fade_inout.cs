@@ -26,18 +26,21 @@ public class Field_fade_inout : MonoBehaviour
 
     IEnumerator FadeFlow()
     {
-        Managers.Sound.Play("GUI_Sound/misc_sound");
+        
         Field_name_panel.gameObject.SetActive(true);       
         time = 0f;
         Color alpha = Field_name_panel.color;
         while(alpha.a < 1f)
         {
+
             time += Time.deltaTime / Fade_time;
             alpha.a = Mathf.Lerp(0, 1, time);            
             Field_name_panel.color = alpha;           
             yield return null;
         }
+        Managers.Sound.Play("change_scene");
         Field_name.text = scene.name;
+        
 
         time = 0f;
         yield return new WaitForSeconds(1f);
