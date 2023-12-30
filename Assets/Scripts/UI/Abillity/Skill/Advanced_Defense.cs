@@ -13,7 +13,6 @@ public class Advanced_Defense : SkillEffect
     public override bool ExecuteRole(SkillType skilltype) //TODO : 쿨타임 설정 
     {
 
-
         GameObject player = Managers.Game.GetPlayer();
         PlayerStat stat = player.GetComponent<PlayerStat>();
 
@@ -43,6 +42,8 @@ public class Advanced_Defense : SkillEffect
 
         stat.SetStat(stat.Level);
         stat.onchangestat.Invoke();
+
+        
 
         DelayedAction();
 
