@@ -14,9 +14,9 @@ public class Skill_QuickSlot_Register : MonoBehaviour
     
     public Skill skill_info; // 스킬슬롯에 해당하는 스킬 참조
     public int slot_number; // 스킬의 슬롯번호 참조
-    public Abillity_Slot[] slots; //플레이어 슬롯 참조
-    //public Quick_Slot[] quick_slot; //플레이어의 퀵슬롯 참조
-   // public Transform quickslot_holder;
+    public Abillity_Slot[] slots; //플레이어 어빌리티 창 참조
+    public Skill_Quick_Slot[] skill_quick_slot; //플레이어의 스킬 퀵슬롯 참조
+    public Transform skill_quickslot_holder;
     public PlayerStat stat;
 
   
@@ -32,7 +32,7 @@ public class Skill_QuickSlot_Register : MonoBehaviour
         GameObject go = GameObject.Find("Skill_Slot_UI").gameObject;
         slots = go.GetComponentsInChildren<Abillity_Slot>();
         stat = Managers.Game.GetPlayer().gameObject.GetComponent<PlayerStat>();
-
+        skill_quick_slot = skill_quickslot_holder.GetComponentsInChildren<Skill_Quick_Slot>();
     }
 
     public void Skill_Use()
@@ -69,15 +69,15 @@ public class Skill_QuickSlot_Register : MonoBehaviour
 
 
 
-        //for (int i = 0; i < quick_slot.Length; i++) //퀵슬롯에 이미 해당아이템이 있는지 검사
-        //{
-        //    if (quick_slot[i].item == slot_item)
-        //    {
-        //        PlayerQuickSlot.Instance.Quick_slot_RemoveItem(quick_slot[i].slotnum); // 그 해당아이템 데이터를 전부 삭제하고
-        //    }
-        //}
+        for (int i = 0; i < skill_quick_slot.Length; i++) //퀵슬롯에 이미 해당아이템이 있는지 검사
+        {
+            if (skill_quick_slot[i].skill == skill_info)
+            {
+                PlayerSkillQuickSlot.Instance.Quick_slot_RemoveSkill(skill_quick_slot[i].slotnum); // 그 해당아이템 데이터를 전부 삭제하고
+            }
+        }
 
-        //PlayerQuickSlot.Instance.Quick_slot_AddItem(slot_item); //새로 갱신하여 등록
+        PlayerSkillQuickSlot.Instance.Quick_slot_AddSkill(skill_info); //새로 갱신하여 등록
 
     }
 

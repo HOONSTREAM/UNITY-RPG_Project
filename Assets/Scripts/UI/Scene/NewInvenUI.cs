@@ -25,7 +25,7 @@ public class NewInvenUI : MonoBehaviour
     public Slot[] slots;
     public Transform slotHolder;
 
-    bool activeInventory = false;
+    public bool activeInventory = false;
 
     private void Start()
     {
@@ -51,7 +51,7 @@ public class NewInvenUI : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.I))
         {
-            
+            Debug.Log("인벤토리를 열기 위한 I키 입력 완료");
             activeInventory = !activeInventory;           
             inventoryPanel.SetActive(activeInventory);
             Managers.Sound.Play("Inven_Open");
@@ -92,7 +92,28 @@ public class NewInvenUI : MonoBehaviour
     }
 
 
+    public void Xbutton_Exit()
+    {
+        if (inventoryPanel != null && inventoryPanel.activeSelf)
+        {
+            activeInventory = !activeInventory;
+            inventoryPanel.SetActive(activeInventory);
+            Managers.Sound.Play("Inven_Open");           
+            Equip_Drop_Selection.gameObject.SetActive(false);
+            Consumable_use_Drop_Selection.gameObject.SetActive(false);
 
+        }
+
+        return;
+    }
+
+    public void Inventory_Button_Open()
+    {
+        activeInventory = !activeInventory;
+        inventoryPanel.SetActive(activeInventory);
+        Managers.Sound.Play("Inven_Open");
+        
+    }
 
 }
 

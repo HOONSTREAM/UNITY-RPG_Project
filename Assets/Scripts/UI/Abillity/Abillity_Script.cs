@@ -9,10 +9,13 @@ using static SerializableDictionary;
 
 public class Abillity_Script : MonoBehaviour
 {
+    public bool active_abillity_panel = false;
     public GameObject Abillity_Panel;
     public GameObject Abillity_canvas;
     public GameObject Abillity_Explaination_Panel;
-   
+    public GameObject select_quickslot_register;
+
+
     private PlayerAbillity abillity; 
     private PlayerStat stat; //플레이어 스텟 참조 (골드업데이트)
 
@@ -43,6 +46,7 @@ public class Abillity_Script : MonoBehaviour
         Managers.UI.SetCanvas(Abillity_canvas, true);
         buff_slot = buff_slot_holder.GetComponentsInChildren<Buff_Slot>();
 
+        Abillity_Panel.SetActive(active_abillity_panel);
 
         onupdate_abillity += Accumulate_abillity_Func; //delegate
         startbuffskill += start_buff_skill; //delegate
@@ -57,6 +61,24 @@ public class Abillity_Script : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            Debug.Log("스킬창을 열기 위한 K키 입력 완료");
+            active_abillity_panel = !active_abillity_panel;
+            Abillity_Panel.SetActive(active_abillity_panel);
+            Managers.Sound.Play("Inven_Open");
+
+            if (Abillity_Panel.activeSelf == false)
+            {
+                select_quickslot_register.gameObject.SetActive(false);
+
+            }
+
+        }
+    }
     public Skill Get_Slotnum(int slotnum) //슬롯에 있는 스킬 을 참조받아 변수에 저장해두고, 그 슬롯의 넘버도 보관
     {
         skill_slot_number = slotnum;
@@ -65,18 +87,30 @@ public class Abillity_Script : MonoBehaviour
     }
 
 
-    public void Exit()
+    public void Button_Function()
+    {
+
+        active_abillity_panel = !active_abillity_panel;
+        Abillity_Panel.SetActive(active_abillity_panel);
+        Managers.Sound.Play("Inven_Open");
+
+        return;
+
+    }
+
+    public void X_Button_Exit()
     {
         if (Abillity_Panel.activeSelf)
         {
             Abillity_Panel.SetActive(false);
-            GameObject go = GameObject.Find("GUI_User_Interface").gameObject;
-            go.GetComponent<Abillity_Button_Script>().active_abillity_panel = false;
+            active_abillity_panel = false;
             Managers.Sound.Play("Inven_Open");
         }
 
         return;
     }
+
+
 
     void RedrawSlotUI()
     {
