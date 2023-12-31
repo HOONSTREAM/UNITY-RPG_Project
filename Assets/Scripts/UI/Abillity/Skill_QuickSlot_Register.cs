@@ -48,7 +48,7 @@ public class Skill_QuickSlot_Register : MonoBehaviour
             if(skill_info.skilltype == SkillType.Buff)
             {
                 Abillity_Script abs = GameObject.Find("Abillity_Slot_CANVAS ").gameObject.GetAddComponent<Abillity_Script>();
-                abs.startbuffskill.Invoke(); // 버프스킬 지속시간 타이머 UI 진행을 위한 대리자 함수 호출
+                abs.start_buff_skill(skill_info);// 버프스킬 지속시간 타이머 UI 함수 호출
             }
 
             return;

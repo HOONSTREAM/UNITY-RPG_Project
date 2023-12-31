@@ -54,7 +54,7 @@ public class Skill_Quick_Slot : MonoBehaviour, IPointerUpHandler
             {
                 //TODO: 퀵슬롯을 사용했을 때 로직
                 Abillity_Script abs = GameObject.Find("Abillity_Slot_CANVAS ").gameObject.GetAddComponent<Abillity_Script>();
-                abs.startbuffskill.Invoke(); // 버프스킬 지속시간 타이머 UI 진행을 위한 대리자 함수 호출
+                abs.start_buff_skill(this.skill);
 
             }
 

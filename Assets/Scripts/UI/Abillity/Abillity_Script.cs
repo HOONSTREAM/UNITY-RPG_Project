@@ -26,9 +26,7 @@ public class Abillity_Script : MonoBehaviour
     public Transform abillity_slotHolder;
 
     #region 버프스킬 지속시간 UI 관련 변수
-
-    public delegate void StartBuffSkill();
-    public StartBuffSkill startbuffskill;
+   
     private int skill_slot_number;
     private Skill skill_info;
     public Buff_Slot[] buff_slot;
@@ -49,7 +47,7 @@ public class Abillity_Script : MonoBehaviour
         Abillity_Panel.SetActive(active_abillity_panel);
 
         onupdate_abillity += Accumulate_abillity_Func; //delegate
-        startbuffskill += start_buff_skill; //delegate
+        
 
 
 
@@ -239,10 +237,10 @@ public class Abillity_Script : MonoBehaviour
        
     }
 
-    void start_buff_skill()
+    public void start_buff_skill(Skill _skill_info)
     {
 
-        PlayerBuff_Slot.Instance.Buff_slot_AddBuffSkill(skill_info);
+        PlayerBuff_Slot.Instance.Buff_slot_AddBuffSkill(_skill_info);
         StartCoroutine("StartCountdown");
 
         return;
