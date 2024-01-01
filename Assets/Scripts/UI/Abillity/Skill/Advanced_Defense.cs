@@ -8,7 +8,7 @@ using UnityEngine;
 public class Advanced_Defense : SkillEffect
 {
     public bool skillusing = false;
-    public int skill_sustainment_time = 5;
+    public int skill_sustainment_time = 25;
 
     public override bool ExecuteRole(SkillType skilltype) //TODO : ÄðÅ¸ÀÓ ¼³Á¤ 
     {
@@ -54,7 +54,7 @@ public class Advanced_Defense : SkillEffect
 
     public async Task DelayedAction()
     {
-        await Task.Delay(5000); // 10 second        
+        await Task.Delay(25000); // 25 second        
         Debuff_update();
     }
 

@@ -206,7 +206,7 @@ public class Abillity_Script : MonoBehaviour
     IEnumerator StartCountdown()
     {
         float currentTime = skill_info.skill_cool_time;
-        Skill currentskill = skill_info; // 현재 스킬 참조
+        Skill currentskill = skill_info; // 현재 스킬 참조 TODO : Debug
 
         while (currentTime > 0)
         {
@@ -239,7 +239,7 @@ public class Abillity_Script : MonoBehaviour
 
     public void start_buff_skill(Skill _skill_info)
     {
-
+        skill_info = _skill_info;
         PlayerBuff_Slot.Instance.Buff_slot_AddBuffSkill(_skill_info);
         StartCoroutine("StartCountdown");
 

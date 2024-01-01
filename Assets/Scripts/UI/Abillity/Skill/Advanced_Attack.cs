@@ -9,7 +9,7 @@ public class Advanced_Attack : SkillEffect
 {
 
      public bool skillusing = false;
-     public int skill_sustainment_time = 10;
+     public int skill_sustainment_time = 30;
 
     public override bool ExecuteRole(SkillType skilltype) //TODO : ÄðÅ¸ÀÓ ¼³Á¤ 
     {
@@ -54,7 +54,7 @@ public class Advanced_Attack : SkillEffect
 
     public async Task DelayedAction()
     {
-        await Task.Delay(10000); // 10 second        
+        await Task.Delay(30000); // 30 second        
         Debuff_update();
     }
 
