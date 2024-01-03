@@ -542,6 +542,7 @@ MonoBehaviour:
   LockTarget: {fileID: 0}
   DamageText: {fileID: 8686495338984817061, guid: d29c83bc196958e4fb74a22149af85b6, type: 3}
   clickMarker: {fileID: 1675652709042656, guid: 034d14aff9fb5f54fbbed4f83e53e77b, type: 3}
+  hit_particle: {fileID: 8460667080445658512, guid: a3e2c3406e02f2c4ba86cfb1604277bd, type: 3}
 --- !u!64 &9192941997316697614
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -758,6 +759,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9eba732da5f057a4c9d5c385c1ad0656, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  quick_slot_skill: []
+  slot: {fileID: 0}
 --- !u!1 &4609101336896642056
 GameObject:
   m_ObjectHideFlags: 0

@@ -27,9 +27,10 @@ public class PlayerInventory : MonoBehaviour
     public bool AddItem(Item _item)
     {
         
-            if (player_items.Count < 20)  //아이템 추가할때 슬롯보다 작을때만 아이템 추가
-            {               
 
+          if (player_items.Count < 20) 
+        
+          { 
             if (_item.IsStackable())
             {
                 bool ItemAlreadyInInventory = false;
@@ -52,6 +53,12 @@ public class PlayerInventory : MonoBehaviour
                 
                 if (!ItemAlreadyInInventory)
                 {
+                    if(player_items.Count == 20)
+                    {
+                        stat.PrintUserText("가방이 가득찼습니다.");
+                        return false;
+                    }
+
                     player_items.Add(_item);
 
                     if (onChangeItem != null)
@@ -77,7 +84,7 @@ public class PlayerInventory : MonoBehaviour
             }
 
             return true;
-            }
+           }
 
             Managers.Sound.Play("Coin");
             stat.PrintUserText("가방이 가득찼습니다.");

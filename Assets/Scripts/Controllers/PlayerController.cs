@@ -24,6 +24,7 @@ public class PlayerController : BaseController
     public GameObject DamageText;
     public GameObject clickMarker;
     private GameObject clickMarker_global_variable;
+    public GameObject hit_particle;
     
 
    
@@ -174,6 +175,7 @@ public class PlayerController : BaseController
     {
         
         Managers.Sound.Play("sword-unsheathe", Define.Sound.Effect);
+        Managers.Sound.Play("hit20.mp3", Define.Sound.Effect);
     
         return;
     }
@@ -200,21 +202,31 @@ public class PlayerController : BaseController
                     {
                          Vector3 vector3 =new Vector3(0f, 0.7f, 0f);
                         _DesPos = hit.point;
-                        
+
+                        #region 마우스 커서 이펙트
                         GameObject go = Instantiate(clickMarker,_DesPos + vector3, Quaternion.identity); //목적지 마우스Marker
                         clickMarker_global_variable = go;
                         go.SetActive(true);
                         Destroy(go, 1.5f);
                         State = Define.State.Moving;
-                                                                    
+                        #endregion
                         skill_is_stop = true;
                         
                        
 
                         if (hit.collider.gameObject.layer == (int)Define.Layer.Monster)
                         {
-                            LockTarget = hit.collider.gameObject;                          
-                        }                     
+                            LockTarget = hit.collider.gameObject;
+
+                            #region 히트 이펙트
+                            Vector3 hitvector3 = new Vector3(0.0f,0f,1.0f);
+                            GameObject hit_particles = Instantiate(hit_particle, _DesPos + hitvector3, Quaternion.identity);                           
+                            hit_particles.SetActive(true);
+                            hit_particles.transform.position = LockTarget.transform.position;
+                            Destroy(hit_particles, 1.5f);
+                            #endregion
+
+                        }
 
                         else
                         {
