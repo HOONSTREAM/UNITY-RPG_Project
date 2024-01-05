@@ -28,7 +28,7 @@ public class PlayerInventory : MonoBehaviour
     {
         
 
-          if (player_items.Count < 20) 
+          if (player_items.Count <= 20) 
         
           { 
             if (_item.IsStackable())
@@ -71,9 +71,16 @@ public class PlayerInventory : MonoBehaviour
              
             }
 
-            else
+            else // 장비아이템인경우
             {
-                player_items.Add(_item);
+                if(player_items.Count == 20)
+                {
+                    Managers.Sound.Play("Coin");
+                    stat.PrintUserText("가방이 가득찼습니다.");
+                    return false;
+                }
+
+                player_items.Add(_item); // 가방 칸이 20 미만이라면 장비아이템 추가 
 
                 if (onChangeItem != null)
                 {
@@ -83,12 +90,11 @@ public class PlayerInventory : MonoBehaviour
 
             }
 
-            return true;
+          
            }
 
-            Managers.Sound.Play("Coin");
-            stat.PrintUserText("가방이 가득찼습니다.");
-            return false;
+
+        return true;
      }
      
     private void OnTriggerEnter(Collider collision) // 아이템 습득 함수 

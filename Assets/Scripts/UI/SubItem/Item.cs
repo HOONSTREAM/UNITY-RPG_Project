@@ -114,7 +114,6 @@ public class Item
         item.amount = 1; //복사본은 1개만 복사한다.
         item.buyprice = this.buyprice;
         item.sellprice = this.sellprice;
-
         item.efts = this.efts;
 
         return item;
