@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using static UnityEditor.Progress;
 
 public class Slot_Equip_Drop : MonoBehaviour
 {
-
+    #region Class 변수
     public GameObject Equip_Drop_Selection;
     public GameObject Consumable_use_Drop_Selection;
     public Item slot_item; // 슬롯에 해당하는 아이템 참조
@@ -16,19 +17,21 @@ public class Slot_Equip_Drop : MonoBehaviour
     public PlayerStat stat;
     public GameObject Drop_Input_console;
     public int amount; //소모품 판매 갯수
+    private int temp_Get_Slotnum_item_amount; // Get_Slotnum 함수를 통해 받아오는 아이템의 갯수를 저장함 (for문돌기에 이용)
+    #endregion
 
     void Start()
     {
-        GameObject go = GameObject.Find("NewInvenUI").gameObject;
+        GameObject go = GameObject.Find("NewInvenUI").gameObject; 
         slots = go.GetComponentsInChildren<Slot>();
         stat = Managers.Game.GetPlayer().gameObject.GetComponent<PlayerStat>();
         quick_slot = quickslot_holder.GetComponentsInChildren<Quick_Slot>();
     }
 
-
     public Item Get_Slotnum(int slotnum) //슬롯에 있는 아이템을 참조받아 private Item 변수에 저장해두고, 그 슬롯의 넘버도 보관
     {
         slot_number = slotnum;
+        temp_Get_Slotnum_item_amount = slots[slotnum].item.amount;
         return slot_item = slots[slotnum].item;
     }
 
@@ -79,12 +82,13 @@ public class Slot_Equip_Drop : MonoBehaviour
 
         if (isUse)
         {
-            PlayerInventory.Instance.RemoveItem(slot_number);
-
             if (slot_item == null)
             {
                 return;
             }
+
+            PlayerInventory.Instance.RemoveItem(slot_number);
+        
         }
     }
 
@@ -130,23 +134,38 @@ public class Slot_Equip_Drop : MonoBehaviour
         
     }
 
-    public void RegisterQuickSlot()
+    public void RegisterQuickSlot() // 퀵슬롯 등록 함수 
     {
         Consumable_use_Drop_Selection.gameObject.SetActive(false);
         Managers.Sound.Play("Coin");
 
-        
+        Debug.Log($"현재 slot_item 의 갯수 for문 진입 전  : {slot_item.amount}");
 
-        for(int i = 0; i < quick_slot.Length; i++) //퀵슬롯에 이미 해당아이템이 있는지 검사
+        for (int i = 0; i < quick_slot.Length; i++) //퀵슬롯에 이미 해당아이템이 있는지 검사
         {
             if (quick_slot[i].item == slot_item)
             {
-                PlayerQuickSlot.Instance.Quick_slot_RemoveItem(quick_slot[i].slotnum); // 그 해당아이템 데이터를 전부 삭제하고
+                for(int j = 0; j < temp_Get_Slotnum_item_amount; j++)  // 그 해당아이템 데이터를 전부 삭제하고
+                {
+                    PlayerQuickSlot.Instance.Quick_slot_RemoveItem(quick_slot[i].slotnum);
+                }
+
+               slot_item.amount = temp_Get_Slotnum_item_amount;
+               PlayerQuickSlot.Instance.Quick_slot_AddItem(slot_item); //새로 갱신하여 등록
+                
+                return; // 이미 있는 아이템을 재설정하였으면 더이상 for문을 돌지 않게 설계
+               
             }
-        }
-             
-        PlayerQuickSlot.Instance.Quick_slot_AddItem(slot_item); //새로 갱신하여 등록
-        
+
+     
+         }
+
+
+        PlayerQuickSlot.Instance.Quick_slot_AddItem(slot_item);
+        Debug.Log($"현재 slot_item 의 갯수 for 문 진입 후 : {slot_item.amount}");
+        return;
+
+
     }
 
     public void consoleExit()
