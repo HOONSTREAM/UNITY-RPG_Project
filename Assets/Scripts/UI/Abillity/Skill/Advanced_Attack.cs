@@ -40,7 +40,7 @@ public class Advanced_Attack : SkillEffect
 
         
         effect.transform.parent = Managers.Game.GetPlayer().transform; // 부모설정
-        effect.transform.position = Managers.Game.GetPlayer().gameObject.transform.position + new Vector3 (0.0f,1.5f,0.0f);
+        effect.transform.position = Managers.Game.GetPlayer().gameObject.transform.position + new Vector3 (0.0f,2.2f,0.0f);
 
         Destroy(effect, skill_sustainment_time);
 
