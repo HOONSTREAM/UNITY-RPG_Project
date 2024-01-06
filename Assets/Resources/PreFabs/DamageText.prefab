@@ -112,14 +112,14 @@ TextMesh:
   m_LineSpacing: 1
   m_Anchor: 0
   m_Alignment: 0
-  m_TabSize: 4
-  m_FontSize: 0
+  m_TabSize: 5
+  m_FontSize: 40
   m_FontStyle: 1
   m_RichText: 1
   m_Font: {fileID: 12800000, guid: 2ee1a0a678011754cbb3c467fc33fdef, type: 3}
   m_Color:
     serializedVersion: 2
-    rgba: 3137295360
+    rgba: 3133800703
 --- !u!114 &2098498310745508541
 MonoBehaviour:
   m_ObjectHideFlags: 0
