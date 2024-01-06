@@ -9,6 +9,7 @@ public class Field_fade_inout : MonoBehaviour
 {
     private Scene scene;
     public Image Field_name_panel;
+    public GameObject particle;
     public TextMeshProUGUI Field_name;
     float time = 0f;
     float Fade_time = 1f;
@@ -27,7 +28,8 @@ public class Field_fade_inout : MonoBehaviour
     IEnumerator FadeFlow()
     {
         
-        Field_name_panel.gameObject.SetActive(true);       
+        Field_name_panel.gameObject.SetActive(true);
+        particle.gameObject.SetActive(true);
         time = 0f;
         Color alpha = Field_name_panel.color;
         while(alpha.a < 1f)
@@ -55,6 +57,7 @@ public class Field_fade_inout : MonoBehaviour
         }
 
         Field_name_panel.gameObject.SetActive(false);
+        particle.gameObject.SetActive(false);
         yield return null;
 
     }
