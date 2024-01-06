@@ -1,6 +1,7 @@
 using Data;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
@@ -111,7 +112,7 @@ public class PlayerController : BaseController
             
             Stat targetStat = LockTarget.GetComponent<Stat>();
             targetStat.OnAttacked(_stat); //나의 스텟을 인자로 넣어서 상대방의 체력을 깎는다.;
-       
+            
             int damagenumber = _stat.Attack - targetStat.Defense;
 
             TextMesh text = DamageText.gameObject.GetComponent<TextMesh>();
@@ -119,9 +120,21 @@ public class PlayerController : BaseController
 
             Instantiate(DamageText, LockTarget.transform.position, Quaternion.identity, LockTarget.transform);
 
+            #region 히트 이펙트
+            
+
+            Vector3 particlePosition = LockTarget.transform.position  + new Vector3(0.0f,1.0f,0.0f);
+            Quaternion particleRotation = Quaternion.LookRotation(LockTarget.transform.forward);
+
+
+            GameObject hit_particles = Instantiate(hit_particle, particlePosition, particleRotation);
+            hit_particles.SetActive(true);
+            Destroy(hit_particles, 1.5f);
+            #endregion
+
 
             // 어빌리티 업데이트 
-            
+
             Abillity_Script abillity_script = FindObjectOfType<Abillity_Script>();
             abillity_script.Accumulate_abillity_Func();           
             Debug.Log($"데미지{_stat.Attack}");
@@ -217,15 +230,7 @@ public class PlayerController : BaseController
                         if (hit.collider.gameObject.layer == (int)Define.Layer.Monster)
                         {
                             LockTarget = hit.collider.gameObject;
-
-                            #region 히트 이펙트
-                            Vector3 hitvector3 = new Vector3(0.0f,0f,1.0f);
-                            GameObject hit_particles = Instantiate(hit_particle, _DesPos + hitvector3, Quaternion.identity);                           
-                            hit_particles.SetActive(true);
-                            hit_particles.transform.position = LockTarget.transform.position;
-                            Destroy(hit_particles, 1.5f);
-                            #endregion
-
+                         
                         }
 
                         else

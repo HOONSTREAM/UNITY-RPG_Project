@@ -36,9 +36,11 @@ public class Advanced_Attack : SkillEffect
 
         Managers.Sound.Play("spell", Define.Sound.Effect);
 
-        GameObject effect = Managers.Resources.Instantiate("Skill_Effect/Lightning aura");
+        GameObject effect = Managers.Resources.Instantiate("Skill_Effect/Unlock_FX_2");
+
+        
         effect.transform.parent = Managers.Game.GetPlayer().transform; // 부모설정
-        effect.transform.position = Managers.Game.GetPlayer().gameObject.transform.position;
+        effect.transform.position = Managers.Game.GetPlayer().gameObject.transform.position + new Vector3 (0.0f,1.5f,0.0f);
 
         Destroy(effect, skill_sustainment_time);
 

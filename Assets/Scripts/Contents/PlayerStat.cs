@@ -110,6 +110,17 @@ public class PlayerStat : Stat
                 go.GetComponent<TextMeshProUGUI>().text = $"Lv . {Level}";
                 Managers.Sound.Play("univ0007");
                 PrintUserText("레벨이 올랐습니다.");
+                #region Level Up EFFECT
+                Managers.Sound.Play("change_scene", Define.Sound.Effect);
+
+                GameObject effect = Managers.Resources.Instantiate("Skill_Effect/Unlock_FX_7");
+
+
+                effect.transform.parent = Managers.Game.GetPlayer().transform; // 부모설정
+                effect.transform.position = Managers.Game.GetPlayer().gameObject.transform.position + new Vector3(0.0f, 2.2f, 0.0f);
+
+                Destroy(effect, 3.0f);
+                #endregion
                 Invoke("TextClear", 2.0f);
                 //23.09.26 수정 (exp 초기화)
                 _exp -= (int)Managers.Data.StatDict[level].totalexp;
