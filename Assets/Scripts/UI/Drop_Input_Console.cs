@@ -25,11 +25,11 @@ public class Drop_Input_Console : MonoBehaviour
         slot_equip_drop.amount = inputamount;
 
         GameObject player = Managers.Game.GetPlayer();
-        PlayerStat stat = player.GetComponent<PlayerStat>();
+       
 
         if (slot_equip_drop.slot_item.amount < inputamount)
         {
-            stat.PrintUserText("소지 중인 물품의 갯수가 부족합니다.");
+            Managers.Game.PrintUserText("소지 중인 물품의 갯수가 부족합니다.");
             amountInputConsole.SetActive(false);
             return;
         }
@@ -38,7 +38,7 @@ public class Drop_Input_Console : MonoBehaviour
         {
             PlayerInventory.Instance.RemoveItem(slot_equip_drop.slot_number);
         }
-        stat.PrintUserText("소비 아이템을 버립니다.");
+        Managers.Game.PrintUserText("소비 아이템을 버립니다.");
         amountInputConsole.SetActive(false);
     }
 }

@@ -39,9 +39,8 @@ public class Skill_Quick_Slot : MonoBehaviour, IPointerUpHandler
     {
         if (this.skill == null)
         {
-            GameObject player = Managers.Game.GetPlayer();
-            PlayerStat stat = player.GetComponent<PlayerStat>();
-            stat.PrintUserText("퀵슬롯에 스킬이 없습니다.");
+            GameObject player = Managers.Game.GetPlayer();          
+            Managers.Game.PrintUserText("퀵슬롯에 스킬이 없습니다.");
 
             return;
         }

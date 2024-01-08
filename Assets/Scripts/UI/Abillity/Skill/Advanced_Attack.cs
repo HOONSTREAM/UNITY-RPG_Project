@@ -20,7 +20,7 @@ public class Advanced_Attack : SkillEffect
 
         if (skillusing == true)
         {
-            stat.PrintUserText("쿨타임 입니다.");
+            Managers.Game.PrintUserText("쿨타임 입니다.");
 
             return false;
 
@@ -29,7 +29,7 @@ public class Advanced_Attack : SkillEffect
         skillusing = true;
 
 
-        stat.PrintUserText("공격력을 일시적으로 강화합니다.");
+        Managers.Game.PrintUserText("공격력을 일시적으로 강화합니다.");
 
 
         stat.buff_damage += 50;

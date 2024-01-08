@@ -39,7 +39,7 @@ public class Sell_Console : MonoBehaviour
         PlayerStat stat = player.GetComponent<PlayerStat>();
         stat.Gold += slot_item.sellprice;
         stat.onchangestat.Invoke();
-        stat.PrintUserText($"상점에 판매하여{slot_item.sellprice}골드를 얻었습니다.");
+        Managers.Game.PrintUserText($"상점에 판매하여{slot_item.sellprice}골드를 얻었습니다.");
         PlayerInventory.Instance.RemoveItem(slot_number);
 
     }

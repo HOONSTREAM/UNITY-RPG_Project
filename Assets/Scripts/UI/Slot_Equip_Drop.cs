@@ -98,7 +98,7 @@ public class Slot_Equip_Drop : MonoBehaviour
         {
             if (slot_item.Equip) //이미 장착중인경우 버릴 수 없음.
             {
-                stat.PrintUserText("장착중인 아이템은 버릴 수 없습니다.");
+                Managers.Game.PrintUserText("장착중인 아이템은 버릴 수 없습니다.");
                 Equip_Drop_Selection.SetActive(false);
                 return;
             }
@@ -106,7 +106,7 @@ public class Slot_Equip_Drop : MonoBehaviour
             else
             {
                 PlayerInventory.Instance.RemoveItem(slot_number);
-                stat.PrintUserText("아이템을 버립니다.");
+                Managers.Game.PrintUserText("아이템을 버립니다.");
                 Equip_Drop_Selection.SetActive(false);
             }
 
@@ -124,7 +124,7 @@ public class Slot_Equip_Drop : MonoBehaviour
             else
             {
                 PlayerInventory.Instance.RemoveItem(slot_number);
-                stat.PrintUserText("소비 아이템을 버립니다.");
+                Managers.Game.PrintUserText("소비 아이템을 버립니다.");
                 Consumable_use_Drop_Selection.SetActive(false);
             }
         }
@@ -139,8 +139,7 @@ public class Slot_Equip_Drop : MonoBehaviour
         Consumable_use_Drop_Selection.gameObject.SetActive(false);
         Managers.Sound.Play("Coin");
 
-        Debug.Log($"현재 slot_item 의 갯수 for문 진입 전  : {slot_item.amount}");
-
+      
         for (int i = 0; i < quick_slot.Length; i++) //퀵슬롯에 이미 해당아이템이 있는지 검사
         {
             if (quick_slot[i].item == slot_item)
@@ -162,7 +161,7 @@ public class Slot_Equip_Drop : MonoBehaviour
 
 
         PlayerQuickSlot.Instance.Quick_slot_AddItem(slot_item);
-        Debug.Log($"현재 slot_item 의 갯수 for 문 진입 후 : {slot_item.amount}");
+
         return;
 
 

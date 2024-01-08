@@ -73,6 +73,7 @@ public class Managers : MonoBehaviour
         
     }
 
+ 
     public static void Clear()
     {
         Sound.Clear();

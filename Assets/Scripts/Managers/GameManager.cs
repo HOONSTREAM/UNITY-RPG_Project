@@ -133,4 +133,20 @@ public class GameManager : MonoBehaviour
         Managers.Resources.Destroy(go);
     }
 
+    #region PrintUserText
+    private void TextClear()
+    {
+        GameObject text = GameObject.Find("Text_User").gameObject;
+        text.GetComponent<TextMeshProUGUI>().text = " ";
+    }
+
+    public void PrintUserText(string Input)
+    {
+        GameObject text = GameObject.Find("Text_User").gameObject;
+        text.GetComponent<TextMeshProUGUI>().text = Input;
+        Managers.Sound.Play("Coin", Define.Sound.Effect);
+        Invoke("TextClear", 2.0f);
+    }
+    #endregion
+
 }

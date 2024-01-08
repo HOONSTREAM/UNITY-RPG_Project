@@ -48,9 +48,8 @@ public class Storage_Input_Console : MonoBehaviour
         
         if (inputamount > slot_item.amount)
         {
-            GameObject player = Managers.Game.GetPlayer();
-            PlayerStat stat = player.GetComponent<PlayerStat>();
-            stat.PrintUserText("맡기려는 갯수에 비해 소지중인 물품 갯수가 적습니다.");
+            GameObject player = Managers.Game.GetPlayer();           
+            Managers.Game.PrintUserText("맡기려는 갯수에 비해 소지중인 물품 갯수가 적습니다.");
             return;
         }
 

@@ -55,7 +55,7 @@ public class PlayerInventory : MonoBehaviour
                 {
                     if(player_items.Count == 20)
                     {
-                        stat.PrintUserText("°¡¹æÀÌ °¡µæÃ¡½À´Ï´Ù.");
+                        Managers.Game.PrintUserText("°¡¹æÀÌ °¡µæÃ¡½À´Ï´Ù.");
                         return false;
                     }
 
@@ -76,7 +76,7 @@ public class PlayerInventory : MonoBehaviour
                 if(player_items.Count == 20)
                 {
                     Managers.Sound.Play("Coin");
-                    stat.PrintUserText("°¡¹æÀÌ °¡µæÃ¡½À´Ï´Ù.");
+                    Managers.Game.PrintUserText("°¡¹æÀÌ °¡µæÃ¡½À´Ï´Ù.");
                     return false;
                 }
 

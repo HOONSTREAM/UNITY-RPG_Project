@@ -24,6 +24,8 @@ public class PlayerStat : Stat
     private int WeaponAttackValue = 0; //장착무기 공격스텟 저장변수
     private int ChestDEFvalue = 0; //장착갑옷 방어스텟 저장변수
     private int WeaponSTRValue = 0; //장착무기 STR 스텟 저장변수
+    private int VITvalue = 0; // VIT 스텟 저장변수
+    private int AGIvalue = 0; // AGI 스텟 저장변수
     private int DEXValue = 0; //장착갑옷 DEX 스텟 저장변수   
     public int one_hand_sword_abillityAttack = 0; //어빌리티 별 향상공격력 저장변수 (한손검)
     public int two_hand_sword_abillityAttack = 0; //어빌리티 별 향상공격력 저장변수 (양손검)
@@ -70,21 +72,6 @@ public class PlayerStat : Stat
     } //string 성능이슈
     #endregion
 
-    #region PrintUserText
-    private void TextClear()
-    {
-        GameObject text = GameObject.Find("Text_User").gameObject;
-        text.GetComponent<TextMeshProUGUI>().text = " ";
-    }
-
-    public void PrintUserText(string Input)
-    {
-        GameObject text = GameObject.Find("Text_User").gameObject;
-        text.GetComponent<TextMeshProUGUI>().text = Input;
-        Managers.Sound.Play("Coin", Define.Sound.Effect);
-        Invoke("TextClear", 2.0f);
-    } //TODO : 과연 이것이 여기 있는 게 맞는가 ?
-    #endregion
 
     /*https://jeongkyun-it.tistory.com/23 */
     public int EXP //레벨업체크 까지 관리  
@@ -119,7 +106,7 @@ public class PlayerStat : Stat
                 GameObject go = GameObject.Find("Level_Text").gameObject;
                 go.GetComponent<TextMeshProUGUI>().text = $"Lv . {Level}";
                 Managers.Sound.Play("univ0007");
-                PrintUserText("레벨이 올랐습니다.");
+                Managers.Game.PrintUserText("레벨이 올랐습니다.");
                 #region Level Up EFFECT
                 Managers.Sound.Play("change_scene", Define.Sound.Effect);
 
@@ -177,7 +164,7 @@ public class PlayerStat : Stat
     }
 
     #region 스텟세팅 (장착장비검사,어빌리티검사)
-    //TODO : 어빌리티검사 필요
+    
 
     public void SetStat(int level)
     {

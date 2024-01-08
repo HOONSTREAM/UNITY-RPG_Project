@@ -18,7 +18,7 @@ public class Advanced_Defense : SkillEffect
 
         if (skillusing == true)
         {
-            stat.PrintUserText("쿨타임 입니다.");
+            Managers.Game.PrintUserText("쿨타임 입니다.");
 
             return false;
 
@@ -27,7 +27,7 @@ public class Advanced_Defense : SkillEffect
         skillusing = true;
 
 
-        stat.PrintUserText("방어력을 일시적으로 강화합니다.");
+        Managers.Game.PrintUserText("방어력을 일시적으로 강화합니다.");
 
 
         stat.buff_defense += 50; // TODO

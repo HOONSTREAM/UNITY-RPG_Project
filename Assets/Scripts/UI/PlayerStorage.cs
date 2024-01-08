@@ -76,7 +76,7 @@ public class PlayerStorage : MonoBehaviour
         }
 
         Managers.Sound.Play("Coin");
-        stat.PrintUserText("Ã¢°í°¡ °¡µæÃ¡½À´Ï´Ù.");
+        Managers.Game.PrintUserText("Ã¢°í°¡ °¡µæÃ¡½À´Ï´Ù.");
         return false;
     }
 

@@ -53,9 +53,8 @@ public class Quick_Slot : MonoBehaviour, IPointerUpHandler
     {
         if(this.item == null)
         {
-            GameObject player = Managers.Game.GetPlayer();
-            PlayerStat stat = player.GetComponent<PlayerStat>();
-            stat.PrintUserText("퀵슬롯에 아이템이 없습니다.");
+            GameObject player = Managers.Game.GetPlayer();            
+            Managers.Game.PrintUserText("퀵슬롯에 아이템이 없습니다.");
 
             return;
         }
