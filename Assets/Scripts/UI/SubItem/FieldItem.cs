@@ -19,10 +19,14 @@ public class FieldItem : MonoBehaviour
         item.itemrank = _item.itemrank; // 아이템 등급
         item.itemname = _item.itemname; //아이템 이름
         item.stat_1 = _item.stat_1; // 무기 : ATK , 방어구 : DEF
-        item.stat_2 = _item.stat_2; // 수치미정
+        item.stat_2 = _item.stat_2; // STR/DEX
+        item.stat_3 = _item.stat_3;
+        item.stat_4 = _item.stat_4;
         item.Description = _item.Description; // 아이템 설명
         item.num_1 = _item.num_1; // 무기 : ATK , 방어구 DEF
-        item.num_2 = _item.num_2; // 수치미정
+        item.num_2 = _item.num_2; // STR/DEX
+        item.num_3 = _item.num_3;
+        item.num_4 = _item.num_4;
         item.itemImage = _item.itemImage; // 아이템 스프라이트 이미지
         item.equiptype = _item.equiptype; // 장비아이템 장착부위 
         item.weapontype = _item.weapontype; //무기의 타입

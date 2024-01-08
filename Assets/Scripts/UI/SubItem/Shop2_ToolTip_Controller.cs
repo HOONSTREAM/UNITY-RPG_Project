@@ -38,7 +38,7 @@ public class Shop2_ToolTip_Controller : MonoBehaviour,IPointerEnterHandler, IPoi
 
                 tooltip.gameObject.SetActive(true);
 
-                tooltip.SetupTooltip(item.itemname, item.stat_1, item.stat_2, item.num_1, item.num_2, item.Description);
+                tooltip.SetupTooltip(item.itemname, item.stat_1, item.stat_2, item.stat_3, item.stat_4, item.num_1, item.num_2, item.num_3, item.num_4, item.itemrank.ToString(), item.Description) ;
 
 
             }

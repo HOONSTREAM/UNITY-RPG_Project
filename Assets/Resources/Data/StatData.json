@@ -10,6 +10,8 @@
       "defense": "5",
       "STR": "5",
       "DEX": "5",
+      "VIT": "5",
+      "AGI": "5",
       "movespeed": "5.0f"
 
     },
@@ -21,6 +23,8 @@
       "defense": "10",
       "STR": "5",
       "DEX": "5",
+      "VIT": "5",
+      "AGI": "5",
       "movespeed": "5.0f"
     },
     {
@@ -31,6 +35,8 @@
       "defense": "15",
       "STR": "5",
       "DEX": "5",
+      "VIT": "5",
+      "AGI": "5",
       "movespeed": "5.0f"
     },
     {
@@ -41,6 +47,8 @@
       "defense": "30",
       "STR": "5",
       "DEX": "5",
+      "VIT": "5",
+      "AGI": "5",
       "movespeed": "5.0f"
     },
     {
@@ -51,6 +59,8 @@
       "defense": "30",
       "STR": "5",
       "DEX": "5",
+      "VIT": "5",
+      "AGI": "5",
       "movespeed": "5.0f"
     }
 

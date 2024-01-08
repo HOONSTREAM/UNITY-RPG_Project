@@ -60,10 +60,14 @@ public class Item
     public WeaponType weapontype;
     public ItemType itemtype;
     public string itemname;
-    public string stat_1;
-    public string stat_2;
+    public string stat_1; // ATK 혹은 DEF
+    public string stat_2; // STR 혹은 DEX
     public int num_1;
     public int num_2;
+    public string stat_3; // VIT
+    public string stat_4; // AGI
+    public int num_3;
+    public int num_4;
     public string Description;
     public Sprite itemImage;
     public bool Equip = false;
@@ -118,8 +122,12 @@ public class Item
         item.itemname = this.itemname;
         item.stat_1 = this.stat_1; // ATK 혹은 DEF
         item.stat_2 = this.stat_2; // STR 
+        item.stat_3 = this.stat_3;
+        item.stat_4 = this.stat_4;
         item.num_1 = this.num_1;
         item.num_2 = this.num_2;
+        item.num_3 = this.num_3;
+        item.num_4 = this.num_4;
         item.Description = this.Description;
         item.itemImage = this.itemImage;
         item.Equip = this.Equip;

@@ -16,6 +16,10 @@ public class PlayerStat : Stat
     protected int _str;
     [SerializeField]
     protected int _dex;
+    [SerializeField]
+    protected int _vit;
+    [SerializeField]
+    protected int _agi;
 
     private int WeaponAttackValue = 0; //ÀåÂø¹«±â °ø°Ý½ºÅÝ ÀúÀåº¯¼ö
     private int ChestDEFvalue = 0; //ÀåÂø°©¿Ê ¹æ¾î½ºÅÝ ÀúÀåº¯¼ö
@@ -32,6 +36,8 @@ public class PlayerStat : Stat
     private const int start_user_exp = 0;
     private const int start_user_str = 5;
     private const int start_user_dex = 5;
+    private const int start_user_vit = 5;
+    private const int start_user_agi = 5;
    
 
 
@@ -50,12 +56,16 @@ public class PlayerStat : Stat
         GameObject atktxt = GameObject.Find("ATKnum").gameObject;
         GameObject deftxt = GameObject.Find("DEFnum").gameObject;
         GameObject goldtxt = GameObject.Find("Goldnum").gameObject;
+        GameObject vittxt = GameObject.Find("VITnum").gameObject;
+        GameObject agitxt = GameObject.Find("AGInum").gameObject;
 
         atktxt.GetComponent<TextMeshProUGUI>().text = Attack.ToString();
         deftxt.GetComponent<TextMeshProUGUI>().text = Defense.ToString();
         goldtxt.GetComponent<TextMeshProUGUI>().text = Gold.ToString();
         strtxt.GetComponent<TextMeshProUGUI>().text = STR.ToString();
         dextxt.GetComponent<TextMeshProUGUI>().text = DEX.ToString();
+        vittxt.GetComponent<TextMeshProUGUI>().text = VIT.ToString();
+        agitxt.GetComponent<TextMeshProUGUI>().text = AGI.ToString();
 
     } //string ¼º´ÉÀÌ½´
     #endregion
@@ -137,7 +147,9 @@ public class PlayerStat : Stat
     }
     public int Gold { get { return _gold; } set { _gold = value; } }
     public int STR { get { return _str; } set { _str = value; } }
-    public int DEX { get { return _dex; } set { _dex = value; } }
+    public int DEX { get { return _dex; } set { _dex = value; } }    
+    public int VIT { get { return _vit; } set { _dex = value; } }
+    public int AGI { get { return _agi; } set { _dex = value; } }
 
 
     private void Start()
@@ -148,6 +160,8 @@ public class PlayerStat : Stat
         _exp = start_user_exp;
         _str = start_user_str;
         _dex = start_user_dex;
+        _vit = start_user_vit;
+        _agi = start_user_agi;
 
         SetStat(_level);
         equipment = GetComponent<PlayerEquipment>();

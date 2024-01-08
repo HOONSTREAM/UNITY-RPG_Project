@@ -44,7 +44,7 @@ public class Storage_ToolTipController : MonoBehaviour, IPointerEnterHandler, IP
                     
                     tooltip.gameObject.SetActive(true);
                     
-                    tooltip.SetupTooltip(storage_item.itemname, storage_item.stat_1, storage_item.stat_2, storage_item.num_1, storage_item.num_2, storage_item.Description);
+                    tooltip.SetupTooltip(storage_item.itemname, storage_item.stat_1, storage_item.stat_2, storage_item.stat_3, storage_item.stat_4, storage_item.num_1, storage_item.num_2, storage_item.num_3, storage_item.num_4,storage_item.itemrank.ToString(), storage_item.Description);
                     
                 }
 

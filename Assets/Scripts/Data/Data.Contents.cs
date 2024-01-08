@@ -17,6 +17,8 @@ namespace Data
         public float movespeed;
         public int STR;
         public int DEX;
+        public int VIT;
+        public int AGI;
 
     }
     [Serializable] //클래스 또는 구조체를 인스펙터상으로 노출시킬 때 사용하는 키워드.

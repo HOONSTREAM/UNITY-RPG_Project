@@ -29,7 +29,7 @@ public class NewInvenUI : MonoBehaviour
 
     private void Start()
     {
-        
+       
         stat = GetComponent<PlayerStat>(); //골드 업데이트를 위한 플레이어 스텟 참조
         inven = PlayerInventory.Instance;       
         slots= slotHolder.GetComponentsInChildren<Slot>();    
@@ -51,9 +51,11 @@ public class NewInvenUI : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.I))
         {
+            
             Debug.Log("인벤토리를 열기 위한 I키 입력 완료");
             activeInventory = !activeInventory;           
             inventoryPanel.SetActive(activeInventory);
+            RedrawSlotUI(); // 아이템이 아무것도 없을 때, 툴팁이 뜨는 것을 방지 
             Managers.Sound.Play("Inven_Open");
 
             if(inventoryPanel.activeSelf == false)

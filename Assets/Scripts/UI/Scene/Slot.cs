@@ -26,10 +26,9 @@ public class Slot : MonoBehaviour, IPointerUpHandler
 
 
     void Start()
-    {      
-        equiped_image.gameObject.SetActive(false); //초기화 (체크표시 안함)
-        //itemicon.gameObject.SetActive(false); //초기화 (아이콘 표시 안함)
-        Unique_Particle.gameObject.SetActive(false); // 레어 파티클 표시안함
+    {
+        
+        equiped_image.gameObject.SetActive(false); //초기화 (체크표시 안함)                                                 
         amount_text.text = "";      
     }
 
