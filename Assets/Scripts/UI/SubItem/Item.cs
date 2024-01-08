@@ -14,6 +14,16 @@ public enum ItemType
     Etc,
 }
 
+public enum ItemRank
+{
+    Common,
+    UnCommon,
+    Rare,
+    Unique,
+    Legend,
+
+}
+
 public enum WeaponType
 {
     One_Hand,
@@ -45,6 +55,7 @@ public enum EquipType
 public class Item
 {
     public int ItemID;
+    public ItemRank itemrank;
     public EquipType equiptype;
     public WeaponType weapontype;
     public ItemType itemtype;
@@ -101,11 +112,12 @@ public class Item
         Item item = new Item();
         item.ItemID = this.ItemID;
         item.equiptype = this.equiptype;
+        item.itemrank = this.itemrank;
         item.weapontype = this.weapontype;
         item.itemtype = this.itemtype;
         item.itemname = this.itemname;
-        item.stat_1 = this.stat_1;
-        item.stat_2 = this.stat_2;
+        item.stat_1 = this.stat_1; // ATK È¤Àº DEF
+        item.stat_2 = this.stat_2; // STR 
         item.num_1 = this.num_1;
         item.num_2 = this.num_2;
         item.Description = this.Description;

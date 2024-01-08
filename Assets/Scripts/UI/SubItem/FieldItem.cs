@@ -16,6 +16,7 @@ public class FieldItem : MonoBehaviour
     public void SetItem(Item _item)
     {
         item.ItemID = _item.ItemID; //아이템 코드 아이디
+        item.itemrank = _item.itemrank; // 아이템 등급
         item.itemname = _item.itemname; //아이템 이름
         item.stat_1 = _item.stat_1; // 무기 : ATK , 방어구 : DEF
         item.stat_2 = _item.stat_2; // 수치미정
