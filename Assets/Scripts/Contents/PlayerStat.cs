@@ -23,10 +23,10 @@ public class PlayerStat : Stat
 
     private int WeaponAttackValue = 0; //장착무기 공격스텟 저장변수
     private int ChestDEFvalue = 0; //장착갑옷 방어스텟 저장변수
-    private int WeaponSTRValue = 0; //장착무기 STR 스텟 저장변수
-    private int VITvalue = 0; // VIT 스텟 저장변수
-    private int AGIvalue = 0; // AGI 스텟 저장변수
-    private int DEXValue = 0; //장착갑옷 DEX 스텟 저장변수   
+    private int WeaponSTRValue = 0; //장착무기 STR 스텟 저장변수 (공격력)
+    private int VITvalue = 0; // VIT 스텟 저장변수 (방어력,체력,체력회복속도)
+    private int AGIvalue = 0; // AGI 스텟 저장변수 (공격속도, 회피율, 이동속도)
+    private int DEXValue = 0; //장착갑옷 DEX 스텟 저장변수 (명중률)  
     public int one_hand_sword_abillityAttack = 0; //어빌리티 별 향상공격력 저장변수 (한손검)
     public int two_hand_sword_abillityAttack = 0; //어빌리티 별 향상공격력 저장변수 (양손검)
     public int improvement_abillity_attack;
@@ -164,7 +164,7 @@ public class PlayerStat : Stat
     #region 스텟세팅 (장착장비검사,어빌리티검사)
     
 
-    public void SetStat(int level)
+    public void SetStat(int level) 
     {
 
         Dictionary<int, Data.Stat> dict = Managers.Data.StatDict; //키가 레벨 
@@ -176,6 +176,16 @@ public class PlayerStat : Stat
         _movespeed = stat.movespeed;
         _attack = stat.attack + WeaponAttackValue + (WeaponSTRValue / 10) + Onupdate_Abillity_attack() + buff_damage; //총 STR의 1/10을 데미지에 기여함+ 무기 어빌리티별 향상데미지
 
+    }
+
+    public void SetAttack_and_Defanse_value(int level)
+    {
+        Dictionary<int, Data.Stat> dict = Managers.Data.StatDict; //키가 레벨 
+        Data.Stat stat = dict[level];
+        _defense = stat.defense + ChestDEFvalue + (DEXValue / 10) + buff_defense; //총 DEX의 1/10을 데미지에 기여함
+        _attack = stat.attack + WeaponAttackValue + (WeaponSTRValue / 10) + Onupdate_Abillity_attack() + buff_damage; //총 STR의 1/10을 데미지에 기여함+ 무기 어빌리티별 향상데미지
+
+        return;
     }
 
     public void SetEquipmentValue(int level,Item item)
@@ -192,15 +202,23 @@ public class PlayerStat : Stat
                 {
                     WeaponAttackValue -= equipment.player_equip[EquipType.Weapon].num_1;                  
                     WeaponSTRValue -= equipment.player_equip[EquipType.Weapon].num_2;
+                    VITvalue -= equipment.player_equip[EquipType.Weapon].num_3;
+                    AGIvalue -= equipment.player_equip[EquipType.Weapon].num_4;
                     _str = stat.STR + WeaponSTRValue;
-                    _attack = stat.attack; // 무기 해제이므로 순수 레벨에 해당하는 무기수치로 기록함.
+                    _vit = stat.VIT + VITvalue;
+                    _agi = stat.AGI + AGIvalue;
+                    _attack = stat.attack; // 무기 해제이므로 순수 레벨에 해당하는 어택수치로 변경함.
 
                 }
                 else if (_attackitem.Equip == false)
                 {
                     WeaponAttackValue = equipment.player_equip[EquipType.Weapon].num_1;                 
                     WeaponSTRValue = equipment.player_equip[EquipType.Weapon].num_2;
+                    VITvalue = equipment.player_equip[EquipType.Weapon].num_3;
+                    AGIvalue = equipment.player_equip[EquipType.Weapon].num_4;
                     _str = stat.STR + WeaponSTRValue;
+                    _vit = stat.VIT + VITvalue;
+                    _agi = stat.AGI + AGIvalue;
                     _attack = stat.attack + WeaponAttackValue + (WeaponSTRValue / 10) + Onupdate_Abillity_attack(); //총 STR의 1/10을 데미지에 기여함 + 무기 어빌리티별 향상데미지
                 }
             }
@@ -217,15 +235,25 @@ public class PlayerStat : Stat
                 {
                     ChestDEFvalue -= equipment.player_equip[EquipType.Chest].num_1;
                     DEXValue -= equipment.player_equip[EquipType.Chest].num_2;
+                    VITvalue -= equipment.player_equip[EquipType.Chest].num_3;
+                    AGIvalue -= equipment.player_equip[EquipType.Chest].num_4;
+                   
                     _defense = stat.defense + ChestDEFvalue + (DEXValue / 10); //총 DEX의 1/10을 데미지에 기여함                   
                     _dex = stat.DEX + DEXValue;
+                    _vit = stat.VIT + VITvalue;
+                    _agi = stat.AGI + AGIvalue;
                 }
                 else if(_chest_def_item.Equip == false)
                 {
                     ChestDEFvalue += equipment.player_equip[EquipType.Chest].num_1;
                     DEXValue += equipment.player_equip[EquipType.Chest].num_2;
+                    VITvalue += equipment.player_equip[EquipType.Chest].num_3;
+                    AGIvalue += equipment.player_equip[EquipType.Chest].num_4;
+
                     _defense = stat.defense + ChestDEFvalue + (DEXValue / 10); //총 DEX의 1/10을 데미지에 기여함                   
                     _dex = stat.DEX + DEXValue;
+                    _vit = stat.VIT + VITvalue;
+                    _agi = stat.AGI + AGIvalue;
                 }
             }
         }
@@ -238,16 +266,26 @@ public class PlayerStat : Stat
                 {
                     ChestDEFvalue -= equipment.player_equip[EquipType.Head].num_1;                  
                     DEXValue -= equipment.player_equip[EquipType.Head].num_2;
+                    VITvalue -= equipment.player_equip[EquipType.Head].num_3;
+                    AGIvalue -= equipment.player_equip[EquipType.Head].num_4;
                     _defense = stat.defense + ChestDEFvalue + (DEXValue / 10); //총 DEX의 1/10을 데미지에 기여함;
                     _dex = stat.DEX + DEXValue;
+                    _vit = stat.VIT + VITvalue;
+                    _agi = stat.AGI + AGIvalue;
+
                 }
 
                 else if (_head_def_item.Equip == false)
                 {
                     ChestDEFvalue += equipment.player_equip[EquipType.Head].num_1;         
                     DEXValue += equipment.player_equip[EquipType.Head].num_2;
+                    VITvalue += equipment.player_equip[EquipType.Head].num_3;
+                    AGIvalue += equipment.player_equip[EquipType.Head].num_4;
                     _defense = stat.defense + ChestDEFvalue + (DEXValue / 10); //총 DEX의 1/10을 데미지에 기여함;
                     _dex = stat.DEX + DEXValue;
+                    _vit = stat.VIT + VITvalue;
+                    _agi = stat.AGI + AGIvalue;
+
                 }
 
             }

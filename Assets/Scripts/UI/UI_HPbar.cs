@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,7 +13,7 @@ public class UI_HPbar : MonoBehaviour
     private GameObject _player;
     [SerializeField]
     private Slider _silder;
-
+    public TextMeshProUGUI hp_text;
     private Stat _stat;
 
     void Start()
@@ -27,5 +28,6 @@ public class UI_HPbar : MonoBehaviour
     void Update()
     {
         _silder.value = _stat.Hp / (float) _stat.MaxHp;
+        hp_text.text = _stat.Hp.ToString();
     }
 }

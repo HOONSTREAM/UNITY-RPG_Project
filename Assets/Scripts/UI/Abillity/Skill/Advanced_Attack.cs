@@ -9,14 +9,16 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "SkillEffect/Buff/Advanced_Attack")]
 public class Advanced_Attack : SkillEffect
 {
+    private int _advanced_attack_buff_amount = 50;
 
-     public bool skillusing = false;
-     public int skill_sustainment_time = 30;
+    public bool skillusing = false;
+    public int skill_sustainment_time; 
     public Buff_Slot[] buff_slots;
     public Transform buff_slot_holder;
 
     private void Init()
     {
+        skill_sustainment_time = GameObject.Find("SkillDatabase").gameObject.GetComponent<SkillDataBase>().SkillDB[2].skill_cool_time;
         buff_slot_holder = GameObject.Find("skill_coolTime_Content").gameObject.transform;
         buff_slots = buff_slot_holder.GetComponentsInChildren<Buff_Slot>();
 
@@ -63,7 +65,7 @@ public class Advanced_Attack : SkillEffect
         GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("공격력을 일시적으로 강화합니다.");
 
 
-        stat.buff_damage += 50;
+        stat.buff_damage += _advanced_attack_buff_amount;
 
         Managers.Sound.Play("spell", Define.Sound.Effect);
 
@@ -75,7 +77,7 @@ public class Advanced_Attack : SkillEffect
 
         Destroy(effect, skill_sustainment_time);
 
-        stat.SetStat(stat.Level);
+        stat.SetAttack_and_Defanse_value(stat.Level);
         stat.onchangestat.Invoke();
 
         _ = DelayedAction();
@@ -85,9 +87,9 @@ public class Advanced_Attack : SkillEffect
     }
 
 
-    public async Task DelayedAction()
+    private async Task DelayedAction()
     {
-        await Task.Delay(30000); // 30 second        
+        await Task.Delay(skill_sustainment_time*1000); // 30 second        
         Debuff_update();
 
        
@@ -100,8 +102,8 @@ public class Advanced_Attack : SkillEffect
          GameObject player = Managers.Game.GetPlayer();
          PlayerStat stat = player.GetComponent<PlayerStat>();
 
-         stat.buff_damage -= 50;
-         stat.SetStat(stat.Level);
+         stat.buff_damage -= _advanced_attack_buff_amount;
+         stat.SetAttack_and_Defanse_value(stat.Level);
          stat.onchangestat.Invoke();
          skillusing = false;
 
