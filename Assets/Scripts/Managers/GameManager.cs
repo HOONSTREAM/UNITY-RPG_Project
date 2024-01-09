@@ -5,6 +5,8 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Threading.Tasks;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -140,12 +142,15 @@ public class GameManager : MonoBehaviour
         text.GetComponent<TextMeshProUGUI>().text = " ";
     }
 
-    public void PrintUserText(string Input)
+    public async Task PrintUserText(string Input)
     {
         GameObject text = GameObject.Find("Text_User").gameObject;
         text.GetComponent<TextMeshProUGUI>().text = Input;
         Managers.Sound.Play("Coin", Define.Sound.Effect);
-        Invoke("TextClear", 2.0f); //TODO
+        await Task.Delay(3000);
+        TextClear();
+
+        return;
     }
     #endregion
 
