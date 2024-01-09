@@ -32,7 +32,7 @@ public class PlayerEquipment : MonoBehaviour
             if (player_equip.TryGetValue(_item.item.equiptype, out Item item)) //해당 타입 이미 장착중인지 검사 
             {
 
-                Managers.Game.PrintUserText("해당 타입은 이미 장착되어 있습니다.");
+                GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("해당 타입은 이미 장착되어 있습니다.");
                 _item.item.Equip = false;
                 return false;
             }
@@ -41,7 +41,7 @@ public class PlayerEquipment : MonoBehaviour
             {
                 player_equip.Add(_item.item.equiptype, _item.item); // 그렇지않다면 장착 
 
-                Managers.Game.PrintUserText("장착 성공!");
+                GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("장착 성공!");
     
                 stat.SetEquipmentValue(stat.Level,_item.item); // 장착장비 스텟 반영
                 _item.item.Equip = true; //장착 bool 변수 true로 변경                                       
@@ -61,7 +61,7 @@ public class PlayerEquipment : MonoBehaviour
     public bool UnEquipItem(Slot _item)
     {
 
-        Managers.Game.PrintUserText("장비를 해제합니다.");       
+        GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("장비를 해제합니다.");       
         stat.SetEquipmentValue(stat.Level, _item.item);
         player_equip.Remove(_item.item.equiptype);
         _item.item.Equip = false;

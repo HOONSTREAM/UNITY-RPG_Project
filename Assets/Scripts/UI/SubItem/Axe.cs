@@ -10,7 +10,7 @@ public class Axe : ItemEffect
     {
  
         GameObject player = Managers.Game.GetPlayer();
-        Managers.Game.PrintUserText("무기를 장착했습니다.");
+        GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("무기를 장착했습니다.");
 
         return true;
     }

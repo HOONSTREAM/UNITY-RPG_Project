@@ -14,7 +14,7 @@ public class Gold_Bag : ItemEffect
         Managers.Sound.Play("CoinEffect");
         stat.Gold += 1000;
         stat.onchangestat.Invoke();
-        Managers.Game.PrintUserText("1000°ñµå¸¦ È¹µæÇÏ¿´½À´Ï´Ù.");
+        GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("1000°ñµå¸¦ È¹µæÇÏ¿´½À´Ï´Ù.");
        
         return true;
     }

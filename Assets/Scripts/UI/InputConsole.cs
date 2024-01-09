@@ -34,7 +34,7 @@ public class InputConsole : MonoBehaviour
         
         if(sell_console.slot_item.amount < inputamount)
         {
-            Managers.Game.PrintUserText("소지 중인 물품의 갯수가 부족합니다.");
+            GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("소지 중인 물품의 갯수가 부족합니다.");
             amountinput_console.SetActive(false);
             return;
         }
@@ -47,7 +47,7 @@ public class InputConsole : MonoBehaviour
             totalsellgold += sell_console.slot_item.sellprice;
         }
 
-        Managers.Game.PrintUserText($"상점에 판매하여{totalsellgold}골드를 얻었습니다.");
+        GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText($"상점에 판매하여{totalsellgold}골드를 얻었습니다.");
 
 
         for(int i = 0; i<inputamount; i++)

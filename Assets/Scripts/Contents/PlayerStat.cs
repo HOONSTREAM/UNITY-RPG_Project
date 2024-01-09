@@ -106,7 +106,7 @@ public class PlayerStat : Stat
                 GameObject go = GameObject.Find("Level_Text").gameObject;
                 go.GetComponent<TextMeshProUGUI>().text = $"Lv . {Level}";
                 Managers.Sound.Play("univ0007");
-                Managers.Game.PrintUserText("레벨이 올랐습니다.");
+                GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("레벨이 올랐습니다.");               
                 #region Level Up EFFECT
                 Managers.Sound.Play("change_scene", Define.Sound.Effect);
 
@@ -117,9 +117,7 @@ public class PlayerStat : Stat
                 effect.transform.position = Managers.Game.GetPlayer().gameObject.transform.position + new Vector3(0.0f, 2.2f, 0.0f);
 
                 Destroy(effect, 3.0f);
-                #endregion
-                Invoke("TextClear", 2.0f);
-                //23.09.26 수정 (exp 초기화)
+                #endregion              
                 _exp -= (int)Managers.Data.StatDict[level].totalexp;
 
 

@@ -48,20 +48,20 @@ public class Storage_Input_Console : MonoBehaviour
         
         if (inputamount > slot_item.amount)
         {
-            GameObject player = Managers.Game.GetPlayer();           
-            Managers.Game.PrintUserText("맡기려는 갯수에 비해 소지중인 물품 갯수가 적습니다.");
+            GameObject player = Managers.Game.GetPlayer();
+            GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("맡기려는 갯수에 비해 소지중인 물품 갯수가 적습니다.");
             return;
         }
 
 
         for(int i = 0; i< inputamount; i++) // 클론함수(같은것을 참조방지)를 이용하여 입력된 갯수만큼 창고에 생성
         {
-            Debug.Log("스토리지 for문 시작");
+           
             PlayerStorage.Instance.AddItem(slot_item.Clone());           
         }
         for(int i = 0; i<inputamount; i++) // 입력된 갯수만큼 인벤토리에서 제거
         {
-            Debug.Log("인벤토리 for문 시작");
+            
             PlayerInventory.Instance.RemoveItem(slot_number);         
         }
 

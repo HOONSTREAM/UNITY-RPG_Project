@@ -87,8 +87,8 @@ public class Slot : MonoBehaviour, IPointerUpHandler
         {          
             if (item.Equip)
             {
-                GameObject player = Managers.Game.GetPlayer();              
-                Managers.Game.PrintUserText("장착중인 장비는 판매할 수 없습니다.");
+                GameObject player = Managers.Game.GetPlayer();
+                GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("장착중인 장비는 판매할 수 없습니다.");
                 return;
             }
 
@@ -111,8 +111,8 @@ public class Slot : MonoBehaviour, IPointerUpHandler
 
             if (item.Equip) //장착중인 장비는 금고에 맡길 수 없음.
             {
-                GameObject player = Managers.Game.GetPlayer();               
-                Managers.Game.PrintUserText("장착중인 장비는 맡길 수 없습니다.");
+                GameObject player = Managers.Game.GetPlayer();
+                GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("장착중인 장비는 맡길 수 없습니다.");
                 return;
             }
             

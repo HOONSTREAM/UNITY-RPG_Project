@@ -5,7 +5,6 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Threading.Tasks;
 
 
 public class GameManager : MonoBehaviour
@@ -135,23 +134,6 @@ public class GameManager : MonoBehaviour
         Managers.Resources.Destroy(go);
     }
 
-    #region PrintUserText
-    private void TextClear()
-    {
-        GameObject text = GameObject.Find("Text_User").gameObject;
-        text.GetComponent<TextMeshProUGUI>().text = " ";
-    }
-
-    public async Task PrintUserText(string Input)
-    {
-        GameObject text = GameObject.Find("Text_User").gameObject;
-        text.GetComponent<TextMeshProUGUI>().text = Input;
-        Managers.Sound.Play("Coin", Define.Sound.Effect);
-        await Task.Delay(3000);
-        TextClear();
-
-        return;
-    }
-    #endregion
+   
 
 }

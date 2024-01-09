@@ -33,7 +33,7 @@ public class Gold_Deposit_Console : MonoBehaviour
 
         if (stat.Gold < inputamount)
         {
-            Managers.Game.PrintUserText("소지 중인 골드가 부족합니다.");
+            GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("소지 중인 골드가 부족합니다.");
             amountInputConsole.SetActive(false);
             return;
         }
@@ -44,7 +44,7 @@ public class Gold_Deposit_Console : MonoBehaviour
 
         Storage_gold_text.text = StorageGoldAmount.ToString();
 
-        Managers.Game.PrintUserText($"{inputamount}골드를 맡겨 현재 소지중인 골드는 {stat.Gold} 골드 입니다. ");
+        GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText($"{inputamount}골드를 맡겨 현재 소지중인 골드는 {stat.Gold} 골드 입니다. ");
 
         inputamount = 0; // 입력값 초기화
 

@@ -55,7 +55,7 @@ public class PlayerInventory : MonoBehaviour
                 {
                     if(player_items.Count == 20)
                     {
-                        Managers.Game.PrintUserText("°¡¹æÀÌ °¡µæÃ¡½À´Ï´Ù.");
+                        GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("°¡¹æÀÌ °¡µæÃ¡½À´Ï´Ù.");
                         return false;
                     }
 
@@ -76,7 +76,7 @@ public class PlayerInventory : MonoBehaviour
                 if(player_items.Count == 20)
                 {
                     Managers.Sound.Play("Coin");
-                    Managers.Game.PrintUserText("°¡¹æÀÌ °¡µæÃ¡½À´Ï´Ù.");
+                    GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("°¡¹æÀÌ °¡µæÃ¡½À´Ï´Ù.");
                     return false;
                 }
 
