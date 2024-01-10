@@ -84,12 +84,22 @@ public class Stat : MonoBehaviour
                
             }
 
-            Managers.Game.DeSpawn(gameObject);
+            StartCoroutine("MonsterDead");
+            
         }
         else
         {
 
         }
       
+    }
+
+    IEnumerator MonsterDead()
+    {
+       
+        yield return new WaitForSeconds(0.25f);
+        
+        Managers.Game.DeSpawn(gameObject);
+
     }
 }

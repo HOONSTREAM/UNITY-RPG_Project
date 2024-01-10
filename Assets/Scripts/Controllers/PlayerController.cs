@@ -103,7 +103,8 @@ public class PlayerController : BaseController
         }
 
     }
-  
+
+   
     void player_OnHitEvent() //애니메이션 Hit event로 등록되어 있는 함수 
     {
         if (LockTarget != null)
@@ -112,16 +113,23 @@ public class PlayerController : BaseController
             
             Stat targetStat = LockTarget.GetComponent<Stat>();
             targetStat.OnAttacked(_stat); //나의 스텟을 인자로 넣어서 상대방의 체력을 깎는다.;
-            
-            int damagenumber = _stat.Attack - targetStat.Defense;
 
-            TextMesh text = DamageText.gameObject.GetComponent<TextMesh>();
-            text.text = damagenumber.ToString();
+            #region 데미지 텍스트 출력
 
-            Instantiate(DamageText, LockTarget.transform.position, Quaternion.identity, LockTarget.transform);
+            if(targetStat.Hp >= 0)
+            {
+                int damagenumber = _stat.Attack - targetStat.Defense;
 
+                TextMesh text = DamageText.gameObject.GetComponent<TextMesh>();
+                text.text = damagenumber.ToString();
+                
+                Instantiate(DamageText, LockTarget.transform.position , Quaternion.identity, LockTarget.transform);
+               
+            }
+           
+            #endregion
             #region 히트 이펙트
-            
+
 
             Vector3 particlePosition = LockTarget.transform.position  + new Vector3(0.0f,1.0f,0.0f);
             Quaternion particleRotation = Quaternion.LookRotation(LockTarget.transform.forward);
@@ -230,13 +238,12 @@ public class PlayerController : BaseController
                         if (hit.collider.gameObject.layer == (int)Define.Layer.Monster)
                         {
                             LockTarget = hit.collider.gameObject;
-                         
+                            
                         }
 
                         else
                         {
-                            LockTarget = null;
-                           
+                            LockTarget = null;                           
                         }
 
                     }
