@@ -41,7 +41,7 @@ public class Advanced_Defense : SkillEffect
 
         return;
     }
-    public override bool ExecuteRole(SkillType skilltype) //TODO : 쿨타임 설정 
+    public override bool ExecuteRole(SkillType skilltype) 
     {
         Init();
 

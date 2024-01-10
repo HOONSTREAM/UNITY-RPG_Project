@@ -14,7 +14,7 @@ public class FieldnamePanel_script : MonoBehaviour
     void Awake()
     {
        scene = SceneManager.GetActiveScene();
-       OnupdateScenename(); //TODO :  맵이동이 이뤄지면 델리게이트로 이름 변경하자
+       OnupdateScenename(); 
     }
     
    

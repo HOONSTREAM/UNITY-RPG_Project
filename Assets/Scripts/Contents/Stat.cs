@@ -51,7 +51,7 @@ public class Stat : MonoBehaviour
     public virtual void OnAttacked(Stat attacker) //인자로 상대방의 공격력을 받는다.
     
     {
-        int damage = Mathf.Max(0, attacker.Attack - Defense);        
+        int damage = Random.Range((int)((attacker.Attack - Defense)*0.8), (int)((attacker.Attack - Defense)*1.1)); // 능력치의 80% ~ 110%       
         Hp -= damage;
         
 
@@ -59,7 +59,6 @@ public class Stat : MonoBehaviour
         {
             Hp = 0;
             OnDead(attacker);
-
         }
         
     }
@@ -85,21 +84,18 @@ public class Stat : MonoBehaviour
             }
 
             StartCoroutine("MonsterDead");
-            
+
         }
-        else
+        else //TODO : 다른몬스터 확장 
         {
 
         }
       
     }
 
-    IEnumerator MonsterDead()
+   IEnumerator MonsterDead() // 몬스터 오브젝트 삭제를 지연시켜서 몬스터 체력에 비해 데미지가 초과되어도 데미지폰트가 뜨도록 함
     {
-       
         yield return new WaitForSeconds(0.25f);
-        
         Managers.Game.DeSpawn(gameObject);
-
     }
 }

@@ -298,7 +298,7 @@ public class PlayerStat : Stat
     }
 
 
-    public int Onupdate_Abillity_attack() //각 도구별 어빌리티 검사하고, 능력치 향상 , TODO : 그리고 향상 되면 바로 업데이트 되도록
+    public int Onupdate_Abillity_attack() 
     {
 
         if (PlayerEquipment.Instance.player_equip.TryGetValue(EquipType.Weapon, out Item One_hand_value) && One_hand_value.weapontype == WeaponType.One_Hand) // 무기를 장착중이고, 한손검인경우

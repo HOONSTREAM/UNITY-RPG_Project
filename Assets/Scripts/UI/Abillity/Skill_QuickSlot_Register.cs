@@ -41,7 +41,7 @@ public class Skill_QuickSlot_Register : MonoBehaviour
 
         if (isUse)
         {
-            //TODO : 스킬 사용 후 로직 (버프스킬 상단표시)
+           
 
             Register_selection.SetActive(false);
 

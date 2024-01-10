@@ -206,7 +206,7 @@ public class Abillity_Script : MonoBehaviour
     IEnumerator StartCountdown()
     {
         float currentTime = skill_info.skill_cool_time;
-        Skill currentskill = skill_info; // 현재 스킬 참조 TODO : Debug
+        Skill currentskill = skill_info; 
 
         while (currentTime > 0)
         {

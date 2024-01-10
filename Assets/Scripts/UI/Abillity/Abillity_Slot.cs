@@ -49,11 +49,6 @@ public class Abillity_Slot : MonoBehaviour , IPointerUpHandler
     public void OnPointerUp(PointerEventData eventData)
     {
 
-        //TODO : 버튼 누르면 발생하는 것 구현
-        Debug.Log("버튼을 눌렀습니다.");
-
-       
-
         if (this.skill.skilltype == SkillType.Abillity) // 어빌리티 인경우
         {
             //TODO : 100이 넘었을 경우 그레이드 과정 등록

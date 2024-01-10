@@ -26,12 +26,12 @@ public class PlayerController : BaseController
     public GameObject clickMarker;
     private GameObject clickMarker_global_variable;
     public GameObject hit_particle;
-    
 
-   
+
+
     public override void Init()
     {
-              
+
         WorldObjectType = Define.WorldObject.Player;
 
         _stat = gameObject.GetComponent<PlayerStat>();
@@ -39,15 +39,10 @@ public class PlayerController : BaseController
         Managers.Input.MouseAction -= OnMouseEvent; //Inputmanager에게 키액션이 발생하면 OnMouseClicked 함수를 실행할 것을 요청.
         Managers.Input.MouseAction += OnMouseEvent;
 
-        
-
-        /* 플레이어 체력바 보류 / 게임 전체 인터페이스로 대체 */
-        //if (gameObject.GetComponentInChildren<UI_HPBar>() == null)
-        //{
-        //    Managers.UI.MakeWorldSpaceUI<UI_HPBar>(transform);
-        //}
     }
- 
+
+       
+
     protected override void UpdateMoving()
     {
         
@@ -58,8 +53,22 @@ public class PlayerController : BaseController
             if (distance <= attackRange)
             {
                 Destroy(clickMarker_global_variable); //전투중에는 마우스Marker가 뜨지않도록 Destroy 
-                State = Define.State.Skill;
-                return;
+
+                if (LockTarget.gameObject.GetComponent<Stat>().Hp <= 0) //락타겟이 있어도 Hp가 0이하이면 공격애니메이션 재생X
+                {
+                    skill_is_stop = true;
+                    State = Define.State.Idle;
+                    LockTarget = null;
+                    
+                    return;
+
+                }
+                else
+                {
+                    State = Define.State.Skill;
+                    return;
+                }
+               
             }
         }
 
@@ -115,18 +124,20 @@ public class PlayerController : BaseController
             targetStat.OnAttacked(_stat); //나의 스텟을 인자로 넣어서 상대방의 체력을 깎는다.;
 
             #region 데미지 텍스트 출력
+           
 
-            if(targetStat.Hp >= 0)
+            if (targetStat.Hp >= 0)
             {
-                int damagenumber = _stat.Attack - targetStat.Defense;
+                int damage_amount = Random.Range((int)((_stat.Attack - targetStat.Defense) * 0.8), (int)((_stat.Attack - targetStat.Defense) * 1.1)); // 능력치의 80% ~ 110%    
 
                 TextMesh text = DamageText.gameObject.GetComponent<TextMesh>();
-                text.text = damagenumber.ToString();
+                text.text = damage_amount.ToString();
                 
                 Instantiate(DamageText, LockTarget.transform.position , Quaternion.identity, LockTarget.transform);
                
             }
-           
+
+       
             #endregion
             #region 히트 이펙트
 
@@ -144,8 +155,7 @@ public class PlayerController : BaseController
             // 어빌리티 업데이트 
 
             Abillity_Script abillity_script = FindObjectOfType<Abillity_Script>();
-            abillity_script.Accumulate_abillity_Func();           
-            Debug.Log($"데미지{_stat.Attack}");
+            abillity_script.Accumulate_abillity_Func();                    
             _stat.SetAttack_and_Defanse_value(_stat.Level); // 무기 어빌리티가 즉시 적용되도록 스크립트 실행
             _stat.onchangestat.Invoke(); // 유저 스텟 인터페이스 업데이트
         }
@@ -231,6 +241,7 @@ public class PlayerController : BaseController
                         Destroy(go, 1.5f);
                         State = Define.State.Moving;
                         #endregion
+
                         skill_is_stop = true;
                         
                        
