@@ -51,8 +51,14 @@ public class Stat : MonoBehaviour
     public virtual void OnAttacked(Stat attacker) //인자로 상대방의 공격력을 받는다.
     
     {
-        int damage = Random.Range((int)((attacker.Attack - Defense)*0.8), (int)((attacker.Attack - Defense)*1.1)); // 능력치의 80% ~ 110%       
-        Hp -= damage;
+        int total_damage = Random.Range((int)((attacker.Attack - Defense)*0.8), (int)((attacker.Attack - Defense)*1.1)); // 능력치의 80% ~ 110%       
+        
+        if(total_damage < 0)
+        {
+            total_damage = 0;
+        }
+
+        Hp -= total_damage;
         
 
         if (Hp <= 0)

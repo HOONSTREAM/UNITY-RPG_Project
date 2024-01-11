@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7522970402254163847}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0345, y: 0.33, z: 0}
-  m_LocalScale: {x: 0.16866587, y: 0.2418, z: 1}
+  m_LocalPosition: {x: -0.1427, y: 0.177, z: 0}
+  m_LocalScale: {x: 0.0841474, y: 0.12230244, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5309527744933157248}
@@ -101,13 +101,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   item:
     ItemID: 0
+    itemrank: 0
     equiptype: 0
+    weapontype: 0
     itemtype: 0
     itemname: 
     stat_1: 
     stat_2: 
     num_1: 0
     num_2: 0
+    stat_3: 
+    stat_4: 
+    num_3: 0
+    num_4: 0
     Description: 
     itemImage: {fileID: 0}
     Equip: 0
@@ -118,7 +124,6 @@ MonoBehaviour:
   image: {fileID: 414807468510548996}
   fielditemPrefab: {fileID: 7522970402254163847}
   pos: {x: 0, y: 0, z: 0}
-  itemDataBase: []
 --- !u!65 &-4780361837457706222
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -155,6 +160,18 @@ PrefabInstance:
     - target: {fileID: 8029142899459995171, guid: 97c43495f80a3244fad1301dfafbe252, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8029142899459995171, guid: 97c43495f80a3244fad1301dfafbe252, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8029142899459995171, guid: 97c43495f80a3244fad1301dfafbe252, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8029142899459995171, guid: 97c43495f80a3244fad1301dfafbe252, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8029142899459995171, guid: 97c43495f80a3244fad1301dfafbe252, type: 3}
       propertyPath: m_LocalPosition.x
