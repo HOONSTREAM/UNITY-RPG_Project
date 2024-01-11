@@ -22,6 +22,7 @@ public class Define
 
 public enum Layer
     {
+        Default = 0,
         UI = 5,
         Monster = 8,
         Ground = 9,
@@ -31,6 +32,7 @@ public enum Layer
         NPC2 = 14,
         Console = 15,
         NPC3 = 16,
+        FieldItem = 17,
         
 
 
