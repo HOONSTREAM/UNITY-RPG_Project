@@ -5,17 +5,20 @@ using UnityEngine.EventSystems;
 
 public class Field_Item_tooltipController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-
-
-    public Field_Item_Tooltip tooltip;
-
-   
+    Field_Item_Tooltip tooltip;
+    public GameObject Inventory_canvas;
+    
 
     private int _mask = (1 << (int)Define.Layer.Default);
 
     private void Start()
     {
-        tooltip = GameObject.Find("Field_Item_Tooltip").gameObject.GetComponent<Field_Item_Tooltip>();
+        
+        tooltip = Managers.Resources.Load<GameObject>("PreFabs/UI/SubItem/Field_Item_Tooltip").GetComponent<Field_Item_Tooltip>();
+        Inventory_canvas = GameObject.Find("INVENTORY CANVAS").gameObject;
+
+        
+
     }
     enum OnToolTipUpdated
     {
@@ -27,6 +30,7 @@ public class Field_Item_tooltipController : MonoBehaviour, IPointerEnterHandler,
 
     OnToolTipUpdated ontooltip = OnToolTipUpdated.None;
 
+   
     public void OnPointerEnter(PointerEventData eventData)
     {
         Debug.Log("Item OnPointerEnter 호출");
@@ -40,8 +44,12 @@ public class Field_Item_tooltipController : MonoBehaviour, IPointerEnterHandler,
             Debug.Log(name);
 
 
-            tooltip.SetupToolTip(name);
+           
+           
             tooltip.gameObject.SetActive(true);
+            tooltip.SetupToolTip(name);
+            Instantiate(tooltip, Inventory_canvas.transform);
+            tooltip.transform.position = Input.mousePosition;
             ontooltip = OnToolTipUpdated.On;
         }
 
@@ -50,6 +58,7 @@ public class Field_Item_tooltipController : MonoBehaviour, IPointerEnterHandler,
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        Debug.Log("Item OnPointerExit 호출");
         if (ontooltip != OnToolTipUpdated.off)
         {
             tooltip.gameObject.SetActive(false);

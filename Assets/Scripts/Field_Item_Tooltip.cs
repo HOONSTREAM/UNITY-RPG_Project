@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class Field_Item_Tooltip : MonoBehaviour
 {
-    [SerializeField]
-    private TextMeshProUGUI Item_name;
+    
+    public TextMeshProUGUI Item_name;
 
     public void SetupToolTip(string name)
     {
