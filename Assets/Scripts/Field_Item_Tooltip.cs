@@ -15,6 +15,8 @@ public class Field_Item_Tooltip : MonoBehaviour
 
     private void Update()
     {
-        transform.position = Input.mousePosition;
+        this.transform.position = Input.mousePosition;
     }
+
+
 }

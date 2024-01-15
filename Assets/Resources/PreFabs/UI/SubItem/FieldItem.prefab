@@ -125,6 +125,9 @@ MonoBehaviour:
   image: {fileID: 414807468510548996}
   fielditemPrefab: {fileID: 7522970402254163847}
   pos: {x: 0, y: 0, z: 0}
+  tooltip: {fileID: 7988559020465338431, guid: 0d865e2c50c9c9240b052d4be5ad4c31, type: 3}
+  Inventory_canvas: {fileID: 0}
+  tooltip_obj: {fileID: 0}
 --- !u!65 &-4780361837457706222
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -158,6 +161,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4568a0e43dc857f48912b944370fcf31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tooltip: {fileID: 7988559020465338431, guid: 0d865e2c50c9c9240b052d4be5ad4c31, type: 3}
+  Inventory_canvas: {fileID: 0}
+  tooltip_obj: {fileID: 0}
 --- !u!1001 &2792801002946555811
 PrefabInstance:
   m_ObjectHideFlags: 0
