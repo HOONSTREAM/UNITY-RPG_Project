@@ -34,17 +34,22 @@ public enum WeaponType
     No_Weapon
 }
 
-public enum EquipType
+public enum EquipType // 12 + 1칸 (반지는 2개)
 {
     None,
-    Head,
-    Chest,
-    Weapon,
-    Shield,
-    necklace,
-    Ring,
-    shoes,
-    vehicle
+    Head, // 머리
+    Head_decoration, //머리장식
+    Chest, // 내부상의
+    pants, // 내부바지
+    Weapon, // 무기
+    Shield, // 방패
+    necklace, // 목걸이
+    outter_plate, // 겉갑옷
+    Ring, // 반지
+    shoes, // 신발
+    vehicle, // 탈것
+    cape, //망토
+
 
 }
 
