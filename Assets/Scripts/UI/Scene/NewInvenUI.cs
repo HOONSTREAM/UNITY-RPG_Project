@@ -39,10 +39,6 @@ public class NewInvenUI : MonoBehaviour
         //인벤토리 드래그 가능하도록 하는 이벤트
         UI_Base.BindEvent(inventoryPanel, (PointerEventData data) => { inventoryPanel.transform.position = data.position; }, Define.UIEvent.Drag);
 
-        //TEST
-
-        
-
     }
 
     private void Update()

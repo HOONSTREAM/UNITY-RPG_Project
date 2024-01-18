@@ -26,8 +26,7 @@ public class Slot : MonoBehaviour, IPointerUpHandler
 
 
     void Start()
-    {
-        
+    {       
         equiped_image.gameObject.SetActive(false); //초기화 (체크표시 안함)                                                 
         amount_text.text = "";      
     }
