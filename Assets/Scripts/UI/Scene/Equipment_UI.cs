@@ -13,11 +13,11 @@ public class Equipment_UI : MonoBehaviour
 
     private PlayerEquipment _player_now_equip; //플레이어 장비창 참조
     private PlayerStat stat; //플레이어 스텟 참조 
-    public Equip_Slot[] upper_equip_slots;
-    public Equip_Slot[] middle_equip_slots;
-    public Equip_Slot[] middle2_equip_slots;
-    public Equip_Slot[] bottom_equip_slots;
-    public Equip_Slot[] bottom2_equip_slots;
+    public Equip_Slot[] upper_equip_slots; // Necklace,Head,Head_Deco
+    public Equip_Slot[] middle_equip_slots; // Weapon, Shield
+    public Equip_Slot[] middle2_equip_slots; // Ring 1 , Ring 2
+    public Equip_Slot[] bottom_equip_slots; // chest , pants, outter_plate
+    public Equip_Slot[] bottom2_equip_slots; // shoes, cape , vehicle
 
     public Transform upper_equip_slot_holder;
     public Transform middle_equip_slot_holder;
@@ -90,8 +90,9 @@ public class Equipment_UI : MonoBehaviour
 
     }
 
-    void RedrawSlotUI()
+    private void RedrawSlotUI()
     {
+      
         #region 슬롯 넘버 할당
         for (int i = 0; i < upper_equip_slots.Length; i++)
         {
@@ -138,23 +139,77 @@ public class Equipment_UI : MonoBehaviour
         #endregion
 
 
-        for (int i = 0; i < _player_now_equip.player_equip.Count; i++) //리스트배열로 저장되어있는 인벤토리의 아이템정보를 받아와 다시 재정렬 
+        foreach (EquipType equipType in _player_now_equip.player_equip.Keys) // 현재 장착중인 장비의 딕셔너리 조사 
         {
-            bool upper_equip_boolean = _player_now_equip.player_equip.TryGetValue(EquipType.Head, out Item item);   
-            
-            if (upper_equip_boolean == false)
+            bool equip_boolean = _player_now_equip.player_equip.TryGetValue(equipType, out Item item);
+
+            Debug.Log($"{equipType}: {equip_boolean}");
+
+            switch (item.equiptype)
             {
-                upper_equip_slots[i].item = null;
-                upper_equip_slots[i].itemicon.gameObject.SetActive(false);
-                upper_equip_slots[i].Unique_Particle.gameObject.SetActive(false);
-                upper_equip_slots[i].UpdateSlotUI();
-                return;            
+                case EquipType.Head:
+                    upper_equip_slots[1].item = item;
+                    upper_equip_slots[1].UpdateSlotUI();
+                    break;
+                case EquipType.necklace:
+                    upper_equip_slots[0].item = item;
+                    upper_equip_slots[0].UpdateSlotUI();
+                    break;
+                case EquipType.Head_decoration:
+                    upper_equip_slots[2].item = item;
+                    upper_equip_slots[2].UpdateSlotUI();
+                    break;
+                case EquipType.Weapon:
+                    middle_equip_slots[0].item = item;
+                    middle_equip_slots[0].UpdateSlotUI();
+                    break;
+                case EquipType.Shield:
+                    middle_equip_slots[1].item = item;
+                    middle_equip_slots[1].UpdateSlotUI();
+                    break;
+                case EquipType.Chest:
+                    bottom_equip_slots[0].item = item;
+                    bottom_equip_slots[0].UpdateSlotUI();
+                    break;
+                case EquipType.pants:
+                    bottom_equip_slots[1].item = item;
+                    bottom_equip_slots[1].UpdateSlotUI();
+                    break;
+                case EquipType.Ring:
+                    if (middle2_equip_slots[0] == null)
+                    {
+                        middle2_equip_slots[0].item = item;
+                        middle2_equip_slots[0].UpdateSlotUI();
+                    }
+                    else // 0번칸에 아이템이 있으면 1번칸에 장착
+                    {
+                        middle2_equip_slots[1].item = item;
+                        middle2_equip_slots[1].UpdateSlotUI();
+                    }
+                    break;
+                case EquipType.outter_plate:
+                    bottom_equip_slots[2].item = item;
+                    bottom_equip_slots[2].UpdateSlotUI();
+                    break;
+                case EquipType.cape:
+                    bottom2_equip_slots[1].item = item;
+                    bottom2_equip_slots[1].UpdateSlotUI();
+                    break;
+                case EquipType.vehicle:
+                    bottom2_equip_slots[2].item = item;
+                    bottom2_equip_slots[2].UpdateSlotUI();
+                    break;
+                case EquipType.shoes:
+                    bottom2_equip_slots[0].item = item;
+                    bottom2_equip_slots[0].UpdateSlotUI();
+                    break;
+
             }
 
-            upper_equip_slots[i].item = item;
-            upper_equip_slots[i].UpdateSlotUI();
         }
 
+
+        return;
     }
 
 }
