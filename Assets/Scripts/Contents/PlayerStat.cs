@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class PlayerStat : Stat
 
 {
-    
+
     [SerializeField]
     protected int _exp;
     [SerializeField]
@@ -40,7 +40,6 @@ public class PlayerStat : Stat
     private const int start_user_dex = 5;
     private const int start_user_vit = 5;
     private const int start_user_agi = 5;
-   
 
 
     private PlayerEquipment equipment;
@@ -49,7 +48,8 @@ public class PlayerStat : Stat
 
     public OnChangePlayerStat onchangestat;
 
-    #region 게임 플레이시 GUISTAT창 세팅
+   
+    #region 게임 플레이시 GUISTAT창, 장비창 STAT창  세팅
     private void OnUpdateStatUI()
     {
 
@@ -70,6 +70,18 @@ public class PlayerStat : Stat
         agitxt.GetComponent<TextMeshProUGUI>().text = AGI.ToString();
 
     } //string 성능이슈
+
+    private void OnUpdateEquip_Stat_Panel_UI()
+    {
+
+        GameObject nametxt = GameObject.Find("stat_name").gameObject;
+        GameObject jobtxt = GameObject.Find("stat_job").gameObject;
+       
+        nametxt.GetComponent<TextMeshProUGUI>().text = "테스트이름";
+        jobtxt.GetComponent<TextMeshProUGUI>().text = "테스트 직업";
+        
+    }
+
     #endregion
 
 
@@ -140,6 +152,7 @@ public class PlayerStat : Stat
     private void Start()
     {
         
+
         _level = start_user_level;
         _gold = start_user_gold;
         _exp = start_user_exp;
@@ -152,7 +165,9 @@ public class PlayerStat : Stat
         equipment = GetComponent<PlayerEquipment>();
 
         OnUpdateStatUI();
+        OnUpdateEquip_Stat_Panel_UI();
         onchangestat += OnUpdateStatUI;
+        onchangestat += OnUpdateEquip_Stat_Panel_UI;
     }
    
     protected override void OnDead(Stat attacker)
