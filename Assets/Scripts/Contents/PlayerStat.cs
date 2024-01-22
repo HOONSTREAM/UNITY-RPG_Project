@@ -158,7 +158,7 @@ public class PlayerStat : Stat
         OnUpdateStatUI();
         equipment_ui.OnUpdateEquip_Stat_Panel_UI();
         onchangestat += OnUpdateStatUI;
-        //onchangestat += 
+        onchangestat += equipment_ui.OnUpdateEquip_Stat_Panel_UI;
     }
    
     protected override void OnDead(Stat attacker)
@@ -229,11 +229,43 @@ public class PlayerStat : Stat
                 }
             }
         }
-       
+
         #endregion
 
         #region 방어구장착검사
-        if(item.equiptype == EquipType.Chest)
+
+        if (item.equiptype == EquipType.outter_plate)
+        {
+            if (equipment.player_equip.TryGetValue(EquipType.outter_plate, out Item _chest_def_item)) //장착방어구 검사
+            {
+                if (_chest_def_item.Equip)
+                {
+                    ChestDEFvalue -= equipment.player_equip[EquipType.outter_plate].num_1;
+                    DEXValue -= equipment.player_equip[EquipType.outter_plate].num_2;
+                    VITvalue -= equipment.player_equip[EquipType.outter_plate].num_3;
+                    AGIvalue -= equipment.player_equip[EquipType.outter_plate].num_4;
+
+                    _defense = stat.defense + ChestDEFvalue + (DEXValue / 10); //총 DEX의 1/10을 데미지에 기여함                   
+                    _dex = stat.DEX + DEXValue;
+                    _vit = stat.VIT + VITvalue;
+                    _agi = stat.AGI + AGIvalue;
+                }
+                else if (_chest_def_item.Equip == false)
+                {
+                    ChestDEFvalue += equipment.player_equip[EquipType.outter_plate].num_1;
+                    DEXValue += equipment.player_equip[EquipType.outter_plate].num_2;
+                    VITvalue += equipment.player_equip[EquipType.outter_plate].num_3;
+                    AGIvalue += equipment.player_equip[EquipType.outter_plate].num_4;
+
+                    _defense = stat.defense + ChestDEFvalue + (DEXValue / 10); //총 DEX의 1/10을 데미지에 기여함                   
+                    _dex = stat.DEX + DEXValue;
+                    _vit = stat.VIT + VITvalue;
+                    _agi = stat.AGI + AGIvalue;
+                }
+            }
+        }
+
+        if (item.equiptype == EquipType.Chest)
         {
             if (equipment.player_equip.TryGetValue(EquipType.Chest, out Item _chest_def_item)) //장착방어구 검사
             {
