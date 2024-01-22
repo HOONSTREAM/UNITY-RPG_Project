@@ -48,7 +48,7 @@ public class PlayerStat : Stat
 
     public OnChangePlayerStat onchangestat;
 
-   
+  
     #region 게임 플레이시 GUISTAT창, 장비창 STAT창  세팅
     private void OnUpdateStatUI()
     {
@@ -71,17 +71,7 @@ public class PlayerStat : Stat
 
     } //string 성능이슈
 
-    private void OnUpdateEquip_Stat_Panel_UI()
-    {
-
-        GameObject nametxt = GameObject.Find("stat_name").gameObject;
-        GameObject jobtxt = GameObject.Find("stat_job").gameObject;
-       
-        nametxt.GetComponent<TextMeshProUGUI>().text = "테스트이름";
-        jobtxt.GetComponent<TextMeshProUGUI>().text = "테스트 직업";
-        
-    }
-
+  
     #endregion
 
 
@@ -152,6 +142,7 @@ public class PlayerStat : Stat
     private void Start()
     {
         
+        Equipment_UI equipment_ui = FindObjectOfType<Equipment_UI>();
 
         _level = start_user_level;
         _gold = start_user_gold;
@@ -165,9 +156,9 @@ public class PlayerStat : Stat
         equipment = GetComponent<PlayerEquipment>();
 
         OnUpdateStatUI();
-        OnUpdateEquip_Stat_Panel_UI();
+        equipment_ui.OnUpdateEquip_Stat_Panel_UI();
         onchangestat += OnUpdateStatUI;
-        onchangestat += OnUpdateEquip_Stat_Panel_UI;
+        //onchangestat += 
     }
    
     protected override void OnDead(Stat attacker)

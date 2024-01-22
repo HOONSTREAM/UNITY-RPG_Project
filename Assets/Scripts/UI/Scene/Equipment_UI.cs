@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -25,6 +26,19 @@ public class Equipment_UI : MonoBehaviour
     public Transform bottom_equip_slot_holder;
     public Transform bottom2_equip_slot_holder;
 
+    #region 장비창 플레이어 스텟창 인스턴스변수
+
+    private GameObject nametxt;
+    private GameObject jobtxt;
+    private GameObject guildtxt;
+    private GameObject fametxt;
+    private GameObject atktxt;
+    private GameObject hptxt;
+    private GameObject mptxt;
+    private GameObject mvspeedtxt;
+
+
+    #endregion
 
     #region 인벤토리 참조
     public Slot[] slots;
@@ -35,8 +49,17 @@ public class Equipment_UI : MonoBehaviour
 
     private void Start()
     {
+        nametxt = GameObject.Find("stat_name").gameObject;
+        jobtxt = GameObject.Find("stat_job").gameObject;
+        guildtxt = GameObject.Find("stat_guild").gameObject;
+        fametxt = GameObject.Find("stat_fame").gameObject;
+        atktxt = GameObject.Find("stat_atk").gameObject;
+        hptxt = GameObject.Find("stat_hp").gameObject;
+        mptxt = GameObject.Find("stat_mp").gameObject;
+        mvspeedtxt = GameObject.Find("stat_speed").gameObject;
 
-        stat = GetComponent<PlayerStat>(); //골드 업데이트를 위한 플레이어 스텟 참조
+
+        stat = Managers.Game.GetPlayer().GetComponent<PlayerStat>(); //골드 업데이트를 위한 플레이어 스텟 참조
         _player_now_equip = PlayerEquipment.Instance;
         slots = slotHolder.GetComponentsInChildren<Slot>();
         equipment_panel.SetActive(active_equipment_panel);
@@ -54,6 +77,20 @@ public class Equipment_UI : MonoBehaviour
         #endregion
 
     }
+
+    public void OnUpdateEquip_Stat_Panel_UI()
+    {
+        nametxt.GetComponent<TextMeshProUGUI>().text = Managers.Game.GetPlayer().name;
+        jobtxt.GetComponent<TextMeshProUGUI>().text = "나이트(전사)";
+        guildtxt.GetComponent<TextMeshProUGUI>().text = "길드없음";
+        fametxt.GetComponent<TextMeshProUGUI>().text = "0"; //TODO
+        atktxt.GetComponent<TextMeshProUGUI>().text = $"{(stat.Attack*0.8)} ~ {(stat.Attack*1.1)}";
+        hptxt.GetComponent<TextMeshProUGUI>().text = $"{stat.MaxHp}";
+        mptxt.GetComponent<TextMeshProUGUI>().text = "0";
+        mvspeedtxt.GetComponent<TextMeshProUGUI>().text = $"{(stat.MoveSpeed)*20}%";
+
+    }
+
 
     private void Update()
     {
