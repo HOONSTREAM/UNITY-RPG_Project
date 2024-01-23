@@ -36,6 +36,7 @@ public class Equipment_UI : MonoBehaviour
     private GameObject hptxt;
     private GameObject mptxt;
     private GameObject mvspeedtxt;
+    private GameObject deftxt;
 
 
     #endregion
@@ -57,7 +58,7 @@ public class Equipment_UI : MonoBehaviour
         hptxt = GameObject.Find("stat_hp").gameObject;
         mptxt = GameObject.Find("stat_mp").gameObject;
         mvspeedtxt = GameObject.Find("stat_speed").gameObject;
-
+        deftxt = GameObject.Find("stat_def").gameObject;
 
         stat = Managers.Game.GetPlayer().GetComponent<PlayerStat>(); //골드 업데이트를 위한 플레이어 스텟 참조
         _player_now_equip = PlayerEquipment.Instance;
@@ -88,6 +89,7 @@ public class Equipment_UI : MonoBehaviour
         hptxt.GetComponent<TextMeshProUGUI>().text = $"{stat.MaxHp}";
         mptxt.GetComponent<TextMeshProUGUI>().text = "0";
         mvspeedtxt.GetComponent<TextMeshProUGUI>().text = $"{(stat.MoveSpeed)*20}%";
+        deftxt.GetComponent<TextMeshProUGUI>().text = $"{stat.Defense}";
 
     }
 

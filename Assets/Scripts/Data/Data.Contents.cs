@@ -16,7 +16,7 @@ namespace Data
         public int defense;
         public float movespeed;
         public int STR;
-        public int DEX;
+        public int INT;
         public int VIT;
         public int AGI;
 

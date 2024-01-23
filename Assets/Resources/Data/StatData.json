@@ -9,7 +9,7 @@
       "totalexp": "20",
       "defense": "5",
       "STR": "5",
-      "DEX": "5",
+      "INT": "5",
       "VIT": "5",
       "AGI": "5",
       "movespeed": "5.0f"
@@ -22,7 +22,7 @@
       "totalexp": "20",
       "defense": "10",
       "STR": "5",
-      "DEX": "5",
+      "INT": "5",
       "VIT": "5",
       "AGI": "5",
       "movespeed": "5.0f"
@@ -34,7 +34,7 @@
       "totalexp": "30",
       "defense": "15",
       "STR": "5",
-      "DEX": "5",
+      "INT": "5",
       "VIT": "5",
       "AGI": "5",
       "movespeed": "5.0f"
@@ -46,7 +46,7 @@
       "totalexp": "40",
       "defense": "30",
       "STR": "5",
-      "DEX": "5",
+      "INT": "5",
       "VIT": "5",
       "AGI": "5",
       "movespeed": "5.0f"
@@ -58,7 +58,7 @@
       "totalexp": "50",
       "defense": "30",
       "STR": "5",
-      "DEX": "5",
+      "INT": "5",
       "VIT": "5",
       "AGI": "5",
       "movespeed": "5.0f"
