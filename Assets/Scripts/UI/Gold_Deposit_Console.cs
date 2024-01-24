@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Windows;
+using UnityEngine.EventSystems;
+using Input = UnityEngine.Input;
 
 public class Gold_Deposit_Console : MonoBehaviour
 {
@@ -19,8 +22,16 @@ public class Gold_Deposit_Console : MonoBehaviour
         canvas = GameObject.Find("StorageUI").gameObject;
     }
 
-    
-    public void Input()
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.KeypadEnter))
+        {
+
+            amount_Input();
+        }
+    }
+
+    public void amount_Input()
     {
         StorageGoldAmount = int.Parse(Storage_gold_text.text);
 
