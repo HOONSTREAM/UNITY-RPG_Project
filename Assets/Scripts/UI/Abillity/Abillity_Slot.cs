@@ -17,8 +17,9 @@ public class Abillity_Slot : MonoBehaviour , IPointerUpHandler
     public TextMeshProUGUI grade_amount;
     public TextMeshProUGUI Level;
     public TextMeshProUGUI Name_grade;
+
     [SerializeField]
-    private Slider _slider;
+    public Slider _slider;
 
     private void Start()
     {

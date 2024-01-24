@@ -154,26 +154,48 @@ public class Abillity_Script : MonoBehaviour
                         return;
                     }
 
-                    abillity_Slots[i].Level.text = $"{abillity_Slots[i].skill.abillity += 10.00}"; //TEST TODO
+                    switch (abillity_Slots[i].Level.text)
+                    {
+                        case "10":
+                            abillity_Slots[i]._slider.value += 0.2f;
+                            break;
+
+                        case "20":
+                            abillity_Slots[i]._slider.value += 0.15f;
+                            break;
+                        case "30":
+                            abillity_Slots[i]._slider.value += 0.1f;
+                            break;
+
+                        default:
+                            abillity_Slots[i]._slider.value += 0.5f;
+                            break;
+
+                    }
+                     
+                    
+                    if (abillity_Slots[i]._slider.value == 1.0f)
+                    {
+                        abillity_Slots[i].Level.text = $"{abillity_Slots[i].skill.abillity += 10.00}"; //TEST TODO
+                        abillity_Slots[i]._slider.value = 0f; // 카운트 초기화
+                        return;
+                    }
+
+                    return;
 
                 }               
             }
-
-       
-           
+             
         }
 
         else if (PlayerEquipment.Instance.player_equip.TryGetValue(EquipType.Weapon, out Item value2) && value2.weapontype == WeaponType.Two_Hand) // 무기를 장착중이고, 두손검인경우
         {
-            Debug.Log("두손검 어빌을 올립니다.");
+          
 
             for (int i = 0; i < abillity_Slots.Length; i++)
             {
                 if (abillity_Slots[i].skill_name.text == "양손검")
                 {
-                    Debug.Log("두손검 어빌 발견");
-                    Debug.Log($"{abillity_Slots[i].slotnum}번 스킬슬롯 입니다.");
-                    Debug.Log("어빌을 올립니다.");
                     abillity_Slots[i].Level.text = $"{abillity_Slots[i].skill.abillity += 0.01}";
                 }
 
