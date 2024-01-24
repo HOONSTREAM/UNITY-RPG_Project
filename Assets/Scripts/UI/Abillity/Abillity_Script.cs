@@ -154,30 +154,55 @@ public class Abillity_Script : MonoBehaviour
                         return;
                     }
 
-                    switch (abillity_Slots[i].Level.text)
+                    switch (abillity_Slots[i].Level.text) // 어빌리티 구간별 카운트 획득 조정 
                     {
                         case "10":
-                            abillity_Slots[i]._slider.value += 0.2f;
+                            abillity_Slots[i]._slider.value += 0.5f;
                             break;
 
                         case "20":
-                            abillity_Slots[i]._slider.value += 0.15f;
+                            abillity_Slots[i]._slider.value += 0.5f;
                             break;
                         case "30":
-                            abillity_Slots[i]._slider.value += 0.1f;
+                            abillity_Slots[i]._slider.value += 0.4f;
                             break;
 
+                        case "40":
+                            abillity_Slots[i]._slider.value += 0.4f;
+                            break;
+
+                        case "50":
+                            abillity_Slots[i]._slider.value += 0.4f;
+                            break;
+
+                        case "60":
+                            abillity_Slots[i]._slider.value += 0.35f;
+                            break;
+
+                        case "70":
+                            abillity_Slots[i]._slider.value += 0.2f;
+                            break;
+
+                        case "80":
+                            abillity_Slots[i]._slider.value += 0.15f;
+                            break;
+
+                        case "90":
+                            abillity_Slots[i]._slider.value += 0.05f;
+                            break;
+
+
                         default:
-                            abillity_Slots[i]._slider.value += 0.5f;
+                            abillity_Slots[i]._slider.value += 1f;
                             break;
 
                     }
                      
                     
-                    if (abillity_Slots[i]._slider.value == 1.0f)
+                    if (abillity_Slots[i]._slider.value >= 1.0f)
                     {
                         abillity_Slots[i].Level.text = $"{abillity_Slots[i].skill.abillity += 10.00}"; //TEST TODO
-                        abillity_Slots[i]._slider.value = 0f; // 카운트 초기화
+                        abillity_Slots[i]._slider.value -= 1.0f; // 카운트 초기화방법 TODO
                         return;
                     }
 
