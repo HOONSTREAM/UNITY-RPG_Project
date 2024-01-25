@@ -25,8 +25,21 @@ public class Abillity_Script : MonoBehaviour
     public Abillity_Slot[] abillity_Slots;
     public Transform abillity_slotHolder;
 
+
+    #region 어빌리티 인터페이스 업데이트
+
+    public Skill skill;
+    public Image skill_icon;
+    public TextMeshProUGUI skill_name;
+    public TextMeshProUGUI grade_level;
+    public TextMeshProUGUI Abillity_Level;
+    public TextMeshProUGUI _slider_percent;
+    public Slider _slider;
+    public GameObject Abillity_Interface_Panel;
+    #endregion
+
     #region 버프스킬 지속시간 UI 관련 변수
-   
+
     private int skill_slot_number;
     private Skill skill_info;
     public Buff_Slot[] buff_slot;
@@ -57,9 +70,11 @@ public class Abillity_Script : MonoBehaviour
         PlayerAbillity.Instance.AddSkill(SkillDataBase.instance.SkillDB[2]);
         PlayerAbillity.Instance.AddSkill(SkillDataBase.instance.SkillDB[3]);
 
-    }
+        Abillity_Interface_Panel.gameObject.SetActive(false); // 어빌리티 인터페이스 패널 초기화 
 
-    private void Update()
+}
+
+private void Update()
     {
 
         if (Input.GetKeyDown(KeyCode.K))
@@ -94,7 +109,7 @@ public class Abillity_Script : MonoBehaviour
 
         return;
 
-    }
+    } // 어빌리티 퀵버튼
 
     public void X_Button_Exit()
     {
@@ -106,9 +121,7 @@ public class Abillity_Script : MonoBehaviour
         }
 
         return;
-    }
-
-
+    } // 어빌리티창 off
 
     void RedrawSlotUI()
     {
@@ -130,6 +143,10 @@ public class Abillity_Script : MonoBehaviour
         }
     }
 
+    private void OnUpdate_Abillity_Interface()
+    {
+
+    }
     public void Accumulate_abillity_Func()
 
         //TODO : 어빌 1.00 당 해당 무기 고정데미지 향상 +5 , 게임저장 방법(유니티교과서) , 그레이드
