@@ -21,13 +21,6 @@ public class Abillity_Slot : MonoBehaviour , IPointerUpHandler
     [SerializeField]
     public Slider _slider;
 
-    private void Start()
-    {
-       
-        _slider = GameObject.Find("Abillity_Slider").gameObject.GetComponent<Slider>();
- 
-    }
-
   
     public void UpdateSlotUI()
     {

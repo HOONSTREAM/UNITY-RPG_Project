@@ -143,8 +143,55 @@ private void Update()
         }
     }
 
-    private void OnUpdate_Abillity_Interface()
+    private void OnUpdate_Abillity_Interface(WeaponType weapontype)
     {
+        if (Abillity_Interface_Panel.activeSelf == false)
+        {
+            Abillity_Interface_Panel.gameObject.SetActive(true);
+        }
+
+        switch (weapontype)
+        {
+            case WeaponType.One_Hand:
+
+                for (int i = 0; i < abillity_Slots.Length; i++)
+                {
+                    if (abillity_Slots[i].skill_name.text == "한손검")
+                    {
+                        skill_icon.sprite = abillity_Slots[i].skill_icon.sprite;
+                        skill_name.text = abillity_Slots[i].skill_name.text;
+                        grade_level = abillity_Slots[i].grade_amount;
+                        Abillity_Level.text = abillity_Slots[i].skill.abillity.ToString();
+                        _slider.value = abillity_Slots[i]._slider.value;
+
+                        break;
+                    }
+                }
+
+                        break;
+
+            case WeaponType.Two_Hand:
+
+
+                for (int i = 0; i < abillity_Slots.Length; i++)
+                {
+                    if (abillity_Slots[i].skill_name.text == "양손검")
+                    {
+                        skill_icon.sprite = abillity_Slots[i].skill_icon.sprite;
+                        skill_name.text = abillity_Slots[i].skill_name.text;
+                        grade_level = abillity_Slots[i].grade_amount;
+                        Abillity_Level.text = abillity_Slots[i].skill.abillity.ToString();
+                        _slider.value = abillity_Slots[i]._slider.value;
+
+                        break;
+                    }
+                }
+
+
+                break;
+
+        }
+
 
     }
     public void Accumulate_abillity_Func()
@@ -154,12 +201,12 @@ private void Update()
        
         if (PlayerEquipment.Instance.player_equip.TryGetValue(EquipType.Weapon, out Item value) && value.weapontype == WeaponType.One_Hand) // 무기를 장착중이고, 한손검인경우
         {
-                                 
+
             for (int i = 0; i < abillity_Slots.Length; i++)
             {
                 if (abillity_Slots[i].skill_name.text == "한손검")
-                {                                                 
-                    if(double.Parse(abillity_Slots[i].Level.text) == 50.00)
+                {
+                    if (double.Parse(abillity_Slots[i].Level.text) == 50.00)
                     {
                         abillity_Slots[i].Name_grade.text = "SENIOR";
                     }
@@ -214,33 +261,104 @@ private void Update()
                             break;
 
                     }
-                     
-                    
+
+
                     if (abillity_Slots[i]._slider.value >= 1.0f)
                     {
                         abillity_Slots[i].Level.text = $"{abillity_Slots[i].skill.abillity += 10.00}"; //TEST TODO
                         abillity_Slots[i]._slider.value -= 1.0f; // 카운트 초기화방법 TODO
+                        OnUpdate_Abillity_Interface(WeaponType.One_Hand);
                         return;
                     }
 
+                    OnUpdate_Abillity_Interface(WeaponType.One_Hand);
                     return;
 
-                }               
+                }
+
+                
             }
-             
+
         }
 
         else if (PlayerEquipment.Instance.player_equip.TryGetValue(EquipType.Weapon, out Item value2) && value2.weapontype == WeaponType.Two_Hand) // 무기를 장착중이고, 두손검인경우
         {
-          
 
             for (int i = 0; i < abillity_Slots.Length; i++)
             {
                 if (abillity_Slots[i].skill_name.text == "양손검")
                 {
-                    abillity_Slots[i].Level.text = $"{abillity_Slots[i].skill.abillity += 0.01}";
+                    if (double.Parse(abillity_Slots[i].Level.text) == 50.00)
+                    {
+                        abillity_Slots[i].Name_grade.text = "SENIOR";
+                    }
+                    if (double.Parse(abillity_Slots[i].Level.text) == 100.00)
+                    {
+                        Debug.Log("어빌이 100에 달성하였습니다.");
+                        // TODO : 그레이드 진행
+                        abillity_Slots[i].Name_grade.text = "MASTER";
+                        return;
+                    }
+
+                    switch (abillity_Slots[i].Level.text) // 어빌리티 구간별 카운트 획득 조정 
+                    {
+                        case "10":
+                            abillity_Slots[i]._slider.value += 0.5f;
+                            break;
+
+                        case "20":
+                            abillity_Slots[i]._slider.value += 0.5f;
+                            break;
+                        case "30":
+                            abillity_Slots[i]._slider.value += 0.4f;
+                            break;
+
+                        case "40":
+                            abillity_Slots[i]._slider.value += 0.4f;
+                            break;
+
+                        case "50":
+                            abillity_Slots[i]._slider.value += 0.4f;
+                            break;
+
+                        case "60":
+                            abillity_Slots[i]._slider.value += 0.35f;
+                            break;
+
+                        case "70":
+                            abillity_Slots[i]._slider.value += 0.2f;
+                            break;
+
+                        case "80":
+                            abillity_Slots[i]._slider.value += 0.15f;
+                            break;
+
+                        case "90":
+                            abillity_Slots[i]._slider.value += 0.05f;
+                            break;
+
+
+                        default:
+                            abillity_Slots[i]._slider.value += 1f;
+                            break;
+
+                    }
+
+
+                    if (abillity_Slots[i]._slider.value >= 1.0f)
+                    {
+                        abillity_Slots[i].Level.text = $"{abillity_Slots[i].skill.abillity += 10.00}"; //TEST TODO
+                        abillity_Slots[i]._slider.value -= 1.0f; // 카운트 초기화방법 TODO
+                        OnUpdate_Abillity_Interface(WeaponType.Two_Hand);
+                        return;
+                    }
+
+                    OnUpdate_Abillity_Interface(WeaponType.Two_Hand);
+                    return;
+
                 }
 
+              
             }
 
         }
