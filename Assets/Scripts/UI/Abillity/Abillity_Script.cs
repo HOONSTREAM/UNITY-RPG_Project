@@ -163,7 +163,7 @@ private void Update()
                         grade_level = abillity_Slots[i].grade_amount;
                         Abillity_Level.text = abillity_Slots[i].skill.abillity.ToString();
                         _slider.value = abillity_Slots[i]._slider.value;
-
+                        _slider_percent.text = ((_slider.value) * 100).ToString();
                         break;
                     }
                 }
@@ -182,7 +182,7 @@ private void Update()
                         grade_level = abillity_Slots[i].grade_amount;
                         Abillity_Level.text = abillity_Slots[i].skill.abillity.ToString();
                         _slider.value = abillity_Slots[i]._slider.value;
-
+                        _slider_percent.text = ((_slider.value) * 100).ToString();
                         break;
                     }
                 }

@@ -331,6 +331,7 @@ public class PlayerStat : Stat
 
         if (PlayerEquipment.Instance.player_equip.TryGetValue(EquipType.Weapon, out Item One_hand_value) && One_hand_value.weapontype == WeaponType.One_Hand) // 무기를 장착중이고, 한손검인경우
         {
+
             Abillity_Script abillity_script = FindObjectOfType<Abillity_Script>();
             for(int i = 0; i < abillity_script.abillity_Slots.Length; i++)
             {
@@ -344,13 +345,26 @@ public class PlayerStat : Stat
                  break;
                 }
             }
-
             
             return improvement_abillity_attack = one_hand_sword_abillityAttack;
         }
         
         else if (PlayerEquipment.Instance.player_equip.TryGetValue(EquipType.Weapon, out Item two_hand_value) && two_hand_value.weapontype == WeaponType.Two_Hand)
         {
+
+            Abillity_Script abillity_script = FindObjectOfType<Abillity_Script>();
+            for (int i = 0; i < abillity_script.abillity_Slots.Length; i++)
+            {
+                if (abillity_script.abillity_Slots[i].skill_name.text == "양손검")
+                {
+                    double abillity_attack_improvement = (double.Parse(abillity_script.abillity_Slots[i].Level.text) * 5); //TODO :여기서 Grade 수치 * 500 도 더해야함 
+
+                    Debug.Log($"향상된 데미지, 무기종류 :{abillity_script.abillity_Slots[i].skill_name.text}, {abillity_attack_improvement}");
+                    two_hand_sword_abillityAttack = (int)abillity_attack_improvement;
+
+                    break;
+                }
+            }
 
             return improvement_abillity_attack = two_hand_sword_abillityAttack;
         }
