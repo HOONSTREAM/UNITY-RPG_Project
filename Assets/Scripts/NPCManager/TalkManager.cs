@@ -6,6 +6,12 @@ using UnityEngine;
 public class TalkManager : MonoBehaviour
 {
 
+    public interface Additional_Talking
+    {
+        void Additional_Talk();
+
+    }
+
     Dictionary<int, string[]> TalkData;
    
     void Awake()
@@ -38,6 +44,7 @@ public class TalkManager : MonoBehaviour
         
 
     }
+
 
    
 }

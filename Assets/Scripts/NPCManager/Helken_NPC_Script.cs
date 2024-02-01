@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Helken_NPC_Script : MonoBehaviour , IPointerClickHandler
+public class Helken_NPC_Script : MonoBehaviour , IPointerClickHandler, TalkManager.Additional_Talking // 인터페이스
 {
 
     [SerializeField]
@@ -25,5 +25,8 @@ public class Helken_NPC_Script : MonoBehaviour , IPointerClickHandler
         return;
     }
 
-    
+    public void Additional_Talk()
+    {
+        throw new System.NotImplementedException();
+    }
 }
