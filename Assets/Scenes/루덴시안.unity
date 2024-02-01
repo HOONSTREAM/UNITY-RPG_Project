@@ -9353,6 +9353,7 @@ MonoBehaviour:
   IsTalkAction: 0
   Talkindex: 0
   SelectedNPC: {fileID: 0}
+  Helken_selection: {fileID: 0}
 --- !u!4 &1048764668
 Transform:
   m_ObjectHideFlags: 0

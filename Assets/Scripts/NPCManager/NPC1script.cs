@@ -45,9 +45,7 @@ public class NPC1script : MonoBehaviour
             if (Physics.Raycast(ray, out hit, 100.0f, _mask))
             {
                 if (hit.collider.gameObject.layer == (int)Define.Layer.NPC1)
-                {
-                    gamemanager.SelectedNPC = gameObject;
-                    //gamemanager.TalkAction(); //이 컴포넌트가 붙어있는 게임오브젝트를 scanObject로 인자로 넘겨준다.
+                {                   
                     Shop shop = GetComponent<Shop>();
                     shop.Enter();
                     Managers.Sound.Play("Inven_open");    

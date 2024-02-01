@@ -18,12 +18,13 @@ public class GameManager : MonoBehaviour
     public TalkManager talkmanager;
     public TextMeshProUGUI talkText;
     public GameObject scanobject;
-    [SerializeField]
-    GameObject TalkPanel;
+    public GameObject TalkPanel;
     public bool IsTalkAction;
     public int Talkindex;
     public GameObject SelectedNPC; //NPC 게임오브젝트를 넘겨받아 TalkAction 함수에 scanObject에 대입하기위함 -> 버튼 OnClick 사용
 
+
+    public GameObject Helken_selection; //헬켄 NPC 대화 선택지 
 
     public void TalkAction()
     {
@@ -32,6 +33,22 @@ public class GameManager : MonoBehaviour
         Object_Data objdata = scanobject.GetComponent<Object_Data>();
         Talk(objdata.ID, objdata.IsNPC);
         TalkPanel.SetActive(IsTalkAction);
+
+        switch (objdata.ID)
+        {
+            case 1003:
+                if(Talkindex == 2)
+                {
+                    Debug.Log("선택지");
+                    Helken_selection.gameObject.SetActive(IsTalkAction);
+                }
+                break;
+
+            default:
+                break;
+
+        }
+
 
     }
 
@@ -43,6 +60,11 @@ public class GameManager : MonoBehaviour
         {
             IsTalkAction = false;
             Talkindex = 0;
+
+            #region NPC 선택지 초기화
+            Helken_selection.gameObject.SetActive(IsTalkAction);
+            #endregion
+
             return;
         }
         

@@ -39,8 +39,7 @@ public class NPC2_Script : MonoBehaviour , IPointerClickHandler
             {
 
                 PlayerController pc = _player.GetComponent<PlayerController>();
-                pc.State = Define.State.Idle;
-                Debug.Log($"{hit.collider.gameObject.name}을(를) 클릭합니다.!");
+                pc.State = Define.State.Idle;             
 
                 GameObject go = GameObject.Find("Storage CANVAS").gameObject;
                 Storage_Script storage = go.GetComponent<Storage_Script>();

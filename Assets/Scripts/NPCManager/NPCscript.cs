@@ -13,6 +13,7 @@ public class NPCscript : MonoBehaviour
     Texture2D _attackIcon;
     GameObject _player;
     #region NPC대화
+
     /*=========NPC대화 관련 변수===============*/
    
     [SerializeField]
@@ -31,10 +32,7 @@ public class NPCscript : MonoBehaviour
     
     void Update()
     {
-
         OnNPCTalking();
-
-
     }
 
     private void OnNPCTalking()
@@ -48,20 +46,11 @@ public class NPCscript : MonoBehaviour
             {
                 if (hit.collider.gameObject.layer == (int)Define.Layer.NPC)
                 {
-
                     PlayerController pc = _player.GetComponent<PlayerController>();
                     pc.State = Define.State.Idle;
-                    Debug.Log("NPC를 클릭합니다.!");
-                    gamemanager.SelectedNPC = gameObject;
-
-                    // gamemanager.TalkAction(); //이 컴포넌트가 붙어있는 게임오브젝트를 scanObject로 인자로 넘겨준다.
-
                     NPC1_shop shop = GetComponent<NPC1_shop>();
                     shop.Enter();
                     Managers.Sound.Play("Inven_open");
-
-
-
                 }
 
             }
