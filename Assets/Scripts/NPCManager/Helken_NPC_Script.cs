@@ -9,6 +9,8 @@ public class Helken_NPC_Script : MonoBehaviour , IPointerClickHandler, TalkManag
     [SerializeField]
     GameManager gamemanager;
 
+    public bool is_Additional_Talk_open = false; // 대화하기 버튼을 눌렀는지에 대한 불리언 검사 
+
     public void OnPointerClick(PointerEventData eventData)
     {
         gamemanager.SelectedNPC = gameObject;
@@ -27,7 +29,9 @@ public class Helken_NPC_Script : MonoBehaviour , IPointerClickHandler, TalkManag
 
     public void Additional_Talk()
     {
-        //TODO : 대화초기화 필요 
+       
+        is_Additional_Talk_open = true; // 대화하기 버튼 승인 
+
         GameObject.Find("@TalkManager").gameObject.GetComponent<TalkManager>().Additional_Talk_Helken(); // 대화내용 수정
         gamemanager.Helken_selection.SetActive(false);
         gamemanager.SelectedNPC = gameObject;

@@ -6,7 +6,7 @@ using UnityEngine;
 public class TalkManager : MonoBehaviour
 {
 
-    private const int Helken_NPC_ID = 1003;
+    public const int Helken_NPC_ID = 1003;
 
     public interface Additional_Talking
     {
@@ -51,7 +51,8 @@ public class TalkManager : MonoBehaviour
     public void Additional_Talk_Helken()
     {
         TalkData.Remove(Helken_NPC_ID);
-        TalkData.Add(Helken_NPC_ID, new string[] {"루덴시아에는 전설이 하나 전해져내려온다더군. 마을 촌장을 찾아가봐."});
+        TalkData.Add(Helken_NPC_ID, new string[] {"루덴시아에는 전설이 하나 전해져내려온다더군. 마을 촌장을 찾아가봐.", 
+                                                  "마을 촌장님을 찾아가보면 무언가 단서를 얻을 수 있을지도 몰라."});
     }
 
     public void Reset_TalkData()

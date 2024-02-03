@@ -12,11 +12,14 @@ public class GameManager : MonoBehaviour
     private GameObject _player; //나중에 서버랑 연동되면 딕셔너리로 int ID로 관리
 
 
+    #region NPC ID 참조
+    private const int HelKen_NPC_ID = 1003;
+    #endregion
 
     #region NPC대화
     /*================================NPC대화관련 스크립트===============================*/
     public TalkManager talkmanager;
-    public TextMeshProUGUI talkText;
+    public TextMeshProUGUI talkText; // 실제로 TalkPanel에 등록되는 텍스트 내용 ( 대화내용 ) 
     public GameObject scanobject;
     public GameObject TalkPanel;
     public bool IsTalkAction;
@@ -25,29 +28,49 @@ public class GameManager : MonoBehaviour
 
 
     public GameObject Helken_selection; //헬켄 NPC 대화 선택지 
+   
 
-
-    public void TalkAction()
+    public void TalkAction() //실제 대화진행 
     {
+        
+
+
         Debug.Log($"토크인덱스 : {Talkindex}");
         scanobject = SelectedNPC;     
         Object_Data objdata = scanobject.GetComponent<Object_Data>();
         Talk(objdata.ID, objdata.IsNPC);
         TalkPanel.SetActive(IsTalkAction);
 
-        switch (objdata.ID)
+        switch (objdata.ID) // NPC별 특수기능 검사 
         {
-            case 1003:
-                
-                if(Talkindex == 2)
+            case HelKen_NPC_ID:
+
+                // (대화하기 버튼 진행을 하지 않았고, 첫 대화의 인덱스 최종에 도달한 경우)
+                if(Talkindex == 2 && scanobject.gameObject.GetComponent<Helken_NPC_Script>().is_Additional_Talk_open == false)
                 {
                     Debug.Log("선택지");
                     Helken_selection.gameObject.SetActive(IsTalkAction);
                     Talkindex = 0; // 톡 인덱스 초기화
                 }
+                else if (scanobject.gameObject.GetComponent<Helken_NPC_Script>().is_Additional_Talk_open == true)
+                {
+                    Debug.Log("추가대화 진행");
+                    Helken_selection.gameObject.SetActive(false);
+
+                    if(Talkindex == 2) // 추가 대화가 끝에 도달했는지 검사 
+                    {
+                        scanobject.gameObject.GetComponent<Helken_NPC_Script>().is_Additional_Talk_open = false;
+                        talkmanager.Reset_TalkData(); // Talk Data 리셋
+                        Talkindex = 0;
+                        
+                    }                   
+
+                }
+
                 break;
 
             default:
+
                 break;
 
         }
@@ -55,7 +78,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    void Talk(int id, bool isNPC)
+    void Talk(int id, bool isNPC) //토크판넬에 텍스트를 등록하는 함수 
     {
         string talkData = talkmanager.GetTalk(id, Talkindex);
 
@@ -63,11 +86,7 @@ public class GameManager : MonoBehaviour
         {
             IsTalkAction = false;
             Talkindex = 0;
-
-            #region NPC 선택지 초기화
-            Helken_selection.gameObject.SetActive(IsTalkAction);
-            #endregion
-
+        
             return;
         }
         
