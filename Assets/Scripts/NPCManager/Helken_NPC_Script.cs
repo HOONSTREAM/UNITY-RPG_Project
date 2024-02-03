@@ -9,8 +9,6 @@ public class Helken_NPC_Script : MonoBehaviour , IPointerClickHandler, TalkManag
     [SerializeField]
     GameManager gamemanager;
 
-    
-
     public void OnPointerClick(PointerEventData eventData)
     {
         gamemanager.SelectedNPC = gameObject;
@@ -19,14 +17,29 @@ public class Helken_NPC_Script : MonoBehaviour , IPointerClickHandler, TalkManag
 
     public void Helken_Taking_end_button()
     {
+        
         gamemanager.TalkPanel.SetActive(false);
         gamemanager.Helken_selection.SetActive(false);
+        GameObject.Find("@TalkManager").gameObject.GetComponent<TalkManager>().Reset_TalkData(); // 대화연장내용 리셋
 
         return;
     }
 
     public void Additional_Talk()
     {
-        throw new System.NotImplementedException();
+        //TODO : 대화초기화 필요 
+        GameObject.Find("@TalkManager").gameObject.GetComponent<TalkManager>().Additional_Talk_Helken(); // 대화내용 수정
+        gamemanager.Helken_selection.SetActive(false);
+        gamemanager.SelectedNPC = gameObject;
+        gamemanager.TalkAction();
+
+        return;
     }
+
+    public void Helken_Quest()
+    {
+
+    }
+
+
 }

@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject Helken_selection; //헬켄 NPC 대화 선택지 
 
+
     public void TalkAction()
     {
         Debug.Log($"토크인덱스 : {Talkindex}");
@@ -37,10 +38,12 @@ public class GameManager : MonoBehaviour
         switch (objdata.ID)
         {
             case 1003:
+                
                 if(Talkindex == 2)
                 {
                     Debug.Log("선택지");
                     Helken_selection.gameObject.SetActive(IsTalkAction);
+                    Talkindex = 0; // 톡 인덱스 초기화
                 }
                 break;
 
@@ -78,7 +81,7 @@ public class GameManager : MonoBehaviour
         }
 
         IsTalkAction = true;
-        Talkindex++; //그다음 문장을 뽑아내기 위함 
+        Talkindex++; //그다음 문장을 뽑아내기 위함
     }
     /*==================================================================================*/
     #endregion
