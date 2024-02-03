@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
 
     public void TalkAction() //실제 대화진행 
     {
-        
+        // TODO: 추가적인 대화 종료 후, 대화창 종료 방식 
 
 
         Debug.Log($"토크인덱스 : {Talkindex}");
