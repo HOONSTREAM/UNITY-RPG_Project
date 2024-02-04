@@ -26,20 +26,26 @@ public class GameManager : MonoBehaviour
     public int Talkindex;
     public GameObject SelectedNPC; //NPC 게임오브젝트를 넘겨받아 TalkAction 함수에 scanObject에 대입하기위함 -> 버튼 OnClick 사용
 
+    public TextMeshProUGUI NPC_name;
+
+    public GameObject Talk_Panel_next_button;
+    public GameObject Additional_Talk_button;
 
     public GameObject Helken_selection; //헬켄 NPC 대화 선택지 
    
 
     public void TalkAction() //실제 대화진행 
     {
-        // TODO: 추가적인 대화 종료 후, 대화창 종료 방식 
-
-
+   
         Debug.Log($"토크인덱스 : {Talkindex}");
         scanobject = SelectedNPC;     
         Object_Data objdata = scanobject.GetComponent<Object_Data>();
         Talk(objdata.ID, objdata.IsNPC);
         TalkPanel.SetActive(IsTalkAction);
+
+        Talk_Panel_next_button.gameObject.SetActive(true);
+
+        NPC_name.text = scanobject.name;
 
         switch (objdata.ID) // NPC별 특수기능 검사 
         {
@@ -49,7 +55,10 @@ public class GameManager : MonoBehaviour
                 if(Talkindex == 2 && scanobject.gameObject.GetComponent<Helken_NPC_Script>().is_Additional_Talk_open == false)
                 {
                     Debug.Log("선택지");
+                    Talk_Panel_next_button.gameObject.SetActive(false);
                     Helken_selection.gameObject.SetActive(IsTalkAction);
+                    Additional_Talk_button.gameObject.SetActive(true);
+
                     Talkindex = 0; // 톡 인덱스 초기화
                 }
                 else if (scanobject.gameObject.GetComponent<Helken_NPC_Script>().is_Additional_Talk_open == true)
@@ -59,6 +68,9 @@ public class GameManager : MonoBehaviour
 
                     if(Talkindex == 2) // 추가 대화가 끝에 도달했는지 검사 
                     {
+                        Talk_Panel_next_button.gameObject.SetActive(false);
+                        Helken_selection.gameObject.SetActive(true);
+                        Additional_Talk_button.gameObject.SetActive(false);
                         scanobject.gameObject.GetComponent<Helken_NPC_Script>().is_Additional_Talk_open = false;
                         talkmanager.Reset_TalkData(); // Talk Data 리셋
                         Talkindex = 0;
@@ -86,7 +98,8 @@ public class GameManager : MonoBehaviour
         {
             IsTalkAction = false;
             Talkindex = 0;
-        
+            
+
             return;
         }
         

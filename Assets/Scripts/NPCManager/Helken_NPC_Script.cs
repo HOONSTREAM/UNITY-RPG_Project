@@ -19,7 +19,7 @@ public class Helken_NPC_Script : MonoBehaviour , IPointerClickHandler, TalkManag
 
     public void Helken_Taking_end_button()
     {
-        
+
         gamemanager.TalkPanel.SetActive(false);
         gamemanager.Helken_selection.SetActive(false);
         GameObject.Find("@TalkManager").gameObject.GetComponent<TalkManager>().Reset_TalkData(); // 대화연장내용 리셋
