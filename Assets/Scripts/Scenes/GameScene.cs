@@ -5,7 +5,8 @@ using UnityEngine.UIElements;
 using static Define;
 
 public class GameScene : BaseScene
-{  
+{
+
     
     protected override void Init()
     {
@@ -22,6 +23,7 @@ public class GameScene : BaseScene
             GameObject gos = new GameObject { name = "Spawning Pool" };
             SpawningPool pools = gos.GetAddComponent<SpawningPool>();
             pools.SetKeepMonsterCount(2);
+      
             return;
         }
 
@@ -29,10 +31,9 @@ public class GameScene : BaseScene
 
 
         SceneType = Define.Scene.Rudencia;
-
-        Managers.Resources.Instantiate("Save_Data"); //Save_Data 오브젝트 새로 생성
-        Dictionary<int, Data.Stat> dict = Managers.Data.StatDict;
-        GameObject.Find("NPC Folder_Rudencia_shop").gameObject.SetActive(false);
+        
+        Managers.Resources.Instantiate("Save_Data"); //Save_Data 오브젝트 새로 생성      
+        Dictionary<int, Data.Stat> dict = Managers.Data.StatDict;      
         Managers.Sound.Play("Calm2 - Childhood Friends", Define.Sound.Bgm);
         Managers.Sound.Play("Nature Ambiance Sound", Define.Sound.Ambiance);
        
@@ -45,7 +46,10 @@ public class GameScene : BaseScene
         GameObject go = new GameObject { name = "Spawning Pool" };
         SpawningPool pool = go.GetAddComponent<SpawningPool>();
         pool.SetKeepMonsterCount(2);
-    
+
+        
+
+
     }
 
     public override void Clear()
