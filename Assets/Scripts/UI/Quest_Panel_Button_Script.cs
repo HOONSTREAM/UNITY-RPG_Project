@@ -5,6 +5,7 @@ using UnityEngine;
 public class Quest_Panel_Button_Script : MonoBehaviour
 {
     public GameObject Quest_Panel;
+    public GameObject Quest_CANVAS;
 
     public bool active_quest_panel = false;
 
@@ -13,6 +14,7 @@ public class Quest_Panel_Button_Script : MonoBehaviour
     {
         active_quest_panel = !active_quest_panel;
         Quest_Panel.SetActive(active_quest_panel);
+        Managers.UI.SetCanvas(Quest_CANVAS, true); // 캔버스 SortOrder 순서를 열릴때 마다 정의함. (제일 마지막에 열린것이 가장 위로)
         Managers.Sound.Play("Inven_Open");
 
         return;

@@ -82,6 +82,7 @@ private void Update()
             Debug.Log("스킬창을 열기 위한 K키 입력 완료");
             active_abillity_panel = !active_abillity_panel;
             Abillity_Panel.SetActive(active_abillity_panel);
+            Managers.UI.SetCanvas(Abillity_canvas, true); // 캔버스 SortOrder 순서를 열릴때 마다 정의함. (제일 마지막에 열린것이 가장 위로)
             Managers.Sound.Play("Inven_Open");
 
             if (Abillity_Panel.activeSelf == false)
@@ -105,6 +106,7 @@ private void Update()
 
         active_abillity_panel = !active_abillity_panel;
         Abillity_Panel.SetActive(active_abillity_panel);
+        Managers.UI.SetCanvas(Abillity_canvas, true); // 캔버스 SortOrder 순서를 열릴때 마다 정의함. (제일 마지막에 열린것이 가장 위로)
         Managers.Sound.Play("Inven_Open");
 
         return;

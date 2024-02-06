@@ -52,6 +52,7 @@ public class Storage_Script : MonoBehaviour
         RedrawSlotUI();
         activestorage = !activestorage;
         StoragePanel.SetActive(activestorage);
+        Managers.UI.SetCanvas(Storage_Canvas, true); // 캔버스 SortOrder 순서를 열릴때 마다 정의함. (제일 마지막에 열린것이 가장 위로)
         Managers.Sound.Play("Inven_Open");
 
         

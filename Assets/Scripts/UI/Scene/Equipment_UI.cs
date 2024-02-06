@@ -101,6 +101,7 @@ public class Equipment_UI : MonoBehaviour
         {
             active_equipment_panel = !active_equipment_panel;
             equipment_panel.SetActive(active_equipment_panel);
+            Managers.UI.SetCanvas(Inventory_canvas, true);
             RedrawSlotUI(); // 아이템이 아무것도 없을 때, 툴팁이 뜨는 것을 방지 
             Managers.Sound.Play("Inven_Open");
         }
@@ -125,6 +126,7 @@ public class Equipment_UI : MonoBehaviour
     {
         active_equipment_panel = !active_equipment_panel;
         equipment_panel.SetActive(active_equipment_panel);
+        Managers.UI.SetCanvas(Inventory_canvas, true);
         Managers.Sound.Play("Inven_Open");
 
     }
