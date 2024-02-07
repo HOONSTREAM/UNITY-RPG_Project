@@ -8,10 +8,7 @@ public class Exit_Console : MonoBehaviour
 {
     public GameObject ExitConsole;
 
-    public GameObject INVENTORY_CANVAS;
-    public GameObject QuestSlot_CANVAS;
-    public GameObject Abillity_CANVAS;
-    public GameObject Storage_CANVAS;
+    public List<GameObject> UI_panels;
 
     public GameObject InvenUI;
     public GameObject EquipmentUI;
@@ -19,22 +16,64 @@ public class Exit_Console : MonoBehaviour
     public GameObject Abillity_slot_UI;
     public GameObject Storage_slot_UI;
 
+  
+    
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if(InvenUI.activeSelf || EquipmentUI.activeSelf || QuestSlotUI.activeSelf || Abillity_slot_UI.activeSelf || Storage_slot_UI.activeSelf)
             {
-                Debug.Log("먼저 열려있는 창이 있다.");
+              
 
-                int inven_sort_order = INVENTORY_CANVAS.gameObject.GetComponent<Canvas>().sortingOrder;
-                int quest_sort_order = QuestSlot_CANVAS.gameObject.GetComponent<Canvas>().sortingOrder;
-                int abillity_sort_order = Abillity_CANVAS.gameObject.GetComponent<Canvas>().sortingOrder;
-                int storage_sort_order = Storage_CANVAS.gameObject.GetComponent<Canvas>().sortingOrder;
+                int highestSortOrder = int.MinValue;
 
-                int max_sort_order = Mathf.Max(inven_sort_order, quest_sort_order, abillity_sort_order, storage_sort_order);
+                GameObject PanelToClose = null;
 
-                Debug.Log(max_sort_order);
+                foreach(GameObject panel in UI_panels)
+                {
+                    
+                    Canvas canvas = panel.GetComponent<Canvas>();
+                    if (canvas != null && canvas.sortingOrder > highestSortOrder)
+                    {
+                        highestSortOrder = canvas.sortingOrder;
+                        Debug.Log(highestSortOrder);
+                        PanelToClose = panel;
+                        
+                    }
+
+                }
+
+                if (PanelToClose != null)
+                {
+                    Debug.Log(PanelToClose.name);
+
+                    switch (PanelToClose.name)
+                    {
+                        case "INVENTORY CANVAS":
+
+                            InvenUI.gameObject.SetActive(false);
+                            EquipmentUI.gameObject.SetActive(false);
+                            PanelToClose.gameObject.GetComponent<Canvas>().sortingOrder = 0;
+                            break;                     
+                        case "QuestSlot CANVAS":
+                            QuestSlotUI.gameObject.SetActive(false);
+                            PanelToClose.gameObject.GetComponent<Canvas>().sortingOrder = 0;
+                            break;
+                        case "Abillity_Slot_CANVAS ":
+                            Abillity_slot_UI.gameObject.SetActive(false);
+                            PanelToClose.gameObject.GetComponent<Canvas>().sortingOrder = 0;
+                            break;
+                        case "Storage CANVAS":
+                            Storage_slot_UI.gameObject.SetActive(false);
+                            PanelToClose.gameObject.GetComponent<Canvas>().sortingOrder = 0;
+                            break;
+
+                    }
+                }
+
+                return;
             }
 
             Managers.Sound.Play("Coin");
