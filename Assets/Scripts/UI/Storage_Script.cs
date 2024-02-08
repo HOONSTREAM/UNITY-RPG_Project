@@ -25,7 +25,7 @@ public class Storage_Script : MonoBehaviour
     public Slot[] Player_slots;
     public Transform player_slotHolder;
 
-    bool activestorage = false;
+   public bool activestorage = false;
 
 
 

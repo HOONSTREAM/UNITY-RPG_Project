@@ -20,8 +20,7 @@ public class Quest_Script : MonoBehaviour
     public Slot[] Player_slots;
     public Transform player_slotHolder;
 
-    bool activequestpanel = false;
-
+    public bool activequestpanel = false;
 
 
     void Start()
@@ -43,7 +42,19 @@ public class Quest_Script : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
 
+            Debug.Log("인벤토리를 열기 위한 I키 입력 완료");
+            activequestpanel = !activequestpanel;
+            Quest_Panel.SetActive(activequestpanel);
+            Managers.UI.SetCanvas(Quest_CANVAS, true);
+            Managers.Sound.Play("Inven_Open");
+
+        }
+    }
 
     void RedrawSlotUI()
     {
@@ -70,6 +81,31 @@ public class Quest_Script : MonoBehaviour
     {
 
     }
-    
+
+
+    public void Button_Function()
+    {
+        activequestpanel = !activequestpanel;
+        Quest_Panel.SetActive(activequestpanel);
+        Managers.UI.SetCanvas(Quest_CANVAS, true); // 캔버스 SortOrder 순서를 열릴때 마다 정의함. (제일 마지막에 열린것이 가장 위로)
+        Managers.Sound.Play("Inven_Open");
+
+        return;
+
+    }
+
+    public void Exit_Button()
+    {
+        if (Quest_Panel.activeSelf)
+        {
+            Quest_Panel.SetActive(false);
+            Managers.Sound.Play("Inven_Open");
+
+        }
+
+        return;
+
+    }
+
 
 }

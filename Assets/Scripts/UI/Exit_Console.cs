@@ -55,18 +55,30 @@ public class Exit_Console : MonoBehaviour
 
                             InvenUI.gameObject.SetActive(false);
                             EquipmentUI.gameObject.SetActive(false);
+
+                            PanelToClose.gameObject.GetComponent<NewInvenUI>().activeInventory = false;
+                            PanelToClose.gameObject.GetComponent<Equipment_UI>().active_equipment_panel = false;
+
+                            Managers.Sound.Play("Inven_Open");
                             PanelToClose.gameObject.GetComponent<Canvas>().sortingOrder = 0;
+                            
                             break;                     
                         case "QuestSlot CANVAS":
                             QuestSlotUI.gameObject.SetActive(false);
+                            PanelToClose.gameObject.GetComponent<Quest_Script>().activequestpanel = false;
+                            Managers.Sound.Play("Inven_Open");
                             PanelToClose.gameObject.GetComponent<Canvas>().sortingOrder = 0;
                             break;
                         case "Abillity_Slot_CANVAS ":
                             Abillity_slot_UI.gameObject.SetActive(false);
+                            PanelToClose.gameObject.GetComponent<Abillity_Script>().active_abillity_panel = false;
+                            Managers.Sound.Play("Inven_Open");
                             PanelToClose.gameObject.GetComponent<Canvas>().sortingOrder = 0;
                             break;
                         case "Storage CANVAS":
                             Storage_slot_UI.gameObject.SetActive(false);
+                            PanelToClose.gameObject.GetComponent<Storage_Script>().activestorage = false;
+                            Managers.Sound.Play("Inven_Open");
                             PanelToClose.gameObject.GetComponent<Canvas>().sortingOrder = 0;
                             break;
 
