@@ -50,7 +50,6 @@ public enum EquipType // 12 + 1칸 (반지는 2개)
     vehicle, // 탈것
     cape, //망토
 
-
 }
 
 /*유니티 에디터의 인스펙터에는 사용자가 정의한 클래스 또는 구조체의 정보가 인스펙터에 노출되지 않지만,
@@ -79,8 +78,6 @@ public class Item
     public int amount = 1;
     public int buyprice;
     public int sellprice;
-
-
     public List<ItemEffect> efts;
 
 

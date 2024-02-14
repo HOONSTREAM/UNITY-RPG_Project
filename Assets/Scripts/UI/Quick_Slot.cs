@@ -50,12 +50,6 @@ public class Quick_Slot : MonoBehaviour, IPointerUpHandler
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        Item_Use(item);
-    }
-
-
-    public void Item_Use(Item item)
-    {
         if (this.item == null)
         {
             GameObject player = Managers.Game.GetPlayer();
@@ -63,6 +57,7 @@ public class Quick_Slot : MonoBehaviour, IPointerUpHandler
 
             return;
         }
+
         if (item.itemtype == ItemType.Consumables)
         {
             bool isUsed = this.item.Use();
@@ -72,14 +67,14 @@ public class Quick_Slot : MonoBehaviour, IPointerUpHandler
             {
                 for (int i = 0; i < playerslots.Length; i++)
                 {
-                    if (playerslots[i].item == this.item) //인벤토리에 같은 아이템이 있는지 검사하고 그 같은아이템도 삭제(invoke 포함됨)
+                    if (playerslots[i].item == this.item) 
                     {
                         PlayerInventory.Instance.RemoveItem(playerslots[i].slotnum);
-                        break; //한번 만족했으면 반복문을 빠져나가야 한다. (선택된 퀵슬롯 기준 뒷 퀵슬롯 전부 사라지는 문제 해결)
+                        break; 
                     }
 
                 }
-                //PlayerQuickSlot.Instance.Quick_slot_RemoveItem(this.slotnum);
+               
                 PlayerQuickSlot.Instance.onChangeItem.Invoke();
 
             }
@@ -93,5 +88,5 @@ public class Quick_Slot : MonoBehaviour, IPointerUpHandler
         }
     }
 
-
 }
+
