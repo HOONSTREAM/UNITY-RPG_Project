@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class QuickSlot_Script : MonoBehaviour
 {
@@ -28,6 +29,16 @@ public class QuickSlot_Script : MonoBehaviour
         RedrawSlotUI();
 
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            
+        }
+
+    }
+
 
     void RedrawSlotUI()
     {

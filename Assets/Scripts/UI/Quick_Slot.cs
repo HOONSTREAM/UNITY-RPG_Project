@@ -24,7 +24,6 @@ public class Quick_Slot : MonoBehaviour, IPointerUpHandler
         playerslots = playerslot_holder.GetComponentsInChildren<Slot>();
     }
 
-
     public void UpdateSlotUI()
     {
         itemicon.sprite = item.itemImage;
@@ -51,7 +50,13 @@ public class Quick_Slot : MonoBehaviour, IPointerUpHandler
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        if(this.item == null)
+        Item_Use(item);
+    }
+
+
+    public void Item_Use(Item item)
+    {
+        if (this.item == null)
         {
             GameObject player = Managers.Game.GetPlayer();
             GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("퀵슬롯에 아이템이 없습니다.");
@@ -60,25 +65,25 @@ public class Quick_Slot : MonoBehaviour, IPointerUpHandler
         }
         if (item.itemtype == ItemType.Consumables)
         {
-           bool isUsed =  this.item.Use();
+            bool isUsed = this.item.Use();
 
             if (isUsed)
-            
+
             {
-                for(int i = 0; i< playerslots.Length; i++)
+                for (int i = 0; i < playerslots.Length; i++)
                 {
                     if (playerslots[i].item == this.item) //인벤토리에 같은 아이템이 있는지 검사하고 그 같은아이템도 삭제(invoke 포함됨)
                     {
                         PlayerInventory.Instance.RemoveItem(playerslots[i].slotnum);
                         break; //한번 만족했으면 반복문을 빠져나가야 한다. (선택된 퀵슬롯 기준 뒷 퀵슬롯 전부 사라지는 문제 해결)
                     }
-                    
+
                 }
                 //PlayerQuickSlot.Instance.Quick_slot_RemoveItem(this.slotnum);
                 PlayerQuickSlot.Instance.onChangeItem.Invoke();
-                               
+
             }
-           
+
             return;
         }
 
@@ -87,14 +92,6 @@ public class Quick_Slot : MonoBehaviour, IPointerUpHandler
             return;
         }
     }
-
-
-
-
-
-
-
-
 
 
 }

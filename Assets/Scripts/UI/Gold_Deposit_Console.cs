@@ -26,7 +26,6 @@ public class Gold_Deposit_Console : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.KeypadEnter))
         {
-
             amount_Input();
         }
     }

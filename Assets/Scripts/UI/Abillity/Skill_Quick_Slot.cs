@@ -20,6 +20,8 @@ public class Skill_Quick_Slot : MonoBehaviour, IPointerUpHandler
         abillity_slots = abillity_slot_holder.GetComponentsInChildren<Abillity_Slot>();
     }
 
+    
+
 
     public void UpdateSlotUI()
     {

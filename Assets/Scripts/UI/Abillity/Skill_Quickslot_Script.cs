@@ -14,10 +14,8 @@ public class Skill_Quickslot_Script : MonoBehaviour
     public Transform abillity_slotHolder;
 
 
-
     void Start()
     {
-
         skill_quickslot = PlayerSkillQuickSlot.Instance;
         quick_slot = skill_quickslot_holder.GetComponentsInChildren<Skill_Quick_Slot>();
         abillity_slots = abillity_slotHolder.GetComponentsInChildren<Abillity_Slot>();
@@ -25,8 +23,9 @@ public class Skill_Quickslot_Script : MonoBehaviour
         skill_quickslot.onChangeskill_quickslot += RedrawSlotUI;  // Invoke 함수 등록 이벤트 발생마다 함수 호출
 
         RedrawSlotUI();
-
     }
+
+   
 
     void RedrawSlotUI()
     {

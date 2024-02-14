@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using TMPro;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -18,7 +19,7 @@ public class Skill_QuickSlot_Register : MonoBehaviour
     public Skill_Quick_Slot[] skill_quick_slot; //플레이어의 스킬 퀵슬롯 참조
     public Transform skill_quickslot_holder;
     public PlayerStat stat;
-
+    public GameObject Skill_Slot_ui;
   
     public Skill Get_Slotnum(int slotnum) //슬롯에 있는 스킬을 참조받아 변수에 저장해두고, 그 슬롯의 넘버도 보관
     {
@@ -29,39 +30,76 @@ public class Skill_QuickSlot_Register : MonoBehaviour
 
     void Start()
     {
-        GameObject go = GameObject.Find("Skill_Slot_UI").gameObject;
+        GameObject go = Skill_Slot_ui;
         slots = go.GetComponentsInChildren<Abillity_Slot>();
         stat = Managers.Game.GetPlayer().gameObject.GetComponent<PlayerStat>();
         skill_quick_slot = skill_quickslot_holder.GetComponentsInChildren<Skill_Quick_Slot>();
     }
 
-    public void Skill_Use()
+    private void Update() // 실제로 퀵슬롯의 키가 눌렸는지 검사하고, 해당 스킬을 사용
     {
-        bool isUse = skill_info.Skill_Use();
 
-        if (isUse)
+        if (Input.GetKeyDown(KeyCode.Alpha5))
         {
+            skill_info = PlayerSkillQuickSlot.Instance.quick_slot_skill[0];
            
-
-            Register_selection.SetActive(false);
-
-            if(skill_info.skilltype == SkillType.Buff)
-            {
-                Abillity_Script abs = GameObject.Find("Abillity_Slot_CANVAS ").gameObject.GetAddComponent<Abillity_Script>();
-                abs.start_buff_skill(skill_info);// 버프스킬 지속시간 타이머 UI 함수 호출
-            }
-
-            return;
+            Quick_Slot_Skill_Use();
         }
-        else if (!isUse)
+
+        if (Input.GetKeyDown(KeyCode.Alpha6))
         {
-            Register_selection.SetActive(false); // 콘솔창만 종료하고 함수 종료
-            return;
+            skill_info = PlayerSkillQuickSlot.Instance.quick_slot_skill[1];
+
+            Quick_Slot_Skill_Use();
         }
 
-        return;
+        if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            skill_info = PlayerSkillQuickSlot.Instance.quick_slot_skill[2];
+
+            Quick_Slot_Skill_Use();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha8))
+        {
+            skill_info = PlayerSkillQuickSlot.Instance.quick_slot_skill[3];
+
+            Quick_Slot_Skill_Use();
+        }
 
     }
+
+    public void Quick_Slot_Skill_Use()
+    {
+        if (this.skill_info == null)
+        {
+            GameObject player = Managers.Game.GetPlayer();
+            GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("퀵슬롯에 스킬이 없습니다.");
+
+            return;
+        }
+        if (skill_info.skilltype == SkillType.Buff)
+        {
+            bool isUsed = this.skill_info.Skill_Use();
+
+            if (isUsed)
+
+            {
+                //TODO: 퀵슬롯을 사용했을 때 로직
+                Abillity_Script abs = GameObject.Find("Abillity_Slot_CANVAS ").gameObject.GetAddComponent<Abillity_Script>();
+                abs.start_buff_skill(this.skill_info);
+
+            }
+            return;
+        }
+
+        else if (skill_info.skilltype == SkillType.Active)
+        {
+            //TODO: 퀵슬롯을 사용했을 때 로직
+            return;
+        }
+    }
+
     public void RegisterQuickSlot()
     {
         Register_selection.gameObject.SetActive(false);
@@ -69,11 +107,11 @@ public class Skill_QuickSlot_Register : MonoBehaviour
 
 
 
-        for (int i = 0; i < skill_quick_slot.Length; i++) //퀵슬롯에 이미 해당아이템이 있는지 검사
+        for (int i = 0; i < skill_quick_slot.Length; i++) //퀵슬롯에 이미 해당스킬이 있는지 검사
         {
             if (skill_quick_slot[i].skill == skill_info)
             {
-                PlayerSkillQuickSlot.Instance.Quick_slot_RemoveSkill(skill_quick_slot[i].slotnum); // 그 해당아이템 데이터를 전부 삭제하고
+                PlayerSkillQuickSlot.Instance.Quick_slot_RemoveSkill(skill_quick_slot[i].slotnum); // 그 해당 데이터를 전부 삭제하고
             }
         }
 
