@@ -88,7 +88,7 @@ public class Quest_Script : MonoBehaviour
 
                     if (Player_Quest.Instance.PlayerQuest[i].is_complete == false)
                     {
-                        if(Player_Quest.Instance.PlayerQuest[i].monster_counter == 2)
+                        if(Player_Quest.Instance.PlayerQuest[i].monster_counter >= 2)
                         {
                             Player_Quest.Instance.PlayerQuest[i].monster_counter = 0; //초기화
                             Player_Quest.Instance.PlayerQuest[i].Quest_Clear();
@@ -96,6 +96,7 @@ public class Quest_Script : MonoBehaviour
                             Player_Quest.Instance.onChangequest.Invoke();
                             GameObject.Find("GUI_User_Interface").
                                gameObject.GetComponent<Print_Info_Text>().PrintUserText("퀘스트 완료");
+                            //TODO : 다음 메인퀘스트 자동 추가
 
                             break;
                         }

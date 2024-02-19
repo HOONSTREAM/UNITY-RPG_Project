@@ -86,7 +86,25 @@ public class Stat : MonoBehaviour
                 dropitem.transform.position = transform.position; //드랍아이템 위치
                 dropitem.transform.position += new Vector3(0, 0.4f, 0); //2D 스프라이트 잘림방지
                 
-               // TODO : 퀘스트 완료여부 확인 후 몬스터 카운트 증가 
+               // TODO : 퀘스트 완료여부 확인 후 몬스터 카운트 증가
+
+               for(int i = 0; i<QuestDatabase.instance.QuestDB.Count; i++)
+                {
+                    if(QuestDatabase.instance.QuestDB[i].Quest_ID == 1)
+                    {
+                        if(QuestDatabase.instance.QuestDB[i].is_complete == true)
+                        {
+                            return;
+                        }
+
+                        QuestDatabase.instance.QuestDB[i].monster_counter++;
+                        Player_Quest.Instance.onChangequest.Invoke(); // 카운터 증가 즉시 반영
+                        
+                       
+                        break;
+                    }
+                }
+               
             }
 
             StartCoroutine("MonsterDead");
