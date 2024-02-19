@@ -171,7 +171,7 @@ public class PlayerStat : Stat
     #region 스텟세팅 (장착장비검사,어빌리티검사)
     
 
-    public void SetStat(int level) 
+    public void SetStat(int level)  // INT , AGI 스텟세팅 필요 TODO
     {
 
         Dictionary<int, Data.Stat> dict = Managers.Data.StatDict; //키가 레벨 
@@ -179,9 +179,9 @@ public class PlayerStat : Stat
 
         _hp = stat.maxHP;
         _maxHp = stat.maxHP;
-        _defense = stat.defense + ChestDEFvalue + (VITvalue / 10) + buff_defense; //총 DEX의 1/10을 데미지에 기여함
+        _defense = stat.defense + ChestDEFvalue + (_vit / 10) + buff_defense; //총 DEX의 1/10을 데미지에 기여함
         _movespeed = stat.movespeed;
-        _attack = stat.attack + WeaponAttackValue + (WeaponSTRValue / 10) + Onupdate_Abillity_attack() + buff_damage; //총 STR의 1/10을 데미지에 기여함+ 무기 어빌리티별 향상데미지
+        _attack = stat.attack + WeaponAttackValue + (_str / 10) + Onupdate_Abillity_attack() + buff_damage; //총 STR의 1/10을 데미지에 기여함+ 무기 어빌리티별 향상데미지
 
     }
 
