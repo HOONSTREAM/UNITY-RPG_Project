@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 1973283103054779061}
   - component: {fileID: 4218460332432982868}
   - component: {fileID: -1922779647841172022}
+  - component: {fileID: -8216856221784883435}
   m_Layer: 8
   m_Name: Slime
   m_TagString: Untagged
@@ -190,6 +191,7 @@ MonoBehaviour:
   _movespeed: 0
   _attack: 0
   _defense: 0
+  Fielditem: {fileID: 0}
 --- !u!136 &4218460332432982868
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -235,6 +237,20 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &-8216856221784883435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286134381823750259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2959f4b04df70a7439191b6e7f653f37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: 9000
+  IsNPC: 0
 --- !u!1 &2283790857954846239
 GameObject:
   m_ObjectHideFlags: 0

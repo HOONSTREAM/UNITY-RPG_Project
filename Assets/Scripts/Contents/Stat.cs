@@ -85,8 +85,8 @@ public class Stat : MonoBehaviour
                 GameObject dropitem = Fielditem.GetComponent<FieldItem>().SlimeDropFieldItem();
                 dropitem.transform.position = transform.position; //드랍아이템 위치
                 dropitem.transform.position += new Vector3(0, 0.4f, 0); //2D 스프라이트 잘림방지
-
-               
+                
+               // TODO : 퀘스트 완료여부 확인 후 몬스터 카운트 증가 
             }
 
             StartCoroutine("MonsterDead");
@@ -101,7 +101,7 @@ public class Stat : MonoBehaviour
 
    IEnumerator MonsterDead() // 몬스터 오브젝트 삭제를 지연시켜서 몬스터 체력에 비해 데미지가 초과되어도 데미지폰트가 뜨도록 함
     {
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.25f);     
         Managers.Game.DeSpawn(gameObject);
     }
 }

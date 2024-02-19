@@ -29,12 +29,14 @@ using UnityEngine;
         public string Description;
         public string summing_up_Description;
         public Sprite quest_image; //Main or Sub
-       
+        public bool is_complete;
+        public int monster_counter;
+        public bool npc_meet;
 
         public List<Quest_Effect> efts;
 
 
-        public virtual bool Quest_Use()
+        public virtual bool Quest_Clear()
         {
             bool isUsed = false;
 
@@ -61,6 +63,9 @@ using UnityEngine;
             quest.summing_up_Description = this.summing_up_Description;
             quest.efts = this.efts;
             quest.quest_image = this.quest_image;
+            quest.is_complete = this.is_complete;
+            quest.monster_counter = this.monster_counter;
+            quest.npc_meet = this.npc_meet;
 
 
 

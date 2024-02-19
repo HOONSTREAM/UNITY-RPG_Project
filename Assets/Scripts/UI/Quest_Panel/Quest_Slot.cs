@@ -17,6 +17,9 @@ public class Quest_Slot : MonoBehaviour , IPointerUpHandler
     public TextMeshProUGUI main_or_sub;
     public TextMeshProUGUI explaination_quest;
     public TextMeshProUGUI summing_up_explaination;
+
+    public TextMeshProUGUI reward_gold;
+    public TextMeshProUGUI reward_exp;
     
    
 
@@ -37,10 +40,16 @@ public class Quest_Slot : MonoBehaviour , IPointerUpHandler
 
         }
 
-        else
+        else if((quest.questtype == QuestType.Repetition))
         {
             main_or_sub.text = "<반복퀘스트>";
         }
+
+        else 
+        {
+            main_or_sub.text = " ";
+        }
+
         return;
     }
     public void RemoveSlot()
@@ -48,6 +57,10 @@ public class Quest_Slot : MonoBehaviour , IPointerUpHandler
         quest = null;
         quest_icon.gameObject.SetActive(false); //초기화 (아이콘 표시 안함)
         quest_name.text = "";
+        main_or_sub.text = " ";
+        explaination_quest.text = "";
+        summing_up_explaination.text = " ";
+
 
         return;
     }
@@ -62,4 +75,5 @@ public class Quest_Slot : MonoBehaviour , IPointerUpHandler
         summing_up_explaination.text = quest.summing_up_Description;
 
     }
+
 }

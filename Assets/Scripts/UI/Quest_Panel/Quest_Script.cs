@@ -47,7 +47,7 @@ public class Quest_Script : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
 
-            Debug.Log("인벤토리를 열기 위한 I키 입력 완료");
+            
             activequestpanel = !activequestpanel;
             Quest_Panel.SetActive(activequestpanel);
             Managers.UI.SetCanvas(Quest_CANVAS, true);
@@ -77,10 +77,41 @@ public class Quest_Script : MonoBehaviour
     }
 
 
-   public void Quest_Complete_Button_Func()
-    {
 
+    public void Quest_Complete_Button_Func()
+    {
+        for (int i = 0; i < Player_Quest.Instance.PlayerQuest.Count; i++)
+        {
+            switch (Player_Quest.Instance.PlayerQuest[i].Quest_ID)
+            {
+                case 1: // 이 세계에 처음으로 발을 딛다!
+
+                    if (Player_Quest.Instance.PlayerQuest[i].is_complete == false)
+                    {
+                        if(Player_Quest.Instance.PlayerQuest[i].monster_counter == 2)
+                        {
+                            Player_Quest.Instance.PlayerQuest[i].monster_counter = 0; //초기화
+                            Player_Quest.Instance.PlayerQuest[i].Quest_Clear();
+                            Player_Quest.Instance.RemoveQuest(i);
+                            Player_Quest.Instance.onChangequest.Invoke();
+                            GameObject.Find("GUI_User_Interface").
+                               gameObject.GetComponent<Print_Info_Text>().PrintUserText("퀘스트 완료");
+
+                            break;
+                        }
+
+                        GameObject.Find("GUI_User_Interface").
+                        gameObject.GetComponent<Print_Info_Text>().PrintUserText("퀘스트 조건이 충족되지 않았습니다.");
+
+                        
+                    }
+
+                    break;
+
+            }
+        }
     }
+
 
 
     public void Button_Function()

@@ -25,7 +25,8 @@ public class Player_Quest : MonoBehaviour
 
     }
 
-    public bool AddQuest(Quest _quest) //스킬창은 갯수제한 없음
+
+    public bool AddQuest(Quest _quest) 
     {
         PlayerQuest.Add(_quest);
 

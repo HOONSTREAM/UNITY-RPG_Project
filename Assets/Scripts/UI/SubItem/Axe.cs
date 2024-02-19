@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "ItemEffect/Equipment/Axe")]
+
 public class Axe : ItemEffect
 {
    

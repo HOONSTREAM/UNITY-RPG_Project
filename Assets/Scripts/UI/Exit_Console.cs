@@ -78,6 +78,10 @@ public class Exit_Console : MonoBehaviour
                         case "Storage CANVAS":
                             Storage_slot_UI.gameObject.SetActive(false);
                             PanelToClose.gameObject.GetComponent<Storage_Script>().activestorage = false;
+                            for(int i = 0; i < PanelToClose.gameObject.GetComponent<Storage_Script>().Player_slots.Length; i++)
+                            {
+                                PanelToClose.gameObject.GetComponent<Storage_Script>().Player_slots[i].isStorageMode = false;
+                            }                            
                             Managers.Sound.Play("Inven_Open");
                             PanelToClose.gameObject.GetComponent<Canvas>().sortingOrder = 0;
                             break;

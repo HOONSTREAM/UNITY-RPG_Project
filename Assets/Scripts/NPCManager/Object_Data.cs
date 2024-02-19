@@ -8,4 +8,5 @@ public class Object_Data : MonoBehaviour
     public int ID;
     [SerializeField]
     public bool IsNPC;
+    
 }
