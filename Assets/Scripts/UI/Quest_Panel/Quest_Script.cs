@@ -110,6 +110,27 @@ public class Quest_Script : MonoBehaviour
 
                     break;
 
+                case 2: // 2. 전리품을 획득해보자 !
+
+                    for(int k = 0; k< PlayerInventory.Instance.player_items.Count; k++)
+                    {
+                        if (PlayerInventory.Instance.player_items[k].ItemID == 15 && PlayerInventory.Instance.player_items[k].amount == 10) // 슬라임 액체
+                        {
+                            Player_Quest.Instance.PlayerQuest[i].Quest_Clear();
+                            Player_Quest.Instance.RemoveQuest(i);
+                            Player_Quest.Instance.onChangequest.Invoke();
+                            GameObject.Find("GUI_User_Interface").
+                               gameObject.GetComponent<Print_Info_Text>().PrintUserText("퀘스트 완료");
+
+                            return;
+                        }
+                    }
+
+                    GameObject.Find("GUI_User_Interface").
+                        gameObject.GetComponent<Print_Info_Text>().PrintUserText("퀘스트 조건이 충족되지 않았습니다.");
+
+                    break;
+
             }
         }
     }

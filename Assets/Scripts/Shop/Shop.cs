@@ -91,6 +91,13 @@ public class Shop : MonoBehaviour
             playerslots[i].isShopMode = false;
         }
 
+        ScrollViewText_item1.text = "";
+        ScrollViewText_item2.text = "";
+        ScrollViewText_item3.text = "";
+        ScrollViewText_item4.text = "";
+        ScrollViewText_item5.text = "";
+
+        return;
     }
     #region 상점 구매/판매 코드
     
