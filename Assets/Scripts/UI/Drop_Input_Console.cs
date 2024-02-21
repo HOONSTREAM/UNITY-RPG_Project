@@ -38,7 +38,7 @@ public class Drop_Input_Console : MonoBehaviour
         {
             PlayerInventory.Instance.RemoveItem(slot_equip_drop.slot_number);
         }
-        GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("소비 아이템을 버립니다.");
+        GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("아이템을 버립니다.");
         amountInputConsole.SetActive(false);
     }
 }
