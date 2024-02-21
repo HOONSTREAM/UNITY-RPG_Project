@@ -97,6 +97,7 @@ public class Quest_Script : MonoBehaviour
                             GameObject.Find("GUI_User_Interface").
                                gameObject.GetComponent<Print_Info_Text>().PrintUserText("퀘스트 완료");
                             //TODO : 다음 메인퀘스트 자동 추가
+                            Player_Quest.Instance.AddQuest(QuestDatabase.instance.QuestDB[1]);
 
                             break;
                         }

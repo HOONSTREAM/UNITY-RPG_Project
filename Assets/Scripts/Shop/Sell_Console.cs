@@ -28,7 +28,7 @@ public class Sell_Console : MonoBehaviour
     public void Sell_Item() 
     {
         SellConsole.SetActive(false);
-        if(slot_item.itemtype == ItemType.Consumables && slot_item.amount >1)
+        if((slot_item.itemtype == ItemType.Consumables && slot_item.amount >1) || (slot_item.itemtype == ItemType.Etc && slot_item.amount > 1))
         {
             Amount_InputConsole.SetActive(true);
        

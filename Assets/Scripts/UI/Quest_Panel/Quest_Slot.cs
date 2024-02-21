@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -87,6 +88,25 @@ public class Quest_Slot : MonoBehaviour , IPointerUpHandler
                 UpdateSlotUI();
 
                 break;
+
+            case 2:
+                int slime_etc_item_amount = 0;
+
+                reward_gold.text = QuestDatabase.instance.QuestDB[1].num_1.ToString();
+                reward_exp.text = QuestDatabase.instance.QuestDB[1].num_2.ToString();
+                for(int i = 0; i<PlayerInventory.Instance.player_items.Count; i++)
+                {
+                    if (PlayerInventory.Instance.player_items[i].ItemID == 15)
+                    {
+                        slime_etc_item_amount = PlayerInventory.Instance.player_items[i].amount;
+                    }
+                }
+
+                summing_up_explaination.text = $"슬라임액체 : ({slime_etc_item_amount} / 10)";
+                UpdateSlotUI();
+
+                break;
+
 
         }
 

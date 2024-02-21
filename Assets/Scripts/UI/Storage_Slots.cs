@@ -47,7 +47,7 @@ public class Storage_Slots : MonoBehaviour, IPointerUpHandler
             }
         }
 
-        else if (item.itemtype == ItemType.Consumables)
+        else if (item.itemtype == ItemType.Consumables || item.itemtype == ItemType.Etc)
         {
             amount_text.text = item.amount.ToString();
 
@@ -74,7 +74,7 @@ public class Storage_Slots : MonoBehaviour, IPointerUpHandler
     public void OnPointerUp(PointerEventData eventData)
     {
 
-       if(item.itemtype == ItemType.Consumables)
+       if(item.itemtype == ItemType.Consumables || item.itemtype == ItemType.Etc)
         {
    
             if(item.amount > 1)

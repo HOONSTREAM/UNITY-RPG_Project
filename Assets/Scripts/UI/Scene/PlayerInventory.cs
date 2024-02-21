@@ -120,7 +120,7 @@ public class PlayerInventory : MonoBehaviour
 
     public void RemoveItem(int index) // 갯수 파악하여 스택 사용 후 1개 남으면 아이템 삭제
     {
-        if (player_items[index].itemtype == ItemType.Consumables)
+        if (player_items[index].itemtype == ItemType.Consumables || player_items[index].itemtype == ItemType.Etc)
         {
             if (player_items[index].amount > 1)
             {

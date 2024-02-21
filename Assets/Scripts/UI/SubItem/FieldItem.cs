@@ -57,7 +57,7 @@ public class FieldItem : MonoBehaviour
     public GameObject SlimeDropFieldItem() //필드에 아이템 생성
     {
         GameObject go = Instantiate(fielditemPrefab, pos, Quaternion.identity); //Quaternion.identity는 회전없음을 나타내는 쿼터니언    
-        go.GetComponent<FieldItem>().SetItem(ItemDataBase.instance.itemDB[Random.Range(0,13)]);
+        go.GetComponent<FieldItem>().SetItem(ItemDataBase.instance.itemDB[Random.Range(14,14)]);
        
         return go;
 

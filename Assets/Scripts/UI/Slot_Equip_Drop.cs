@@ -9,6 +9,7 @@ public class Slot_Equip_Drop : MonoBehaviour
     #region Class 변수
     public GameObject Equip_Drop_Selection;
     public GameObject Consumable_use_Drop_Selection;
+    public GameObject ETC_Drop_Selection;
     public Item slot_item; // 슬롯에 해당하는 아이템 참조
     public int slot_number; // 슬롯의 번호 참조
     public Slot[] slots; //플레이어 슬롯 참조
@@ -129,6 +130,23 @@ public class Slot_Equip_Drop : MonoBehaviour
             }
         }
 
+        else // 기타아이템인경우 
+        {
+            if (slot_item.amount > 1) //갯수가 1개보다 많은경우 버릴 갯수 조사
+            {
+
+                ETC_Drop_Selection.SetActive(false);
+                Drop_Input_console.SetActive(true); // 버릴갯수를 입력받는 창 열기
+
+            }
+            else
+            {
+                PlayerInventory.Instance.RemoveItem(slot_number);
+                GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("기타 아이템을 버립니다.");              
+                ETC_Drop_Selection.SetActive(false);
+            }
+        }
+
 
                
         
@@ -172,6 +190,7 @@ public class Slot_Equip_Drop : MonoBehaviour
         Equip_Drop_Selection.gameObject.SetActive(false);
         Consumable_use_Drop_Selection.gameObject.SetActive(false);
         Drop_Input_console.gameObject.SetActive(false);
+        ETC_Drop_Selection.gameObject.SetActive(false);
 
         return;
 
