@@ -108,8 +108,7 @@ public class PlayerInventory : MonoBehaviour
             if (AddItem(fielditems.GetItem()))
             {
                fielditems.DestroyItem();
-               Managers.Sound.Play("Coin");
-               
+               Managers.Sound.Play("Coin");              
             }            
         }
 

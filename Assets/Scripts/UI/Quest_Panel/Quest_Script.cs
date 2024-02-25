@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO.IsolatedStorage;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -21,6 +23,11 @@ public class Quest_Script : MonoBehaviour
     public Transform player_slotHolder;
 
     public bool activequestpanel = false;
+
+    public GameObject summary_panel_quest;
+    public TextMeshProUGUI Quest_summary_name;
+    public TextMeshProUGUI Quest_summary_type;
+    public TextMeshProUGUI Quest_summary;
 
 
     void Start()
@@ -54,6 +61,8 @@ public class Quest_Script : MonoBehaviour
             Managers.Sound.Play("Inven_Open");
 
         }
+
+        Onupdate_Summary_Quest_Panel();
     }
 
     void RedrawSlotUI()
@@ -92,11 +101,12 @@ public class Quest_Script : MonoBehaviour
                         {
                             Player_Quest.Instance.PlayerQuest[i].monster_counter = 0; //초기화
                             Player_Quest.Instance.PlayerQuest[i].Quest_Clear();
+                            Player_Quest.Instance.PlayerQuest[i].is_complete = true;
                             Player_Quest.Instance.RemoveQuest(i);
                             Player_Quest.Instance.onChangequest.Invoke();
                             GameObject.Find("GUI_User_Interface").
                                gameObject.GetComponent<Print_Info_Text>().PrintUserText("퀘스트 완료");
-                            //TODO : 다음 메인퀘스트 자동 추가
+                            //다음 메인퀘스트 자동 추가
                             Player_Quest.Instance.AddQuest(QuestDatabase.instance.QuestDB[1]);
 
                             break;
@@ -117,10 +127,13 @@ public class Quest_Script : MonoBehaviour
                         if (PlayerInventory.Instance.player_items[k].ItemID == 15 && PlayerInventory.Instance.player_items[k].amount == 10) // 슬라임 액체
                         {
                             Player_Quest.Instance.PlayerQuest[i].Quest_Clear();
+                            Player_Quest.Instance.PlayerQuest[i].is_complete = true;
                             Player_Quest.Instance.RemoveQuest(i);
                             Player_Quest.Instance.onChangequest.Invoke();
                             GameObject.Find("GUI_User_Interface").
                                gameObject.GetComponent<Print_Info_Text>().PrintUserText("퀘스트 완료");
+                            //다음 메인퀘스트 자동 추가
+                            Player_Quest.Instance.AddQuest(QuestDatabase.instance.QuestDB[2]);
 
                             return;
                         }
@@ -130,6 +143,28 @@ public class Quest_Script : MonoBehaviour
                         gameObject.GetComponent<Print_Info_Text>().PrintUserText("퀘스트 조건이 충족되지 않았습니다.");
 
                     break;
+
+                case 3: //헬켄과 대화하자 
+
+                    if(Player_Quest.Instance.PlayerQuest[i].npc_meet == false)
+                    {
+                        GameObject.Find("GUI_User_Interface").
+                       gameObject.GetComponent<Print_Info_Text>().PrintUserText("퀘스트 조건이 충족되지 않았습니다.");
+
+                        return;
+                    }
+
+                    Player_Quest.Instance.PlayerQuest[i].Quest_Clear();
+                    Player_Quest.Instance.PlayerQuest[i].is_complete = true;
+                    Player_Quest.Instance.RemoveQuest(i);
+                    Player_Quest.Instance.onChangequest.Invoke();
+                    GameObject.Find("GUI_User_Interface").
+                       gameObject.GetComponent<Print_Info_Text>().PrintUserText("퀘스트 완료");
+                    //다음 메인퀘스트 자동 추가
+                    //Player_Quest.Instance.AddQuest(QuestDatabase.instance.QuestDB[2]);
+
+                    break;
+
 
             }
         }
@@ -157,7 +192,36 @@ public class Quest_Script : MonoBehaviour
 
         }
 
+        Player_Quest.Instance.onChangequest.Invoke();
+
+
         return;
+
+    }
+
+
+    private void Onupdate_Summary_Quest_Panel()
+    {
+        if(Player_Quest.Instance.PlayerQuest.Count == 0)
+        {
+            Quest_summary_name.text = "퀘스트 없음";
+            Quest_summary_type.text = "";
+            Quest_summary.text = "";
+
+        }
+
+        for(int i = 0; i<Player_Quest.Instance.PlayerQuest.Count; i++)
+        {
+            if(Player_Quest.Instance.PlayerQuest[i].questtype == QuestType.Main)
+            {
+                Quest_summary_name.text = Player_Quest.Instance.PlayerQuest[i].quest_name;
+                Quest_summary_type.text = Player_Quest.Instance.PlayerQuest[i].questtype.ToString();
+                Quest_summary.text = Player_Quest.Instance.PlayerQuest[i].summing_up_Description;
+
+                break;
+
+            }
+        }
 
     }
 

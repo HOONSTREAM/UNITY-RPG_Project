@@ -68,6 +68,7 @@ public class Exit_Console : MonoBehaviour
                             PanelToClose.gameObject.GetComponent<Quest_Script>().activequestpanel = false;
                             Managers.Sound.Play("Inven_Open");
                             PanelToClose.gameObject.GetComponent<Canvas>().sortingOrder = 0;
+                            Player_Quest.Instance.onChangequest.Invoke();
                             break;
                         case "Abillity_Slot_CANVAS ":
                             Abillity_slot_UI.gameObject.SetActive(false);

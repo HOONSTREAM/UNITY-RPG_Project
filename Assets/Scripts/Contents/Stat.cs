@@ -92,15 +92,12 @@ public class Stat : MonoBehaviour
                 {
                     if(QuestDatabase.instance.QuestDB[i].Quest_ID == 1)
                     {
-                        if(QuestDatabase.instance.QuestDB[i].is_complete == true)
+                        if(QuestDatabase.instance.QuestDB[i].is_complete == false)
                         {
-                            return;
+                            QuestDatabase.instance.QuestDB[i].monster_counter++;
+                            Player_Quest.Instance.onChangequest.Invoke(); // 카운터 증가 즉시 반영
                         }
 
-                        QuestDatabase.instance.QuestDB[i].monster_counter++;
-                        Player_Quest.Instance.onChangequest.Invoke(); // 카운터 증가 즉시 반영
-                        
-                       
                         break;
                     }
                 }
