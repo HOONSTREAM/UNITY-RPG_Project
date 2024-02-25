@@ -13,6 +13,7 @@ public class Quest_1 : Quest_Effect
         GameObject player = Managers.Game.GetPlayer();
 
         //Äù½ºÆ® º¸»ó
+        QuestDatabase.instance.QuestDB[0].is_complete = true;
         player.GetComponent<PlayerStat>().Gold += QuestDatabase.instance.QuestDB[0].num_1;
         player.GetComponent<PlayerStat>().EXP += QuestDatabase.instance.QuestDB[0].num_2;
         player.GetComponent<PlayerStat>().onchangestat.Invoke();

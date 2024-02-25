@@ -101,7 +101,7 @@ public class Quest_Script : MonoBehaviour
                         {
                             Player_Quest.Instance.PlayerQuest[i].monster_counter = 0; //초기화
                             Player_Quest.Instance.PlayerQuest[i].Quest_Clear();
-                            Player_Quest.Instance.PlayerQuest[i].is_complete = true;
+                            
                             Player_Quest.Instance.RemoveQuest(i);
                             Player_Quest.Instance.onChangequest.Invoke();
                             GameObject.Find("GUI_User_Interface").
@@ -127,7 +127,7 @@ public class Quest_Script : MonoBehaviour
                         if (PlayerInventory.Instance.player_items[k].ItemID == 15 && PlayerInventory.Instance.player_items[k].amount == 10) // 슬라임 액체
                         {
                             Player_Quest.Instance.PlayerQuest[i].Quest_Clear();
-                            Player_Quest.Instance.PlayerQuest[i].is_complete = true;
+                           
                             Player_Quest.Instance.RemoveQuest(i);
                             Player_Quest.Instance.onChangequest.Invoke();
                             GameObject.Find("GUI_User_Interface").
@@ -155,7 +155,7 @@ public class Quest_Script : MonoBehaviour
                     }
 
                     Player_Quest.Instance.PlayerQuest[i].Quest_Clear();
-                    Player_Quest.Instance.PlayerQuest[i].is_complete = true;
+                  
                     Player_Quest.Instance.RemoveQuest(i);
                     Player_Quest.Instance.onChangequest.Invoke();
                     GameObject.Find("GUI_User_Interface").
