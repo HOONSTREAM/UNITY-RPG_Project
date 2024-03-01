@@ -20,17 +20,13 @@ public class Rudencian_South_Scene : BaseScene
         GameObject player = Managers.Game.GetPlayer();
         Camera.main.gameObject.GetAddComponent<CameraController>().SetPlayer(player);
         player.transform.position = new Vector3(353.35f, 1.81f, 308.36f);
-        Vector3 euler = new Vector3(0f, 156.334f, 0f);
-        player.transform.rotation = Quaternion.EulerAngles(euler);
+ 
         // Scene 전환 되고나서 계속 움직이는 현상 방지
         PlayerController pc = player.gameObject.GetComponent<PlayerController>();
         pc.State = Define.State.Idle;
 
 
         gameObject.GetAddComponent<CursorController>();
-
-
-
 
     }
 

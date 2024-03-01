@@ -7,10 +7,7 @@ public class south_in_script : MonoBehaviour
 {
     public GameObject savedata;
     
-    private void Start()
-    {
-     
-    }
+    
     private void OnTriggerEnter(Collider other)
     {
 
