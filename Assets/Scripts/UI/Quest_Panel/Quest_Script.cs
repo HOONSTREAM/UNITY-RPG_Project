@@ -124,7 +124,7 @@ public class Quest_Script : MonoBehaviour
 
                     for(int k = 0; k< PlayerInventory.Instance.player_items.Count; k++)
                     {
-                        if (PlayerInventory.Instance.player_items[k].ItemID == 15 && PlayerInventory.Instance.player_items[k].amount == 10) // 슬라임 액체
+                        if (PlayerInventory.Instance.player_items[k].ItemID == 15 && PlayerInventory.Instance.player_items[k].amount >= 10) // 슬라임 액체
                         {
                             Player_Quest.Instance.PlayerQuest[i].Quest_Clear();
                            

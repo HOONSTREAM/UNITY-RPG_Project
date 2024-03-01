@@ -44,11 +44,9 @@ public class NewInvenUI : MonoBehaviour
     private void Update()
     {
        
-
         if (Input.GetKeyDown(KeyCode.I))
         {
-            
-            Debug.Log("인벤토리를 열기 위한 I키 입력 완료");
+                      
             activeInventory = !activeInventory;           
             inventoryPanel.SetActive(activeInventory);
             Managers.UI.SetCanvas(Inventory_canvas, true);
@@ -88,6 +86,8 @@ public class NewInvenUI : MonoBehaviour
 
         inven_amount = inven.player_items.Count;
         inven_amount_text.text = $"갯수 :  {inven_amount.ToString()}/20"; //인벤토리 갯수 업데이트
+
+        
     }
 
 

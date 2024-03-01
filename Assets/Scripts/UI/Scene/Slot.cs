@@ -117,7 +117,7 @@ public class Slot : MonoBehaviour, IPointerUpHandler
             }
             
             
-            if(item.itemtype == ItemType.Consumables)
+            if(item.itemtype == ItemType.Consumables || item.itemtype == ItemType.Etc)
             {
                 if(item.amount > 1)
                 {
