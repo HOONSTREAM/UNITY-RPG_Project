@@ -29,7 +29,6 @@ public class MonsterController : BaseController
 
     protected override void UpdateIdle()
     {
-        // GameObject player = GameObject.FindGameObjectWithTag("Player"); Withtag 함수는 너무 느림 
         GameObject player = Managers.Game.GetPlayer();
         if (player == null)
             return;
@@ -65,6 +64,7 @@ public class MonsterController : BaseController
                 NavMeshAgent nma = gameObject.GetComponentInChildren<NavMeshAgent>();
                 nma.SetDestination(transform.position);
                 State = Define.State.Skill;
+
                 return;
 
             }
@@ -140,6 +140,6 @@ public class MonsterController : BaseController
 
     void HitSounds(Define.MouseEvent evt)
     {
-        Managers.Sound.Play("hit23.mp3", Define.Sound.Effect);
+        Managers.Sound.Play("hit22", Define.Sound.Effect);
     }
 }

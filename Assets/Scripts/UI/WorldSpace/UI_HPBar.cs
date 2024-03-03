@@ -24,12 +24,18 @@ public class UI_HPBar :UI_Base
 
         //TODO 몬스터 별 이름세팅 필요 
        Text text = GetGameobject((int)GameObjects.Monster_name).gameObject.GetComponent<Text>();
+
+        switch (_stat.gameObject.name)
+        {
+            case "Slime":
+                text.text = "레드슬라임";
+                break;
+            case "Punch_man":
+                text.text = "펀치맨";
+                break;
+        }
        
-
-        text.text = "레드슬라임";
-
-        
-        
+             
     }
 
     private void Update()

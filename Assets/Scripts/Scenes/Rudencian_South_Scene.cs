@@ -5,17 +5,24 @@ using UnityEngine;
 public class Rudencian_South_Scene : BaseScene
 {
 
+    public GameObject Rudencia_NPC_Folder;
+
+
+
     protected override void Init()
     {
         base.Init();
 
+        Rudencia_NPC_Folder = GameObject.Find("NPC Folder_Rudencia").gameObject;
 
         SceneType = Define.Scene.Rudencian_South;
+
+        Rudencia_NPC_Folder.gameObject.SetActive(false);
 
         Dictionary<int, Data.Stat> dict = Managers.Data.StatDict;
 
         Managers.Sound.Clear();
-        Managers.Sound.Play("Calm3 - Peaceful Days", Define.Sound.Bgm);
+        Managers.Sound.Play("루덴시안남쪽필드", Define.Sound.Bgm);
 
         GameObject player = Managers.Game.GetPlayer();
         Camera.main.gameObject.GetAddComponent<CameraController>().SetPlayer(player);
@@ -27,6 +34,14 @@ public class Rudencian_South_Scene : BaseScene
 
 
         gameObject.GetAddComponent<CursorController>();
+
+
+        //몬스터 생성
+        GameObject go = new GameObject { name = "Spawning Pool" };
+        SpawningPool pool = go.GetAddComponent<SpawningPool>();
+        pool.SetKeepMonsterCount(8);
+
+
 
     }
 

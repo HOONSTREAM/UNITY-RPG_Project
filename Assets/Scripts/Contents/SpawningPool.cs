@@ -15,10 +15,10 @@ public class SpawningPool : MonoBehaviour
     [SerializeField]
     Vector3 spawnPosition;
     [SerializeField]
-    float spawnradius = 15.0f;
+    float spawnradius = 35.0f;
 
     [SerializeField]
-    float spawnTime = 5.0f;
+    float spawnTime = 3.0f;
 
     public void AddMonsterCount(int value)
     {
@@ -41,11 +41,12 @@ public class SpawningPool : MonoBehaviour
     {
         while(reserveCount+_monsterCount < _keepMonsterCount)
         {
-            StartCoroutine(ReserveSpawn());
+            StartCoroutine(ReserveSpawn_Slime());
+            StartCoroutine(ReserveSpawn_Punchman());
         }
     }
 
-    IEnumerator ReserveSpawn()
+    IEnumerator ReserveSpawn_Slime()
     {
         reserveCount++;
         yield return new WaitForSeconds(Random.Range(0,spawnTime));
@@ -53,6 +54,7 @@ public class SpawningPool : MonoBehaviour
         NavMeshAgent nma = obj.GetAddComponent<NavMeshAgent>(); 
 
         Vector3 randPos;
+
         while (true)
         {
             
@@ -73,4 +75,35 @@ public class SpawningPool : MonoBehaviour
         reserveCount--;
         
     }
+
+    IEnumerator ReserveSpawn_Punchman()
+    {
+        reserveCount++;
+        yield return new WaitForSeconds(Random.Range(0, spawnTime));
+        GameObject obj = Managers.Game.Spawn(Define.WorldObject.Monster, "Punch_man");
+        NavMeshAgent nma = obj.GetAddComponent<NavMeshAgent>();
+
+        Vector3 randPos;
+        while (true)
+        {
+
+            Vector3 randDir = Random.insideUnitSphere * Random.Range(0, spawnradius); // 방향벡터가 나옴 
+            randDir.y = 0;
+            randPos = spawnPosition + randDir;
+
+            //갈수 있는가?
+            NavMeshPath path = new NavMeshPath();
+            if (nma.CalculatePath(randPos, path))
+            {
+                break;
+
+            }
+
+        }
+        obj.transform.position = randPos;
+        reserveCount--;
+
+    }
+
+
 }

@@ -118,8 +118,7 @@ public class PlayerController : BaseController
     {
         if (LockTarget != null)
         {
-
-            
+           
             Stat targetStat = LockTarget.GetComponent<Stat>();
             targetStat.OnAttacked(_stat); //나의 스텟을 인자로 넣어서 상대방의 체력을 깎는다.;
 
