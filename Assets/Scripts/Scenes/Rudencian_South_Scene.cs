@@ -12,12 +12,8 @@ public class Rudencian_South_Scene : BaseScene
     protected override void Init()
     {
         base.Init();
-
-        Rudencia_NPC_Folder = GameObject.Find("NPC Folder_Rudencia").gameObject;
-
+      
         SceneType = Define.Scene.Rudencian_South;
-
-        Rudencia_NPC_Folder.gameObject.SetActive(false);
 
         Dictionary<int, Data.Stat> dict = Managers.Data.StatDict;
 

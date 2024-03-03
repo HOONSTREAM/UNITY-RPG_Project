@@ -3052,7 +3052,7 @@ GameObject:
   - component: {fileID: 564324065}
   - component: {fileID: 564324070}
   m_Layer: 0
-  m_Name: TriggerZone(1)_none
+  m_Name: TriggerZone_back_Rudencian
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3070,7 +3070,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2959f4b04df70a7439191b6e7f653f37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: 100
+  ID: 103
   IsNPC: 0
 --- !u!65 &564324066
 BoxCollider:
