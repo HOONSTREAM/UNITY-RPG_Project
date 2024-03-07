@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class Shop2_ToolTip_Controller : MonoBehaviour,IPointerEnterHandler, IPointerExitHandler
-{   /*농부헤리안 툴팁컨트롤러 스크립트*/
+{   /*케넨 툴팁컨트롤러 스크립트*/
 
     public ShopSlot[] kenen_slots;
     public ToolTip tooltip;
@@ -21,7 +21,8 @@ public class Shop2_ToolTip_Controller : MonoBehaviour,IPointerEnterHandler, IPoi
 
     void Start()
     {
-        kenen_slots = kenen_SlotHolder.GetComponentsInChildren<ShopSlot>();       
+        kenen_slots = kenen_SlotHolder.GetComponentsInChildren<ShopSlot>();
+        tooltip.gameObject.SetActive(false);
     }
 
     public void OnPointerEnter(PointerEventData eventData)

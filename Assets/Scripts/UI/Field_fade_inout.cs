@@ -7,12 +7,11 @@ using UnityEngine.SceneManagement;
 
 public class Field_fade_inout : MonoBehaviour
 {
-    private Scene scene;
-    public Image Field_name_panel;
+    private Scene scene;   
     public GameObject particle;
     public TextMeshProUGUI Field_name;
     float time = 0f;
-    float Fade_time = 1f;
+    float Fade_time = 2f;
 
     private void Start()
     {
@@ -27,23 +26,20 @@ public class Field_fade_inout : MonoBehaviour
 
     IEnumerator FadeFlow()
     {
-        
-        Field_name_panel.gameObject.SetActive(true);
+        Field_name.gameObject.SetActive(true);
         particle.gameObject.SetActive(true);
         time = 0f;
-        Color alpha = Field_name_panel.color;
-        while(alpha.a < 1f)
+        Color alpha = Field_name.color;
+        Field_name.text = scene.name;
+        while (alpha.a < 1f)
         {
 
             time += Time.deltaTime / Fade_time;
-            alpha.a = Mathf.Lerp(0, 1, time);            
-            Field_name_panel.color = alpha;           
+            alpha.a = Mathf.Lerp(0, 1, time);           
+            Field_name.color = alpha;           
             yield return null;
         }
-        Managers.Sound.Play("change_scene");
-        Field_name.text = scene.name;
-        
-
+      
         time = 0f;
         yield return new WaitForSeconds(1f);
 
@@ -51,12 +47,12 @@ public class Field_fade_inout : MonoBehaviour
         {
             time += Time.deltaTime / Fade_time;
             alpha.a = Mathf.Lerp(1, 0, time);
-            Field_name.text = "";
-            Field_name_panel.color = alpha;
+            Field_name.color = alpha;          
             yield return null;
         }
 
-        Field_name_panel.gameObject.SetActive(false);
+        Field_name.text = "";
+        Field_name.gameObject.SetActive(false);
         particle.gameObject.SetActive(false);
         yield return null;
 

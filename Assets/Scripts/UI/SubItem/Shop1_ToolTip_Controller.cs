@@ -23,7 +23,8 @@ public class Shop1_ToolTip_Controller : MonoBehaviour, IPointerEnterHandler, IPo
 
     void Start()
     {
-        Herian_slots = Herian_SlotHolder.GetComponentsInChildren<NPC1_shopslot>();        
+        Herian_slots = Herian_SlotHolder.GetComponentsInChildren<NPC1_shopslot>();
+        tooltip.gameObject.SetActive(false);
     }
 
     public void OnPointerEnter(PointerEventData eventData)

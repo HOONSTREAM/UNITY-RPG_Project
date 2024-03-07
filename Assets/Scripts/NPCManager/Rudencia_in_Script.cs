@@ -8,6 +8,7 @@ public class Rudencia_in_Script : MonoBehaviour
 {
     public GameObject Rudencia_NPC_Folder;
     public GameObject Rudencia_shop_NPC_Folder;
+    public GameObject Rudencia_south_NPC_Folder;
 
 
     private void Start()
@@ -27,6 +28,8 @@ public class Rudencia_in_Script : MonoBehaviour
 
             PlayerController pc = player.gameObject.GetComponent<PlayerController>();
             pc.State = Define.State.Idle;
+            Rudencia_south_NPC_Folder = GameObject.Find("NPC Folder_Rudencia_south").gameObject;
+            Rudencia_south_NPC_Folder.gameObject.SetActive(false); // ·çµ§½Ã¾Æ °ü·Ã NPC Off
 
             SceneManager.LoadScene("·çµ§½Ã¾È");
         }
