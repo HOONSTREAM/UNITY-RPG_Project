@@ -108,18 +108,18 @@ public class MonsterController : BaseController
     /* 데미지를 입는 것들은 데미지 입는 대상에다가 피격함수를 구현하는 것이 좋다. 향후 버프스킬 같은 것들 계산하기가 편리해짐 */
     void OnHitEvent()
     {
-       
-        if(LockTarget != null)
+        
+        if (LockTarget != null)
         {
             Stat targetStat = LockTarget.GetComponent<Stat>();
             targetStat.OnAttacked(_stat); //나의 스텟을 인자로 넣어서 상대방의 체력을 깎는다.
 
-            if(targetStat.Hp > 0)
+            if (targetStat.Hp > 0)
             {
                 float distance = (LockTarget.transform.position - transform.position).magnitude;
-                if(distance <= attackRange)
+                if (distance <= attackRange)
                 {
-                    State = Define.State.Skill;
+                    StartCoroutine(wait_attack());                  
                 }
                 else
                 {
@@ -136,10 +136,19 @@ public class MonsterController : BaseController
             State = Define.State.Idle;
 
         }
+
     }
 
     void HitSounds(Define.MouseEvent evt)
     {
-        Managers.Sound.Play("hit22", Define.Sound.Effect);
+        //Managers.Sound.Play("hit22", Define.Sound.Effect);
+    }
+
+
+
+    IEnumerator wait_attack() // 공격속도 조정 
+    {
+        yield return new WaitForSeconds(6000);
+        State = Define.State.Skill;
     }
 }

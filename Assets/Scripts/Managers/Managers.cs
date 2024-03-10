@@ -26,6 +26,7 @@ public class Managers : MonoBehaviour
     SceneManagerEx _scene = new SceneManagerEx();
     UIManager _ui = new UIManager();
     SoundManager _sound = new SoundManager();
+    CoolTimeManager _cool = new CoolTimeManager();
    
     public static InputManager Input { get { return Instance._input; } } //여기서 호출되면서 Instance 프로퍼티에서 조건문검사 (게임오브젝트가 있는지)
     public static PoolManager Pool { get { return Instance._pool; } }
@@ -37,6 +38,8 @@ public class Managers : MonoBehaviour
     public static SoundManager Sound { get { return Instance._sound; } }
 
     public static DataManager Data { get { return Instance._data; } }
+
+    public static CoolTimeManager CoolTime { get { return Instance._cool; } }
 
     #endregion
     void Start()
