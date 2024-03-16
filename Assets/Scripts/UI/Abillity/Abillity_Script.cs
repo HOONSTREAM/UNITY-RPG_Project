@@ -125,6 +125,15 @@ private void Update()
         return;
     } // ¾îºô¸®Æ¼Ã¢ off
 
+    public void X_Button_Abillity_Interface()
+    {
+        if (Abillity_Interface_Panel.activeSelf)
+        {
+            Abillity_Interface_Panel.gameObject.SetActive(false);
+        }
+
+        return;
+    }
     void RedrawSlotUI()
     {
         for (int i = 0; i < abillity_Slots.Length; i++)
@@ -373,7 +382,6 @@ private void Update()
         }
     }
 
-  
     public void Explaination_Panel_Open()
     {
         Abillity_Explaination_Panel.SetActive(true);
