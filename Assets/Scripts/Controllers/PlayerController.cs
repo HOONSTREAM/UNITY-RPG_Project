@@ -203,9 +203,8 @@ public class PlayerController : BaseController
 
     void player_HitSounds(Define.MouseEvent evt)
     {
-        
-        Managers.Sound.Play("sword-unsheathe", Define.Sound.Effect);
-        Managers.Sound.Play("hit20.mp3", Define.Sound.Effect);
+               
+        Managers.Sound.Play("crack10.mp3", Define.Sound.Effect);
     
         return;
     }

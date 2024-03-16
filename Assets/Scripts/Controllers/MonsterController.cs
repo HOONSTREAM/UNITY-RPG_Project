@@ -11,6 +11,8 @@ public class MonsterController : BaseController
     [SerializeField]
     float attackRange = 2;
 
+    public GameObject Hit_Particle;
+
     public override void Init() //가상함수
     {
        
@@ -21,9 +23,11 @@ public class MonsterController : BaseController
         {
             Managers.UI.MakeWorldSpaceUI<UI_HPBar>(transform);
             
-            _stat.MoveSpeed = 2.0f; //몬스터의 이동속도 초기세팅 
+            _stat.MoveSpeed = 1.25f; //몬스터의 이동속도 초기세팅 
 
         }
+
+        Hit_Particle = Managers.Resources.Load<GameObject>("PreFabs/Monster_Hit_Effect");
 
     }
 
@@ -43,9 +47,6 @@ public class MonsterController : BaseController
         }
 
     }
-
- 
-
     protected override void UpdateDie() //TODO
     {
         Debug.Log("Monster Die");
@@ -89,10 +90,7 @@ public class MonsterController : BaseController
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), 20 * Time.deltaTime);
 
         }
-    }
-        
-   
-  
+    }         
     protected override void UpdateSkill()
     {
        
@@ -105,6 +103,8 @@ public class MonsterController : BaseController
         }
     }
 
+
+
     /* 데미지를 입는 것들은 데미지 입는 대상에다가 피격함수를 구현하는 것이 좋다. 향후 버프스킬 같은 것들 계산하기가 편리해짐 */
     void OnHitEvent()
     {
@@ -116,6 +116,19 @@ public class MonsterController : BaseController
 
             if (targetStat.Hp > 0)
             {
+               
+                #region 몬스터 히트 이펙트
+
+
+                Vector3 particlePosition = LockTarget.transform.position + new Vector3(0.0f, 1.0f, 0.0f);
+                Quaternion particleRotation = Quaternion.LookRotation(LockTarget.transform.forward);
+
+
+                GameObject hit_particles = Instantiate(Hit_Particle, particlePosition, particleRotation);
+                hit_particles.SetActive(true);
+                Destroy(hit_particles, 1.5f);
+                #endregion
+
                 float distance = (LockTarget.transform.position - transform.position).magnitude;
                 if (distance <= attackRange)
                 {
@@ -141,11 +154,10 @@ public class MonsterController : BaseController
 
     void HitSounds(Define.MouseEvent evt)
     {
-        //Managers.Sound.Play("hit22", Define.Sound.Effect);
+        Managers.Sound.Play("hit22", Define.Sound.Effect);
     }
 
-
-
+   
     IEnumerator wait_attack() // 공격속도 조정 
     {
         yield return new WaitForSeconds(Managers.CoolTime.monster_attack_cooltime(this.gameObject.name));
