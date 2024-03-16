@@ -1,36 +1,66 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class CoolTimeManager : MonoBehaviour 
 { 
 
-
-    //private bool can_attack = false;
     #region Monster_Cool_Time
 
-    private int Slime_Cool_Time = 2000;
-    private int Punch_man_Cool_Time = 6000;
+    private int Slime_Cool_Time = 3000; // ½½¶óÀÓ ÄðÅ¸ÀÓ
+    private int Punch_man_Cool_Time = 6000; // ÆÝÄ¡¸Ç ÄðÅ¸ÀÓ 
+    private bool monster_name_exist = false;
 
+    [SerializeField]
+    private List<GameObject> monster;
     #endregion
 
-    public List<GameObject> monsters = new List<GameObject>();
-
-    void Start()
+    private void Start()
     {
-        monsters.Add(Managers.Resources.Load<GameObject>("PreFabs/Slime"));
-        monsters.Add(Managers.Resources.Load<GameObject>("PreFabs/Punch_man"));
+
+        monster.Add(Managers.Resources.Load<GameObject>("PreFabs/Slime"));
+        monster.Add(Managers.Resources.Load<GameObject>("PreFabs/Punch_man"));
+
     }
-
-    void Update()
+    public int monster_attack_cooltime (string name)
     {
+        for(int i = 0; i< monster.Count; i++)
+        {
+            if (monster[i].name == name)
+            {
+                monster_name_exist = true;
+            }
+
+            if(monster_name_exist == true)
+            {
+                break;
+            }
+        }
         
-    }
+        if(monster_name_exist == false)
+        {
+            return 0;
+        }
 
-    public void Monster_cool_time()
-    {
+        switch (name)
+        {
+            case "Slime":
+
+                return Slime_Cool_Time;
+
+                
+            case "Punch_man":
+
+                return Punch_man_Cool_Time;
+
+            default:
+                return 0;
+        }
+
 
     }
+   
 
  
 

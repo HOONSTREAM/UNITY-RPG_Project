@@ -148,7 +148,7 @@ public class MonsterController : BaseController
 
     IEnumerator wait_attack() // 공격속도 조정 
     {
-        yield return new WaitForSeconds(6000);
+        yield return new WaitForSeconds(Managers.CoolTime.monster_attack_cooltime(this.gameObject.name));
         State = Define.State.Skill;
     }
 }
