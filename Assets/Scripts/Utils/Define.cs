@@ -42,9 +42,11 @@ public enum Layer
         Unknown,
         Login,
         Lobby,
-        Rudencia,
-        Rudencia_shop,
+        Rudencian,
+        Rudencian_shop,
         Rudencian_South,
+        Rudencian_Bank,
+
 
 
 

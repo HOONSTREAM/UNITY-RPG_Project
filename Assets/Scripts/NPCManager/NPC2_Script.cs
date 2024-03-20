@@ -12,7 +12,7 @@ using UnityEngine.EventSystems;
  * 이로 인해 IPointerClickHandler를 사용하면 UI 창 뒤의 3D 오브젝트 클릭을 방지할 수 있습니다.
  */
 
-//나무금고
+//은행원 살라 
 
 public class NPC2_Script : MonoBehaviour , IPointerClickHandler
 {

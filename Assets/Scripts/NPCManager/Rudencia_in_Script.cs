@@ -45,7 +45,22 @@ public class Rudencia_in_Script : MonoBehaviour
 
             SceneManager.LoadScene("·çµ§½Ã¾È");
         }
-       
+
+
+        else if (SceneManager.GetActiveScene().name == "·çµ§½Ã¾È ÀºÇà")
+        {
+            GameObject.Find("NPC Folder_Rudencia_bank").gameObject.SetActive(false);
+            GameObject player = Managers.Game.GetPlayer();
+            player.transform.position = new Vector3(-8.585f, 4.76837f, -20.935f);
+
+            PlayerController pc = player.gameObject.GetComponent<PlayerController>();
+            pc.State = Define.State.Idle;
+
+            SceneManager.LoadScene("·çµ§½Ã¾È");
+        }
+
+
+
 
     }
 }

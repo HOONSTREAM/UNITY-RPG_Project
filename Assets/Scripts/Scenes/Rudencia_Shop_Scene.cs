@@ -11,7 +11,7 @@ public class Rudencia_Shop_Scene : BaseScene
 
         base.Init();
 
-        SceneType = Define.Scene.Rudencia_shop;
+        SceneType = Define.Scene.Rudencian_shop;
 
         Dictionary<int, Data.Stat> dict = Managers.Data.StatDict;
 
