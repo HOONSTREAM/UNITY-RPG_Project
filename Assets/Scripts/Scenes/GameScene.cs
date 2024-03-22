@@ -8,14 +8,15 @@ using static Define;
 public class GameScene : BaseScene
 {
 
-    
     protected override void Init()
     {
+      
+        
         GameObject Init_player = Managers.Game.GetPlayer();
 
         if (Init_player != null) //새로 게임이 시작 된 것이아니라면 Init함수를 생략함.
         {
-           
+
             Camera.main.gameObject.GetAddComponent<CameraController>().SetPlayer(Init_player);
             SceneType = Define.Scene.Rudencian;
             Managers.Sound.Play("루덴시안", Define.Sound.Bgm);

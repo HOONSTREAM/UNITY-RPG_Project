@@ -5,10 +5,6 @@ using UnityEngine;
 public class Rudencian_South_Scene : BaseScene
 {
 
-    public GameObject Rudencia_NPC_Folder;
-
-
-
     protected override void Init()
     {
         base.Init();
@@ -22,7 +18,7 @@ public class Rudencian_South_Scene : BaseScene
 
         GameObject player = Managers.Game.GetPlayer();
         Camera.main.gameObject.GetAddComponent<CameraController>().SetPlayer(player);
-        player.transform.position = new Vector3(-13.1455f, 0, -39.69f);
+        player.transform.position = new Vector3(-1.1499f, 0, -33.6f);
  
         // Scene 전환 되고나서 계속 움직이는 현상 방지
         PlayerController pc = player.gameObject.GetComponent<PlayerController>();

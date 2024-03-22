@@ -7,7 +7,7 @@ public class south_in_script : MonoBehaviour
 {
     public GameObject savedata;
     public GameObject Rudencia_south_NPC_Folder;
-
+    
 
     private void Start()
     {
@@ -24,7 +24,7 @@ public class south_in_script : MonoBehaviour
 
 
         Rudencia_south_NPC_Folder.gameObject.SetActive(true); // 남쪽 NPC(포탈) 활성화
-
+   
         SceneManager.LoadScene("루덴시안 남쪽");
     }
 }
