@@ -601,7 +601,7 @@ MonoBehaviour:
   _exp: 0
   _gold: 0
   _str: 0
-  _dex: 0
+  _int: 0
   _vit: 0
   _agi: 0
   one_hand_sword_abillityAttack: 0
@@ -609,7 +609,6 @@ MonoBehaviour:
   improvement_abillity_attack: 0
   buff_damage: 0
   buff_defense: 0
-  EquipUI: {fileID: 4944729555879437946, guid: 45b97ca09fd0a324b89d01aff9d6fa2d, type: 3}
 --- !u!143 &-1757547866063384474
 CharacterController:
   m_ObjectHideFlags: 0

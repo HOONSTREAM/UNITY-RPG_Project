@@ -11,19 +11,31 @@ public class LoginScene : MonoBehaviour
 
     public TMP_InputField ID;
     public TMP_InputField Password;
-    public TextMeshProUGUI notify;
 
-   
+    public GameObject ID_enter_rejection;
+    public GameObject ID_register_complete;
+    public GameObject Not_enterd_ID_or_password;
+    public GameObject ID_already_exist;
+
+
     private void Start()
     {
-        notify.text = "";
+        GameObject Init_player = Managers.Game.GetPlayer();
+        Camera.main.gameObject.GetAddComponent<CameraController>().SetPlayer(Init_player);
+        gameObject.GetAddComponent<CursorController>();
+
+        ID_enter_rejection.gameObject.SetActive(false);
+        ID_register_complete.gameObject.SetActive(false);
+        Not_enterd_ID_or_password.gameObject.SetActive(false);
+        ID_already_exist.gameObject.SetActive(false);
+
     }
 
     private bool CheckInput(string id, string password)
     {
         if (id == "" || password == "")
         {
-            notify.text = "아이디 또는 패스워드를 입력하세요.";
+            Not_enterd_ID_or_password.gameObject.SetActive(true);
             ID.text = "";
             Password.text = "";
             return false;
@@ -48,7 +60,7 @@ public class LoginScene : MonoBehaviour
         {
             Managers.Sound.Play("GUI_Sound/load",Define.Sound.Effect);
             PlayerPrefs.SetString(ID.text, Password.text);
-            notify.text = "계정생성이 완료되었습니다.";
+            ID_register_complete.gameObject.SetActive(true);
             ID.text = "";
             Password.text = "";
 
@@ -57,7 +69,7 @@ public class LoginScene : MonoBehaviour
         else
         {
             Managers.Sound.Play("GUI_Sound/misc_menu", Define.Sound.Effect);
-            notify.text = "이미 존재하는 계정입니다.";
+            ID_already_exist.gameObject.SetActive(true);
             ID.text = "";
             Password.text = "";
         }
@@ -82,10 +94,39 @@ public class LoginScene : MonoBehaviour
         else
         {
             Managers.Sound.Play("GUI_Sound/misc_menu", Define.Sound.Effect);
-            notify.text = "입력하신 아이디와 패스워드가 불일치 합니다.";
+            ID_enter_rejection.gameObject.SetActive(true);
             ID.text = "";
             Password.text = "";
         }
+    }
+
+    public void Verification_complete_button()
+    {
+        if (ID_enter_rejection.activeSelf)
+        {
+            ID_enter_rejection.gameObject.SetActive(false);
+
+        }
+
+        if (ID_register_complete.activeSelf)
+        {
+            ID_register_complete.gameObject.SetActive(false);
+
+        }
+
+        if (Not_enterd_ID_or_password.activeSelf)
+        {
+            Not_enterd_ID_or_password.gameObject.SetActive(false);
+
+        }
+
+        if (ID_already_exist.activeSelf)
+        {
+            ID_already_exist.gameObject.SetActive(false);
+
+        }
+
+        return;
     }
 
 }
