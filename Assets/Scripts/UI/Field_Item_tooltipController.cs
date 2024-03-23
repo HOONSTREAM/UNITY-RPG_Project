@@ -64,6 +64,17 @@ public class Field_Item_tooltipController : MonoBehaviour, IPointerEnterHandler,
             ontooltip = OnToolTipUpdated.off;
         }
 
+        // 만약 일시적인 버그로 툴팁이 제거 되지 않으면, 오브젝트를 파괴하고 재 생성합니다.
+        if (tooltip_obj.gameObject.activeSelf)
+        {
+            Destroy(tooltip_obj.gameObject);
+
+            Inventory_canvas = GameObject.Find("INVENTORY CANVAS").gameObject;
+            tooltip_obj = Instantiate(tooltip.gameObject, Inventory_canvas.transform);
+            tooltip_obj.gameObject.SetActive(false);
+
+        }
+
         return;
     }
 

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class NPCscript : MonoBehaviour
 {
 
-    //농부 헤리안
+    //대장장이 브로아
 
     private int _mask = (1 << (int)Define.Layer.NPC);
     Texture2D _attackIcon;
