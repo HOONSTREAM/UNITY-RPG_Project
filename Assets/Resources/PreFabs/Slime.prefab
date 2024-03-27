@@ -106,11 +106,11 @@ GameObject:
   m_Component:
   - component: {fileID: 8502469459847028935}
   - component: {fileID: 250075885241334046}
-  - component: {fileID: 4108411748752903467}
   - component: {fileID: 1973283103054779061}
   - component: {fileID: 4218460332432982868}
   - component: {fileID: -1922779647841172022}
   - component: {fileID: -8216856221784883435}
+  - component: {fileID: 4570344498604083896}
   m_Layer: 8
   m_Name: Slime
   m_TagString: Untagged
@@ -156,23 +156,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &4108411748752903467
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1286134381823750259}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ec283e9d9abe3144abfa69748b24d80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _DesPos: {x: 0, y: 0, z: 0}
-  _state: 2
-  LockTarget: {fileID: 0}
-  _scanRange: 10
-  attackRange: 2
 --- !u!114 &1973283103054779061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,6 +234,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 9000
   IsNPC: 0
+--- !u!114 &4570344498604083896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1286134381823750259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ec283e9d9abe3144abfa69748b24d80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _DesPos: {x: 0, y: 0, z: 0}
+  _state: 2
+  LockTarget: {fileID: 0}
+  _scanRange: 5
+  attackRange: 2
+  Hit_Particle: {fileID: 0}
 --- !u!1 &2283790857954846239
 GameObject:
   m_ObjectHideFlags: 0

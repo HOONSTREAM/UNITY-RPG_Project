@@ -19,14 +19,14 @@ public class PlayerController : BaseController
 {
 
     private int _mask = (1 << (int)Define.Layer.Ground | 1 << (int)Define.Layer.Monster); //레이어마스크
-    bool skill_is_stop = false; // 스킬사용 멈춤 변수
-    PlayerStat _stat; // 플레이어의 스텟
+    bool skill_is_stop = false; // 스킬사용을 멈추었는지 판정하기위한 플래그 변수
+    private PlayerStat _stat; // 플레이어의 스텟
     float attackRange = 2.0f;
+
     public GameObject DamageText;
     public GameObject clickMarker;
     private GameObject clickMarker_global_variable;
     public GameObject hit_particle;
-
 
 
     public override void Init()
@@ -40,8 +40,6 @@ public class PlayerController : BaseController
         Managers.Input.MouseAction += OnMouseEvent;
 
     }
-
-       
 
     protected override void UpdateMoving()
     {
@@ -84,19 +82,20 @@ public class PlayerController : BaseController
         else
         {
            
-            /*========================================TODO==============================================================================*/
             float MoveDist = Mathf.Clamp(_stat.MoveSpeed * Time.deltaTime, 0, dir.magnitude); //거리(시간*속력),최솟값,최댓값
             transform.position += dir.normalized * MoveDist; // P = Po + vt(거리)
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), 20 * Time.deltaTime);
 
             Debug.DrawRay(transform.position + Vector3.up * 0.5f, dir.normalized, Color.green);
+
+
             if (Physics.Raycast(transform.position + Vector3.up * 0.5f, dir, 1.0f, LayerMask.GetMask("Building")))
             {               
                 transform.position -= dir * 0.2f; //뒤로밀어내기 
                 State = Define.State.Idle;
                 return;
             }
-            /*========================================================================================================================*/       
+
         }
     }
   
@@ -112,9 +111,8 @@ public class PlayerController : BaseController
         }
 
     }
-
-   
-    void player_OnHitEvent() //애니메이션 Hit event로 등록되어 있는 함수 
+  
+    void player_OnHitEvent() 
     {
         if (LockTarget != null)
         {
@@ -138,6 +136,7 @@ public class PlayerController : BaseController
 
        
             #endregion
+
             #region 히트 이펙트
 
 
@@ -199,17 +198,12 @@ public class PlayerController : BaseController
 
 
      }
-
-
-    void player_HitSounds(Define.MouseEvent evt)
-    {
-               
+    void player_HitSounds()
+    {            
         Managers.Sound.Play("crack10.mp3", Define.Sound.Effect);
     
         return;
     }
-
-
     void OnMouseEvent_IdleRUN(Define.MouseEvent evt)
     {
        
@@ -288,7 +282,7 @@ public class PlayerController : BaseController
 
     }
 
-  
+ 
 }
 
 

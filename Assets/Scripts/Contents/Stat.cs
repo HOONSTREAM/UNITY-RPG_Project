@@ -3,8 +3,14 @@ using System.Collections.Generic;
 using UnityEditor.PackageManager;
 using UnityEngine;
 
+
+/// <summary>
+/// 몬스터 혹은 플레이어 스텟을 관리하기 위한 기초클래스 입니다. 
+/// </summary>
+
 public class Stat : MonoBehaviour
 {
+    #region 기본 스텟 (몬스터 포함, 플레이어 상속)
     [SerializeField]
     protected int _level;
     [SerializeField]
@@ -17,11 +23,9 @@ public class Stat : MonoBehaviour
     protected int _attack;
     [SerializeField]
     protected int _defense;
+    #endregion
 
-    private PlayerStat _stat;
-    private PlayerController controller;
-    public GameObject Fielditem;
-
+    public GameObject Fielditem; // Monster 사망 후, 필드에 드랍되는 아이템 스프라이트
 
     public int Level { get { return _level; } set { _level = value; } }
     public int Hp { get { return _hp; } set { _hp = value; } }
@@ -61,17 +65,19 @@ public class Stat : MonoBehaviour
 
         }
         
-
-
-        controller = GetComponent<PlayerController>();
         Fielditem = Managers.Resources.Load<GameObject>("PreFabs/UI/SubItem/FieldItem");
 
     }
 
 
-    public virtual void OnAttacked(Stat attacker) //인자로 상대방의 공격력을 받는다.
+    /// <summary>
+    ///  공격자(가해자)로 부터 받는 데미지를 계산하여 나의 체력을 깎습니다.
+    /// <param name="attacker">첫 번째 인자 : 공격자의 스텟 </param>
+    /// </summary>
+    public virtual void OnAttacked(Stat attacker) 
 
     {
+        // (가해자의 공격력 - 나의 방어력)
         int total_damage = Random.Range((int)((attacker.Attack - Defense) * 0.8), (int)((attacker.Attack - Defense) * 1.1)); // 능력치의 80% ~ 110%       
 
         if (total_damage < 0)
@@ -90,10 +96,11 @@ public class Stat : MonoBehaviour
 
     }
 
-
-
-
-    protected virtual void OnDead(Stat attacker) //TODO : 몬스터확장
+    /// <summary>
+    ///  사망 후의 처리를 하는 메서드 입니다.
+    /// <param name="attacker">첫 번째 인자 : 공격자의 스텟 </param>
+    /// </summary>
+    protected virtual void OnDead(Stat attacker)
     {
         if (gameObject.name == "Slime")
         {
@@ -107,8 +114,7 @@ public class Stat : MonoBehaviour
                 dropitem.transform.position = transform.position; //드랍아이템 위치
                 dropitem.transform.position += new Vector3(0, 0.4f, 0); //2D 스프라이트 잘림방지
 
-                // TODO : 퀘스트 완료여부 확인 후 몬스터 카운트 증가
-
+         
                 for (int i = 0; i < QuestDatabase.instance.QuestDB.Count; i++)
                 {
                     if (QuestDatabase.instance.QuestDB[i].Quest_ID == 1)
@@ -130,7 +136,7 @@ public class Stat : MonoBehaviour
            
         }
 
-        if (gameObject.name == "Punch_man")
+        else if (gameObject.name == "Punch_man")
         {
             PlayerStat playerstat = attacker as PlayerStat;
 
@@ -150,7 +156,8 @@ public class Stat : MonoBehaviour
         }
     }
 
-    IEnumerator MonsterDead() // 몬스터 오브젝트 삭제를 지연시켜서 몬스터 체력에 비해 데미지가 초과되어도 데미지폰트가 뜨도록 함
+
+    IEnumerator MonsterDead()
     {
         yield return new WaitForSeconds(0.25f);
         Managers.Game.DeSpawn(gameObject);

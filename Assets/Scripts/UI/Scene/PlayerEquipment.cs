@@ -8,7 +8,8 @@ public class EquipTypeItem : SerializableDictionary<EquipType, Item> { }
 
 public class PlayerEquipment : MonoBehaviour
 {
-   
+    private const int MAX_INVENTORY_COUNT = 20;
+
     public static PlayerEquipment Instance;
 
     [SerializeField]
@@ -29,7 +30,7 @@ public class PlayerEquipment : MonoBehaviour
  
     public bool EquipItem(Slot _item)
     {
-        if (player_equip.Count < 20)  //아이템 추가할때 슬롯보다 작을때만 아이템 추가
+        if (player_equip.Count <MAX_INVENTORY_COUNT)  //아이템 추가할때 슬롯보다 작을때만 아이템 추가
         {
             if (player_equip.TryGetValue(_item.item.equiptype, out Item item)) //해당 타입 이미 장착중인지 검사 
             {

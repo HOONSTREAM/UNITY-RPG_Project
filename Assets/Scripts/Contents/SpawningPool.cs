@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+/// <summary>
+/// 이 클래스는 몬스터 리젠을 관리하는 클래스입니다. 지정된 개체수가 유지되도록 while문으로 계속 update문을 통해 검사합니다.
+/// </summary>
+/// 
 public class SpawningPool : MonoBehaviour
 {
    
@@ -16,7 +20,6 @@ public class SpawningPool : MonoBehaviour
     Vector3 spawnPosition;
     [SerializeField]
     float spawnradius = 55.0f;
-
     [SerializeField]
     float spawnTime = 3.0f;
 

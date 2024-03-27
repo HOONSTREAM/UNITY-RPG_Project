@@ -792,11 +792,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5030645071562137816}
   - component: {fileID: 5030645071554350878}
-  - component: {fileID: -5120449191930007241}
   - component: {fileID: -2867277180044530593}
   - component: {fileID: -7882159392832341734}
   - component: {fileID: 3110653350343294570}
   - component: {fileID: -2834403398265243675}
+  - component: {fileID: -4052648391524148318}
   m_Layer: 8
   m_Name: Punch_man
   m_TagString: Untagged
@@ -848,23 +848,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &-5120449191930007241
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5030645071561653432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ec283e9d9abe3144abfa69748b24d80, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _DesPos: {x: 0, y: 0, z: 0}
-  _state: 2
-  LockTarget: {fileID: 0}
-  _scanRange: 20
-  attackRange: 2
 --- !u!114 &-2867277180044530593
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -943,6 +926,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ID: 9001
   IsNPC: 0
+--- !u!114 &-4052648391524148318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5030645071561653432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ec283e9d9abe3144abfa69748b24d80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _DesPos: {x: 0, y: 0, z: 0}
+  _state: 2
+  LockTarget: {fileID: 0}
+  _scanRange: 5
+  attackRange: 2
+  Hit_Particle: {fileID: 0}
 --- !u!1 &5030645071561653436
 GameObject:
   m_ObjectHideFlags: 0

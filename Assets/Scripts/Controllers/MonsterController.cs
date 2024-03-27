@@ -7,11 +7,11 @@ public class MonsterController : BaseController
 {
     Stat _stat;
     [SerializeField]
-    float _scanRange = 10;
+    float _scanRange = 2.0f; // 플레이어 스캔범위
     [SerializeField]
-    float attackRange = 2;
+    float attackRange = 2.0f;
 
-    public GameObject Hit_Particle;
+    public GameObject Hit_Particle; // 몬스터가 플레이어를 타격 할 때 나타나는 이펙트 
 
     public override void Init() //가상함수
     {
@@ -43,11 +43,10 @@ public class MonsterController : BaseController
             LockTarget = player;
             State = Define.State.Moving;
             return;
-
         }
-
+        
     }
-    protected override void UpdateDie() //TODO
+    protected override void UpdateDie() 
     {
         Debug.Log("Monster Die");
      
@@ -104,35 +103,39 @@ public class MonsterController : BaseController
     }
 
 
-
-    /* 데미지를 입는 것들은 데미지 입는 대상에다가 피격함수를 구현하는 것이 좋다. 향후 버프스킬 같은 것들 계산하기가 편리해짐 */
-    void OnHitEvent()
+    /// <summary>
+    /// 각 몬스터의 공격속도(쿨타임)에 따라 공격하도록 하는 메서드입니다.
+    /// 쿨타임설정은 쿨타임매니저에서 관리합니다.
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator wait_attack()
     {
-        
+        yield return new WaitForSeconds(Managers.CoolTime.monster_attack_cooltime(this.gameObject.name));
+        State = Define.State.Skill;
+    }
+
+
+    /// <summary>
+    /// 애니메이션 클립 Event에 붙여 공격 동작 타이밍에 실행되는 메서드 입니다.
+    /// </summary>
+    private void OnHitEvent()
+    {
+
         if (LockTarget != null)
         {
             Stat targetStat = LockTarget.GetComponent<Stat>();
-            targetStat.OnAttacked(_stat); //나의 스텟을 인자로 넣어서 상대방의 체력을 깎는다.
+            targetStat.OnAttacked(_stat); // 타겟 스텟의 OnAttacked 이므로, 상대방의 체력을 깎는 것임.
+
 
             if (targetStat.Hp > 0)
             {
-               
-                #region 몬스터 히트 이펙트
 
-
-                Vector3 particlePosition = LockTarget.transform.position + new Vector3(0.0f, 1.0f, 0.0f);
-                Quaternion particleRotation = Quaternion.LookRotation(LockTarget.transform.forward);
-
-
-                GameObject hit_particles = Instantiate(Hit_Particle, particlePosition, particleRotation);
-                hit_particles.SetActive(true);
-                Destroy(hit_particles, 1.5f);
-                #endregion
+                Monster_Hit_Effect();
 
                 float distance = (LockTarget.transform.position - transform.position).magnitude;
                 if (distance <= attackRange)
                 {
-                    StartCoroutine(wait_attack());                  
+                    StartCoroutine(wait_attack());
                 }
                 else
                 {
@@ -147,20 +150,33 @@ public class MonsterController : BaseController
         else
         {
             State = Define.State.Idle;
-
         }
 
     }
+    /// <summary>
+    /// 몬스터 히트 이펙트를 Instantiate 하고, 1.5f 후, Destroy 합니다.
+    /// </summary>
+    private void Monster_Hit_Effect()
+    {
+        
+        Vector3 particlePosition = LockTarget.transform.position + new Vector3(0.0f, 1.0f, 0.0f);
+        Quaternion particleRotation = Quaternion.LookRotation(LockTarget.transform.forward);
 
-    void HitSounds(Define.MouseEvent evt)
+
+        GameObject hit_particles = Instantiate(Hit_Particle, particlePosition, particleRotation);
+        hit_particles.SetActive(true);
+        Destroy(hit_particles, 1.5f);
+        
+    }
+
+    /// <summary>
+    /// 몬스터 히트 사운드를 선정합니다.
+    /// </summary>
+    private void HitSounds()
     {
         Managers.Sound.Play("hit22", Define.Sound.Effect);
     }
 
-   
-    IEnumerator wait_attack() // 공격속도 조정 
-    {
-        yield return new WaitForSeconds(Managers.CoolTime.monster_attack_cooltime(this.gameObject.name));
-        State = Define.State.Skill;
-    }
+
+
 }
