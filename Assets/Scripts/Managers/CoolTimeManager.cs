@@ -8,8 +8,8 @@ public class CoolTimeManager : MonoBehaviour
 
     #region Monster_Cool_Time
 
-    private int Slime_Cool_Time = 3000; // ½½¶óÀÓ ÄğÅ¸ÀÓ
-    private int Punch_man_Cool_Time = 6000; // ÆİÄ¡¸Ç ÄğÅ¸ÀÓ 
+    private const int SLIME_COOL_TIME = 3000; // ½½¶óÀÓ ÄğÅ¸ÀÓ
+    private const int PUNCH_MAN_COOL_TIME = 6000; // ÆİÄ¡¸Ç ÄğÅ¸ÀÓ 
     private bool monster_name_exist = false;
 
     [SerializeField]
@@ -47,12 +47,12 @@ public class CoolTimeManager : MonoBehaviour
         {
             case "Slime":
 
-                return Slime_Cool_Time;
+                return SLIME_COOL_TIME;
 
                 
             case "Punch_man":
 
-                return Punch_man_Cool_Time;
+                return PUNCH_MAN_COOL_TIME;
 
             default:
                 return 0;
