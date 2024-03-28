@@ -15,7 +15,7 @@ using static UnityEditor.Progress;
 /// 
 /// Stat 클래스를 상속받습니다.
 /// 
-/// </summary>
+/// </summary>        
 /// 
 public class PlayerStat : Stat
 

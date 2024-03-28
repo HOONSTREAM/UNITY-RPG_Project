@@ -28,7 +28,6 @@ public class PlayerController : BaseController
     private GameObject clickMarker_global_variable;
     public GameObject hit_particle;
 
-
     public override void Init()
     {
 
@@ -112,6 +111,9 @@ public class PlayerController : BaseController
 
     }
   
+    /// <summary>
+    /// 플레이어의 애니메이션 클립 이벤트에 등록되어, 타격 타이밍에 실행되는 메서드 입니다.
+    /// </summary>
     void player_OnHitEvent() 
     {
         if (LockTarget != null)
@@ -120,38 +122,9 @@ public class PlayerController : BaseController
             Stat targetStat = LockTarget.GetComponent<Stat>();
             targetStat.OnAttacked(_stat); //나의 스텟을 인자로 넣어서 상대방의 체력을 깎는다.;
 
-            #region 데미지 텍스트 출력
-           
-
-            if (targetStat.Hp >= 0)
-            {
-                int damage_amount = Random.Range((int)((_stat.Attack - targetStat.Defense) * 0.8), (int)((_stat.Attack - targetStat.Defense) * 1.1)); // 능력치의 80% ~ 110%    
-
-                TextMesh text = DamageText.gameObject.GetComponent<TextMesh>();
-                text.text = damage_amount.ToString();
-                
-                Instantiate(DamageText, LockTarget.transform.position , Quaternion.identity, LockTarget.transform);
-               
-            }
-
-       
-            #endregion
-
-            #region 히트 이펙트
-
-
-            Vector3 particlePosition = LockTarget.transform.position  + new Vector3(0.0f,1.0f,0.0f);
-            Quaternion particleRotation = Quaternion.LookRotation(LockTarget.transform.forward);
-
-
-            GameObject hit_particles = Instantiate(hit_particle, particlePosition, particleRotation);
-            hit_particles.SetActive(true);
-            Destroy(hit_particles, 1.5f);
-            #endregion
-
-
-            // 어빌리티 업데이트 
-
+            Print_Damage_Text(targetStat);           
+            Player_Hit_Effect();
+          
             Abillity_Script abillity_script = FindObjectOfType<Abillity_Script>();
             abillity_script.Accumulate_abillity_Func();                    
             _stat.SetAttack_and_Defanse_value(_stat.Level); // 무기 어빌리티가 즉시 적용되도록 스크립트 실행
@@ -159,18 +132,13 @@ public class PlayerController : BaseController
         }
 
         if (skill_is_stop)
-        {
-            
-            State = Define.State.Idle;
-            
+        {          
+            State = Define.State.Idle;           
         }
         else if (skill_is_stop == false)
-        {
-            
-            State = Define.State.Skill;
-            
+        {           
+            State = Define.State.Skill;         
         }
-
 
     }
     void OnMouseEvent(Define.MouseEvent evt)
@@ -282,6 +250,39 @@ public class PlayerController : BaseController
 
     }
 
+    /// <summary>
+    /// 플레이어의 히트 이펙트를 관리하는 메서드입니다.
+    /// </summary>
+    private void Player_Hit_Effect()
+    {
+        Vector3 particlePosition = LockTarget.transform.position + new Vector3(0.0f, 1.0f, 0.0f);
+        Quaternion particleRotation = Quaternion.LookRotation(LockTarget.transform.forward);
+
+
+        GameObject hit_particles = Instantiate(hit_particle, particlePosition, particleRotation);
+        hit_particles.SetActive(true);
+        Destroy(hit_particles, 1.5f);
+    }
+
+
+    /// <summary>
+    /// 플레이어가 몬스터를 타격할 때 출력되는 데미지 텍스트를 관리하는 메서드 입니다.
+    /// <param name="stat">첫 번째 인자 : 타겟(타격의대상)의 스텟 </param>
+    /// </summary>
+    /// <param name="targetStat"></param>
+    private void Print_Damage_Text(Stat targetStat)
+    {
+        if (targetStat.Hp >= 0)
+        {
+            int damage_amount = Random.Range((int)((_stat.Attack - targetStat.Defense) * 0.8), (int)((_stat.Attack - targetStat.Defense) * 1.1)); // 능력치의 80% ~ 110%    
+
+            TextMesh text = DamageText.gameObject.GetComponent<TextMesh>();
+            text.text = damage_amount.ToString();
+
+            Instantiate(DamageText, LockTarget.transform.position, Quaternion.identity, LockTarget.transform);
+
+        }
+    }
  
 }
 
