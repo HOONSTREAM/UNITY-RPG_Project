@@ -3720,9 +3720,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53419fe6f09998646b5c2d796600c2b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rudencia_NPC_Folder: {fileID: 0}
-  Rudencia_shop_NPC_Folder: {fileID: 0}
-  Rudencia_south_NPC_Folder: {fileID: 0}
+  Rudencian_NPC_Folder: {fileID: 0}
 --- !u!1 &569054052
 GameObject:
   m_ObjectHideFlags: 0
@@ -6466,7 +6464,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 479512, guid: 32ec60437affc154daf6bbf3557b1fe3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.90907
+      value: -11.13
       objectReference: {fileID: 0}
     - target: {fileID: 479512, guid: 32ec60437affc154daf6bbf3557b1fe3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6960,6 +6958,10 @@ PrefabInstance:
     - target: {fileID: 6421435523040243691, guid: 6c8fdf664e0b46241ad5f4722074b37d, type: 3}
       propertyPath: m_Name
       value: Main Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 9051240933430752017, guid: 6c8fdf664e0b46241ad5f4722074b37d, type: 3}
+      propertyPath: m_EventMask.m_Bits
+      value: 356353
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

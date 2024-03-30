@@ -19,7 +19,7 @@ public class GameScene : BaseScene
 
             Camera.main.gameObject.GetAddComponent<CameraController>().SetPlayer(Init_player);
             SceneType = Define.Scene.Rudencian;
-            Managers.Sound.Play("루덴시안", Define.Sound.Bgm);
+            Managers.Sound.Play("Calm5 - Summer Memories", Define.Sound.Bgm);
             Managers.Sound.Play("Nature Ambiance Sound", Define.Sound.Ambiance);
             gameObject.GetAddComponent<CursorController>();
             
@@ -34,7 +34,7 @@ public class GameScene : BaseScene
         
         Managers.Resources.Instantiate("Save_Data"); //Save_Data 오브젝트 새로 생성      
         Dictionary<int, Data.Stat> dict = Managers.Data.StatDict;      
-        Managers.Sound.Play("루덴시안", Define.Sound.Bgm);
+        Managers.Sound.Play("Calm5 - Summer Memories", Define.Sound.Bgm);
         Managers.Sound.Play("Nature Ambiance Sound", Define.Sound.Ambiance);
        
         gameObject.GetAddComponent<CursorController>(); //커서컨트롤러 스크립트를 코드상으로 AddComponent하고, Load 함수를 통해 등록

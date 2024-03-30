@@ -2914,61 +2914,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a08e27288cd270459d1cdb9c342316d, type: 3}
---- !u!1 &327291422
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 327291424}
-  - component: {fileID: 327291423}
-  m_Layer: 0
-  m_Name: '@GameManager'
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &327291423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 327291422}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d91c501d7157eba4caec66db9ddc593e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  talkmanager: {fileID: 0}
-  talkText: {fileID: 0}
-  scanobject: {fileID: 0}
-  TalkPanel: {fileID: 0}
-  IsTalkAction: 0
-  Talkindex: 0
-  SelectedNPC: {fileID: 0}
-  NPC_name: {fileID: 0}
-  Talk_Panel_next_button: {fileID: 0}
-  Additional_Talk_button: {fileID: 0}
-  Helken_selection: {fileID: 0}
---- !u!4 &327291424
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 327291422}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 575.2443, y: 275.201, z: -1.2546272}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &328135250
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4324,7 +4269,7 @@ Transform:
   m_Children:
   - {fileID: 524205943}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &564324070
 MonoBehaviour:
@@ -7622,7 +7567,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 479512, guid: 32ec60437affc154daf6bbf3557b1fe3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.90907
+      value: -10.37
       objectReference: {fileID: 0}
     - target: {fileID: 479512, guid: 32ec60437affc154daf6bbf3557b1fe3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7630,7 +7575,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 479512, guid: 32ec60437affc154daf6bbf3557b1fe3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -34.49133
+      value: -35.38
       objectReference: {fileID: 0}
     - target: {fileID: 479512, guid: 32ec60437affc154daf6bbf3557b1fe3, type: 3}
       propertyPath: m_LocalRotation.w
@@ -8249,9 +8194,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2640281286194408166, guid: 6c8fdf664e0b46241ad5f4722074b37d, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 360375
+      objectReference: {fileID: 0}
     - target: {fileID: 6421435523040243691, guid: 6c8fdf664e0b46241ad5f4722074b37d, type: 3}
       propertyPath: m_Name
       value: Main Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 9051240933430752017, guid: 6c8fdf664e0b46241ad5f4722074b37d, type: 3}
+      propertyPath: m_EventMask.m_Bits
+      value: 356353
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9501,7 +9454,7 @@ Transform:
   - {fileID: 1961128249}
   - {fileID: 612410259}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1851040543
 PrefabInstance:

@@ -33,6 +33,7 @@ public enum Layer
         Console = 15,
         NPC3 = 16,
         FieldItem = 17,
+        NPC4 = 18,
         
 
 
@@ -48,11 +49,6 @@ public enum Layer
         Rudencian_Bank,
         Rudencian_Inn,
         Rudencian_jewel_shop,
-
-
-
-
-
 
 
     }
