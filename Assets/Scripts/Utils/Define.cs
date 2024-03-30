@@ -47,6 +47,9 @@ public enum Layer
         Rudencian_South,
         Rudencian_Bank,
         Rudencian_Inn,
+        Rudencian_jewel_shop,
+
+
 
 
 

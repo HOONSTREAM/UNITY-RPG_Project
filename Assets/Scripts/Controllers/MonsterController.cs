@@ -13,6 +13,10 @@ public class MonsterController : BaseController
 
     public GameObject Hit_Particle; // 몬스터가 플레이어를 타격 할 때 나타나는 이펙트 
 
+    [SerializeField]
+    float _maxChaseDistance = 10.0f; // 최대 추적 거리 설정
+
+
     public override void Init() //가상함수
     {
        
@@ -56,22 +60,33 @@ public class MonsterController : BaseController
         //공격범위
         if (LockTarget != null)
         {
-            _DesPos = LockTarget.transform.position; //타겟에서 내 포지션을 빼면 가야할 방향벡터가 나온다.
+            _DesPos = LockTarget.transform.position; //타겟에서 내 포지션을 빼면 가야할 방향벡터가 나옴.
             float distance = (_DesPos - transform.position).magnitude;
+
+            //타겟과의 거리가 공격범위 이내면 공격상태로 전환
             if (distance <= attackRange)
             {
 
                 NavMeshAgent nma = gameObject.GetComponentInChildren<NavMeshAgent>();
-                nma.SetDestination(transform.position);
-                State = Define.State.Skill;
+                nma.SetDestination(transform.position); //이동중지
+                State = Define.State.Skill; // 공격상태로 변경
 
                 return;
 
             }
+
+            else if (distance > _maxChaseDistance) // 추적거리 초과시 추적 중단
+            {
+                State = Define.State.Idle;
+                NavMeshAgent nma = gameObject.GetComponentInChildren<NavMeshAgent>();
+                nma.SetDestination(transform.position); //이동중지
+
+                return;
+            }
         }
 
-        //이동
-        Vector3 dir = _DesPos - transform.position; // 목적지 포지션에서 플레이어의 포지션을 빼면 가야할 방향벡터가 나온다.
+        #region 이동 로직
+        Vector3 dir = _DesPos - transform.position; 
 
         if (dir.magnitude < 0.5f) // 방향의 스칼라값이 0에 수렴하면 (목적지에 도착했으면)
         {
@@ -89,7 +104,10 @@ public class MonsterController : BaseController
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), 20 * Time.deltaTime);
 
         }
-    }         
+
+        #endregion
+
+    }
     protected override void UpdateSkill()
     {
        

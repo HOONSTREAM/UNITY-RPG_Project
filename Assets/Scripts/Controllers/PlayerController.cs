@@ -1,6 +1,7 @@
 using Data;
 using System.Collections;
 using System.Collections.Generic;
+using System.Numerics;
 using System.Threading;
 using TMPro;
 using Unity.VisualScripting;
@@ -12,6 +13,8 @@ using UnityEngine.UI;
 using UnityEngine.UIElements;
 using UnityEngineInternal;
 using static UnityEditor.Progress;
+using Quaternion = UnityEngine.Quaternion;
+using Vector3 = UnityEngine.Vector3;
 
 //참고 : https://geojun.tistory.com/64
 
@@ -47,6 +50,7 @@ public class PlayerController : BaseController
         {
 
             float distance = (_DesPos - transform.position).magnitude;
+
             if (distance <= attackRange)
             {
                 Destroy(clickMarker_global_variable); //전투중에는 마우스Marker가 뜨지않도록 Destroy 
@@ -166,6 +170,7 @@ public class PlayerController : BaseController
 
 
      }
+
     void player_HitSounds()
     {            
         Managers.Sound.Play("crack10.mp3", Define.Sound.Effect);
@@ -192,20 +197,11 @@ public class PlayerController : BaseController
                     if (raycasthit)
                     {
                          Vector3 vector3 =new Vector3(0f, 0.7f, 0f);
-                        _DesPos = hit.point;
-
-                        #region 마우스 커서 이펙트
-                        GameObject go = Instantiate(clickMarker,_DesPos + vector3, Quaternion.identity); //목적지 마우스Marker
-                        clickMarker_global_variable = go;
-                        go.SetActive(true);
-                        Destroy(go, 1.5f);
-                        State = Define.State.Moving;
-                        #endregion
-
+                        _DesPos = hit.point;                      
+                        Mouse_Click_Effect(vector3);                    
                         skill_is_stop = true;
                         
-                       
-
+  
                         if (hit.collider.gameObject.layer == (int)Define.Layer.Monster)
                         {
                             LockTarget = hit.collider.gameObject;
@@ -283,7 +279,28 @@ public class PlayerController : BaseController
 
         }
     }
- 
+
+    /// <summary>
+    /// 플레이어가 마우스로 이동 시, 마우스 클릭커 이펙트를 제어하는 메서드입니다.
+    /// </summary>
+    /// <param name="vector3"></param>
+    private void Mouse_Click_Effect(Vector3 vector3)
+    {
+
+        // 기존의 클릭 마커 오브젝트가 존재한다면 삭제한다.
+        if (clickMarker_global_variable != null)
+        {
+            Destroy(clickMarker_global_variable);
+        }
+
+        GameObject go = Instantiate(clickMarker, _DesPos + vector3, Quaternion.identity); //목적지 마우스Marker
+        clickMarker_global_variable = go;
+        go.SetActive(true);
+
+        Destroy(go,3.0f);
+
+        State = Define.State.Moving;
+    }
 }
 
 
