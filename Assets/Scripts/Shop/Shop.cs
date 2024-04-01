@@ -1,11 +1,16 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEditor.Progress;
 // TODO 상점 확장성에 대한 고려를 해야함.
+
+/// <summary>
+/// 루덴시안 상점 NPC 대장슬라임 케넨의 스크립트 입니다.
+/// </summary>
 public class Shop : MonoBehaviour
 {
 
@@ -24,7 +29,7 @@ public class Shop : MonoBehaviour
     private PlayerStat stat;
     private ShopSlot[] slots;
     public Transform slotHolder;
-    public List<Item> shopitemDB;
+    public Dictionary<string, ReadOnlyCollection<Item>> shopitemDB;
     private Slot[] playerslots;
     public Transform playerslotHolder;
     public string NPCname;
@@ -33,7 +38,7 @@ public class Shop : MonoBehaviour
     void Start()
     {
         NPCname = "대장슬라임 케넨";
-        shopitemDB = ItemDataBase.instance.itemDB; //데이터베이스 복사 
+        shopitemDB = ItemDataBase.instance.GetAllItems(); //데이터베이스 복사 
         TotalGoldText.text = "0";
         Player = Managers.Game.GetPlayer();
         stat =  Player.GetComponent<PlayerStat>();
@@ -48,11 +53,11 @@ public class Shop : MonoBehaviour
 
         if (slots.Length >= 5 && slots != null)
         {
-            slots[0].shopitem = shopitemDB[0];
-            slots[1].shopitem = shopitemDB[1];
-            slots[2].shopitem = shopitemDB[2];
-            slots[3].shopitem = shopitemDB[11];
-            slots[4].shopitem = shopitemDB[12];
+            slots[0].shopitem = shopitemDB["Weapon_oneHand"][0];
+            slots[1].shopitem = shopitemDB["Weapon_oneHand"][1];
+            slots[2].shopitem = shopitemDB["Weapon_oneHand"][2];
+            slots[3].shopitem = shopitemDB["Weapon_oneHand"][11];
+            slots[4].shopitem = shopitemDB["Weapon_oneHand"][12];
         }
    
 
@@ -215,7 +220,7 @@ public class Shop : MonoBehaviour
 
                         for (int i0 = 0; i0<quan ; i0++) 
                         {
-                            PlayerInventory.Instance.AddItem(shopitemDB[0].Clone()); 
+                            PlayerInventory.Instance.AddItem(shopitemDB["Weapon_oneHand"][0].Clone()); 
                             PlayerInventory.Instance.onChangeItem.Invoke();
                         }
 
@@ -231,7 +236,7 @@ public class Shop : MonoBehaviour
                         
                         for (int i1= 0; i1<quan1; i1++)
                         {
-                            PlayerInventory.Instance.AddItem(shopitemDB[1].Clone());
+                            PlayerInventory.Instance.AddItem(shopitemDB["Weapon_oneHand"][1].Clone());
                             PlayerInventory.Instance.onChangeItem.Invoke();
 
                         }
@@ -247,7 +252,7 @@ public class Shop : MonoBehaviour
                         
                         for (int i2= 0; i2<quan2; i2++)
                         {
-                            PlayerInventory.Instance.AddItem(shopitemDB[2].Clone());
+                            PlayerInventory.Instance.AddItem(shopitemDB["Weapon_oneHand"][2].Clone());
                             PlayerInventory.Instance.onChangeItem.Invoke();
 
                         }
@@ -263,7 +268,7 @@ public class Shop : MonoBehaviour
 
                         for (int i2 = 0; i2 < quan3; i2++)
                         {
-                            PlayerInventory.Instance.AddItem(shopitemDB[11].Clone());
+                            PlayerInventory.Instance.AddItem(shopitemDB["Weapon_oneHand"][11].Clone());
                             PlayerInventory.Instance.onChangeItem.Invoke();
 
                         }
@@ -279,7 +284,7 @@ public class Shop : MonoBehaviour
 
                         for (int i2 = 0; i2 < quan4; i2++)
                         {
-                            PlayerInventory.Instance.AddItem(shopitemDB[12].Clone());
+                            PlayerInventory.Instance.AddItem(shopitemDB["Weapon_oneHand"][12].Clone());
                             PlayerInventory.Instance.onChangeItem.Invoke();
 
                         }

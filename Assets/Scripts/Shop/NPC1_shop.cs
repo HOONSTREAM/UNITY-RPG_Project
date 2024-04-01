@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -14,21 +15,22 @@ public class NPC1_shop : MonoBehaviour
     public TextMeshProUGUI ScrollViewText_item1;
     public TextMeshProUGUI ScrollViewText_item2;
     public TextMeshProUGUI ScrollViewText_item3;
+    public TextMeshProUGUI ScrollViewText_item4;
 
 
     private GameObject Player;
     private PlayerStat stat;
     private NPC1_shopslot[] slots;
     public Transform slotHolder;
-    public List<Item> shopitemDB;
+    public Dictionary<string, ReadOnlyCollection<Item>> shopitemDB;
     private Slot[] playerslots;
     public Transform playerslotHolder; //content 이며 인벤토리 슬롯
     public string NPCname;
 
     void Start()
     {
-        NPCname = "농부 헤리안";
-        shopitemDB = ItemDataBase.instance.itemDB; //아이템 데이터베이스 복사 
+        NPCname = "브로아";
+        shopitemDB = ItemDataBase.instance.GetAllItems(); //아이템 데이터베이스 복사 
         TotalGoldText.text = "0";
         Player = Managers.Game.GetPlayer();
         stat =  Player.GetComponent<PlayerStat>();
@@ -40,11 +42,12 @@ public class NPC1_shop : MonoBehaviour
             slots[i].slotnum = i;            
         }
         
-        if(slots.Length >= 3 && slots != null)
+        if(slots.Length >= 4 && slots != null)
         {
-            slots[0].shopitem = shopitemDB[3]; //각 슬롯에 샵아이템데이터 등록 
-            slots[1].shopitem = shopitemDB[5];
-            slots[2].shopitem = shopitemDB[10];
+            slots[0].shopitem = shopitemDB["Consumable"][0]; 
+            slots[1].shopitem = shopitemDB["Consumable"][1];
+            slots[2].shopitem = shopitemDB["Consumable"][2];
+            slots[3].shopitem = shopitemDB["Weapon_TwoHand"][0];
         }
        
     }
@@ -98,6 +101,7 @@ public class NPC1_shop : MonoBehaviour
             ScrollViewText_item1.text = "소지금이 부족합니다.";
             ScrollViewText_item2.text = "";
             ScrollViewText_item3.text = "";
+            ScrollViewText_item4.text = "";
             
             return;
 
@@ -116,6 +120,7 @@ public class NPC1_shop : MonoBehaviour
                 ScrollViewText_item1.text = "가방 칸이 부족합니다.";
                 ScrollViewText_item2.text = "";
                 ScrollViewText_item3.text = "";
+                ScrollViewText_item4.text = "";
 
                 return;
 
@@ -141,6 +146,7 @@ public class NPC1_shop : MonoBehaviour
                 ScrollViewText_item1.text = "가방 칸이 모자라 구매 할 수 없습니다.";
                 ScrollViewText_item2.text = "";
                 ScrollViewText_item3.text = "";
+                ScrollViewText_item4.text = "";
 
 
                 totalquantity = 0; //토탈갯수 검사 초기화
@@ -153,6 +159,7 @@ public class NPC1_shop : MonoBehaviour
             ScrollViewText_item1.text = "구매완료";
             ScrollViewText_item2.text = "";
             ScrollViewText_item3.text = "";
+            ScrollViewText_item4.text = "";
 
             stat.Gold -= total;
             stat.onchangestat.Invoke();
@@ -172,7 +179,7 @@ public class NPC1_shop : MonoBehaviour
                         
                         for(int i0 = 0; i0<quan ; i0++)
                         {
-                            PlayerInventory.Instance.AddItem(shopitemDB[3].Clone());
+                            PlayerInventory.Instance.AddItem(shopitemDB["Consumable"][0].Clone());
                             
                         }
 
@@ -188,7 +195,7 @@ public class NPC1_shop : MonoBehaviour
                         
                         for (int i1= 0; i1<quan1; i1++)
                         {
-                            PlayerInventory.Instance.AddItem(shopitemDB[5].Clone());
+                            PlayerInventory.Instance.AddItem(shopitemDB["Consumable"][1].Clone());
                             
                         }
                         totalquantity = 0; //구매 후 토탈갯수 초기화
@@ -202,12 +209,31 @@ public class NPC1_shop : MonoBehaviour
                             break;
                         }
 
-                        for (int i1 = 0; i1 < quan2; i1++)
+                        for (int i2 = 0; i2 < quan2; i2++)
                         {
-                            PlayerInventory.Instance.AddItem(shopitemDB[10].Clone());
+                            PlayerInventory.Instance.AddItem(shopitemDB["Consumable"][2].Clone());
 
                         }
                         totalquantity = 0; //구매 후 토탈갯수 초기화
+                        break;
+
+
+                    case 3:
+
+                        int quan3 = slots[3].quantity;
+                        Debug.Log(quan3);
+                        if (quan3 == 0)
+                        {
+                            break;
+                        }
+
+                        for (int i3 = 0; i3 < quan3; i3++)
+                        {
+                            PlayerInventory.Instance.AddItem(shopitemDB["Weapon_TwoHand"][0].Clone());
+
+                        }
+                        totalquantity = 0; //구매 후 토탈갯수 초기화
+
                         break;
 
                 }
