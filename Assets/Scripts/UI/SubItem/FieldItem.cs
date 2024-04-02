@@ -57,7 +57,7 @@ public class FieldItem : MonoBehaviour
     public GameObject SlimeDropFieldItem() //필드에 아이템 생성
     {
         GameObject go = Instantiate(fielditemPrefab, pos, Quaternion.identity); //Quaternion.identity는 회전없음을 나타내는 쿼터니언    
-        go.GetComponent<FieldItem>().SetItem(ItemDataBase.instance.GetAllItems()["Weapon_oneHand"][Random.Range(14,14)]);
+        go.GetComponent<FieldItem>().SetItem(ItemDataBase.instance.GetAllItems()["Etcs"][Random.Range(0,0)]);
        
         return go;
 
@@ -66,7 +66,7 @@ public class FieldItem : MonoBehaviour
     public GameObject PunchmanDropFieldItem() //필드에 아이템 생성
     {
         GameObject go = Instantiate(fielditemPrefab, pos, Quaternion.identity); //Quaternion.identity는 회전없음을 나타내는 쿼터니언    
-        go.GetComponent<FieldItem>().SetItem(ItemDataBase.instance.GetAllItems()["Weapon_oneHand"][Random.Range(0, 13)]);
+        go.GetComponent<FieldItem>().SetItem(ItemDataBase.instance.GetAllItems()["Etcs"][1]);
 
         return go;
 

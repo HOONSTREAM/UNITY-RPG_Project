@@ -43,6 +43,9 @@ public class GameScene : BaseScene
         Camera.main.gameObject.GetAddComponent<CameraController>().SetPlayer(player);
 
 
+        //TEST CODE
+        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Weapon_oneHand"][0]);
+        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Weapon_TwoHand"][0]);
     }
 
     public override void Clear()

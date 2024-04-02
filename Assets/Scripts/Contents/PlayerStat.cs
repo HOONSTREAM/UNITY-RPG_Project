@@ -286,6 +286,8 @@ public class PlayerStat : Stat
                     _agi = stat.AGI + AGIvalue;
                     _attack = stat.attack; // 무기 해제이므로 순수 레벨에 해당하는 어택수치로 변경함.
 
+
+                    
                 }
                 else if (_attackitem.Equip == false) //무기가 장착되어 있지 않다면 장착 스텟을 적용
                 {
@@ -297,6 +299,14 @@ public class PlayerStat : Stat
                     _vit = stat.VIT + VITvalue;
                     _agi = stat.AGI + AGIvalue;
                     _attack = stat.attack + WeaponAttackValue + (WeaponSTRValue / 10) + Onupdate_Abillity_attack(); //총 STR의 1/10을 데미지에 기여함 + 무기 어빌리티별 향상데미지
+
+                    //TESTCODE ; 무기교체 애니메이션
+                    if (_attackitem.weapontype == WeaponType.One_Hand)
+                    {
+                        gameObject.GetComponent<PlayerAnimController>().Change_oneHand_weapon_animClip();
+                    }
+
+
                 }
             }
         }

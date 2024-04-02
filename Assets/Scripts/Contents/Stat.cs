@@ -35,6 +35,28 @@ public class Stat : MonoBehaviour
     public float MoveSpeed { get { return _movespeed; } set { _movespeed = value; } }
 
 
+
+    private const int START_LEVEL = 1;
+
+    #region Slime_stat
+    private const int SLIME_EXP = 5;
+    private const int SLIME_HP = 100;
+    private const int SLIME_MAX_HP = 100;
+    private const int SLIME_ATTACK = 10;
+    private const int SLIME_DEFENSE = 5;
+    private const float SLIME_MOVESPEED = 1.0f;
+    #endregion
+
+    #region Punch_man_stat
+    private const int PUNCHMAN_EXP = 5;
+    private const int PUNCHMAN_HP = 200;
+    private const int PUNCHMAN_MAX_HP = 200;
+    private const int PUNCHMAN_ATTACK = 15;
+    private const int PUNCHMAN_DEFENCE = 5;
+    private const float PUNCHMAN_MOVESPEED = 1.0f;
+    #endregion
+
+
     private void Start()
     {
 
@@ -42,23 +64,24 @@ public class Stat : MonoBehaviour
         {
             case "Slime":
 
-                _level = 1;
-                _hp = 100;
-                _maxHp = 100;
-                _attack = 10;
-                _defense = 5;
-                _movespeed = 1.0f;
+                _level = START_LEVEL;
+                _hp = SLIME_HP;
+                _maxHp = SLIME_MAX_HP;
+                _attack = SLIME_ATTACK;
+                _defense = SLIME_DEFENSE;
+                _movespeed = SLIME_MOVESPEED;
 
                 break;
 
             case "Punch_man":
 
-                _level = 3;
-                _hp = 200;
-                _maxHp = 200;
-                _attack = 15;
-                _defense = 5;
-                _movespeed = 2f;
+                _level = START_LEVEL;
+                _hp = PUNCHMAN_HP;
+                _maxHp = PUNCHMAN_MAX_HP;
+                _attack = PUNCHMAN_ATTACK;
+                _defense = PUNCHMAN_DEFENCE;
+                _movespeed = PUNCHMAN_MOVESPEED;
+
 
                 break;
 
@@ -107,8 +130,7 @@ public class Stat : MonoBehaviour
             PlayerStat playerstat = attacker as PlayerStat;
             if (playerstat != null)
             {
-                playerstat.EXP += 5;
-                playerstat.Gold += 100;
+                playerstat.EXP += SLIME_EXP;              
                 playerstat.onchangestat.Invoke();
                 GameObject dropitem = Fielditem.GetComponent<FieldItem>().SlimeDropFieldItem();
                 dropitem.transform.position = transform.position; //드랍아이템 위치
@@ -142,8 +164,7 @@ public class Stat : MonoBehaviour
 
             if (playerstat != null)
             {
-                playerstat.EXP += 10;
-                playerstat.Gold += 100;
+                playerstat.EXP += PUNCHMAN_EXP;               
                 playerstat.onchangestat.Invoke();
                 GameObject dropitem = Fielditem.GetComponent<FieldItem>().PunchmanDropFieldItem();
                 dropitem.transform.position = transform.position; //드랍아이템 위치
