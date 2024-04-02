@@ -12370,6 +12370,7 @@ GameObject:
   - component: {fileID: 2541435336752449398}
   - component: {fileID: 7302938522569241752}
   - component: {fileID: -8645764731108034840}
+  - component: {fileID: 2880340381061867525}
   m_Layer: 0
   m_Name: UnityChan
   m_TagString: Untagged
@@ -12729,10 +12730,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 4861592020407041731}
-  oneHand_ATTACK: {fileID: 7400000, guid: 997f29e6d83e40441819abcdf569bb75, type: 3}
+  oneHand_Attack: {fileID: 7400000, guid: 997f29e6d83e40441819abcdf569bb75, type: 3}
   oneHand_Idle: {fileID: 7400000, guid: 6383a08b0ddb19543948954c6e075143, type: 3}
   oneHand_Run: {fileID: 7400000, guid: aca06cdac90ed5847b256ee780a2d39f, type: 3}
   oneHand_Die: {fileID: 7400000, guid: 88a2a171ff2ed6b44ad0d6233059c0a9, type: 3}
+  No_Weapon_Attack: {fileID: 7400000, guid: 5b021e02f0b3aed4c95a3f4614cba51f, type: 3}
+  No_Weapon_Idle: {fileID: 7400000, guid: 392dc25dd8bd7f24387ce049f5e53ee2, type: 3}
+  No_Weapon_Run: {fileID: 7400000, guid: 52948d592632ef940955a84f1816f035, type: 3}
+  No_Weapon_Die: {fileID: 7400000, guid: b80eeb877a644004b9a1aab03292eacd, type: 3}
+  Two_Hand_Attack: {fileID: 7400000, guid: 24287e03ab7b0764a952b272b0f27d35, type: 3}
+  Two_Hand_Idle: {fileID: 7400000, guid: 39048ae2454ec3744a251f993d77e2a7, type: 3}
+  Two_Hand_Run: {fileID: 7400000, guid: 8fb821f0ca12646418d3c898869935a1, type: 3}
+  Two_Hand_Die: {fileID: 7400000, guid: 4e1d96a463e584d4995b7828ac377b5d, type: 3}
+--- !u!114 &2880340381061867525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7910964836869391157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6b65ead6116a0a43a09d72e355d497c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  One_Hand_Wepaon_Long_Sword: {fileID: 4248778428234464803}
+  Two_Hand_Weapon_Great_Sword: {fileID: 7194635620063556896}
 --- !u!1 &7927821325285654552
 GameObject:
   m_ObjectHideFlags: 0

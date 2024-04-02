@@ -273,6 +273,9 @@ public class PlayerStat : Stat
     {
         if (item.equiptype == EquipType.Weapon)
         {
+            gameObject.GetComponent<PlayerAnimController>().Get_request_Change_Weapon_EquipType(item); // AnimController에 현재 장착한 무기가 무엇인지 바인딩
+            gameObject.GetComponent<PlayerWeaponController>().Get_request_Change_Weapon_EquipType(item); // WeaponController에 현재 장착한 무기가 무엇인지 바인딩
+
             if (equipment.player_equip.TryGetValue(EquipType.Weapon, out Item _attackitem)) //장착무기 검사
             {
                 if (_attackitem.Equip) //무기를 장착중이면 무기를 해제한 수치를 반영
@@ -286,8 +289,8 @@ public class PlayerStat : Stat
                     _agi = stat.AGI + AGIvalue;
                     _attack = stat.attack; // 무기 해제이므로 순수 레벨에 해당하는 어택수치로 변경함.
 
+                    gameObject.GetComponent<PlayerAnimController>().Change_No_Weapon_animClip();
 
-                    
                 }
                 else if (_attackitem.Equip == false) //무기가 장착되어 있지 않다면 장착 스텟을 적용
                 {
@@ -305,7 +308,10 @@ public class PlayerStat : Stat
                     {
                         gameObject.GetComponent<PlayerAnimController>().Change_oneHand_weapon_animClip();
                     }
-
+                    else if(_attackitem.weapontype == WeaponType.Two_Hand)
+                    {
+                        gameObject.GetComponent<PlayerAnimController>().Change_TwoHand_weapon_animClip();
+                    }
 
                 }
             }

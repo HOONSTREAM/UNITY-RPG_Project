@@ -53,11 +53,11 @@ public class Shop : MonoBehaviour
 
         if (slots.Length >= 5 && slots != null)
         {
-            slots[0].shopitem = shopitemDB["Weapon_oneHand"][0];
-            slots[1].shopitem = shopitemDB["Weapon_oneHand"][1];
-            slots[2].shopitem = shopitemDB["Weapon_oneHand"][2];
-            slots[3].shopitem = shopitemDB["Weapon_oneHand"][11];
-            slots[4].shopitem = shopitemDB["Weapon_oneHand"][12];
+            //slots[0].shopitem = shopitemDB["Weapon_oneHand"][0];
+            //slots[1].shopitem = shopitemDB["Weapon_oneHand"][1];
+            //slots[2].shopitem = shopitemDB["Weapon_oneHand"][2];
+            //slots[3].shopitem = shopitemDB["Weapon_oneHand"][11];
+            //slots[4].shopitem = shopitemDB["Weapon_oneHand"][12];
         }
    
 
