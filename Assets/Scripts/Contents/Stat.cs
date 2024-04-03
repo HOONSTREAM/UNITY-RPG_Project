@@ -35,59 +35,9 @@ public class Stat : MonoBehaviour
     public float MoveSpeed { get { return _movespeed; } set { _movespeed = value; } }
 
 
-
-    private const int START_LEVEL = 1;
-
-    #region Slime_stat
-    private const int SLIME_EXP = 5;
-    private const int SLIME_HP = 100;
-    private const int SLIME_MAX_HP = 100;
-    private const int SLIME_ATTACK = 10;
-    private const int SLIME_DEFENSE = 5;
-    private const float SLIME_MOVESPEED = 1.0f;
-    #endregion
-
-    #region Punch_man_stat
-    private const int PUNCHMAN_EXP = 5;
-    private const int PUNCHMAN_HP = 200;
-    private const int PUNCHMAN_MAX_HP = 200;
-    private const int PUNCHMAN_ATTACK = 15;
-    private const int PUNCHMAN_DEFENCE = 5;
-    private const float PUNCHMAN_MOVESPEED = 1.0f;
-    #endregion
-
-
     private void Start()
     {
-
-        switch (gameObject.name)
-        {
-            case "Slime":
-
-                _level = START_LEVEL;
-                _hp = SLIME_HP;
-                _maxHp = SLIME_MAX_HP;
-                _attack = SLIME_ATTACK;
-                _defense = SLIME_DEFENSE;
-                _movespeed = SLIME_MOVESPEED;
-
-                break;
-
-            case "Punch_man":
-
-                _level = START_LEVEL;
-                _hp = PUNCHMAN_HP;
-                _maxHp = PUNCHMAN_MAX_HP;
-                _attack = PUNCHMAN_ATTACK;
-                _defense = PUNCHMAN_DEFENCE;
-                _movespeed = PUNCHMAN_MOVESPEED;
-
-
-                break;
-
-
-        }
-        
+        Monster_Stat_Factory.CreateStatForMonster(gameObject); 
         Fielditem = Managers.Resources.Load<GameObject>("PreFabs/UI/SubItem/FieldItem");
 
     }
@@ -130,32 +80,16 @@ public class Stat : MonoBehaviour
             PlayerStat playerstat = attacker as PlayerStat;
             if (playerstat != null)
             {
-                playerstat.EXP += SLIME_EXP;              
+                playerstat.EXP += Monster_Stat_Factory.GetExperiencePoints(gameObject);              
                 playerstat.onchangestat.Invoke();
                 GameObject dropitem = Fielditem.GetComponent<FieldItem>().SlimeDropFieldItem();
                 dropitem.transform.position = transform.position; //드랍아이템 위치
                 dropitem.transform.position += new Vector3(0, 0.4f, 0); //2D 스프라이트 잘림방지
-
-         
-                for (int i = 0; i < QuestDatabase.instance.QuestDB.Count; i++)
-                {
-                    if (QuestDatabase.instance.QuestDB[i].Quest_ID == 1)
-                    {
-                        if (QuestDatabase.instance.QuestDB[i].is_complete == false)
-                        {
-                            QuestDatabase.instance.QuestDB[i].monster_counter++;
-                            Player_Quest.Instance.onChangequest.Invoke(); // 카운터 증가 즉시 반영
-                        }
-
-                        break;
-                    }
-                }
-
+                QuestDatabase.instance.KillSlimeForQuest();
             }
 
             StartCoroutine("MonsterDead");
-
-           
+        
         }
 
         else if (gameObject.name == "Punch_man")
@@ -164,7 +98,7 @@ public class Stat : MonoBehaviour
 
             if (playerstat != null)
             {
-                playerstat.EXP += PUNCHMAN_EXP;               
+                playerstat.EXP += Monster_Stat_Factory.GetExperiencePoints(gameObject);
                 playerstat.onchangestat.Invoke();
                 GameObject dropitem = Fielditem.GetComponent<FieldItem>().PunchmanDropFieldItem();
                 dropitem.transform.position = transform.position; //드랍아이템 위치
@@ -176,7 +110,6 @@ public class Stat : MonoBehaviour
 
         }
     }
-
 
     IEnumerator MonsterDead()
     {
