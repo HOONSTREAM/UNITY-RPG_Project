@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4866756200079140032}
   - component: {fileID: 4866756200079140033}
   m_Layer: 0
-  m_Name: Text_Effect_46
+  m_Name: Level_up_Effect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

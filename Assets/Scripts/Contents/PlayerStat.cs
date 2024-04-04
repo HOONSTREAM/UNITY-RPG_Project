@@ -444,13 +444,13 @@ public class PlayerStat : Stat
     {
         Managers.Sound.Play("change_scene", Define.Sound.Effect);
 
-        GameObject effect = Managers.Resources.Instantiate("Skill_Effect/Unlock_FX_7");
+        GameObject effect = Managers.Resources.Instantiate("Skill_Effect/Level_up_Effect");
 
 
         effect.transform.parent = Managers.Game.GetPlayer().transform; // 부모설정
         effect.transform.position = Managers.Game.GetPlayer().gameObject.transform.position + new Vector3(0.0f, 2.2f, 0.0f);
 
-        Destroy(effect, 3.0f);
+        Destroy(effect, 5.0f);
     }
 
 }
