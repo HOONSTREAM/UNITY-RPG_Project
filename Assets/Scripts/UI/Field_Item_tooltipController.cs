@@ -29,7 +29,32 @@ public class Field_Item_tooltipController : MonoBehaviour, IPointerEnterHandler,
 
     OnToolTipUpdated ontooltip = OnToolTipUpdated.None;
 
-   
+
+
+    private void OnEnable()
+    {
+        FieldItem.OnFieldItemDestroyed += HandleFieldItemDestroyed;
+    }
+
+    private void OnDisable()
+    {
+        FieldItem.OnFieldItemDestroyed -= HandleFieldItemDestroyed;
+    }
+
+    /// <summary>
+    /// 파괴된 필드아이템의 툴팁이 계속 떠있다면, 검사하고 툴팁을 비활성화 시킵니다.
+    /// </summary>
+    /// <param name="item"></param>
+    private void HandleFieldItemDestroyed(FieldItem item)
+    {
+        
+        if (tooltip_obj.activeSelf && tooltip.GetComponent<Field_Item_Tooltip>().CurrentItem == item)
+        {
+            tooltip_obj.SetActive(false);
+        }
+    }
+
+
     public void OnPointerEnter(PointerEventData eventData)
     {
         Debug.Log("Item OnPointerEnter 호출");
@@ -40,13 +65,15 @@ public class Field_Item_tooltipController : MonoBehaviour, IPointerEnterHandler,
             bool raycasthit = Physics.Raycast(ray, out hit, 100.0f, _mask);
 
             string name = hit.collider.gameObject.GetComponent<FieldItem>().item.itemname;
+            FieldItem item = hit.collider.gameObject.GetComponent<FieldItem>();
             Debug.Log(name);
-
+            Debug.Log($"툴팁 컨트롤러 아이템이름 {item.item.itemname}");
 
 
 
             tooltip_obj.gameObject.SetActive(true);
-            tooltip_obj.GetComponent<Field_Item_Tooltip>().SetupToolTip(name);
+            
+            tooltip_obj.GetComponent<Field_Item_Tooltip>().SetupToolTip(item);
 
 
             ontooltip = OnToolTipUpdated.On;
@@ -62,17 +89,6 @@ public class Field_Item_tooltipController : MonoBehaviour, IPointerEnterHandler,
         {
             tooltip_obj.gameObject.SetActive(false);           
             ontooltip = OnToolTipUpdated.off;
-        }
-
-        // 만약 일시적인 버그로 툴팁이 제거 되지 않으면, 오브젝트를 파괴하고 재 생성합니다.
-        if (tooltip_obj.gameObject.activeSelf)
-        {
-            Destroy(tooltip_obj.gameObject);
-
-            Inventory_canvas = GameObject.Find("INVENTORY CANVAS").gameObject;
-            tooltip_obj = Instantiate(tooltip.gameObject, Inventory_canvas.transform);
-            tooltip_obj.gameObject.SetActive(false);
-
         }
 
         return;

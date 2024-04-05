@@ -28,7 +28,7 @@ public class TalkManager : MonoBehaviour
     {
         TalkData.Clear();       
         TalkData.Add(RUDENCIAN_HELKEN_NPC_ID, new string[] { "안녕, 나는 기사 헬켄이야.", "나에게 볼 일이 있어?" });
-        TalkData.Add(RUDENCIAN_INN_NPC_ID, new string[] { "체력을 회복 해 드리겠습니다." });
+        TalkData.Add(RUDENCIAN_INN_NPC_ID, new string[] { " 체력을 회복 해 드리겠습니다." });
     }
 
     public string GetTalk(int id, int talkIndex)

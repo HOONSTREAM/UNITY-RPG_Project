@@ -531,14 +531,14 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.57464325
+      - time: 0.4827315
         functionName: player_HitSounds
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.70940745
+      - time: 0.6285251
         functionName: player_OnHitEvent
         data: 
         objectReferenceParameter: {instanceID: 0}

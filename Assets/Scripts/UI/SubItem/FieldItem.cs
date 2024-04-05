@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,9 +14,10 @@ public class FieldItem : MonoBehaviour
     public GameObject fielditemPrefab;
     public Vector3 pos;
 
+    // Item이 파괴 될 때 발생하는 이벤트를 선언.
+    public static event Action<FieldItem> OnFieldItemDestroyed;
 
-
-    public void SetItem(Item _item)
+    private void SetItem(Item _item)
     {
         item.ItemID = _item.ItemID; //아이템 코드 아이디
         item.itemrank = _item.itemrank; // 아이템 등급
@@ -50,14 +52,14 @@ public class FieldItem : MonoBehaviour
 
     public void DestroyItem()
     {
-        Destroy(gameObject);
-        
+        OnFieldItemDestroyed?.Invoke(this); // 이벤트가 null이 아닐때만 Invoke 하라는 뜻
+        Destroy(gameObject);      
     }
 
     public GameObject SlimeDropFieldItem() //필드에 아이템 생성
     {
         GameObject go = Instantiate(fielditemPrefab, pos, Quaternion.identity); //Quaternion.identity는 회전없음을 나타내는 쿼터니언    
-        go.GetComponent<FieldItem>().SetItem(ItemDataBase.instance.GetAllItems()["Etcs"][Random.Range(0,0)]);
+        go.GetComponent<FieldItem>().SetItem(ItemDataBase.instance.GetAllItems()["Etcs"][UnityEngine.Random.Range(0,0)]);
        
         return go;
 

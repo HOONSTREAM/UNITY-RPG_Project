@@ -13,7 +13,9 @@ public class GameManager : MonoBehaviour
 
 
     #region NPC ID 참조
-    private const int HelKen_NPC_ID = 1003;
+    private const int KNIGHT_HELKEN_NPC_ID = 1003; // 기사 헬켄
+    private const int INN_OWNER_HECSEN_NPC_ID = 1004;
+
     #endregion
 
     #region NPC대화
@@ -34,14 +36,21 @@ public class GameManager : MonoBehaviour
     public GameObject Helken_selection; //헬켄 NPC 대화 선택지 
    
 
-    public void TalkAction() //실제 대화진행 
+
+    public void TalkAction() 
     {
-   
-        Debug.Log($"토크인덱스 : {Talkindex}");
-        scanobject = SelectedNPC;     
+        
+        scanobject = SelectedNPC;
+
+        if (scanobject == null)
+            return;
+
+        Debug.Log(scanobject.name);
         Object_Data objdata = scanobject.GetComponent<Object_Data>();
         Talk(objdata.ID, objdata.IsNPC);
-        TalkPanel.SetActive(IsTalkAction);
+
+
+        TalkPanel.gameObject.SetActive(IsTalkAction);
 
         Talk_Panel_next_button.gameObject.SetActive(true);
 
@@ -49,12 +58,12 @@ public class GameManager : MonoBehaviour
 
         switch (objdata.ID) // NPC별 특수기능 검사 
         {
-            case HelKen_NPC_ID:
+            case KNIGHT_HELKEN_NPC_ID:
 
                 // (대화하기 버튼 진행을 하지 않았고, 첫 대화의 인덱스 최종에 도달한 경우)
                 if(Talkindex == 2 && scanobject.gameObject.GetComponent<Helken_NPC_Script>().is_Additional_Talk_open == false)
                 {
-                    Debug.Log("선택지");
+                   
                     Talk_Panel_next_button.gameObject.SetActive(false);
                     Helken_selection.gameObject.SetActive(IsTalkAction);
                     Additional_Talk_button.gameObject.SetActive(true);
@@ -63,7 +72,7 @@ public class GameManager : MonoBehaviour
                 }
                 else if (scanobject.gameObject.GetComponent<Helken_NPC_Script>().is_Additional_Talk_open == true)
                 {
-                    Debug.Log("추가대화 진행");
+                    
                     Helken_selection.gameObject.SetActive(false);
 
                     if(Talkindex == 2) // 추가 대화가 끝에 도달했는지 검사 
@@ -81,6 +90,10 @@ public class GameManager : MonoBehaviour
 
                 break;
 
+            case INN_OWNER_HECSEN_NPC_ID:
+                // TODO 
+                break;
+
             default:
 
                 break;
@@ -90,16 +103,22 @@ public class GameManager : MonoBehaviour
 
     }
 
-    void Talk(int id, bool isNPC) //토크판넬에 텍스트를 등록하는 함수 
+    /// <summary>
+    /// Talk_Panel에 Text를 실제로 할당하는 메서드 입니다.
+    /// 길이만큼 할당시키고, TalkIndex를 증가시킵니다.
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="isNPC"></param>
+    void Talk(int id, bool isNPC)
     {
+       
         string talkData = talkmanager.GetTalk(id, Talkindex);
 
         if (talkData == null)
         {
-            IsTalkAction = false;
+            IsTalkAction = false;           
             Talkindex = 0;
             
-
             return;
         }
         
@@ -113,7 +132,8 @@ public class GameManager : MonoBehaviour
         }
 
         IsTalkAction = true;
-        Talkindex++; //그다음 문장을 뽑아내기 위함
+        Talkindex++;
+        
     }
     /*==================================================================================*/
     #endregion

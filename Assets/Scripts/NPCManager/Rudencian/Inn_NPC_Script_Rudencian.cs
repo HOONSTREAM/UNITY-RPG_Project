@@ -13,9 +13,11 @@ public class Inn_NPC_Script_Rudencian : MonoBehaviour, IPointerClickHandler, Tal
         throw new System.NotImplementedException();
     }
 
-    void IPointerClickHandler.OnPointerClick(PointerEventData eventData)
+    public void OnPointerClick(PointerEventData eventData)
     {
         gamemanager.SelectedNPC = gameObject;
         gamemanager.TalkAction();
+
+
     }
 }
