@@ -57,7 +57,7 @@ public class Field_Item_tooltipController : MonoBehaviour, IPointerEnterHandler,
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("Item OnPointerEnter 호출");
+        
         if (ontooltip != OnToolTipUpdated.On)
         {
             RaycastHit hit;
@@ -65,12 +65,8 @@ public class Field_Item_tooltipController : MonoBehaviour, IPointerEnterHandler,
             bool raycasthit = Physics.Raycast(ray, out hit, 100.0f, _mask);
 
             string name = hit.collider.gameObject.GetComponent<FieldItem>().item.itemname;
-            FieldItem item = hit.collider.gameObject.GetComponent<FieldItem>();
-            Debug.Log(name);
-            Debug.Log($"툴팁 컨트롤러 아이템이름 {item.item.itemname}");
-
-
-
+            var item = hit.collider.gameObject.GetComponent<FieldItem>();
+            
             tooltip_obj.gameObject.SetActive(true);
             
             tooltip_obj.GetComponent<Field_Item_Tooltip>().SetupToolTip(item);
