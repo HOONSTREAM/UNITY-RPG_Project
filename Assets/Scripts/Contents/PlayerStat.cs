@@ -157,6 +157,7 @@ public class PlayerStat : Stat
         _agi = START_USER_AGI;
 
         SetStat(START_USER_LEVEL);
+
         equipment = GetComponent<PlayerEquipment>();
 
         #region 최초 1회 실행하여 버그 방지
@@ -362,6 +363,8 @@ public class PlayerStat : Stat
 
         _hp = stat.maxHP;
         _maxHp = stat.maxHP;
+        _mp = stat.maxMP;
+        _maxMp = stat.maxMP;
         _defense = stat.defense + ChestDEFvalue + (VIT / 10) + buff_defense; //총 DEX의 1/10을 데미지에 기여함
         _movespeed = stat.movespeed;
         _attack = stat.attack + WeaponAttackValue + (STR / 10) + Onupdate_Abillity_attack() + buff_damage; //총 STR의 1/10을 데미지에 기여함+ 무기 어빌리티별 향상데미지
