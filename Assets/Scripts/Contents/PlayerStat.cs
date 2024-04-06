@@ -262,6 +262,35 @@ public class PlayerStat : Stat
             }
         }
 
+        if (item.equiptype == EquipType.shoes)
+        {
+            if (equipment.player_equip.TryGetValue(EquipType.shoes, out Item _shoes_def_item))
+            {
+                if (_shoes_def_item.Equip)
+                {
+                    ChestDEFvalue -= equipment.player_equip[EquipType.shoes].num_1;
+                    VITvalue -= equipment.player_equip[EquipType.shoes].num_3;
+                    AGIvalue -= equipment.player_equip[EquipType.shoes].num_4;
+                    _defense = stat.defense + ChestDEFvalue + (VITvalue / 10); //총 DEX의 1/10을 데미지에 기여함;                  
+                    _vit = stat.VIT + VITvalue;
+                    _agi = stat.AGI + AGIvalue;
+
+                }
+
+                else if (_shoes_def_item.Equip == false)
+                {
+                    ChestDEFvalue += equipment.player_equip[EquipType.shoes].num_1;
+                    VITvalue += equipment.player_equip[EquipType.shoes].num_3;
+                    AGIvalue += equipment.player_equip[EquipType.shoes].num_4;
+                    _defense = stat.defense + ChestDEFvalue + (VITvalue / 10); //총 DEX의 1/10을 데미지에 기여함;                    
+                    _vit = stat.VIT + VITvalue;
+                    _agi = stat.AGI + AGIvalue;
+
+                }
+
+            }
+        }
+
     }
 
     /// <summary>

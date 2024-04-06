@@ -53,11 +53,11 @@ public class Shop : MonoBehaviour
 
         if (slots.Length >= 5 && slots != null)
         {
-            //slots[0].shopitem = shopitemDB["Weapon_oneHand"][0];
-            //slots[1].shopitem = shopitemDB["Weapon_oneHand"][1];
-            //slots[2].shopitem = shopitemDB["Weapon_oneHand"][2];
-            //slots[3].shopitem = shopitemDB["Weapon_oneHand"][11];
-            //slots[4].shopitem = shopitemDB["Weapon_oneHand"][12];
+            slots[0].shopitem = shopitemDB["Weapon_oneHand"][0];
+            slots[1].shopitem = shopitemDB["Weapon_TwoHand"][1];
+            slots[2].shopitem = shopitemDB["Head"][0];
+            slots[3].shopitem = shopitemDB["Outter_Plate"][0];
+            slots[4].shopitem = shopitemDB["Shoes"][0];
         }
    
 
@@ -236,7 +236,7 @@ public class Shop : MonoBehaviour
                         
                         for (int i1= 0; i1<quan1; i1++)
                         {
-                            PlayerInventory.Instance.AddItem(shopitemDB["Weapon_oneHand"][1].Clone());
+                            PlayerInventory.Instance.AddItem(shopitemDB["Weapon_TwoHand"][1].Clone());
                             PlayerInventory.Instance.onChangeItem.Invoke();
 
                         }
@@ -252,7 +252,7 @@ public class Shop : MonoBehaviour
                         
                         for (int i2= 0; i2<quan2; i2++)
                         {
-                            PlayerInventory.Instance.AddItem(shopitemDB["Weapon_oneHand"][2].Clone());
+                            PlayerInventory.Instance.AddItem(shopitemDB["Head"][0].Clone());
                             PlayerInventory.Instance.onChangeItem.Invoke();
 
                         }
@@ -268,7 +268,7 @@ public class Shop : MonoBehaviour
 
                         for (int i2 = 0; i2 < quan3; i2++)
                         {
-                            PlayerInventory.Instance.AddItem(shopitemDB["Weapon_oneHand"][11].Clone());
+                            PlayerInventory.Instance.AddItem(shopitemDB["Outter_Plate"][0].Clone());
                             PlayerInventory.Instance.onChangeItem.Invoke();
 
                         }
@@ -284,7 +284,7 @@ public class Shop : MonoBehaviour
 
                         for (int i2 = 0; i2 < quan4; i2++)
                         {
-                            PlayerInventory.Instance.AddItem(shopitemDB["Weapon_oneHand"][12].Clone());
+                            PlayerInventory.Instance.AddItem(shopitemDB["Shoes"][0].Clone());
                             PlayerInventory.Instance.onChangeItem.Invoke();
 
                         }

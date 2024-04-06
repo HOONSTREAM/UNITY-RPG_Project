@@ -82,7 +82,7 @@ public class Equipment_UI : MonoBehaviour
     public void OnUpdateEquip_Stat_Panel_UI()
     {
         nametxt.GetComponent<TextMeshProUGUI>().text = Managers.Game.GetPlayer().name;
-        jobtxt.GetComponent<TextMeshProUGUI>().text = "나이트(전사)";
+        jobtxt.GetComponent<TextMeshProUGUI>().text = "무직"; //TODO 
         guildtxt.GetComponent<TextMeshProUGUI>().text = "길드없음";
         fametxt.GetComponent<TextMeshProUGUI>().text = "0"; //TODO
         atktxt.GetComponent<TextMeshProUGUI>().text = $"{(stat.Attack*0.8)} ~ {(stat.Attack*1.1)}";
