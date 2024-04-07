@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -36,6 +37,26 @@ public class Abillity_Script : MonoBehaviour
     public TextMeshProUGUI _slider_percent;
     public Slider _slider;
     public GameObject Abillity_Interface_Panel;
+
+
+    private readonly double ABILLITY_INCREASE_AMOUNT = Math.Round(0.01f,2);
+    private const float MAX_ABILLITY_COUNT = 1.0f;
+    private const float ABILLITY_INTERMEDIATE_LEVEL = 50.00f;
+    private const float ABILLITY_MASTER_LEVEL = 100.00f;
+
+
+    private readonly float AN_INCREASE_MORE_THAN_ABILLITY_90 = 0.05f;
+    private readonly float AN_INCREASE_MORE_THAN_ABILLITY_80 = 0.15f;
+    private readonly float AN_INCREASE_MORE_THAN_ABILLITY_70 = 0.2f;
+    private readonly float AN_INCREASE_MORE_THAN_ABILLITY_60 = 0.35f;
+    private readonly float AN_INCREASE_MORE_THAN_ABILLITY_50 = 0.4f;
+    private readonly float AN_INCREASE_MORE_THAN_ABILLITY_40 = 0.4f;
+    private readonly float AN_INCREASE_MORE_THAN_ABILLITY_30 = 0.4f;
+    private readonly float AN_INCREASE_MORE_THAN_ABILLITY_20 = 0.5f;
+    private readonly float AN_INCREASE_MORE_THAN_ABILLITY_10 = 0.5f;
+    private readonly float AN_INCREASE_LESS_THAN_10 = 0.7f;
+    private float potentialNewValue = 0.0f;
+
     #endregion
 
     #region 버프스킬 지속시간 UI 관련 변수
@@ -207,80 +228,86 @@ private void Update()
     }
     public void Accumulate_abillity_Func()
 
-        //TODO : 어빌 1.00 당 해당 무기 고정데미지 향상 +5 , 게임저장 방법(유니티교과서) , 그레이드
+      
     {
        
-        if (PlayerEquipment.Instance.player_equip.TryGetValue(EquipType.Weapon, out Item value) && value.weapontype == WeaponType.One_Hand) // 무기를 장착중이고, 한손검인경우
+        if (PlayerEquipment.Instance.player_equip.TryGetValue(EquipType.Weapon, out Item value) && value.weapontype == WeaponType.One_Hand) 
         {
 
             for (int i = 0; i < abillity_Slots.Length; i++)
             {
                 if (abillity_Slots[i].skill_name.text == "한손검")
                 {
-                    if (double.Parse(abillity_Slots[i].Level.text) == 50.00)
+                    if (double.Parse(abillity_Slots[i].Level.text) == ABILLITY_INTERMEDIATE_LEVEL)
                     {
                         abillity_Slots[i].Name_grade.text = "SENIOR";
                     }
-                    if (double.Parse(abillity_Slots[i].Level.text) == 100.00)
-                    {
-                        Debug.Log("어빌이 100에 달성하였습니다.");
+                    if (double.Parse(abillity_Slots[i].Level.text) == ABILLITY_MASTER_LEVEL)
+                    {                   
                         // TODO : 그레이드 진행
                         abillity_Slots[i].Name_grade.text = "MASTER";
                         return;
                     }
 
-                    switch (abillity_Slots[i].Level.text) // 어빌리티 구간별 카운트 획득 조정 
+                    foreach (var slot in abillity_Slots)
                     {
-                        case "10":
-                            abillity_Slots[i]._slider.value += 0.5f;
-                            break;
+                        if (slot.skill_name.text != "한손검")
+                        {
+                            continue;
+                        }
+                                                        
+                        // Level.text를 float으로 변환합니다.
+                        float level = float.Parse(slot.Level.text);
 
-                        case "20":
-                            abillity_Slots[i]._slider.value += 0.5f;
-                            break;
-                        case "30":
-                            abillity_Slots[i]._slider.value += 0.4f;
-                            break;
+                        // 증가할 value를 저장할 변수를 선언합니다.
+                        float increaseAmount = 0f;
 
-                        case "40":
-                            abillity_Slots[i]._slider.value += 0.4f;
-                            break;
+                        // 레벨에 따라 increaseAmount 값을 조정합니다.
+                        if (level >= 90) increaseAmount = AN_INCREASE_MORE_THAN_ABILLITY_90;
+                        else if (level >= 80) increaseAmount = AN_INCREASE_MORE_THAN_ABILLITY_80;
+                        else if (level >= 70) increaseAmount = AN_INCREASE_MORE_THAN_ABILLITY_70;
+                        else if (level >= 60) increaseAmount = AN_INCREASE_MORE_THAN_ABILLITY_60;
+                        else if (level >= 50) increaseAmount = AN_INCREASE_MORE_THAN_ABILLITY_50;
+                        else if (level >= 40) increaseAmount = AN_INCREASE_MORE_THAN_ABILLITY_40;
+                        else if (level >= 30) increaseAmount = AN_INCREASE_MORE_THAN_ABILLITY_30;
+                        else if (level >= 20) increaseAmount = AN_INCREASE_MORE_THAN_ABILLITY_20;
+                        else if (level >= 10) increaseAmount = AN_INCREASE_MORE_THAN_ABILLITY_10;
+                        else if (level <= 10) increaseAmount = AN_INCREASE_LESS_THAN_10;
 
-                        case "50":
-                            abillity_Slots[i]._slider.value += 0.4f;
-                            break;
-
-                        case "60":
-                            abillity_Slots[i]._slider.value += 0.35f;
-                            break;
-
-                        case "70":
-                            abillity_Slots[i]._slider.value += 0.2f;
-                            break;
-
-                        case "80":
-                            abillity_Slots[i]._slider.value += 0.15f;
-                            break;
-
-                        case "90":
-                            abillity_Slots[i]._slider.value += 0.05f;
-                            break;
+                        
+                        // 계산된 증가량을 적용합니다.
+                        slot._slider.value += increaseAmount;
 
 
-                        default:
-                            abillity_Slots[i]._slider.value += 1f;
-                            break;
-
-                    }
+                        //계산된 증가량을 저장하여 차이 증가량을 남겨 다음 증가량에 보존시키기 위한 변수
+                        potentialNewValue += increaseAmount;
 
 
-                    if (abillity_Slots[i]._slider.value >= 1.0f)
-                    {
-                        abillity_Slots[i].Level.text = $"{abillity_Slots[i].skill.abillity += 10.00}"; //TEST TODO
-                        abillity_Slots[i]._slider.value -= 1.0f; // 카운트 초기화방법 TODO
+
+                        if (potentialNewValue >= MAX_ABILLITY_COUNT)
+                        {
+                            float excess = potentialNewValue - MAX_ABILLITY_COUNT;
+                            excess = (float)Math.Round(excess, 2);
+                            slot.Level.text = (slot.skill.abillity + ABILLITY_INCREASE_AMOUNT).ToString(); // 어빌리티 레벨 증가
+                            slot.skill.abillity += ABILLITY_INCREASE_AMOUNT; // level 변수도 증가시켜줍니다.
+
+                            slot._slider.value = excess;
+                            potentialNewValue = excess;
+                        }
+
+                        else
+                        {
+                            slot._slider.value = potentialNewValue;
+                        }
+
+
+
+
                         OnUpdate_Abillity_Interface(WeaponType.One_Hand);
+
                         return;
                     }
+                    
 
                     OnUpdate_Abillity_Interface(WeaponType.One_Hand);
                     return;
@@ -299,11 +326,11 @@ private void Update()
             {
                 if (abillity_Slots[i].skill_name.text == "양손검")
                 {
-                    if (double.Parse(abillity_Slots[i].Level.text) == 50.00)
+                    if (double.Parse(abillity_Slots[i].Level.text) == ABILLITY_INTERMEDIATE_LEVEL)
                     {
                         abillity_Slots[i].Name_grade.text = "SENIOR";
                     }
-                    if (double.Parse(abillity_Slots[i].Level.text) == 100.00)
+                    if (double.Parse(abillity_Slots[i].Level.text) == ABILLITY_MASTER_LEVEL)
                     {
                         Debug.Log("어빌이 100에 달성하였습니다.");
                         // TODO : 그레이드 진행
@@ -311,60 +338,60 @@ private void Update()
                         return;
                     }
 
-                    switch (abillity_Slots[i].Level.text) // 어빌리티 구간별 카운트 획득 조정 
+                    foreach (var slot in abillity_Slots)
                     {
-                        case "10":
-                            abillity_Slots[i]._slider.value += 0.5f;
-                            break;
+                        // Level.text를 float으로 변환합니다.
+                        float level = float.Parse(slot.Level.text);
 
-                        case "20":
-                            abillity_Slots[i]._slider.value += 0.5f;
-                            break;
-                        case "30":
-                            abillity_Slots[i]._slider.value += 0.4f;
-                            break;
+                        // 증가할 value를 저장할 변수를 선언합니다.
+                        float increaseAmount = 0f;
 
-                        case "40":
-                            abillity_Slots[i]._slider.value += 0.4f;
-                            break;
+                        // 레벨에 따라 increaseAmount 값을 조정합니다.
+                        if (level >= 90) increaseAmount = AN_INCREASE_MORE_THAN_ABILLITY_90;
+                        else if (level >= 80) increaseAmount = AN_INCREASE_MORE_THAN_ABILLITY_80;
+                        else if (level >= 70) increaseAmount = AN_INCREASE_MORE_THAN_ABILLITY_70;
+                        else if (level >= 60) increaseAmount = AN_INCREASE_MORE_THAN_ABILLITY_60;
+                        else if (level >= 50) increaseAmount = AN_INCREASE_MORE_THAN_ABILLITY_50;
+                        else if (level >= 40) increaseAmount = AN_INCREASE_MORE_THAN_ABILLITY_40;
+                        else if (level >= 30) increaseAmount = AN_INCREASE_MORE_THAN_ABILLITY_30;
+                        else if (level >= 20) increaseAmount = AN_INCREASE_MORE_THAN_ABILLITY_20;
+                        else if (level >= 10) increaseAmount = AN_INCREASE_MORE_THAN_ABILLITY_10;
+                        else if (level <= 10) increaseAmount = AN_INCREASE_LESS_THAN_10;
 
-                        case "50":
-                            abillity_Slots[i]._slider.value += 0.4f;
-                            break;
-
-                        case "60":
-                            abillity_Slots[i]._slider.value += 0.35f;
-                            break;
-
-                        case "70":
-                            abillity_Slots[i]._slider.value += 0.2f;
-                            break;
-
-                        case "80":
-                            abillity_Slots[i]._slider.value += 0.15f;
-                            break;
-
-                        case "90":
-                            abillity_Slots[i]._slider.value += 0.05f;
-                            break;
+                        // 계산된 증가량을 적용합니다.
+                        // 계산된 증가량을 적용합니다.
+                        slot._slider.value += increaseAmount;
 
 
-                        default:
-                            abillity_Slots[i]._slider.value += 1f;
-                            break;
-
-                    }
+                        //계산된 증가량을 저장하여 차이 증가량을 남겨 다음 증가량에 보존시키기 위한 변수
+                        potentialNewValue += increaseAmount;
 
 
-                    if (abillity_Slots[i]._slider.value >= 1.0f)
-                    {
-                        abillity_Slots[i].Level.text = $"{abillity_Slots[i].skill.abillity += 10.00}"; //TEST TODO
-                        abillity_Slots[i]._slider.value -= 1.0f; // 카운트 초기화방법 TODO
+
+                        if (potentialNewValue >= MAX_ABILLITY_COUNT)
+                        {
+                            float excess = potentialNewValue - MAX_ABILLITY_COUNT;
+                            excess = (float)Math.Round(excess, 2);
+                            slot.Level.text = (slot.skill.abillity + ABILLITY_INCREASE_AMOUNT).ToString(); // 어빌리티 레벨 증가
+                            slot.skill.abillity += ABILLITY_INCREASE_AMOUNT; // level 변수도 증가시켜줍니다.
+
+                            slot._slider.value = excess;
+                            potentialNewValue = excess;
+                        }
+
+                        else
+                        {
+                            slot._slider.value = potentialNewValue;
+                        }
+
+
                         OnUpdate_Abillity_Interface(WeaponType.Two_Hand);
+
                         return;
                     }
 
                     OnUpdate_Abillity_Interface(WeaponType.Two_Hand);
+
                     return;
 
                 }
