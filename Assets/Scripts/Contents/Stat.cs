@@ -100,7 +100,7 @@ public class Stat : MonoBehaviour
 
         else if (gameObject.name == "Punch_man")
         {
-            PlayerStat playerstat = attacker as PlayerStat;
+            PlayerStat playerstat = attacker as PlayerStat; // Ä³½ºÆÃ
 
             if (playerstat != null)
             {

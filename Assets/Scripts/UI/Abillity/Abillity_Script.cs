@@ -37,9 +37,10 @@ public class Abillity_Script : MonoBehaviour
     public TextMeshProUGUI _slider_percent;
     public Slider _slider;
     public GameObject Abillity_Interface_Panel;
+    private GameObject monster_Info; // 타격대상의 몬스터 정보
 
 
-    private readonly double ABILLITY_INCREASE_AMOUNT = Math.Round(0.01f,2);
+    private readonly double ABILLITY_INCREASE_AMOUNT = Math.Round(1.0f,2);
     private const float MAX_ABILLITY_COUNT = 1.0f;
     private const float ABILLITY_INTERMEDIATE_LEVEL = 50.00f;
     private const float ABILLITY_MASTER_LEVEL = 100.00f;
@@ -230,7 +231,8 @@ private void Update()
 
       
     {
-       
+        GameObject monster = monster_Info;
+
         if (PlayerEquipment.Instance.player_equip.TryGetValue(EquipType.Weapon, out Item value) && value.weapontype == WeaponType.One_Hand) 
         {
 
@@ -255,11 +257,17 @@ private void Update()
                         {
                             continue;
                         }
-                                                        
-                        // Level.text를 float으로 변환합니다.
+
+                        if(3*(monster.GetComponent<Stat>().Level) < (int)(slot.skill.abillity))
+                        {
+                            GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("몬스터 레벨이 너무 낮습니다.");
+                            return;
+                        }
+                       
+                        
                         float level = float.Parse(slot.Level.text);
 
-                        // 증가할 value를 저장할 변수를 선언합니다.
+                        
                         float increaseAmount = 0f;
 
                         // 레벨에 따라 increaseAmount 값을 조정합니다.
@@ -340,6 +348,18 @@ private void Update()
 
                     foreach (var slot in abillity_Slots)
                     {
+
+                        if (slot.skill_name.text != "양손검")
+                        {
+                            continue;
+                        }
+
+                        if (3 * (monster.GetComponent<Stat>().Level) < (int)(slot.skill.abillity))
+                        {
+                            GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("몬스터 레벨이 너무 낮습니다.");
+                            return;
+                        }
+
                         // Level.text를 float으로 변환합니다.
                         float level = float.Parse(slot.Level.text);
 
@@ -463,6 +483,16 @@ private void Update()
         StartCoroutine("StartCountdown");
 
         return;
+    }
+
+    /// <summary>
+    /// 타격 대상의 몬스터 정보를 참조받습니다.
+    /// </summary>
+    /// <param name="monster"></param>
+    /// <returns></returns>
+    public GameObject GetMonsterInfo(GameObject monster)
+    {
+        return monster_Info = monster;
     }
 
 }

@@ -20,7 +20,7 @@ public static class Monster_Stat_Factory
     #endregion
 
     #region ÆÝÄ¡¸Ç ½ºÅÝ
-    private const int PUNCHMAN_EXP = 5;
+    private const int PUNCHMAN_EXP = 9;
     private const int START_PUNCHMAN_LEVEL = 3;
     private const int PUNCHMAN_HP = 200;
     private const int PUNCHMAN_MAX_HP = 200;
