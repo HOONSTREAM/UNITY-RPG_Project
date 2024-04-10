@@ -40,7 +40,7 @@ public class Abillity_Script : MonoBehaviour
     private GameObject monster_Info; // 타격대상의 몬스터 정보
 
 
-    private readonly double ABILLITY_INCREASE_AMOUNT = Math.Round(1.0f,2);
+    private readonly double ABILLITY_INCREASE_AMOUNT = Math.Round(0.01f,2);
     private const float MAX_ABILLITY_COUNT = 1.0f;
     private const float ABILLITY_INTERMEDIATE_LEVEL = 50.00f;
     private const float ABILLITY_MASTER_LEVEL = 100.00f;

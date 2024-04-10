@@ -171,6 +171,8 @@ MonoBehaviour:
   _level: 0
   _hp: 0
   _maxHp: 0
+  _mp: 0
+  _maxMp: 0
   _movespeed: 0
   _attack: 0
   _defense: 0
@@ -209,7 +211,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
-  m_Acceleration: 8
+  m_Acceleration: 4
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -252,6 +254,7 @@ MonoBehaviour:
   _scanRange: 5
   attackRange: 2
   Hit_Particle: {fileID: 0}
+  _maxChaseDistance: 10
 --- !u!1 &2283790857954846239
 GameObject:
   m_ObjectHideFlags: 0
