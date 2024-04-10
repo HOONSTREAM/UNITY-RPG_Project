@@ -29,7 +29,7 @@ public class Quest_Script : MonoBehaviour
     public TextMeshProUGUI Quest_summary_type;
     public TextMeshProUGUI Quest_summary;
 
-
+    
     void Start()
     {
         stat = GetComponent<PlayerStat>(); //골드 업데이트를 위한 플레이어 스텟 참조
@@ -39,12 +39,11 @@ public class Quest_Script : MonoBehaviour
 
         Quest_Panel.SetActive(activequestpanel);
         quest.onChangequest += RedrawSlotUI;  // Invoke 함수 등록 이벤트 발생마다 함수 호출
-        Managers.UI.SetCanvas(Quest_CANVAS, true);
-        //인벤토리 드래그 가능하도록 하는 이벤트
-        UI_Base.BindEvent(Quest_Panel, (PointerEventData data) => { Quest_Panel.transform.position = data.position; }, Define.UIEvent.Drag);
+        Managers.UI.SetCanvas(Quest_CANVAS, true);       
+        UI_Base.BindEvent(Quest_Panel, (PointerEventData data) => { Quest_Panel.transform.position = data.position; }, Define.UIEvent.Drag);  //인벤토리 드래그 가능하도록 하는 이벤트
         RedrawSlotUI();
 
-        //TEST
+        
         Player_Quest.Instance.AddQuest(QuestDatabase.instance.QuestDB[0]);
 
     }
@@ -53,16 +52,10 @@ public class Quest_Script : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-
-            
-            activequestpanel = !activequestpanel;
-            Quest_Panel.SetActive(activequestpanel);
-            Managers.UI.SetCanvas(Quest_CANVAS, true);
-            Managers.Sound.Play("Inven_Open");
-
+            Quest_Panel_Open_Method();
         }
 
-        Onupdate_Summary_Quest_Panel();
+        Onupdate_UserInterface_Summary_Quest_Panel();
     }
 
     void RedrawSlotUI()
@@ -85,94 +78,35 @@ public class Quest_Script : MonoBehaviour
         }
     }
 
-
-
     public void Quest_Complete_Button_Func()
     {
         for (int i = 0; i < Player_Quest.Instance.PlayerQuest.Count; i++)
         {
             switch (Player_Quest.Instance.PlayerQuest[i].Quest_ID)
             {
-                case 1: // 이 세계에 처음으로 발을 딛다!
+                case 1:
 
-                    if (Player_Quest.Instance.PlayerQuest[i].is_complete == false)
-                    {
-                        if(Player_Quest.Instance.PlayerQuest[i].monster_counter >= 2)
-                        {
-                            Player_Quest.Instance.PlayerQuest[i].monster_counter = 0; //초기화
-                            Player_Quest.Instance.PlayerQuest[i].Quest_Clear();
-                            
-                            Player_Quest.Instance.RemoveQuest(i);
-                            Player_Quest.Instance.onChangequest.Invoke();
-                            GameObject.Find("GUI_User_Interface").
-                               gameObject.GetComponent<Print_Info_Text>().PrintUserText("퀘스트 완료");
-                            //다음 메인퀘스트 자동 추가
-                            Player_Quest.Instance.AddQuest(QuestDatabase.instance.QuestDB[1]);
-
-                            break;
-                        }
-
-                        GameObject.Find("GUI_User_Interface").
-                        gameObject.GetComponent<Print_Info_Text>().PrintUserText("퀘스트 조건이 충족되지 않았습니다.");
-
-                        
-                    }
+                    QuestDatabase.instance.Kill_Slime_Quest_Conditions_for_completion();
 
                     break;
 
-                case 2: // 2. 전리품을 획득해보자 !
+                case 2: 
 
-                    for(int k = 0; k< PlayerInventory.Instance.player_items.Count; k++)
-                    {
-                        if (PlayerInventory.Instance.player_items[k].ItemID == 15 && PlayerInventory.Instance.player_items[k].amount >= 10) // 슬라임 액체
-                        {
-                            Player_Quest.Instance.PlayerQuest[i].Quest_Clear();
-                           
-                            Player_Quest.Instance.RemoveQuest(i);
-                            Player_Quest.Instance.onChangequest.Invoke();
-                            GameObject.Find("GUI_User_Interface").
-                               gameObject.GetComponent<Print_Info_Text>().PrintUserText("퀘스트 완료");
-                            //다음 메인퀘스트 자동 추가
-                            Player_Quest.Instance.AddQuest(QuestDatabase.instance.QuestDB[2]);
+                    QuestDatabase.instance.Slime_collecting_drop_item_quest_Conditions_for_completion();
+                   
+                  break;
 
-                            return;
-                        }
-                    }
+                case 3: 
 
-                    GameObject.Find("GUI_User_Interface").
-                        gameObject.GetComponent<Print_Info_Text>().PrintUserText("퀘스트 조건이 충족되지 않았습니다.");
+                    QuestDatabase.instance.HelKen_Meet_Quest_Conditions_for_completion();
 
                     break;
-
-                case 3: //헬켄과 대화하자 
-
-                    if(Player_Quest.Instance.PlayerQuest[i].npc_meet == false)
-                    {
-                        GameObject.Find("GUI_User_Interface").
-                       gameObject.GetComponent<Print_Info_Text>().PrintUserText("퀘스트 조건이 충족되지 않았습니다.");
-
-                        return;
-                    }
-
-                    Player_Quest.Instance.PlayerQuest[i].Quest_Clear();
-                  
-                    Player_Quest.Instance.RemoveQuest(i);
-                    Player_Quest.Instance.onChangequest.Invoke();
-                    GameObject.Find("GUI_User_Interface").
-                       gameObject.GetComponent<Print_Info_Text>().PrintUserText("퀘스트 완료");
-                    //다음 메인퀘스트 자동 추가
-                    //Player_Quest.Instance.AddQuest(QuestDatabase.instance.QuestDB[2]);
-
-                    break;
-
 
             }
         }
     }
 
-
-
-    public void Button_Function()
+    public void Quest_Panel_Open_Method()
     {
         activequestpanel = !activequestpanel;
         Quest_Panel.SetActive(activequestpanel);
@@ -200,7 +134,7 @@ public class Quest_Script : MonoBehaviour
     }
 
 
-    private void Onupdate_Summary_Quest_Panel()
+    private void Onupdate_UserInterface_Summary_Quest_Panel()
     {
         if(Player_Quest.Instance.PlayerQuest.Count == 0)
         {

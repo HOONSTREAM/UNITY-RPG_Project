@@ -59,8 +59,8 @@ public class NPC1_shop : MonoBehaviour
 
     public void Enter()
     {
-        Canvas canvas = GameObject.Find("INVENTORY CANVAS").gameObject.GetComponent<Canvas>();
-        canvas.sortingOrder = 1;
+        Canvas canvas = GameObject.Find("SHOP CANVAS").gameObject.GetComponent<Canvas>();
+        Managers.UI.SetCanvas(canvas.gameObject, true);
         ShopPanel.SetActive(true);
 
         for (int i = 0; i < playerslots.Length; i++)

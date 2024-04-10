@@ -4,9 +4,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// 루덴시안 상점의 케넨에 대한 스크립트 입니다.
+/// </summary>
 public class NPC1script : MonoBehaviour
 {
-    //대장슬라임 케넨
+  
 
     private int _mask = (1 << (int)Define.Layer.NPC1);
     Texture2D _attackIcon;

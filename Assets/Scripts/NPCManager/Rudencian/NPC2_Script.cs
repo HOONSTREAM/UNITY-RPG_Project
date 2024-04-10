@@ -12,8 +12,10 @@ using UnityEngine.EventSystems;
  * 이로 인해 IPointerClickHandler를 사용하면 UI 창 뒤의 3D 오브젝트 클릭을 방지할 수 있습니다.
  */
 
-//은행원 살라 
 
+/// <summary>
+/// 루덴시안 은행의 살라에 대한 스크립트 입니다.
+/// </summary>
 public class NPC2_Script : MonoBehaviour , IPointerClickHandler
 {
     private int _mask = (1 << (int)Define.Layer.NPC2);

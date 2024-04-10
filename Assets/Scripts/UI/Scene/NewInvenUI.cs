@@ -46,14 +46,10 @@ public class NewInvenUI : MonoBehaviour
        
         if (Input.GetKeyDown(KeyCode.I))
         {
-                      
-            activeInventory = !activeInventory;           
-            inventoryPanel.SetActive(activeInventory);
-            Managers.UI.SetCanvas(Inventory_canvas, true);
-            RedrawSlotUI(); // 아이템이 아무것도 없을 때, 툴팁이 뜨는 것을 방지 
-            Managers.Sound.Play("Inven_Open");
 
-            if(inventoryPanel.activeSelf == false)
+            Inventory_Button_Open();
+
+            if (inventoryPanel.activeSelf == false)
             {
                 Equip_Drop_Selection.gameObject.SetActive(false);
                 Consumable_use_Drop_Selection.gameObject.SetActive(false);
@@ -89,8 +85,15 @@ public class NewInvenUI : MonoBehaviour
 
         
     }
+    public void Inventory_Button_Open()
+    {
+        activeInventory = !activeInventory;
+        inventoryPanel.SetActive(activeInventory);
+        Managers.UI.SetCanvas(Inventory_canvas, true);
+        RedrawSlotUI();
+        Managers.Sound.Play("Inven_Open");
 
-
+    }
     public void Xbutton_Exit()
     {
         if (inventoryPanel != null && inventoryPanel.activeSelf)
@@ -106,15 +109,7 @@ public class NewInvenUI : MonoBehaviour
         return;
     }
 
-    public void Inventory_Button_Open()
-    {
-        activeInventory = !activeInventory;
-        inventoryPanel.SetActive(activeInventory);
-        Managers.UI.SetCanvas(Inventory_canvas, true);
-        Managers.Sound.Play("Inven_Open");
-        
-    }
-
+    
 }
 
 

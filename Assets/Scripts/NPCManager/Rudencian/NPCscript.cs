@@ -4,10 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+/// <summary>
+/// 루덴시안 상점의 브로아에 관한 스크립트 입니다.
+/// </summary>
 public class NPCscript : MonoBehaviour
 {
 
-    //대장장이 브로아
+    
 
     private int _mask = (1 << (int)Define.Layer.NPC);
     Texture2D _attackIcon;

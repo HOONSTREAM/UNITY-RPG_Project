@@ -9,7 +9,7 @@ using static UnityEditor.Progress;
 // TODO 상점 확장성에 대한 고려를 해야함.
 
 /// <summary>
-/// 루덴시안 상점 NPC 대장슬라임 케넨의 스크립트 입니다.
+/// 루덴시안 상점 NPC 케넨의 스크립트 입니다.
 /// </summary>
 public class Shop : MonoBehaviour
 {
@@ -37,7 +37,7 @@ public class Shop : MonoBehaviour
 
     void Start()
     {
-        NPCname = "대장슬라임 케넨";
+        NPCname = "케넨";
         shopitemDB = ItemDataBase.instance.GetAllItems(); //데이터베이스 복사 
         TotalGoldText.text = "0";
         Player = Managers.Game.GetPlayer();
@@ -70,9 +70,10 @@ public class Shop : MonoBehaviour
 
     public void Enter()
     {
-        Canvas canvas = GameObject.Find("INVENTORY CANVAS").gameObject.GetComponent<Canvas>();
-        canvas.sortingOrder = 1;
+        Canvas canvas = GameObject.Find("SHOP CANVAS").gameObject.GetComponent<Canvas>();
+        Managers.UI.SetCanvas(canvas.gameObject, true);      
         ShopPanel.SetActive(true);
+
 
        
         for (int i = 0; i<playerslots.Length; i++)

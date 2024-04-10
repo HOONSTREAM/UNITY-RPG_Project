@@ -76,7 +76,7 @@ public class Stat : MonoBehaviour
     }
 
     /// <summary>
-    ///  사망 후의 처리를 하는 메서드 입니다.
+    ///  사망 후의 처리를 하는 메서드 입니다. 사냥조건의 퀘스트가 있다면, 같이 처리합니다.
     /// <param name="attacker">첫 번째 인자 : 공격자의 스텟 </param>
     /// </summary>
     protected virtual void OnDead(Stat attacker)
