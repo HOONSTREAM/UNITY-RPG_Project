@@ -27,7 +27,9 @@ public class Managers : MonoBehaviour
     UIManager _ui = new UIManager();
     SoundManager _sound = new SoundManager();
     CoolTimeManager _cool = new CoolTimeManager();
-   
+    Monster_Stat_Factory _stat_factory = new Monster_Stat_Factory();
+    Monster_Info_Manager _monster_info = new Monster_Info_Manager();
+
     public static InputManager Input { get { return Instance._input; } } //여기서 호출되면서 Instance 프로퍼티에서 조건문검사 (게임오브젝트가 있는지)
     public static PoolManager Pool { get { return Instance._pool; } }
     public static ResourcesManager Resources { get { return Instance._resource; } }
@@ -40,6 +42,9 @@ public class Managers : MonoBehaviour
     public static DataManager Data { get { return Instance._data; } }
 
     public static CoolTimeManager CoolTime { get { return Instance._cool; } }
+
+    public static Monster_Stat_Factory StatFactory { get { return Instance._stat_factory; } }
+    public static Monster_Info_Manager Monster_Info { get { return Instance._monster_info; } }
 
     #endregion
     void Start()

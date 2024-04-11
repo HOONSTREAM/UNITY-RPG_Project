@@ -43,7 +43,7 @@ public class Stat : MonoBehaviour
 
     private void Start()
     {
-        Monster_Stat_Factory.CreateStatForMonster(gameObject); 
+        Managers.StatFactory.CreateStatForMonster(gameObject); 
         Fielditem = Managers.Resources.Load<GameObject>("PreFabs/UI/SubItem/FieldItem");
 
     }
@@ -86,7 +86,7 @@ public class Stat : MonoBehaviour
             PlayerStat playerstat = attacker as PlayerStat;
             if (playerstat != null)
             {
-                playerstat.EXP += Monster_Stat_Factory.GetExperiencePoints(gameObject);              
+                playerstat.EXP += Managers.StatFactory.GetExperiencePoints(gameObject);              
                 playerstat.onchangestat.Invoke();
                 GameObject dropitem = Fielditem.GetComponent<FieldItem>().SlimeDropFieldItem();
                 dropitem.transform.position = transform.position; //드랍아이템 위치
@@ -104,7 +104,7 @@ public class Stat : MonoBehaviour
 
             if (playerstat != null)
             {
-                playerstat.EXP += Monster_Stat_Factory.GetExperiencePoints(gameObject);
+                playerstat.EXP += Managers.StatFactory.GetExperiencePoints(gameObject);
                 playerstat.onchangestat.Invoke();
                 GameObject dropitem = Fielditem.GetComponent<FieldItem>().PunchmanDropFieldItem();
                 dropitem.transform.position = transform.position; //드랍아이템 위치

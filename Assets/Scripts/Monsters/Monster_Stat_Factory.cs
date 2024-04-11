@@ -7,7 +7,7 @@ using UnityEngine;
 /// 먼저, 몬스터에 붙여질 Stat 객체를 생성하고 초기화하는 역할을 할 StatFactory 클래스입니다. 
 /// 이 클래스는 각 몬스터 유형에 맞게 Stat 객체를 설정하고 반환하는 메서드를 포함 합니다.
 /// </summary>
-public static class Monster_Stat_Factory
+public class Monster_Stat_Factory
 {
     #region 슬라임 스텟
     private const int SLIME_EXP = 5;
@@ -34,7 +34,7 @@ public static class Monster_Stat_Factory
     /// </summary>
     /// <param name="monster"></param>
     /// <returns></returns>
-    public static Stat CreateStatForMonster(GameObject monster)
+    public Stat CreateStatForMonster(GameObject monster)
     {
         Stat stat = monster.GetComponent<Stat>();
         if (stat == null) return null; // Stat 컴포넌트가 없는 경우
@@ -55,7 +55,7 @@ public static class Monster_Stat_Factory
         return stat;
     }
 
-    private static void SetSlimeStats(Stat stat)
+    private void SetSlimeStats(Stat stat)
     {       
         stat.Level = START_SLIME_LEVEL;
         stat.Hp = SLIME_HP;
@@ -65,7 +65,7 @@ public static class Monster_Stat_Factory
         stat.MoveSpeed = SLIME_MOVESPEED;
     }
 
-    private static void SetPunchManStats(Stat stat)
+    private void SetPunchManStats(Stat stat)
     {       
         stat.Level = START_PUNCHMAN_LEVEL;
         stat.Hp = PUNCHMAN_HP;
@@ -77,7 +77,7 @@ public static class Monster_Stat_Factory
 
 
 
-    public static int GetExperiencePoints(GameObject monster)
+    public int GetExperiencePoints(GameObject monster)
     {
         switch (monster.name)
         {

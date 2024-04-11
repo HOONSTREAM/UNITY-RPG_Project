@@ -13,7 +13,7 @@ public class Exit_Console : MonoBehaviour
     public GameObject InvenUI;
     public GameObject EquipmentUI;
     public GameObject QuestSlotUI;
-    public GameObject Abillity_slot_UI;
+    public GameObject Ability_slot_UI;
     public GameObject Storage_slot_UI;
 
   
@@ -23,7 +23,7 @@ public class Exit_Console : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if(InvenUI.activeSelf || EquipmentUI.activeSelf || QuestSlotUI.activeSelf || Abillity_slot_UI.activeSelf || Storage_slot_UI.activeSelf)
+            if(InvenUI.activeSelf || EquipmentUI.activeSelf || QuestSlotUI.activeSelf || Ability_slot_UI.activeSelf || Storage_slot_UI.activeSelf)
             {
               
 
@@ -70,9 +70,9 @@ public class Exit_Console : MonoBehaviour
                             PanelToClose.gameObject.GetComponent<Canvas>().sortingOrder = 0;
                             Player_Quest.Instance.onChangequest.Invoke();
                             break;
-                        case "Abillity_Slot_CANVAS ":
-                            Abillity_slot_UI.gameObject.SetActive(false);
-                            PanelToClose.gameObject.GetComponent<Abillity_Script>().active_abillity_panel = false;
+                        case "Ability_Slot_CANVAS ":
+                            Ability_slot_UI.gameObject.SetActive(false);
+                            PanelToClose.gameObject.GetComponent<Ability_Script>().active_Ability_panel = false;
                             Managers.Sound.Play("Inven_Open");
                             PanelToClose.gameObject.GetComponent<Canvas>().sortingOrder = 0;
                             break;

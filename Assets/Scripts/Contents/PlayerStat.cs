@@ -40,9 +40,9 @@ public class PlayerStat : Stat
     private int AGIvalue = 0; // AGI 스텟 저장변수 (공격속도, 회피율, 이동속도)
     private int INTValue = 0; //INT 마법공격력
 
-    public int one_hand_sword_abillityAttack = 0; //어빌리티 별 향상공격력 저장변수 (한손검)
-    public int two_hand_sword_abillityAttack = 0; //어빌리티 별 향상공격력 저장변수 (양손검)
-    public int improvement_abillity_attack;
+    public int one_hand_sword_AbilityAttack = 0; //어빌리티 별 향상공격력 저장변수 (한손검)
+    public int two_hand_sword_AbilityAttack = 0; //어빌리티 별 향상공격력 저장변수 (양손검)
+    public int improvement_Ability_attack;
     public int buff_damage = 0; // 스킬 사용 시 버프데미지
     public int buff_defense = 0; // 스킬 사용 시 버프방어력
 
@@ -331,7 +331,7 @@ public class PlayerStat : Stat
                     _str = stat.STR + WeaponSTRValue;
                     _vit = stat.VIT + VITvalue;
                     _agi = stat.AGI + AGIvalue;
-                    _attack = stat.attack + WeaponAttackValue + (WeaponSTRValue / 10) + Onupdate_Abillity_attack(); //총 STR의 1/10을 데미지에 기여함 + 무기 어빌리티별 향상데미지
+                    _attack = stat.attack + WeaponAttackValue + (WeaponSTRValue / 10) + Onupdate_Ability_attack(); //총 STR의 1/10을 데미지에 기여함 + 무기 어빌리티별 향상데미지
 
                     //TESTCODE ; 무기교체 애니메이션
                     if (_attackitem.weapontype == WeaponType.One_Hand)
@@ -367,7 +367,7 @@ public class PlayerStat : Stat
         _maxMp = stat.maxMP;
         _defense = stat.defense + ChestDEFvalue + (VIT / 10) + buff_defense; //총 DEX의 1/10을 데미지에 기여함
         _movespeed = stat.movespeed;
-        _attack = stat.attack + WeaponAttackValue + (STR / 10) + Onupdate_Abillity_attack() + buff_damage; //총 STR의 1/10을 데미지에 기여함+ 무기 어빌리티별 향상데미지
+        _attack = stat.attack + WeaponAttackValue + (STR / 10) + Onupdate_Ability_attack() + buff_damage; //총 STR의 1/10을 데미지에 기여함+ 무기 어빌리티별 향상데미지
 
     }
 
@@ -382,7 +382,7 @@ public class PlayerStat : Stat
         Dictionary<int, Data.Stat> dict = Managers.Data.StatDict; //키가 레벨 
         Data.Stat stat = dict[level];
         _defense = stat.defense + ChestDEFvalue + (VITvalue / 10) + buff_defense; //총 DEX의 1/10을 데미지에 기여함
-        _attack = stat.attack + WeaponAttackValue + (WeaponSTRValue / 10) + Onupdate_Abillity_attack() + buff_damage; //총 STR의 1/10을 데미지에 기여함+ 무기 어빌리티별 향상데미지
+        _attack = stat.attack + WeaponAttackValue + (WeaponSTRValue / 10) + Onupdate_Ability_attack() + buff_damage; //총 STR의 1/10을 데미지에 기여함+ 무기 어빌리티별 향상데미지
 
         return;
     }
@@ -409,49 +409,49 @@ public class PlayerStat : Stat
     ///
     /// </summary>
     /// <returns> 향상된 데미지 정수값 </returns>
-    public int Onupdate_Abillity_attack() 
+    public int Onupdate_Ability_attack() 
     {
 
         if (PlayerEquipment.Instance.player_equip.TryGetValue(EquipType.Weapon, out Item One_hand_value) && One_hand_value.weapontype == WeaponType.One_Hand) // 무기를 장착중이고, 한손검인경우
         {
 
-            Abillity_Script abillity_script = FindObjectOfType<Abillity_Script>();
-            for(int i = 0; i < abillity_script.abillity_Slots.Length; i++)
+            Ability_Script Ability_script = FindObjectOfType<Ability_Script>();
+            for(int i = 0; i < Ability_script.Ability_Slots.Length; i++)
             {
-                if (abillity_script.abillity_Slots[i].skill_name.text == "한손검")
+                if (Ability_script.Ability_Slots[i].skill_name.text == "한손검")
                 {
-                    double abillity_attack_improvement = (double.Parse(abillity_script.abillity_Slots[i].Level.text)*5); //TODO :여기서 Grade 수치 * 500 도 더해야함 
+                    double Ability_attack_improvement = (double.Parse(Ability_script.Ability_Slots[i].Level.text)*5); //TODO :여기서 Grade 수치 * 500 도 더해야함 
                   
-                    one_hand_sword_abillityAttack = (int)abillity_attack_improvement;
+                    one_hand_sword_AbilityAttack = (int)Ability_attack_improvement;
                     
                  break;
                 }
             }
             
-            return improvement_abillity_attack = one_hand_sword_abillityAttack;
+            return improvement_Ability_attack = one_hand_sword_AbilityAttack;
         }
         
         else if (PlayerEquipment.Instance.player_equip.TryGetValue(EquipType.Weapon, out Item two_hand_value) && two_hand_value.weapontype == WeaponType.Two_Hand)
         {
 
-            Abillity_Script abillity_script = FindObjectOfType<Abillity_Script>();
-            for (int i = 0; i < abillity_script.abillity_Slots.Length; i++)
+            Ability_Script Ability_script = FindObjectOfType<Ability_Script>();
+            for (int i = 0; i < Ability_script.Ability_Slots.Length; i++)
             {
-                if (abillity_script.abillity_Slots[i].skill_name.text == "양손검")
+                if (Ability_script.Ability_Slots[i].skill_name.text == "양손검")
                 {
-                    double abillity_attack_improvement = (double.Parse(abillity_script.abillity_Slots[i].Level.text) * 5); //TODO :여기서 Grade 수치 * 500 도 더해야함 
+                    double Ability_attack_improvement = (double.Parse(Ability_script.Ability_Slots[i].Level.text) * 5); //TODO :여기서 Grade 수치 * 500 도 더해야함 
                   
-                    two_hand_sword_abillityAttack = (int)abillity_attack_improvement;
+                    two_hand_sword_AbilityAttack = (int)Ability_attack_improvement;
 
                     break;
                 }
             }
 
-            return improvement_abillity_attack = two_hand_sword_abillityAttack;
+            return improvement_Ability_attack = two_hand_sword_AbilityAttack;
         }
 
 
-        return improvement_abillity_attack = 0;
+        return improvement_Ability_attack = 0;
 
     }
 
