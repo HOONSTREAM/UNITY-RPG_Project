@@ -86,10 +86,10 @@ public class Equipment_UI : MonoBehaviour
         guildtxt.GetComponent<TextMeshProUGUI>().text = "길드없음";
         fametxt.GetComponent<TextMeshProUGUI>().text = "0"; //TODO
         atktxt.GetComponent<TextMeshProUGUI>().text = $"{(stat.ATTACK * 0.8)} ~ {(stat.ATTACK * 1.1)}";
-        hptxt.GetComponent<TextMeshProUGUI>().text = $"{stat.MaxHp}";
+        hptxt.GetComponent<TextMeshProUGUI>().text = $"{stat.MAXHP}";
         mptxt.GetComponent<TextMeshProUGUI>().text = "0";
-        mvspeedtxt.GetComponent<TextMeshProUGUI>().text = $"{(stat.MoveSpeed)*20}%";
-        deftxt.GetComponent<TextMeshProUGUI>().text = $"{stat.Defense}";
+        mvspeedtxt.GetComponent<TextMeshProUGUI>().text = $"{(stat.MOVESPEED)*20}%";
+        deftxt.GetComponent<TextMeshProUGUI>().text = $"{stat.DEFENSE}";
 
     }
 

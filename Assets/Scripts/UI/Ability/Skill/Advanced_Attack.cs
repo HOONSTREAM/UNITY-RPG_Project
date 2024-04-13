@@ -9,7 +9,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "SkillEffect/Buff/Advanced_Attack")]
 public class Advanced_Attack : SkillEffect
 {
-    private int _advanced_attack_buff_amount = 50;
+    private int ADVANCED_ATTACK_BUFF_AMOUNT = 50;
 
     public bool skillusing = false;
     public int skill_sustainment_time; 
@@ -65,7 +65,8 @@ public class Advanced_Attack : SkillEffect
         GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("공격력을 일시적으로 강화합니다.");
 
 
-        stat.buff_damage += _advanced_attack_buff_amount;
+        stat.ATTACK += ADVANCED_ATTACK_BUFF_AMOUNT;
+        stat.onchangestat.Invoke();
 
         Managers.Sound.Play("spell", Define.Sound.Effect);
 
@@ -76,9 +77,8 @@ public class Advanced_Attack : SkillEffect
         effect.transform.position = Managers.Game.GetPlayer().gameObject.transform.position + new Vector3 (0.0f,2.2f,0.0f);
 
         Destroy(effect, skill_sustainment_time);
-
-        stat.Set_Additional_value(stat.Level);
-        stat.onchangestat.Invoke();
+      
+        
 
         _ = DelayedAction();
        
@@ -91,8 +91,7 @@ public class Advanced_Attack : SkillEffect
     {
         await Task.Delay(skill_sustainment_time*1000); // 30 second        
         Debuff_update();
-
-       
+      
     }
 
 
@@ -101,9 +100,8 @@ public class Advanced_Attack : SkillEffect
 
          GameObject player = Managers.Game.GetPlayer();
          PlayerStat stat = player.GetComponent<PlayerStat>();
-
-         stat.buff_damage -= _advanced_attack_buff_amount;
-         stat.Set_Additional_value(stat.Level);
+        
+         stat.ATTACK -= ADVANCED_ATTACK_BUFF_AMOUNT;
          stat.onchangestat.Invoke();
          skillusing = false;
 

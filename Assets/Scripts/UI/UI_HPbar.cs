@@ -27,7 +27,7 @@ public class UI_HPbar : MonoBehaviour
 
     void Update()
     {
-        _silder.value = _stat.Hp / (float) _stat.MaxHp;
+        _silder.value = _stat.Hp / (float) _stat.MAXHP;
         hp_text.text = _stat.Hp.ToString();
     }
 }

@@ -15,7 +15,7 @@ public class Ability_Slot : MonoBehaviour , IPointerUpHandler
     public Image skill_icon;
     public TextMeshProUGUI skill_name;
     public TextMeshProUGUI grade_amount;
-    public TextMeshProUGUI Level;
+    public TextMeshProUGUI LEVEL;
     public TextMeshProUGUI Name_grade;
 
     [SerializeField]

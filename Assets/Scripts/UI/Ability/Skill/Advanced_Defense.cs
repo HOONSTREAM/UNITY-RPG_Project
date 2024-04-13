@@ -4,10 +4,10 @@ using System.Threading.Tasks;
 using UnityEngine;
 
 
-[CreateAssetMenu(menuName = "SkillEffect/Buff/Advanced_Defense")]
-public class Advanced_Defense : SkillEffect
+[CreateAssetMenu(menuName = "SkillEffect/Buff/Advanced_DEFENSE")]
+public class Advanced_DEFENSE : SkillEffect
 {
-    private int _advanced_defanse_buff_amount = 50;
+    private int ADVANCED_DEFENSE_BUFF_AMOUNT = 50;
 
     public bool skillusing = false;
     public int skill_sustainment_time;
@@ -63,7 +63,8 @@ public class Advanced_Defense : SkillEffect
         GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("방어력을 일시적으로 강화합니다.");
 
 
-        stat.buff_defense += _advanced_defanse_buff_amount; 
+        stat.DEFENSE += ADVANCED_DEFENSE_BUFF_AMOUNT;
+        stat.onchangestat.Invoke();
 
         Managers.Sound.Play("spell", Define.Sound.Effect);
 
@@ -72,11 +73,6 @@ public class Advanced_Defense : SkillEffect
         effect.transform.position = Managers.Game.GetPlayer().gameObject.transform.position + new Vector3(0.0f, 2.2f, 0.0f); ;
 
         Destroy(effect, skill_sustainment_time);
-
-        stat.Set_Additional_value(stat.Level);
-        stat.onchangestat.Invoke();
-
-
 
         _ =DelayedAction();
 
@@ -98,8 +94,7 @@ public class Advanced_Defense : SkillEffect
         GameObject player = Managers.Game.GetPlayer();
         PlayerStat stat = player.GetComponent<PlayerStat>();
 
-        stat.buff_defense -= _advanced_defanse_buff_amount;
-        stat.Set_Additional_value(stat.Level);
+        stat.DEFENSE -= ADVANCED_DEFENSE_BUFF_AMOUNT;
         stat.onchangestat.Invoke();
         skillusing = false;
 

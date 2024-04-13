@@ -16,7 +16,7 @@ public class Stat : MonoBehaviour
     [SerializeField]
     protected int _hp;
     [SerializeField]
-    protected int _maxHp;
+    protected int _maxhp;
     [SerializeField]
     protected int _mp;
     [SerializeField] 
@@ -31,14 +31,14 @@ public class Stat : MonoBehaviour
 
     public GameObject Fielditem; // Monster 사망 후, 필드에 드랍되는 아이템 스프라이트
 
-    public int Level { get { return _level; } set { _level = value; } }
+    public int LEVEL { get { return _level; } set { _level = value; } }
     public int Hp { get { return _hp; } set { _hp = value; } }
-    public int MaxHp { get { return _maxHp; } set { _maxHp = value; } }
+    public int MAXHP { get { return _maxhp; } set { _maxhp = value; } }
     public int Mp { get { return _mp; } set { _mp = value; } }
     public int MaxMp { get { return _maxMp; } set { _maxMp = value; } }
     public int ATTACK { get { return _attack; } set { _attack = value; } }
-    public int Defense { get { return _defense; } set { _defense = value; } }
-    public float MoveSpeed { get { return _movespeed; } set { _movespeed = value; } }
+    public int DEFENSE { get { return _defense; } set { _defense = value; } }
+    public float MOVESPEED { get { return _movespeed; } set { _movespeed = value; } }
 
 
     private void Start()
@@ -57,7 +57,7 @@ public class Stat : MonoBehaviour
 
     {
         // (가해자의 공격력 - 나의 방어력)
-        int total_damage = Random.Range((int)((attacker.ATTACK - Defense) * 0.8), (int)((attacker.ATTACK - Defense) * 1.1)); // 능력치의 80% ~ 110%       
+        int total_damage = Random.Range((int)((attacker.ATTACK - DEFENSE) * 0.8), (int)((attacker.ATTACK - DEFENSE) * 1.1)); // 능력치의 80% ~ 110%       
 
         if (total_damage < 0)
         {

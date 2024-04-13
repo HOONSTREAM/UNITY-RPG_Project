@@ -3,9 +3,9 @@
   "stats" :[
 
     {
-      "level": "1",
-      "maxHP": "200",
-      "maxMP" : "50",
+      "LEVEL": "1",
+      "MAXHP": "200",
+      "maxMP": "50",
       "attack": "10",
       "totalexp": "100",
       "defense": "5",
@@ -17,8 +17,8 @@
 
     },
     {
-      "level": "2",
-      "maxHP": "350",
+      "LEVEL": "2",
+      "MAXHP": "350",
       "maxMP": "50",
       "attack": "12",
       "totalexp": "140",
@@ -30,8 +30,8 @@
       "movespeed": "5.0f"
     },
     {
-      "level": "3",
-      "maxHP": "400",
+      "LEVEL": "3",
+      "MAXHP": "400",
       "maxMP": "50",
       "attack": "15",
       "totalexp": "180",
@@ -43,8 +43,8 @@
       "movespeed": "5.0f"
     },
     {
-      "level": "4",
-      "maxHP": "700",
+      "LEVEL": "4",
+      "MAXHP": "700",
       "maxMP": "50",
       "attack": "20",
       "totalexp": "220",
@@ -56,8 +56,8 @@
       "movespeed": "5.0f"
     },
     {
-      "level": "5",
-      "maxHP": "700",
+      "LEVEL": "5",
+      "MAXHP": "700",
       "maxMP": "50",
       "attack": "22",
       "totalexp": "250",
@@ -70,8 +70,8 @@
     },
 
     {
-      "level": "6",
-      "maxHP": "800",
+      "LEVEL": "6",
+      "MAXHP": "800",
       "maxMP": "50",
       "attack": "23",
       "totalexp": "300",

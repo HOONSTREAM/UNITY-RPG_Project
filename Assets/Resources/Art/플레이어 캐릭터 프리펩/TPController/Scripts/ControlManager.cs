@@ -18,7 +18,7 @@ namespace DM
         public Vector3 moveDir;     //stores the moving vector value of main character.
 
         [Header("Stats")]
-        public float moveSpeed = 3.5f;  //speed of running
+        public float MOVESPEED = 3.5f;  //speed of running
         public float sprintSpeed = 5f;  //speed of sprinting(double time of running)
         public float rotateSpeed = 5;   //speed of character's turning around
         public float jumpForce = 600f;  //how high you can jump value.
@@ -128,7 +128,7 @@ namespace DM
                 anim.SetTrigger("roll");    //Set trigger named "roll" on
             }            
             
-            float targetSpeed = moveSpeed;  //set run speed as target speed.
+            float targetSpeed = MOVESPEED;  //set run speed as target speed.
              
             if (sprint)
             {

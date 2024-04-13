@@ -85,7 +85,7 @@ public class PlayerController : BaseController
         else
         {
            
-            float MoveDist = Mathf.Clamp(_stat.MoveSpeed * Time.deltaTime, 0, dir.magnitude); //거리(시간*속력),최솟값,최댓값
+            float MoveDist = Mathf.Clamp(_stat.MOVESPEED * Time.deltaTime, 0, dir.magnitude); //거리(시간*속력),최솟값,최댓값
             transform.position += dir.normalized * MoveDist; // P = Po + vt(거리)
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), 20 * Time.deltaTime);
 
@@ -271,7 +271,7 @@ public class PlayerController : BaseController
     {
         if (targetStat.Hp >= 0)
         {
-            int damage_amount = Random.Range((int)((_stat.ATTACK - targetStat.Defense) * 0.8), (int)((_stat.ATTACK - targetStat.Defense) * 1.1)); // 능력치의 80% ~ 110%    
+            int damage_amount = Random.Range((int)((_stat.ATTACK - targetStat.DEFENSE) * 0.8), (int)((_stat.ATTACK - targetStat.DEFENSE) * 1.1)); // 능력치의 80% ~ 110%    
 
             TextMesh text = DamageText.gameObject.GetComponent<TextMesh>();
             text.text = damage_amount.ToString();

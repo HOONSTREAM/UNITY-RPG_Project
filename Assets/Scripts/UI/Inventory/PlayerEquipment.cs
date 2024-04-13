@@ -46,7 +46,7 @@ public class PlayerEquipment : MonoBehaviour
 
                 GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("장착 성공!");
     
-                stat.SetEquipmentValue(stat.Level,_item.item); // 장착장비 스텟 반영
+                stat.SetEquipmentValue(stat.LEVEL,_item.item); // 장착장비 스텟 반영
                 _item.item.Equip = true; //장착 bool 변수 true로 변경                                       
                 stat.onchangestat.Invoke();
                 onChangeEquip.Invoke();
@@ -66,7 +66,7 @@ public class PlayerEquipment : MonoBehaviour
     {
 
         GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("장비를 해제합니다.");       
-        stat.SetEquipmentValue(stat.Level, _item.item);
+        stat.SetEquipmentValue(stat.LEVEL, _item.item);
         player_equip.Remove(_item.item.equiptype);
         _item.item.Equip = false;
         stat.onchangestat.Invoke();

@@ -27,7 +27,7 @@ public class MonsterController : BaseController
         {
             Managers.UI.MakeWorldSpaceUI<UI_HPBar>(transform);
             
-            _stat.MoveSpeed = 1.25f; //몬스터의 이동속도 초기세팅 
+            _stat.MOVESPEED = 1.25f; //몬스터의 이동속도 초기세팅 
 
         }
 
@@ -98,7 +98,7 @@ public class MonsterController : BaseController
             NavMeshAgent nma = gameObject.GetAddComponent<NavMeshAgent>(); //네비메시 에이전트 활용
 
             nma.SetDestination(_DesPos);
-            nma.speed = _stat.MoveSpeed;
+            nma.speed = _stat.MOVESPEED;
 
 
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), 20 * Time.deltaTime);

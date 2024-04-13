@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneNext : MonoBehaviour {
 
-    public void GoToLevel(string sceneName)
+    public void GoToLEVEL(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
     }   

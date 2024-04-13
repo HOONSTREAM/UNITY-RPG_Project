@@ -57,22 +57,22 @@ public class Monster_Stat_Factory
 
     private void SetSlimeStats(Stat stat)
     {       
-        stat.Level = START_SLIME_LEVEL;
+        stat.LEVEL = START_SLIME_LEVEL;
         stat.Hp = SLIME_HP;
-        stat.MaxHp = SLIME_MAX_HP;
+        stat.MAXHP = SLIME_MAX_HP;
         stat.ATTACK = SLIME_ATTACK;
-        stat.Defense = SLIME_DEFENSE;
-        stat.MoveSpeed = SLIME_MOVESPEED;
+        stat.DEFENSE = SLIME_DEFENSE;
+        stat.MOVESPEED = SLIME_MOVESPEED;
     }
 
     private void SetPunchManStats(Stat stat)
     {       
-        stat.Level = START_PUNCHMAN_LEVEL;
+        stat.LEVEL = START_PUNCHMAN_LEVEL;
         stat.Hp = PUNCHMAN_HP;
-        stat.MaxHp = PUNCHMAN_MAX_HP;
+        stat.MAXHP = PUNCHMAN_MAX_HP;
         stat.ATTACK = PUNCHMAN_ATTACK;
-        stat.Defense = PUNCHMAN_DEFENCE;
-        stat.MoveSpeed = PUNCHMAN_MOVESPEED;
+        stat.DEFENSE = PUNCHMAN_DEFENCE;
+        stat.MOVESPEED = PUNCHMAN_MOVESPEED;
     }
 
 

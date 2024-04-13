@@ -12,9 +12,9 @@ public class Hp_Potion : ItemEffect
         GameObject player = Managers.Game.GetPlayer();
         PlayerStat stat = player.GetComponent<PlayerStat>();
         stat.Hp += HP_RECOVERY_FIGURES_HP_POTION;
-        if(stat.Hp > stat.MaxHp)
+        if(stat.Hp > stat.MAXHP)
         {
-            stat.Hp = stat.MaxHp;
+            stat.Hp = stat.MAXHP;
         }
         Managers.Sound.Play("²Ü²© ²Ü²©", Define.Sound.Effect);
         GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText($"¼Ò¸ðÇ°À» »ç¿ëÇÏ¿© HP {HP_RECOVERY_FIGURES_HP_POTION} À» È¸º¹ÇÕ´Ï´Ù. ");

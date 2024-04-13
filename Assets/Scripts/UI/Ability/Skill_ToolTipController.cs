@@ -51,7 +51,7 @@ public class Skill_ToolTipController : MonoBehaviour,IPointerEnterHandler, IPoin
                 {
                     case "한손검":
 
-                        tooltip.SetupAbilityToolTip(skill.skill_name, skill.stat_1, stat.one_hand_sword_AbilityAttack, skill.Description, skill.skill_image);
+                        tooltip.SetupAbilityToolTip(skill.skill_name, skill.stat_1, stat.Onupdate_Ability_attack(), skill.Description, skill.skill_image);
                         tooltip.stat_2.gameObject.SetActive(false); // 나타낼 필요 없는 정보            
                         tooltip.num_2.gameObject.SetActive(false); // 나타낼 필요 없는 정보 
 
@@ -59,7 +59,7 @@ public class Skill_ToolTipController : MonoBehaviour,IPointerEnterHandler, IPoin
 
                     case "양손검":
 
-                        tooltip.SetupAbilityToolTip(skill.skill_name, skill.stat_1, stat.two_hand_sword_AbilityAttack, skill.Description, skill.skill_image);
+                        tooltip.SetupAbilityToolTip(skill.skill_name, skill.stat_1, stat.Onupdate_Ability_attack(), skill.Description, skill.skill_image);
                         tooltip.stat_2.gameObject.SetActive(false); // 나타낼 필요 없는 정보            
                         tooltip.num_2.gameObject.SetActive(false); // 나타낼 필요 없는 정보 
 

@@ -11,8 +11,6 @@ using static UnityEditor.Progress;
 /// 이 클래스는 1. 플레이어 스텟을 관리 ////
 ///             2.플레이 시 우측하단 USER_STAT창 업데이트, 레벨업 관리 ////
 ///             3. 무기 장착 시 변동되는 스텟을 관리합니다. ////
-///             
-/// 
 /// Stat 클래스를 상속받습니다.
 /// 
 /// </summary>        
@@ -38,7 +36,7 @@ public class PlayerStat : Stat
     public int two_hand_sword_AbilityAttack = 0; //어빌리티 별 향상공격력 저장변수 (양손검)
     public int improvement_Ability_attack;
     public int buff_damage = 0; // 스킬 사용 시 버프데미지
-    public int buff_defense = 0; // 스킬 사용 시 버프방어력
+    public int buff_DEFENSE = 0; // 스킬 사용 시 버프방어력
 
     private const int START_USER_LEVEL = 1;
     private const int START_USER_GOLD = 0;
@@ -56,34 +54,6 @@ public class PlayerStat : Stat
     public OnChangePlayerStat onchangestat;
 
 
-    /// <summary>
-    /// 게임 실행시, 나타나는 유저 인터페이스의 우측하단, 상시로 떠있는 플레이어의 스텟을 업데이트 합니다.
-    /// </summary>
-    /// 
-    /// 
-    /// <returns>리턴값은 없고, 플레이어 스텟창을 계속 업데이트 함.</returns>
-    private void OnUpdateStatUI()
-    {
-
-        GameObject inttxt = GameObject.Find("INTnum").gameObject;
-        GameObject strtxt = GameObject.Find("STRnum").gameObject;
-        GameObject atktxt = GameObject.Find("ATKnum").gameObject;
-        GameObject deftxt = GameObject.Find("DEFnum").gameObject;
-        GameObject goldtxt = GameObject.Find("Goldnum").gameObject;
-        GameObject vittxt = GameObject.Find("VITnum").gameObject;
-        GameObject agitxt = GameObject.Find("AGInum").gameObject;
-
-        atktxt.GetComponent<TextMeshProUGUI>().text = ATTACK.ToString();
-        deftxt.GetComponent<TextMeshProUGUI>().text = Defense.ToString();
-        goldtxt.GetComponent<TextMeshProUGUI>().text = Gold.ToString();
-        strtxt.GetComponent<TextMeshProUGUI>().text = STR.ToString();
-        inttxt.GetComponent<TextMeshProUGUI>().text = INT.ToString();
-        vittxt.GetComponent<TextMeshProUGUI>().text = VIT.ToString();
-        agitxt.GetComponent<TextMeshProUGUI>().text = AGI.ToString();
-
-    } 
-
-
     public int EXP //자동구현 프로퍼티  
     {
 
@@ -97,7 +67,7 @@ public class PlayerStat : Stat
 
             //레벨업체크로직
 
-            int level = Level;
+            int level = LEVEL;
             while (true)
             {
                 Data.Stat stat;
@@ -109,17 +79,17 @@ public class PlayerStat : Stat
 
             }
 
-            if (level != Level)
+            if (level != LEVEL)
             {
-                Level = level;              
-                GameObject go = GameObject.Find("Level_Text").gameObject;
-                go.GetComponent<TextMeshProUGUI>().text = $"Lv . {Level}";
+                LEVEL = level;              
+                GameObject go = GameObject.Find("LEVEL_Text").gameObject;
+                go.GetComponent<TextMeshProUGUI>().text = $"Lv . {LEVEL}";
                 Managers.Sound.Play("univ0007");
                 GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("레벨이 올랐습니다.");
 
-                Level_up_Effect();
+                LEVEL_up_Effect();
        
-                _exp -= (int)Managers.Data.StatDict[level].totalexp;
+                _exp -= (int)Managers.Data.StatDict[LEVEL].totalexp;
 
 
                 onchangestat.Invoke();
@@ -161,52 +131,82 @@ public class PlayerStat : Stat
 
         onchangestat += OnUpdateStatUI;
         onchangestat += equipment_ui.OnUpdateEquip_Stat_Panel_UI;
+       
     }
 
     #region 스텟세팅 (장착장비검사,어빌리티검사)
 
-  
     /// <summary>
     /// Dicitionary (key : 플레이어 레벨, value : json Data) 를 통해 기본적인 레벨별 플레이어 스텟을 세팅함.
-    ///<param name="level">첫번째 인자 :플레이어 레벨</param>
+    ///<param name="LEVEL">첫번째 인자 :플레이어 레벨</param>
     /// </summary>
-    /// <returns>리턴값없음</returns>
-    
-    public void NewGame_SetStat(int level)  
+    /// <returns>리턴값없음</returns>    
+    public void NewGame_SetStat(int LEVEL)  
     {
 
         Dictionary<int, Data.Stat> dict = Managers.Data.StatDict; //키가 레벨 
-        Data.Stat stat = dict[level];
+        Data.Stat stat = dict[LEVEL];
 
-        _hp = stat.maxHP;
-        _maxHp = stat.maxMP;
+        _hp = stat.MAXHP;
+        _maxhp = stat.MAXHP;
         _mp = stat.maxMP;
         _maxMp = stat.maxMP;
         _defense = stat.defense;  
         _movespeed = stat.movespeed;
         _attack = stat.attack;
-
+        
 
     }
   
-
     /// <summary>
-    /// Dicitionary (key : 플레이어 레벨, value : json Data) 를 통해 
-    /// 무기 어빌리티가 증가하여 능력치가 변동되면, 즉시 적용되도록 적용하고, 버프스킬을 사용 시 즉시 반영되도록 조치하는 메서드입니다.
-    ///<param name="level">첫번째 인자 :플레이어 레벨</param>
+    /// 플레이어가 특정 무기를 장착 후 어빌리티가 향상되어 적용되는 공격력을 리턴해주는 함수.
+    /// 
+    ///
     /// </summary>
-    /// <returns></returns>
-    public void Set_Additional_value(int level)
+    /// <returns> 향상된 데미지 정수값 </returns>
+    public int Onupdate_Ability_attack()
     {
-        Dictionary<int, Data.Stat> dict = Managers.Data.StatDict; //키가 레벨 
-        Data.Stat stat = dict[level];
-         
-       
-        ATTACK += Onupdate_Ability_attack() + buff_damage;
-        Defense += buff_defense;
-        
 
-        return;
+        if (PlayerEquipment.Instance.player_equip.TryGetValue(EquipType.Weapon, out Item One_hand_value) && One_hand_value.weapontype == WeaponType.One_Hand) // 무기를 장착중이고, 한손검인경우
+        {
+
+            Ability_Script Ability_script = GameObject.Find("Ability_Slot_CANVAS").gameObject.GetComponent<Ability_Script>();
+            for (int i = 0; i < Ability_script.Ability_Slots.Length; i++)
+            {
+                if (Ability_script.Ability_Slots[i].skill_name.text == "한손검")
+                {
+                    double Ability_attack_improvement = (double.Parse(Ability_script.Ability_Slots[i].LEVEL.text) * 5); //TODO :여기서 Grade 수치 * 500 도 더해야함 
+
+                    one_hand_sword_AbilityAttack = (int)Ability_attack_improvement;
+
+                    break;
+                }
+            }
+
+            return improvement_Ability_attack = one_hand_sword_AbilityAttack;
+        }
+
+        else if (PlayerEquipment.Instance.player_equip.TryGetValue(EquipType.Weapon, out Item two_hand_value) && two_hand_value.weapontype == WeaponType.Two_Hand)
+        {
+
+            Ability_Script Ability_script = GameObject.Find("Ability_Slot_CANVAS").gameObject.GetComponent<Ability_Script>();
+            for (int i = 0; i < Ability_script.Ability_Slots.Length; i++)
+            {
+                if (Ability_script.Ability_Slots[i].skill_name.text == "양손검")
+                {
+                    double Ability_attack_improvement = (double.Parse(Ability_script.Ability_Slots[i].LEVEL.text) * 5); //TODO :여기서 Grade 수치 * 500 도 더해야함 
+
+                    two_hand_sword_AbilityAttack = (int)Ability_attack_improvement;
+
+                    break;
+                }
+            }
+
+            return improvement_Ability_attack = two_hand_sword_AbilityAttack;
+        }
+
+        return improvement_Ability_attack = 0;
+
     }
 
     /// <summary>
@@ -214,10 +214,16 @@ public class PlayerStat : Stat
     /// <param name="stat">첫 번째 인자 :플레이어 레벨</param>
     /// <param name="item">두 번째 인자 : 해당 아이템 </param>
     /// </summary>
-    public void SetEquipmentValue(int level,Item item)
+    public void SetEquipmentValue(int LEVEL,Item item)
     {
+        if (item == null)
+        {
+            return;
+        }
+
+
         Dictionary<int, Data.Stat> dict = Managers.Data.StatDict; //키가 레벨 
-        Data.Stat stat = dict[level];
+        Data.Stat stat = dict[LEVEL];
 
 
         switch (item.equiptype)
@@ -226,14 +232,13 @@ public class PlayerStat : Stat
                 check_Weapon_equip(stat, item);
                 break;
             default:
-                check_Defense_equip(stat, item);
+                check_DEFENSE_equip(stat, item);
                 break;
         }
             
  
         return;
     }
-
 
     /// <summary>
     ///  플레이어의 무기 장착 여부를 검사하여 스텟을 적용하는 메서드.
@@ -242,6 +247,11 @@ public class PlayerStat : Stat
     /// </summary>
     private void check_Weapon_equip(Data.Stat stat, Item item)
     {
+        if(item == null)
+        {
+            return;
+        }
+
         if (item.equiptype == EquipType.Weapon)
         {
             gameObject.GetComponent<PlayerAnimController>().Get_request_Change_Weapon_EquipType(item); // AnimController에 현재 장착한 무기가 무엇인지 바인딩
@@ -282,6 +292,10 @@ public class PlayerStat : Stat
                 }
             }
         }
+
+        // 최종적으로 STR을 계산하여 ATTACK 스텟에 추가 스텟을 부여합니다.
+        ATTACK += (STR / 10);
+
     }
 
     /// <summary>
@@ -289,8 +303,14 @@ public class PlayerStat : Stat
     /// <param name="stat">첫 번째 인자 : JSON 플레이어 스텟 데이터 </param>
     /// <param name="item">두 번째 인자 : 해당 아이템 </param>
     /// </summary>
-    private void check_Defense_equip(Data.Stat stat, Item item)
+    private void check_DEFENSE_equip(Data.Stat stat, Item item)
     {
+        if (item == null)
+        {
+            return;
+        }
+
+
         if (item.equiptype == EquipType.outter_plate)
         {
             if (equipment.player_equip.TryGetValue(EquipType.outter_plate, out Item _chest_def_item)) //장착방어구 검사
@@ -299,7 +319,7 @@ public class PlayerStat : Stat
                 {
 
                     VIT = VIT - equipment.player_equip[EquipType.outter_plate].num_3;
-                    Defense -= equipment.player_equip[EquipType.outter_plate].num_1;
+                    DEFENSE -= equipment.player_equip[EquipType.outter_plate].num_1;
                     INT = INT - equipment.player_equip[EquipType.outter_plate].num_2;
                     AGI = AGI - equipment.player_equip[EquipType.outter_plate].num_4;
 
@@ -308,7 +328,7 @@ public class PlayerStat : Stat
                 {
 
                     VIT = VIT + equipment.player_equip[EquipType.outter_plate].num_3;
-                    Defense += equipment.player_equip[EquipType.outter_plate].num_1;
+                    DEFENSE += equipment.player_equip[EquipType.outter_plate].num_1;
                     INT = INT + equipment.player_equip[EquipType.outter_plate].num_2;
                     AGI = AGI + equipment.player_equip[EquipType.outter_plate].num_4;
                 }
@@ -323,7 +343,7 @@ public class PlayerStat : Stat
                 {
 
                     VIT = VIT - equipment.player_equip[EquipType.Chest].num_3;
-                    Defense -= equipment.player_equip[EquipType.Chest].num_1;                
+                    DEFENSE -= equipment.player_equip[EquipType.Chest].num_1;                
                     INT = INT - equipment.player_equip[EquipType.Chest].num_2;
                     AGI = AGI - equipment.player_equip[EquipType.Chest].num_4;
 
@@ -331,7 +351,7 @@ public class PlayerStat : Stat
                 else if (_chest_def_item.Equip == false)
                 {
                     VIT = VIT + equipment.player_equip[EquipType.Chest].num_3;
-                    Defense += equipment.player_equip[EquipType.Chest].num_1;          
+                    DEFENSE += equipment.player_equip[EquipType.Chest].num_1;          
                     INT = INT + equipment.player_equip[EquipType.Chest].num_2;
                     AGI = AGI + equipment.player_equip[EquipType.Chest].num_4;
 
@@ -346,7 +366,7 @@ public class PlayerStat : Stat
                     if (_head_def_item.Equip)
                     {
                        VIT = VIT - equipment.player_equip[EquipType.Head].num_3;
-                       Defense -= equipment.player_equip[EquipType.Head].num_1;                
+                       DEFENSE -= equipment.player_equip[EquipType.Head].num_1;                
                        INT = INT - equipment.player_equip[EquipType.Head].num_2;
                        AGI = AGI - equipment.player_equip[EquipType.Head].num_4;
 
@@ -355,7 +375,7 @@ public class PlayerStat : Stat
                     else if (_head_def_item.Equip == false)
                     {
                        VIT = VIT + equipment.player_equip[EquipType.Head].num_3;
-                       Defense += equipment.player_equip[EquipType.Head].num_1;                
+                       DEFENSE += equipment.player_equip[EquipType.Head].num_1;                
                        INT = INT + equipment.player_equip[EquipType.Head].num_2;
                        AGI = AGI + equipment.player_equip[EquipType.Head].num_4;
   
@@ -372,7 +392,7 @@ public class PlayerStat : Stat
                   {
 
                     VIT = VIT - equipment.player_equip[EquipType.shoes].num_3;
-                    Defense -= equipment.player_equip[EquipType.shoes].num_1;//총 DEX의 1/10을 데미지에 기여함;                  
+                    DEFENSE -= equipment.player_equip[EquipType.shoes].num_1;//총 DEX의 1/10을 데미지에 기여함;                  
                     INT = INT - equipment.player_equip[EquipType.shoes].num_2;
                     AGI = AGI - equipment.player_equip[EquipType.shoes].num_4;
 
@@ -382,7 +402,7 @@ public class PlayerStat : Stat
                    {
 
                     VIT = VIT + equipment.player_equip[EquipType.shoes].num_3;
-                    Defense = Defense + equipment.player_equip[EquipType.shoes].num_1;  //총 DEX의 1/10을 데미지에 기여함;                  
+                    DEFENSE = DEFENSE + equipment.player_equip[EquipType.shoes].num_1;  //총 DEX의 1/10을 데미지에 기여함;                  
                     INT = INT + equipment.player_equip[EquipType.shoes].num_2;
                     AGI = AGI + equipment.player_equip[EquipType.shoes].num_4;
                 
@@ -398,7 +418,7 @@ public class PlayerStat : Stat
                     if (_head_deco_def_item.Equip)
                     {
 
-                        MaxHp = MaxHp - equipment.player_equip[EquipType.Head_decoration].num_1;
+                        MAXHP = MAXHP - equipment.player_equip[EquipType.Head_decoration].num_1;
                         INT = INT - equipment.player_equip[EquipType.Head_decoration].num_2; 
                         VIT = VIT - equipment.player_equip[EquipType.Head_decoration].num_3;
                         AGI = AGI - equipment.player_equip[EquipType.Head_decoration].num_4;
@@ -408,7 +428,7 @@ public class PlayerStat : Stat
                     else if (_head_deco_def_item.Equip == false)
                     {
                         
-                        MaxHp = MaxHp + equipment.player_equip[EquipType.Head_decoration].num_1;
+                        MAXHP = MAXHP + equipment.player_equip[EquipType.Head_decoration].num_1;
                         INT = INT + equipment.player_equip[EquipType.Head_decoration].num_2;
                         VIT = VIT + equipment.player_equip[EquipType.Head_decoration].num_3;
                         AGI = AGI + equipment.player_equip[EquipType.Head_decoration].num_4;
@@ -419,66 +439,12 @@ public class PlayerStat : Stat
             }
 
 
-        // 최종적으로 VIT를 계산하여 Defense 스텟에 추가 스텟을 부여 (VIT/10)만큼 합니다.
-        Defense += (VIT / 10);
+        // 최종적으로 VIT를 계산하여 DEFENSE 스텟에 추가 스텟을 부여 (VIT/10)만큼 합니다.
+        DEFENSE += (VIT / 10);
 
     }
     
-
-    /// <summary>
-    /// 플레이어가 특정 무기를 장착 후 어빌리티가 향상되어 적용되는 공격력을 리턴해주는 함수.
-    /// 
-    ///
-    /// </summary>
-    /// <returns> 향상된 데미지 정수값 </returns>
-    public int Onupdate_Ability_attack() 
-    {
-
-        if (PlayerEquipment.Instance.player_equip.TryGetValue(EquipType.Weapon, out Item One_hand_value) && One_hand_value.weapontype == WeaponType.One_Hand) // 무기를 장착중이고, 한손검인경우
-        {
-
-            Ability_Script Ability_script = FindObjectOfType<Ability_Script>();
-            for(int i = 0; i < Ability_script.Ability_Slots.Length; i++)
-            {
-                if (Ability_script.Ability_Slots[i].skill_name.text == "한손검")
-                {
-                    double Ability_attack_improvement = (double.Parse(Ability_script.Ability_Slots[i].Level.text)*5); //TODO :여기서 Grade 수치 * 500 도 더해야함 
-                  
-                    one_hand_sword_AbilityAttack = (int)Ability_attack_improvement;
-                    
-                 break;
-                }
-            }
-            
-            return improvement_Ability_attack = one_hand_sword_AbilityAttack;
-        }
-        
-        else if (PlayerEquipment.Instance.player_equip.TryGetValue(EquipType.Weapon, out Item two_hand_value) && two_hand_value.weapontype == WeaponType.Two_Hand)
-        {
-
-            Ability_Script Ability_script = FindObjectOfType<Ability_Script>();
-            for (int i = 0; i < Ability_script.Ability_Slots.Length; i++)
-            {
-                if (Ability_script.Ability_Slots[i].skill_name.text == "양손검")
-                {
-                    double Ability_attack_improvement = (double.Parse(Ability_script.Ability_Slots[i].Level.text) * 5); //TODO :여기서 Grade 수치 * 500 도 더해야함 
-                  
-                    two_hand_sword_AbilityAttack = (int)Ability_attack_improvement;
-
-                    break;
-                }
-            }
-
-            return improvement_Ability_attack = two_hand_sword_AbilityAttack;
-        }
-
-
-        return improvement_Ability_attack = 0;
-
-    }
-
     #endregion
-
 
     /// <summary>
     /// 플레이어가 사망 한 뒤의 처리를 하는 메서드.
@@ -488,18 +454,42 @@ public class PlayerStat : Stat
     {
         Debug.Log("Player Dead");
     }
+    /// <summary>
+    /// 게임 실행시, 나타나는 유저 인터페이스의 우측하단, 상시로 떠있는 플레이어의 스텟을 업데이트 합니다.
+    /// </summary>
+    /// 
+    /// 
+    /// <returns>리턴값은 없고, 플레이어 스텟창을 계속 업데이트 함.</returns>
+    private void OnUpdateStatUI()
+    {
 
+        GameObject inttxt = GameObject.Find("INTnum").gameObject;
+        GameObject strtxt = GameObject.Find("STRnum").gameObject;
+        GameObject atktxt = GameObject.Find("ATKnum").gameObject;
+        GameObject deftxt = GameObject.Find("DEFnum").gameObject;
+        GameObject goldtxt = GameObject.Find("Goldnum").gameObject;
+        GameObject vittxt = GameObject.Find("VITnum").gameObject;
+        GameObject agitxt = GameObject.Find("AGInum").gameObject;
 
+        atktxt.GetComponent<TextMeshProUGUI>().text = ATTACK.ToString();
+        deftxt.GetComponent<TextMeshProUGUI>().text = DEFENSE.ToString();
+        goldtxt.GetComponent<TextMeshProUGUI>().text = Gold.ToString();
+        strtxt.GetComponent<TextMeshProUGUI>().text = STR.ToString();
+        inttxt.GetComponent<TextMeshProUGUI>().text = INT.ToString();
+        vittxt.GetComponent<TextMeshProUGUI>().text = VIT.ToString();
+        agitxt.GetComponent<TextMeshProUGUI>().text = AGI.ToString();
+
+    }
     /// <summary>
     /// 플레이어 레벨업 이펙트를 관리하는 메서드.
     /// 
     /// </summary>
-    private void Level_up_Effect()
+    private void LEVEL_up_Effect()
     {
         Managers.Sound.Play("change_scene", Define.Sound.Effect);
 
-        GameObject effect = Managers.Resources.Instantiate("Skill_Effect/Level_up_Effect");
-        GameObject effect_3d = Managers.Resources.Instantiate("Skill_Effect/Level_up_3D_Effect");
+        GameObject effect = Managers.Resources.Instantiate("Skill_Effect/LEVEL_up_Effect");
+        GameObject effect_3d = Managers.Resources.Instantiate("Skill_Effect/LEVEL_up_3D_Effect");
 
 
         effect.transform.parent = Managers.Game.GetPlayer().transform; // 부모설정

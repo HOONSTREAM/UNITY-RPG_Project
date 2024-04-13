@@ -44,7 +44,7 @@ public class UI_HPBar :UI_Base
         transform.position = parent.position + Vector3.up * (parent.GetComponent<Collider>().bounds.size.y); //콜라이더 높이만큼 
         transform.rotation = Camera.main.transform.rotation; //빌보드 
 
-        float ratio = _stat.Hp /(float)_stat.MaxHp;
+        float ratio = _stat.Hp /(float)_stat.MAXHP;
 
         SetHPRatio(ratio);
 

@@ -70,7 +70,7 @@ public class Exit_Console : MonoBehaviour
                             PanelToClose.gameObject.GetComponent<Canvas>().sortingOrder = 0;
                             Player_Quest.Instance.onChangequest.Invoke();
                             break;
-                        case "Ability_Slot_CANVAS ":
+                        case "Ability_Slot_CANVAS":
                             Ability_slot_UI.gameObject.SetActive(false);
                             PanelToClose.gameObject.GetComponent<Ability_Script>().active_Ability_panel = false;
                             Managers.Sound.Play("Inven_Open");

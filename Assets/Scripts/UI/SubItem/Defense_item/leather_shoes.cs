@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ItemEffect/Defense_Item/°¡Á×½Å¹ß")]
+[CreateAssetMenu(menuName = "ItemEffect/DEFENSE_Item/°¡Á×½Å¹ß")]
 public class leather_shoes : ItemEffect
 {
     public override bool ExecuteRole(ItemType itemtype)

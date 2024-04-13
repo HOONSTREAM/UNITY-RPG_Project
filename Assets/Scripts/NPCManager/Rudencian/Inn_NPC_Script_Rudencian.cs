@@ -32,12 +32,12 @@ public class Inn_NPC_Script_Rudencian : MonoBehaviour, IPointerClickHandler, Tal
         if (player_stat == null) return;
 
         player_stat.Hp += RECOVERY_HP_AMOUNT;
-        if (player_stat.Hp > player_stat.MaxHp)
+        if (player_stat.Hp > player_stat.MAXHP)
         {
-            player_stat.Hp = player_stat.MaxHp;
+            player_stat.Hp = player_stat.MAXHP;
         }
 
-        Managers.Sound.Play("levelup_sound",Define.Sound.Effect);
+        Managers.Sound.Play("LEVELup_sound",Define.Sound.Effect);
 
         HP_Recovery_Buff_Effect();
     }

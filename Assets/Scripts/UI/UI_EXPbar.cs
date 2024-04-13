@@ -29,17 +29,17 @@ public class UI_EXPbar : MonoBehaviour
     {
         //레벨업 후 exp 초기화는 playerstat 클래스에서 관리
 
-        int level = _stat.Level;
+        int LEVEL = _stat.LEVEL;
         float nowexp = _stat.EXP;
 
 
-        if (Managers.Data.StatDict.TryGetValue(level, out Data.Stat stats))
+        if (Managers.Data.StatDict.TryGetValue(LEVEL, out Data.Stat stats))
         {
           
 
         }
-        float minustotalexp = Managers.Data.StatDict[level].totalexp; //딕셔너리 참조
-        float totalexp = Managers.Data.StatDict[level + 1].totalexp; //딕셔너리 참조
+        float minustotalexp = Managers.Data.StatDict[LEVEL].totalexp; //딕셔너리 참조
+        float totalexp = Managers.Data.StatDict[LEVEL + 1].totalexp; //딕셔너리 참조
         _slider.value = (float)(nowexp) / totalexp;
 
         if (nowexp == totalexp)
