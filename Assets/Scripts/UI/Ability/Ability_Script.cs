@@ -71,7 +71,7 @@ public class Ability_Script : MonoBehaviour
 
     private void Start() //Player Controller에 붙이면, 프리펩이므로 Start 전의 프리펩이 붙어서 slot이 업데이트가 안됨. 
     {
-        stat = GetComponent<PlayerStat>(); //골드 업데이트를 위한 플레이어 스텟 참조
+        stat = Managers.Game.GetPlayer().GetComponent<PlayerStat>(); //골드 업데이트를 위한 플레이어 스텟 참조
         Ability = PlayerAbility.Instance;
         Ability_Slots = Ability_slotHolder.GetComponentsInChildren<Ability_Slot>();       
         Ability.onChangeSkill += RedrawSlotUI;
@@ -396,6 +396,7 @@ private void Update()
                             excess = (float)Math.Round(excess, 2);
                             slot.Level.text = (slot.skill.Ability + Ability_INCREASE_AMOUNT).ToString(); // 어빌리티 레벨 증가
                             slot.skill.Ability += Ability_INCREASE_AMOUNT; // level 변수도 증가시켜줍니다.
+                            stat.Set_Additional_value(stat.Level);
 
                             slot._slider.value = excess;
                             potentialNewValue = excess;

@@ -132,9 +132,7 @@ public class PlayerController : BaseController
             Ability_Script Ability_script = GameObject.Find("Ability_Slot_CANVAS").gameObject.GetComponent<Ability_Script>();
             Managers.Monster_Info.Set_Monster_Info(LockTarget);
             Managers.Monster_Info.OnMonsterUpdated += (LockTarget) => { Debug.Log($"몬스터가 세팅되었습니다.{Managers.Monster_Info.Get_Monster_Info().ToString()}"); };
-            Ability_script.Accumulate_Ability_Func();
-          
-            _stat.Set_Additional_value(_stat.Level); // 무기 어빌리티가 즉시 적용되도록 스크립트 실행
+            Ability_script.Accumulate_Ability_Func();         
             _stat.onchangestat.Invoke(); // 유저 스텟 인터페이스 업데이트
         }
 
