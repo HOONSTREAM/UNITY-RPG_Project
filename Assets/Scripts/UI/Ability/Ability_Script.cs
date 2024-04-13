@@ -81,7 +81,7 @@ public class Ability_Script : MonoBehaviour
 
         Ability_Panel.SetActive(active_Ability_panel);
 
-        onupdate_Ability += Accumulate_Ability_Func; //delegate
+        onupdate_Ability += Accumulate_Ability_Func;
         
 
 

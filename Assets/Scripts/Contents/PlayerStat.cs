@@ -34,11 +34,14 @@ public class PlayerStat : Stat
     protected int _agi;
 
     private int WeaponAttackValue = 0; //장착무기 공격스텟 저장변수
+    private int Weapon_STR_Additional_increase_Value = (Managers.Game.GetPlayer().GetComponent<PlayerStat>().STR / 10);
+    private int Defense_VIT_Additional_increase_Value = (Managers.Game.GetPlayer().GetComponent<PlayerStat>().VIT / 10);
     private int ChestDEFvalue = 0; //장착갑옷 방어스텟 저장변수
     private int WeaponSTRValue = 0; //장착무기 STR 스텟 저장변수 (공격력)
     private int VITvalue = 0; // VIT 스텟 저장변수 (방어력,체력,체력회복속도)
     private int AGIvalue = 0; // AGI 스텟 저장변수 (공격속도, 회피율, 이동속도)
     private int INTValue = 0; //INT 마법공격력
+    private int MaxHP_Increase_Value = 0; // 최대 HP 증가량
 
     public int one_hand_sword_AbilityAttack = 0; //어빌리티 별 향상공격력 저장변수 (한손검)
     public int two_hand_sword_AbilityAttack = 0; //어빌리티 별 향상공격력 저장변수 (양손검)
@@ -79,7 +82,7 @@ public class PlayerStat : Stat
         GameObject vittxt = GameObject.Find("VITnum").gameObject;
         GameObject agitxt = GameObject.Find("AGInum").gameObject;
 
-        atktxt.GetComponent<TextMeshProUGUI>().text = Attack.ToString();
+        atktxt.GetComponent<TextMeshProUGUI>().text = ATTACK.ToString();
         deftxt.GetComponent<TextMeshProUGUI>().text = Defense.ToString();
         goldtxt.GetComponent<TextMeshProUGUI>().text = Gold.ToString();
         strtxt.GetComponent<TextMeshProUGUI>().text = STR.ToString();
@@ -172,185 +175,10 @@ public class PlayerStat : Stat
 
     #region 스텟세팅 (장착장비검사,어빌리티검사)
 
-    /// <summary>
-    ///  플레이어의 부위별 방어구 장착 여부를 검사하여 스텟을 적용하는 메서드.
-    /// <param name="stat">첫 번째 인자 : JSON 플레이어 스텟 데이터 </param>
-    /// <param name="item">두 번째 인자 : 해당 아이템 </param>
-    /// </summary>
-    private void check_Defense_equip(Data.Stat stat, Item item)
-    {
-        if (item.equiptype == EquipType.outter_plate)
-        {
-            if (equipment.player_equip.TryGetValue(EquipType.outter_plate, out Item _chest_def_item)) //장착방어구 검사
-            {
-                if (_chest_def_item.Equip)
-                {
-                    ChestDEFvalue -= equipment.player_equip[EquipType.outter_plate].num_1;
-                    INTValue -= equipment.player_equip[EquipType.outter_plate].num_2;
-                    VITvalue -= equipment.player_equip[EquipType.outter_plate].num_3;
-                    AGIvalue -= equipment.player_equip[EquipType.outter_plate].num_4;
-
-                    _defense = stat.defense + ChestDEFvalue + (VITvalue / 10); //총 VIT의 1/10을 방어력에 기여함                                      
-                    _vit = stat.VIT + VITvalue;
-                    _agi = stat.AGI + AGIvalue;
-                }
-                else if (_chest_def_item.Equip == false)
-                {
-                    ChestDEFvalue += equipment.player_equip[EquipType.outter_plate].num_1;
-                    VITvalue += equipment.player_equip[EquipType.outter_plate].num_3;
-                    AGIvalue += equipment.player_equip[EquipType.outter_plate].num_4;
-
-                    _defense = stat.defense + ChestDEFvalue + (VITvalue / 10); //총 DEX의 1/10을 데미지에 기여함                                      
-                    _vit = stat.VIT + VITvalue;
-                    _agi = stat.AGI + AGIvalue;
-                }
-            }
-        }
-
-        if (item.equiptype == EquipType.Chest)
-        {
-            if (equipment.player_equip.TryGetValue(EquipType.Chest, out Item _chest_def_item)) //장착방어구 검사
-            {
-                if (_chest_def_item.Equip)
-                {
-                    ChestDEFvalue -= equipment.player_equip[EquipType.Chest].num_1;
-                    VITvalue -= equipment.player_equip[EquipType.Chest].num_3;
-                    AGIvalue -= equipment.player_equip[EquipType.Chest].num_4;
-
-                    _defense = stat.defense + ChestDEFvalue + (VITvalue / 10); //총 DEX의 1/10을 데미지에 기여함                                       
-                    _vit = stat.VIT + VITvalue;
-                    _agi = stat.AGI + AGIvalue;
-                }
-                else if (_chest_def_item.Equip == false)
-                {
-                    ChestDEFvalue += equipment.player_equip[EquipType.Chest].num_1;
-                    VITvalue += equipment.player_equip[EquipType.Chest].num_3;
-                    AGIvalue += equipment.player_equip[EquipType.Chest].num_4;
-
-                    _defense = stat.defense + ChestDEFvalue + (VITvalue / 10); //총 DEX의 1/10을 데미지에 기여함                                       
-                    _vit = stat.VIT + VITvalue;
-                    _agi = stat.AGI + AGIvalue;
-                }
-            }
-        }
-
-        if (item.equiptype == EquipType.Head)
-        {
-            if (equipment.player_equip.TryGetValue(EquipType.Head, out Item _head_def_item))
-            {
-                if (_head_def_item.Equip)
-                {
-                    ChestDEFvalue -= equipment.player_equip[EquipType.Head].num_1;
-                    VITvalue -= equipment.player_equip[EquipType.Head].num_3;
-                    AGIvalue -= equipment.player_equip[EquipType.Head].num_4;
-                    _defense = stat.defense + ChestDEFvalue + (VITvalue / 10); //총 DEX의 1/10을 데미지에 기여함;                  
-                    _vit = stat.VIT + VITvalue;
-                    _agi = stat.AGI + AGIvalue;
-
-                }
-
-                else if (_head_def_item.Equip == false)
-                {
-                    ChestDEFvalue += equipment.player_equip[EquipType.Head].num_1;
-                    VITvalue += equipment.player_equip[EquipType.Head].num_3;
-                    AGIvalue += equipment.player_equip[EquipType.Head].num_4;
-                    _defense = stat.defense + ChestDEFvalue + (VITvalue / 10); //총 DEX의 1/10을 데미지에 기여함;                    
-                    _vit = stat.VIT + VITvalue;
-                    _agi = stat.AGI + AGIvalue;
-
-                }
-
-            }
-        }
-
-        if (item.equiptype == EquipType.shoes)
-        {
-            if (equipment.player_equip.TryGetValue(EquipType.shoes, out Item _shoes_def_item))
-            {
-                if (_shoes_def_item.Equip)
-                {
-                    ChestDEFvalue -= equipment.player_equip[EquipType.shoes].num_1;
-                    VITvalue -= equipment.player_equip[EquipType.shoes].num_3;
-                    AGIvalue -= equipment.player_equip[EquipType.shoes].num_4;
-                    _defense = stat.defense + ChestDEFvalue + (VITvalue / 10); //총 DEX의 1/10을 데미지에 기여함;                  
-                    _vit = stat.VIT + VITvalue;
-                    _agi = stat.AGI + AGIvalue;
-
-                }
-
-                else if (_shoes_def_item.Equip == false)
-                {
-                    ChestDEFvalue += equipment.player_equip[EquipType.shoes].num_1;
-                    VITvalue += equipment.player_equip[EquipType.shoes].num_3;
-                    AGIvalue += equipment.player_equip[EquipType.shoes].num_4;
-                    _defense = stat.defense + ChestDEFvalue + (VITvalue / 10); //총 DEX의 1/10을 데미지에 기여함;                    
-                    _vit = stat.VIT + VITvalue;
-                    _agi = stat.AGI + AGIvalue;
-
-                }
-
-            }
-        }
-
-    }
-
-    /// <summary>
-    ///  플레이어의 무기 장착 여부를 검사하여 스텟을 적용하는 메서드.
-    /// <param name="stat">첫 번째 인자 : JSON 플레이어 스텟 데이터 </param>
-    /// <param name="item">두 번째 인자 : 해당 아이템 </param>
-    /// </summary>
-    private void check_Weapon_equip(Data.Stat stat, Item item)
-    {
-        if (item.equiptype == EquipType.Weapon)
-        {
-            gameObject.GetComponent<PlayerAnimController>().Get_request_Change_Weapon_EquipType(item); // AnimController에 현재 장착한 무기가 무엇인지 바인딩
-            gameObject.GetComponent<PlayerWeaponController>().Get_request_Change_Weapon_EquipType(item); // WeaponController에 현재 장착한 무기가 무엇인지 바인딩
-
-            if (equipment.player_equip.TryGetValue(EquipType.Weapon, out Item _attackitem)) //장착무기 검사
-            {
-                if (_attackitem.Equip) //무기를 장착중이면 무기를 해제한 수치를 반영
-                {
-                    WeaponAttackValue -= equipment.player_equip[EquipType.Weapon].num_1;
-                    WeaponSTRValue -= equipment.player_equip[EquipType.Weapon].num_2;
-                    VITvalue -= equipment.player_equip[EquipType.Weapon].num_3;
-                    AGIvalue -= equipment.player_equip[EquipType.Weapon].num_4;
-                    _str = stat.STR + WeaponSTRValue;
-                    _vit = stat.VIT + VITvalue;
-                    _agi = stat.AGI + AGIvalue;
-                    _attack = stat.attack; // 무기 해제이므로 순수 레벨에 해당하는 어택수치로 변경함.
-
-                    gameObject.GetComponent<PlayerAnimController>().Change_No_Weapon_animClip();
-
-                }
-                else if (_attackitem.Equip == false) //무기가 장착되어 있지 않다면 장착 스텟을 적용
-                {
-                    WeaponAttackValue = equipment.player_equip[EquipType.Weapon].num_1;
-                    WeaponSTRValue = equipment.player_equip[EquipType.Weapon].num_2;
-                    VITvalue = equipment.player_equip[EquipType.Weapon].num_3;
-                    AGIvalue = equipment.player_equip[EquipType.Weapon].num_4;
-                    _str = stat.STR + WeaponSTRValue;
-                    _vit = stat.VIT + VITvalue;
-                    _agi = stat.AGI + AGIvalue;
-                    _attack = stat.attack + WeaponAttackValue + (WeaponSTRValue / 10) + Onupdate_Ability_attack(); //총 STR의 1/10을 데미지에 기여함 + 무기 어빌리티별 향상데미지
-
-                    //TESTCODE ; 무기교체 애니메이션
-                    if (_attackitem.weapontype == WeaponType.One_Hand)
-                    {
-                        gameObject.GetComponent<PlayerAnimController>().Change_oneHand_weapon_animClip();
-                    }
-                    else if(_attackitem.weapontype == WeaponType.Two_Hand)
-                    {
-                        gameObject.GetComponent<PlayerAnimController>().Change_TwoHand_weapon_animClip();
-                    }
-
-                }
-            }
-        }
-    }
-
+  
     /// <summary>
     /// Dicitionary (key : 플레이어 레벨, value : json Data) 를 통해 기본적인 레벨별 플레이어 스텟을 세팅하고,
-    /// 추가적인 스텟(무기,방어구장착 / 버프) 를 계산하여 최종적인 스텟을 리턴함.
+    /// 최종적인 스텟을 리턴함.
     /// 
     ///<param name="level">첫번째 인자 :플레이어 레벨</param>
     /// </summary>
@@ -362,27 +190,29 @@ public class PlayerStat : Stat
         Data.Stat stat = dict[level];
 
         _hp = stat.maxHP;
-        _maxHp = stat.maxHP;
+        _maxHp = stat.maxHP + MaxHP_Increase_Value;
         _mp = stat.maxMP;
         _maxMp = stat.maxMP;
-        _defense = stat.defense + ChestDEFvalue + (VIT / 10) + buff_defense; //총 DEX의 1/10을 데미지에 기여함
+        _defense = stat.defense + ChestDEFvalue + Defense_VIT_Additional_increase_Value + buff_defense; //총 DEX의 1/10을 데미지에 기여함
         _movespeed = stat.movespeed;
-        _attack = stat.attack + WeaponAttackValue + (STR / 10) + Onupdate_Ability_attack() + buff_damage; //총 STR의 1/10을 데미지에 기여함+ 무기 어빌리티별 향상데미지
+        _attack = stat.attack + WeaponAttackValue + Weapon_STR_Additional_increase_Value + Onupdate_Ability_attack() + buff_damage; //총 STR의 1/10을 데미지에 기여함+ 무기 어빌리티별 향상데미지
 
     }
+  
 
     /// <summary>
     /// Dicitionary (key : 플레이어 레벨, value : json Data) 를 통해 
-    /// ATTACK 과 DEFENSE 만을 계산 할 수있도록 따로 메서드를 구성함.
+    /// 무기 어빌리티가 증가하여 능력치가 변동되면, 즉시 적용되도록 적용하고, 버프스킬을 사용 시 즉시 반영되도록 조치하는 메서드입니다.
     ///<param name="level">첫번째 인자 :플레이어 레벨</param>
     /// </summary>
     /// <returns></returns>
-    public void SetAttack_and_Defanse_value(int level)
+    public void Set_Additional_value(int level)
     {
         Dictionary<int, Data.Stat> dict = Managers.Data.StatDict; //키가 레벨 
         Data.Stat stat = dict[level];
-        _defense = stat.defense + ChestDEFvalue + (VITvalue / 10) + buff_defense; //총 DEX의 1/10을 데미지에 기여함
-        _attack = stat.attack + WeaponAttackValue + (WeaponSTRValue / 10) + Onupdate_Ability_attack() + buff_damage; //총 STR의 1/10을 데미지에 기여함+ 무기 어빌리티별 향상데미지
+        Defense = stat.defense + ChestDEFvalue + Defense_VIT_Additional_increase_Value + buff_defense; //총 DEX의 1/10을 데미지에 기여함
+        ATTACK = stat.attack + WeaponAttackValue + Weapon_STR_Additional_increase_Value + Onupdate_Ability_attack() + buff_damage; //총 STR의 1/10을 데미지에 기여함+ 무기 어빌리티별 향상데미지
+        
 
         return;
     }
@@ -402,6 +232,251 @@ public class PlayerStat : Stat
 
         return;
     }
+
+
+    /// <summary>
+    ///  플레이어의 무기 장착 여부를 검사하여 스텟을 적용하는 메서드.
+    /// <param name="stat">첫 번째 인자 : JSON 플레이어 스텟 데이터 </param>
+    /// <param name="item">두 번째 인자 : 해당 아이템 </param>
+    /// </summary>
+    private void check_Weapon_equip(Data.Stat stat, Item item)
+    {
+        if (item.equiptype == EquipType.Weapon)
+        {
+            gameObject.GetComponent<PlayerAnimController>().Get_request_Change_Weapon_EquipType(item); // AnimController에 현재 장착한 무기가 무엇인지 바인딩
+            gameObject.GetComponent<PlayerWeaponController>().Get_request_Change_Weapon_EquipType(item); // WeaponController에 현재 장착한 무기가 무엇인지 바인딩
+
+            if (equipment.player_equip.TryGetValue(EquipType.Weapon, out Item _attackitem)) //장착무기 검사
+            {
+                if (_attackitem.Equip) //무기를 장착중이면 무기를 해제한 수치를 반영
+                {
+                    
+                    STR = STR - equipment.player_equip[EquipType.Weapon].num_2;
+                    VIT = VIT - equipment.player_equip[EquipType.Weapon].num_3;
+                    AGI = AGI - equipment.player_equip[EquipType.Weapon].num_4;
+                    ATTACK = ATTACK + (STR / 10); // 무기 해제이므로 순수 레벨에 해당하는 어택수치로 변경함.
+
+                    WeaponAttackValue -= equipment.player_equip[EquipType.Weapon].num_1;
+                    WeaponSTRValue -= equipment.player_equip[EquipType.Weapon].num_2;
+                    VITvalue -= equipment.player_equip[EquipType.Weapon].num_3;
+                    AGIvalue -= equipment.player_equip[EquipType.Weapon].num_4;
+
+
+                    gameObject.GetComponent<PlayerAnimController>().Change_No_Weapon_animClip();
+
+                }
+                else if (_attackitem.Equip == false) //무기가 장착되어 있지 않다면 장착 스텟을 적용
+                {
+
+                    WeaponAttackValue += equipment.player_equip[EquipType.Weapon].num_1;
+                    WeaponSTRValue += equipment.player_equip[EquipType.Weapon].num_2;
+                    VITvalue += equipment.player_equip[EquipType.Weapon].num_3;
+                    AGIvalue += equipment.player_equip[EquipType.Weapon].num_4;
+
+                    STR = STR + equipment.player_equip[EquipType.Weapon].num_2;
+                    VIT = VIT + equipment.player_equip[EquipType.Weapon].num_3;
+                    AGI = AGI + equipment.player_equip[EquipType.Weapon].num_4;
+                    ATTACK = ATTACK + WeaponAttackValue + (STR/10) + Onupdate_Ability_attack(); //총 STR의 1/10을 데미지에 기여함 + 무기 어빌리티별 향상데미지
+
+                    //TESTCODE ; 무기교체 애니메이션
+                    if (_attackitem.weapontype == WeaponType.One_Hand)
+                    {
+                        gameObject.GetComponent<PlayerAnimController>().Change_oneHand_weapon_animClip();
+                    }
+                    else if (_attackitem.weapontype == WeaponType.Two_Hand)
+                    {
+                        gameObject.GetComponent<PlayerAnimController>().Change_TwoHand_weapon_animClip();
+                    }
+
+                }
+            }
+        }
+    }
+
+    /// <summary>
+    ///  플레이어의 부위별 방어구 장착 여부를 검사하여 스텟을 적용하는 메서드.
+    /// <param name="stat">첫 번째 인자 : JSON 플레이어 스텟 데이터 </param>
+    /// <param name="item">두 번째 인자 : 해당 아이템 </param>
+    /// </summary>
+    private void check_Defense_equip(Data.Stat stat, Item item)
+    {
+        if (item.equiptype == EquipType.outter_plate)
+        {
+            if (equipment.player_equip.TryGetValue(EquipType.outter_plate, out Item _chest_def_item)) //장착방어구 검사
+            {
+                if (_chest_def_item.Equip)
+                {
+
+                    Defense = Defense - ChestDEFvalue - (VITvalue / 10); //총 DEX의 1/10을 데미지에 기여함;                  
+                    INT = INT - equipment.player_equip[EquipType.outter_plate].num_2;
+                    VIT = VIT - equipment.player_equip[EquipType.outter_plate].num_3;
+                    AGI = AGI - equipment.player_equip[EquipType.outter_plate].num_4;
+
+                    ChestDEFvalue -= equipment.player_equip[EquipType.outter_plate].num_1;
+                    INTValue -= equipment.player_equip[EquipType.outter_plate].num_2;
+                    VITvalue -= equipment.player_equip[EquipType.outter_plate].num_3;
+                    AGIvalue -= equipment.player_equip[EquipType.outter_plate].num_4;
+
+                }
+                else if (_chest_def_item.Equip == false)
+                {
+                    ChestDEFvalue += equipment.player_equip[EquipType.outter_plate].num_1;
+                    INTValue += equipment.player_equip[EquipType.outter_plate].num_2;
+                    VITvalue += equipment.player_equip[EquipType.outter_plate].num_3;
+                    AGIvalue += equipment.player_equip[EquipType.outter_plate].num_4;
+
+                    Defense = Defense + ChestDEFvalue + (VITvalue / 10); //총 DEX의 1/10을 데미지에 기여함;                  
+                    INT = INT + equipment.player_equip[EquipType.outter_plate].num_2;
+                    VIT = VIT + equipment.player_equip[EquipType.outter_plate].num_3;
+                    AGI = AGI + equipment.player_equip[EquipType.outter_plate].num_4;
+                }
+            }
+        }
+
+        if (item.equiptype == EquipType.Chest)
+        {
+            if (equipment.player_equip.TryGetValue(EquipType.Chest, out Item _chest_def_item)) //장착방어구 검사
+            {
+                if (_chest_def_item.Equip)
+                {
+
+                    Defense = Defense - ChestDEFvalue - (VITvalue / 10); //총 DEX의 1/10을 데미지에 기여함;                  
+                    INT = INT - equipment.player_equip[EquipType.Chest].num_2;
+                    VIT = VIT - equipment.player_equip[EquipType.Chest].num_3;
+                    AGI = AGI - equipment.player_equip[EquipType.Chest].num_4;
+
+                    ChestDEFvalue -= equipment.player_equip[EquipType.Chest].num_1;
+                    INTValue -= equipment.player_equip[EquipType.Chest].num_2;
+                    VITvalue -= equipment.player_equip[EquipType.Chest].num_3;
+                    AGIvalue -= equipment.player_equip[EquipType.Chest].num_4;
+
+                }
+                else if (_chest_def_item.Equip == false)
+                {
+                    ChestDEFvalue += equipment.player_equip[EquipType.Chest].num_1;
+                    INTValue += equipment.player_equip[EquipType.Chest].num_2;
+                    VITvalue += equipment.player_equip[EquipType.Chest].num_3;
+                    AGIvalue += equipment.player_equip[EquipType.Chest].num_4;
+
+                    Defense = Defense + ChestDEFvalue + (VITvalue / 10); //총 DEX의 1/10을 데미지에 기여함;                  
+                    INT = INT + equipment.player_equip[EquipType.Chest].num_2;
+                    VIT = VIT + equipment.player_equip[EquipType.Chest].num_3;
+                    AGI = AGI + equipment.player_equip[EquipType.Chest].num_4;
+
+                }
+            }
+        }
+
+            if (item.equiptype == EquipType.Head)
+            {
+                if (equipment.player_equip.TryGetValue(EquipType.Head, out Item _head_def_item))
+                {
+                    if (_head_def_item.Equip)
+                    {
+
+
+                        Defense = Defense - ChestDEFvalue - (VITvalue / 10); //총 DEX의 1/10을 데미지에 기여함;                  
+                        INT = INT - equipment.player_equip[EquipType.Head].num_2;
+                        VIT = VIT - equipment.player_equip[EquipType.Head].num_3;
+                        AGI = AGI - equipment.player_equip[EquipType.Head].num_4;
+
+                        ChestDEFvalue -= equipment.player_equip[EquipType.Head].num_1;
+                        INTValue -= equipment.player_equip[EquipType.Head].num_2;
+                        VITvalue -= equipment.player_equip[EquipType.Head].num_3;
+                        AGIvalue -= equipment.player_equip[EquipType.Head].num_4;
+                    }
+
+                    else if (_head_def_item.Equip == false)
+                    {
+                        ChestDEFvalue += equipment.player_equip[EquipType.Head].num_1;
+                        INTValue += equipment.player_equip[EquipType.Head].num_2;
+                        VITvalue += equipment.player_equip[EquipType.Head].num_3;
+                        AGIvalue += equipment.player_equip[EquipType.Head].num_4;
+
+                        VIT = VIT + equipment.player_equip[EquipType.Head].num_3;
+                        Defense = Defense + ChestDEFvalue + (VITvalue / 10); //총 DEX의 1/10을 데미지에 기여함;                  
+                        INT = INT + equipment.player_equip[EquipType.Head].num_2;
+                        AGI = AGI + equipment.player_equip[EquipType.Head].num_4;
+
+                    }
+
+                }
+            }
+
+            if (item.equiptype == EquipType.shoes)
+            {
+                if (equipment.player_equip.TryGetValue(EquipType.shoes, out Item _shoes_def_item))
+                {
+                    if (_shoes_def_item.Equip)
+                    {
+
+                        VIT = VIT - equipment.player_equip[EquipType.shoes].num_3;
+                        Defense = Defense - ChestDEFvalue - (VITvalue / 10); //총 DEX의 1/10을 데미지에 기여함;                  
+                        INT = INT - INTValue;
+                        AGI = AGI - AGIvalue;
+
+                        ChestDEFvalue -= equipment.player_equip[EquipType.shoes].num_1;
+                        INTValue -= equipment.player_equip[EquipType.shoes].num_2;
+                        VITvalue -= equipment.player_equip[EquipType.shoes].num_3;
+                        AGIvalue -= equipment.player_equip[EquipType.shoes].num_4;
+
+                    }
+
+                    else if (_shoes_def_item.Equip == false)
+                    {
+                        ChestDEFvalue += equipment.player_equip[EquipType.shoes].num_1;
+                        INTValue += equipment.player_equip[EquipType.shoes].num_2;
+                        VITvalue += equipment.player_equip[EquipType.shoes].num_3;
+                        AGIvalue += equipment.player_equip[EquipType.shoes].num_4;
+
+                        Defense = Defense + ChestDEFvalue + (VITvalue / 10); //총 DEX의 1/10을 데미지에 기여함;                  
+                        INT = INT + equipment.player_equip[EquipType.shoes].num_2;
+                        VIT = VIT + equipment.player_equip[EquipType.shoes].num_3;
+                        AGI = AGI + equipment.player_equip[EquipType.shoes].num_4;
+                    }
+
+                }
+            }
+
+            if (item.equiptype == EquipType.Head_decoration)
+            {
+                if (equipment.player_equip.TryGetValue(EquipType.Head_decoration, out Item _head_deco_def_item))
+                {
+                    if (_head_deco_def_item.Equip)
+                    {
+
+
+                        MaxHp = MaxHp - MaxHP_Increase_Value;
+                        INT = INT - equipment.player_equip[EquipType.Head_decoration].num_2; 
+                        VIT = VIT - equipment.player_equip[EquipType.Head_decoration].num_3;
+                        AGI = AGI - equipment.player_equip[EquipType.Head_decoration].num_4;
+
+                        MaxHP_Increase_Value -= equipment.player_equip[EquipType.Head_decoration].num_1;
+                        INTValue -= equipment.player_equip[EquipType.Head_decoration].num_2;
+                        VITvalue -= equipment.player_equip[EquipType.Head_decoration].num_3;
+                        AGIvalue -= equipment.player_equip[EquipType.Head_decoration].num_4;
+
+                    }
+
+                    else if (_head_deco_def_item.Equip == false)
+                    {
+                        MaxHP_Increase_Value += equipment.player_equip[EquipType.Head_decoration].num_1;
+                        INTValue += equipment.player_equip[EquipType.Head_decoration].num_2;
+                        VITvalue += equipment.player_equip[EquipType.Head_decoration].num_3;
+                        AGIvalue += equipment.player_equip[EquipType.Head_decoration].num_4;
+
+                        MaxHp = MaxHp + equipment.player_equip[EquipType.Head_decoration].num_1;
+                        INT = INT + equipment.player_equip[EquipType.Head_decoration].num_2;
+                        VIT = VIT + equipment.player_equip[EquipType.Head_decoration].num_3;
+                        AGI = AGI + equipment.player_equip[EquipType.Head_decoration].num_4;
+
+                    }
+
+                }
+            }
+
+        }
+    
 
     /// <summary>
     /// 플레이어가 특정 무기를 장착 후 어빌리티가 향상되어 적용되는 공격력을 리턴해주는 함수.

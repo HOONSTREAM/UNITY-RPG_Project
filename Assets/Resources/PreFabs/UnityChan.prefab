@@ -12387,7 +12387,7 @@ Transform:
   m_GameObject: {fileID: 7910964836869391157}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 1.1465046, y: -0.0000038146973, z: -6.6400175}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7270340552774069421}
@@ -12559,9 +12559,9 @@ MonoBehaviour:
   _int: 0
   _vit: 0
   _agi: 0
-  one_hand_sword_abillityAttack: 0
-  two_hand_sword_abillityAttack: 0
-  improvement_abillity_attack: 0
+  one_hand_sword_AbilityAttack: 0
+  two_hand_sword_AbilityAttack: 0
+  improvement_Ability_attack: 0
   buff_damage: 0
   buff_defense: 0
 --- !u!143 &-8112830065633663203

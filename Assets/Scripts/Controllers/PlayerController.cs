@@ -134,7 +134,7 @@ public class PlayerController : BaseController
             Managers.Monster_Info.OnMonsterUpdated += (LockTarget) => { Debug.Log($"몬스터가 세팅되었습니다.{Managers.Monster_Info.Get_Monster_Info().ToString()}"); };
             Ability_script.Accumulate_Ability_Func();
           
-            _stat.SetAttack_and_Defanse_value(_stat.Level); // 무기 어빌리티가 즉시 적용되도록 스크립트 실행
+            _stat.Set_Additional_value(_stat.Level); // 무기 어빌리티가 즉시 적용되도록 스크립트 실행
             _stat.onchangestat.Invoke(); // 유저 스텟 인터페이스 업데이트
         }
 
@@ -273,7 +273,7 @@ public class PlayerController : BaseController
     {
         if (targetStat.Hp >= 0)
         {
-            int damage_amount = Random.Range((int)((_stat.Attack - targetStat.Defense) * 0.8), (int)((_stat.Attack - targetStat.Defense) * 1.1)); // 능력치의 80% ~ 110%    
+            int damage_amount = Random.Range((int)((_stat.ATTACK - targetStat.Defense) * 0.8), (int)((_stat.ATTACK - targetStat.Defense) * 1.1)); // 능력치의 80% ~ 110%    
 
             TextMesh text = DamageText.gameObject.GetComponent<TextMesh>();
             text.text = damage_amount.ToString();

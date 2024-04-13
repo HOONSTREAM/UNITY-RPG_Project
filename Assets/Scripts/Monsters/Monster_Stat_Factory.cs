@@ -60,7 +60,7 @@ public class Monster_Stat_Factory
         stat.Level = START_SLIME_LEVEL;
         stat.Hp = SLIME_HP;
         stat.MaxHp = SLIME_MAX_HP;
-        stat.Attack = SLIME_ATTACK;
+        stat.ATTACK = SLIME_ATTACK;
         stat.Defense = SLIME_DEFENSE;
         stat.MoveSpeed = SLIME_MOVESPEED;
     }
@@ -70,7 +70,7 @@ public class Monster_Stat_Factory
         stat.Level = START_PUNCHMAN_LEVEL;
         stat.Hp = PUNCHMAN_HP;
         stat.MaxHp = PUNCHMAN_MAX_HP;
-        stat.Attack = PUNCHMAN_ATTACK;
+        stat.ATTACK = PUNCHMAN_ATTACK;
         stat.Defense = PUNCHMAN_DEFENCE;
         stat.MoveSpeed = PUNCHMAN_MOVESPEED;
     }

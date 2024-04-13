@@ -73,7 +73,7 @@ public class Advanced_Defense : SkillEffect
 
         Destroy(effect, skill_sustainment_time);
 
-        stat.SetAttack_and_Defanse_value(stat.Level);
+        stat.Set_Additional_value(stat.Level);
         stat.onchangestat.Invoke();
 
 
@@ -99,7 +99,7 @@ public class Advanced_Defense : SkillEffect
         PlayerStat stat = player.GetComponent<PlayerStat>();
 
         stat.buff_defense -= _advanced_defanse_buff_amount;
-        stat.SetAttack_and_Defanse_value(stat.Level);
+        stat.Set_Additional_value(stat.Level);
         stat.onchangestat.Invoke();
         skillusing = false;
 

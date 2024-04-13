@@ -36,7 +36,7 @@ public class Stat : MonoBehaviour
     public int MaxHp { get { return _maxHp; } set { _maxHp = value; } }
     public int Mp { get { return _mp; } set { _mp = value; } }
     public int MaxMp { get { return _maxMp; } set { _maxMp = value; } }
-    public int Attack { get { return _attack; } set { _attack = value; } }
+    public int ATTACK { get { return _attack; } set { _attack = value; } }
     public int Defense { get { return _defense; } set { _defense = value; } }
     public float MoveSpeed { get { return _movespeed; } set { _movespeed = value; } }
 
@@ -57,7 +57,7 @@ public class Stat : MonoBehaviour
 
     {
         // (가해자의 공격력 - 나의 방어력)
-        int total_damage = Random.Range((int)((attacker.Attack - Defense) * 0.8), (int)((attacker.Attack - Defense) * 1.1)); // 능력치의 80% ~ 110%       
+        int total_damage = Random.Range((int)((attacker.ATTACK - Defense) * 0.8), (int)((attacker.ATTACK - Defense) * 1.1)); // 능력치의 80% ~ 110%       
 
         if (total_damage < 0)
         {
