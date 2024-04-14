@@ -17,10 +17,7 @@ public class DamageText : MonoBehaviour
         transform.localPosition += offset;
 
         transform.localPosition += new Vector3(0, 0, 0);
-            
-            //new Vector3 (Random.Range(-RandomizeIntensity.x, RandomizeIntensity.x),
-           // Random.Range(-RandomizeIntensity.y, RandomizeIntensity.y),
-           // Random.Range(-RandomizeIntensity.z, RandomizeIntensity.z));
+
 
     }
 

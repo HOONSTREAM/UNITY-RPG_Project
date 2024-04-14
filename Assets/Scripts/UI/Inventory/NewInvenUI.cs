@@ -81,7 +81,7 @@ public class NewInvenUI : MonoBehaviour
         }
 
         inven_amount = inven.player_items.Count;
-        inven_amount_text.text = $"갯수 :  {inven_amount.ToString()}/20"; //인벤토리 갯수 업데이트
+        inven_amount_text.text = $"인벤토리 :  {inven_amount.ToString()}/30"; //인벤토리 갯수 업데이트
 
         
     }

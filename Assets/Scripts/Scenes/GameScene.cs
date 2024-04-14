@@ -47,6 +47,17 @@ public class GameScene : BaseScene
         PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Weapon_oneHand"][0]);
         PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Weapon_TwoHand"][0]);
         PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Head_Decoration"][0]);
+        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Head"][0]);
+        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Chest"][0]);
+        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Pants"][0]);
+        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Outter_Plate"][0]);
+        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Shield"][0]);
+        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Necklace"][0]);
+        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Shoes"][0]);
+        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Cape"][0]);
+
+
+
 
     }
 

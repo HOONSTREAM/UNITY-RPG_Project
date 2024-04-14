@@ -2710,7 +2710,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &876951826049375148
 Transform:
   m_ObjectHideFlags: 0
@@ -4866,7 +4866,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7354140405814738124
 Transform:
   m_ObjectHideFlags: 0
@@ -12546,7 +12546,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _level: 0
   _hp: 0
-  _maxHp: 0
+  _maxhp: 0
   _mp: 0
   _maxMp: 0
   _movespeed: 0
@@ -12563,7 +12563,7 @@ MonoBehaviour:
   two_hand_sword_AbilityAttack: 0
   improvement_Ability_attack: 0
   buff_damage: 0
-  buff_defense: 0
+  buff_DEFENSE: 0
 --- !u!143 &-8112830065633663203
 CharacterController:
   m_ObjectHideFlags: 0

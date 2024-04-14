@@ -82,8 +82,8 @@ public class PlayerStat : Stat
             if (level != LEVEL)
             {
                 LEVEL = level;              
-                GameObject go = GameObject.Find("LEVEL_Text").gameObject;
-                go.GetComponent<TextMeshProUGUI>().text = $"Lv . {LEVEL}";
+                GameObject go = GameObject.Find("Level_Text").gameObject;
+                go.GetComponent<TextMeshProUGUI>().text = $"{LEVEL}";
                 Managers.Sound.Play("univ0007");
                 GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("레벨이 올랐습니다.");
 
@@ -236,7 +236,6 @@ public class PlayerStat : Stat
                 break;
         }
             
- 
         return;
     }
 
@@ -293,9 +292,7 @@ public class PlayerStat : Stat
             }
         }
 
-        // 최종적으로 STR을 계산하여 ATTACK 스텟에 추가 스텟을 부여합니다.
-        ATTACK += (STR / 10);
-
+  
     }
 
     /// <summary>
@@ -309,7 +306,6 @@ public class PlayerStat : Stat
         {
             return;
         }
-
 
         if (item.equiptype == EquipType.outter_plate)
         {
@@ -334,7 +330,6 @@ public class PlayerStat : Stat
                 }
             }
         }
-
         if (item.equiptype == EquipType.Chest)
         {
             if (equipment.player_equip.TryGetValue(EquipType.Chest, out Item _chest_def_item)) //장착방어구 검사
@@ -358,7 +353,29 @@ public class PlayerStat : Stat
                 }
             }
         }
+        if (item.equiptype == EquipType.pants)
+        {
+            if (equipment.player_equip.TryGetValue(EquipType.pants, out Item _pants_def_item)) //장착방어구 검사
+            {
+                if (_pants_def_item.Equip)
+                {
 
+                    VIT = VIT - equipment.player_equip[EquipType.pants].num_3;
+                    DEFENSE -= equipment.player_equip[EquipType.pants].num_1;
+                    INT = INT - equipment.player_equip[EquipType.pants].num_2;
+                    AGI = AGI - equipment.player_equip[EquipType.pants].num_4;
+
+                }
+                else if (_pants_def_item.Equip == false)
+                {
+                    VIT = VIT + equipment.player_equip[EquipType.pants].num_3;
+                    DEFENSE += equipment.player_equip[EquipType.pants].num_1;
+                    INT = INT + equipment.player_equip[EquipType.pants].num_2;
+                    AGI = AGI + equipment.player_equip[EquipType.pants].num_4;
+
+                }
+            }
+        }
         if (item.equiptype == EquipType.Head)
             {
                 if (equipment.player_equip.TryGetValue(EquipType.Head, out Item _head_def_item))
@@ -383,7 +400,6 @@ public class PlayerStat : Stat
 
                 }
             }
-
         if (item.equiptype == EquipType.shoes)
             {
                 if (equipment.player_equip.TryGetValue(EquipType.shoes, out Item _shoes_def_item))
@@ -410,37 +426,116 @@ public class PlayerStat : Stat
 
                 }
             }
-
-        if (item.equiptype == EquipType.Head_decoration)
+        if (item.equiptype == EquipType.Shield)
+        {
+            if (equipment.player_equip.TryGetValue(EquipType.Shield, out Item _shield_def_item)) //장착방어구 검사
             {
-                if (equipment.player_equip.TryGetValue(EquipType.Head_decoration, out Item _head_deco_def_item))
+                
+                if (_shield_def_item.Equip)
                 {
-                    if (_head_deco_def_item.Equip)
-                    {
 
-                        MAXHP = MAXHP - equipment.player_equip[EquipType.Head_decoration].num_1;
-                        INT = INT - equipment.player_equip[EquipType.Head_decoration].num_2; 
-                        VIT = VIT - equipment.player_equip[EquipType.Head_decoration].num_3;
-                        AGI = AGI - equipment.player_equip[EquipType.Head_decoration].num_4;
+                    VIT = VIT - equipment.player_equip[EquipType.Shield].num_3;
+                    DEFENSE -= equipment.player_equip[EquipType.Shield].num_1;
+                    INT = INT - equipment.player_equip[EquipType.Shield].num_2;
+                    AGI = AGI - equipment.player_equip[EquipType.Shield].num_4;
 
-                    }
-
-                    else if (_head_deco_def_item.Equip == false)
-                    {
-                        
-                        MAXHP = MAXHP + equipment.player_equip[EquipType.Head_decoration].num_1;
-                        INT = INT + equipment.player_equip[EquipType.Head_decoration].num_2;
-                        VIT = VIT + equipment.player_equip[EquipType.Head_decoration].num_3;
-                        AGI = AGI + equipment.player_equip[EquipType.Head_decoration].num_4;
-
-                    }
+                }
+                else if (_shield_def_item.Equip == false)
+                {
+                    VIT = VIT + equipment.player_equip[EquipType.Shield].num_3;
+                    DEFENSE += equipment.player_equip[EquipType.Shield].num_1;
+                    INT = INT + equipment.player_equip[EquipType.Shield].num_2;
+                    AGI = AGI + equipment.player_equip[EquipType.Shield].num_4;
 
                 }
             }
+        }
+        if (item.equiptype == EquipType.Head_decoration)
+        {
+            if (equipment.player_equip.TryGetValue(EquipType.Head_decoration, out Item _head_deco_def_item))
+            {
+                if (_head_deco_def_item.Equip)
+                {
 
+                    MAXHP = MAXHP - equipment.player_equip[EquipType.Head_decoration].num_1;
+                    INT = INT - equipment.player_equip[EquipType.Head_decoration].num_2;
+                    VIT = VIT - equipment.player_equip[EquipType.Head_decoration].num_3;
+                    AGI = AGI - equipment.player_equip[EquipType.Head_decoration].num_4;
 
-        // 최종적으로 VIT를 계산하여 DEFENSE 스텟에 추가 스텟을 부여 (VIT/10)만큼 합니다.
-        DEFENSE += (VIT / 10);
+                }
+
+                else if (_head_deco_def_item.Equip == false)
+                {
+
+                    MAXHP = MAXHP + equipment.player_equip[EquipType.Head_decoration].num_1;
+                    INT = INT + equipment.player_equip[EquipType.Head_decoration].num_2;
+                    VIT = VIT + equipment.player_equip[EquipType.Head_decoration].num_3;
+                    AGI = AGI + equipment.player_equip[EquipType.Head_decoration].num_4;
+
+                }
+
+            }
+        }
+        if (item.equiptype == EquipType.necklace)
+        {
+            if (equipment.player_equip.TryGetValue(EquipType.necklace, out Item _neck_deco_def_item))
+            {
+                if (_neck_deco_def_item.Equip)
+                {
+
+                    MaxMp = MaxMp - equipment.player_equip[EquipType.necklace].num_1;
+                    INT = INT - equipment.player_equip[EquipType.necklace].num_2;
+                    VIT = VIT - equipment.player_equip[EquipType.necklace].num_3;
+                    AGI = AGI - equipment.player_equip[EquipType.necklace].num_4;
+
+                }
+
+                else if (_neck_deco_def_item.Equip == false)
+                {
+
+                    MaxMp = MaxMp + equipment.player_equip[EquipType.necklace].num_1;
+                    INT = INT + equipment.player_equip[EquipType.necklace].num_2;
+                    VIT = VIT + equipment.player_equip[EquipType.necklace].num_3;
+                    AGI = AGI + equipment.player_equip[EquipType.necklace].num_4;
+
+                }
+
+            }
+        }
+        if (item.equiptype == EquipType.Ring)
+        {
+            //TODO : 2개까지 장착가능 검사
+        }
+        if (item.equiptype == EquipType.cape)
+        {
+            if (equipment.player_equip.TryGetValue(EquipType.cape, out Item _cape_def_item))
+            {
+                if (_cape_def_item.Equip)
+                {
+
+                    STR = STR - equipment.player_equip[EquipType.cape].num_1;
+                    INT = INT - equipment.player_equip[EquipType.cape].num_2;
+                    VIT = VIT - equipment.player_equip[EquipType.cape].num_3;
+                    AGI = AGI - equipment.player_equip[EquipType.cape].num_4;
+
+                }
+
+                else if (_cape_def_item.Equip == false)
+                {
+
+                    STR = STR + equipment.player_equip[EquipType.cape].num_1;
+                    INT = INT + equipment.player_equip[EquipType.cape].num_2;
+                    VIT = VIT + equipment.player_equip[EquipType.cape].num_3;
+                    AGI = AGI + equipment.player_equip[EquipType.cape].num_4;
+
+                }
+
+            }
+        }
+        if (item.equiptype == EquipType.vehicle)
+        {
+            //TODO
+        }
 
     }
     
