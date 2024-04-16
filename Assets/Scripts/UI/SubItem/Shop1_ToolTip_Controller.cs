@@ -3,13 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+
+/// <summary>
+/// 브로아 상점 툴팁 컨트롤러 스크립트 입니다.
+/// </summary>
 public class Shop1_ToolTip_Controller : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
-/*농부헤리안 툴팁컨트롤러 스크립트*/
+
 {
    
-    public NPC1_shopslot[] Herian_slots;
+    public NPC1_shopslot[] Broa_slots;
     public ToolTip tooltip;   
-    public Transform Herian_SlotHolder;
+    public Transform Broa_SlotHolder;
    
 
     enum OnToolTipUpdated
@@ -23,7 +27,7 @@ public class Shop1_ToolTip_Controller : MonoBehaviour, IPointerEnterHandler, IPo
 
     void Start()
     {
-        Herian_slots = Herian_SlotHolder.GetComponentsInChildren<NPC1_shopslot>();
+        Broa_slots = Broa_SlotHolder.GetComponentsInChildren<NPC1_shopslot>();
         tooltip.gameObject.SetActive(false);
     }
 

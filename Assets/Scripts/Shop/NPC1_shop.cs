@@ -6,6 +6,9 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 
+/// <summary>
+/// 브로아 상점 스크립트 입니다.
+/// </summary>
 public class NPC1_shop : MonoBehaviour
 {
 

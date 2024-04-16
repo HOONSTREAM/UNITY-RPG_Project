@@ -164,7 +164,15 @@ public class ShopSlot : MonoBehaviour
         }
 
         shop.TotalGoldText.text = $"{totalGold}";
-  
+
+        shop.ScrollViewText_item1.text = "";
+        shop.ScrollViewText_item2.text = "";
+        shop.ScrollViewText_item3.text = "";
+        shop.ScrollViewText_item4.text = "";
+        shop.ScrollViewText_item5.text = "";
+
+        return;
+
     }
 
 

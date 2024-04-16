@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+/// <summary>
+/// 기사 케넨 상점 툴팁 컨트롤러 스크립트 입니다.
+/// </summary>
 public class Shop2_ToolTip_Controller : MonoBehaviour,IPointerEnterHandler, IPointerExitHandler
-{   /*케넨 툴팁컨트롤러 스크립트*/
-
+{   
     public ShopSlot[] kenen_slots;
     public ToolTip tooltip;
     public Transform kenen_SlotHolder;

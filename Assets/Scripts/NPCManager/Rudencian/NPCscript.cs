@@ -30,7 +30,7 @@ public class NPCscript : MonoBehaviour
    
     void Awake()
     {
-        _player = Managers.Resources.Load<GameObject>("PreFabs/UnityChan"); // 플레이어 세팅 
+        _player = Managers.Game.GetPlayer();
 
     }
     
