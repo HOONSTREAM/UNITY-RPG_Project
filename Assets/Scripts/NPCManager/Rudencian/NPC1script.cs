@@ -29,7 +29,7 @@ public class NPC1script : MonoBehaviour
    
     void Start()
     {
-        _player = Managers.Resources.Load<GameObject>("PreFabs/UnityChan"); // 플레이어 세팅 
+        _player = Managers.Game.GetPlayer();
         _attackIcon = Managers.Resources.Load<Texture2D>("Textures/Cursor/cursor(10)");
     }
     

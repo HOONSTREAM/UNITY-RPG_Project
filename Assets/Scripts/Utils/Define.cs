@@ -34,6 +34,7 @@ public enum Layer
         NPC3 = 16,
         FieldItem = 17,
         NPC4 = 18,
+        NPC5 = 19,
         
 
 
