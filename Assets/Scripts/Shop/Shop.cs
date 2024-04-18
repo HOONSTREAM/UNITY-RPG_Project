@@ -6,7 +6,7 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEditor.Progress;
-// TODO 상점 확장성에 대한 고려를 해야함.
+
 
 /// <summary>
 /// 루덴시안 상점 NPC 케넨의 스크립트 입니다.

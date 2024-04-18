@@ -15,6 +15,7 @@ public class Rudencia_in_Script : MonoBehaviour
 
     private void Start()
     {
+        //문제점, 루덴시안에서 넘어오면 적용이되지만 루덴시안 2에서 넘어올때 적용이 안된다.
         Rudencian_NPC_Folder = GameObject.Find("NPC Folder_Rudencia").gameObject;
         Rudencian_NPC_Folder.gameObject.SetActive(false);
     }

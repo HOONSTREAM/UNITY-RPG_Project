@@ -1,3 +1,4 @@
+using DamageNumbersPro;
 using Data;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,8 +17,6 @@ using static UnityEditor.Progress;
 using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
 
-//참고 : https://geojun.tistory.com/64
-
 public class PlayerController : BaseController
 {
 
@@ -26,7 +25,7 @@ public class PlayerController : BaseController
     private PlayerStat _stat; // 플레이어의 스텟
     float attackRange = 2.0f;
 
-    public GameObject DamageText;
+    public DamageNumber DamageText;
     public GameObject clickMarker;
     private GameObject clickMarker_global_variable;
     public GameObject hit_particle;
@@ -267,17 +266,13 @@ public class PlayerController : BaseController
     /// <param name="stat">첫 번째 인자 : 타겟(타격의대상)의 스텟 </param>
     /// </summary>
     /// <param name="targetStat"></param>
+    /// 
     private void Print_Damage_Text(Stat targetStat)
     {
         if (targetStat.Hp >= 0)
         {
-            int damage_amount = Random.Range((int)((_stat.ATTACK - targetStat.DEFENSE) * 0.8), (int)((_stat.ATTACK - targetStat.DEFENSE) * 1.1)); // 능력치의 80% ~ 110%    
-
-            TextMesh text = DamageText.gameObject.GetComponent<TextMesh>();
-            text.text = damage_amount.ToString();
-
-            Instantiate(DamageText, LockTarget.transform.position, Quaternion.identity, LockTarget.transform);
-
+            int damage_amount = Random.Range((int)((_stat.ATTACK - targetStat.DEFENSE) * 0.8), (int)((_stat.ATTACK - targetStat.DEFENSE) * 1.1)); // 능력치의 80% ~ 110%             
+            DamageNumber damageNumber = DamageText.Spawn(LockTarget.transform.position,damage_amount);
         }
     }
 

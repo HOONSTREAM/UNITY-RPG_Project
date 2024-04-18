@@ -4106,7 +4106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2959f4b04df70a7439191b6e7f653f37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: 103
+  ID: 107
   IsNPC: 0
 --- !u!65 &564324066
 BoxCollider:

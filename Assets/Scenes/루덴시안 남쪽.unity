@@ -35797,6 +35797,7 @@ GameObject:
   - component: {fileID: 1155457647}
   - component: {fileID: 1155457646}
   - component: {fileID: 1155457645}
+  - component: {fileID: 1155457650}
   m_Layer: 0
   m_Name: TriggerZone_rudencian_south#2
   m_TagString: Untagged
@@ -35816,7 +35817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2959f4b04df70a7439191b6e7f653f37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: 104
+  ID: 110
   IsNPC: 0
 --- !u!65 &1155457646
 BoxCollider:
@@ -35905,6 +35906,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1155457650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1155457644}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2494f84a8a2ddc94fa559e38bc040e5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  savedata: {fileID: 7783076788191517428, guid: 4117be03dcde76446948d909f2b63612, type: 3}
 --- !u!1 &1171652608
 GameObject:
   m_ObjectHideFlags: 0
@@ -53700,7 +53714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2959f4b04df70a7439191b6e7f653f37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: 104
+  ID: 109
   IsNPC: 0
 --- !u!65 &1788331195
 BoxCollider:

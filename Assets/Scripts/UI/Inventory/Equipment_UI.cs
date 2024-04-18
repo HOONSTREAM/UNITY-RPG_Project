@@ -87,7 +87,7 @@ public class Equipment_UI : MonoBehaviour
         fametxt.GetComponent<TextMeshProUGUI>().text = "0"; //TODO
         atktxt.GetComponent<TextMeshProUGUI>().text = $"{(stat.ATTACK * 0.8)} ~ {(stat.ATTACK * 1.1)}";
         hptxt.GetComponent<TextMeshProUGUI>().text = $"{stat.MAXHP}";
-        mptxt.GetComponent<TextMeshProUGUI>().text = "0";
+        mptxt.GetComponent<TextMeshProUGUI>().text = $"{stat.MaxMp}";
         mvspeedtxt.GetComponent<TextMeshProUGUI>().text = $"{(stat.MOVESPEED)*20}%";
         deftxt.GetComponent<TextMeshProUGUI>().text = $"{stat.DEFENSE}";
 
