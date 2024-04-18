@@ -1,12 +1,29 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
 using UnityEngine;
 using static UnityEditor.Progress;
 
 public class PlayerInventory : MonoBehaviour
 {
+
+
+    #region 테스트코드 인벤토리 저장
+    [System.Serializable]
+    public class InventoryData
+    {
+        public List<Item> items;
+
+        public InventoryData(List<Item> items)
+        {
+            this.items = items;
+        }
+    }
+
+    #endregion
+
     public static PlayerInventory Instance;
     PlayerStat stat;
     public List<Item> player_items;
@@ -15,6 +32,8 @@ public class PlayerInventory : MonoBehaviour
     public delegate void OnChangeItem();
     public OnChangeItem onChangeItem;
 
+
+
     private void Awake()
     {
         Instance = this; 
@@ -22,7 +41,37 @@ public class PlayerInventory : MonoBehaviour
         stat = GetComponent<PlayerStat>();
         slot = GetComponent<Slot>();
 
+
+       // LoadInventory();
     }
+
+
+    #region 테스트 메서드 인벤토리 저장
+    public void SaveInventory()
+    {
+        InventoryData data = new InventoryData(player_items);
+        string json = JsonUtility.ToJson(data);
+        File.WriteAllText(Application.persistentDataPath + "/inventory.json", json);
+        Debug.Log("Inventory saved");
+    }
+
+    public void LoadInventory()
+    {
+        string path = Application.persistentDataPath + "/inventory.json";
+        if (File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            InventoryData data = JsonUtility.FromJson<InventoryData>(json);
+            player_items = data.items;
+            Debug.Log("Inventory loaded");
+        }
+        else
+        {
+            Debug.Log("No inventory file found, creating a new one.");
+        }
+    }
+
+    #endregion
 
     public bool AddItem(Item _item)
     {

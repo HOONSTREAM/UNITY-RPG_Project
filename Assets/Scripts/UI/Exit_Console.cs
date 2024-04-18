@@ -107,6 +107,8 @@ public class Exit_Console : MonoBehaviour
 
     public void ExitGame()
     {
+
+       
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #else
