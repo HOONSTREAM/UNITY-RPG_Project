@@ -33,6 +33,7 @@ public class NPC1_shop : MonoBehaviour
     void Start()
     {
         NPCname = "브로아";
+
         shopitemDB = ItemDataBase.instance.GetAllItems(); //아이템 데이터베이스 복사 
         TotalGoldText.text = "0";
         Player = Managers.Game.GetPlayer();

@@ -52,7 +52,10 @@ public class NPCscript : MonoBehaviour
                 {
                     PlayerController pc = _player.GetComponent<PlayerController>();
                     pc.State = Define.State.Idle;
-                    NPC1_shop shop = GetComponent<NPC1_shop>();
+
+                    GameObject go = GameObject.Find("SHOP CANVAS").gameObject;
+
+                    NPC1_shop shop = go.gameObject.GetComponent<NPC1_shop>();
                     shop.Enter();
                     Managers.Sound.Play("Inven_open");
                 }

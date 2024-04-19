@@ -6,18 +6,16 @@ using UnityEngine.SceneManagement;
 public class south_in_script : MonoBehaviour
 {
     public GameObject savedata;
-    public GameObject Rudencia_south_NPC_Folder;
+    
     private const int SOUTH_SCENE_NUMBER = 3;
     private const int SOUTH2_SCENE_NUMBER = 9;
 
 
-
     private void Start()
     {
-        Rudencia_south_NPC_Folder = GameObject.Find("NPC Folder_Rudencia_south").gameObject;
-        Rudencia_south_NPC_Folder.gameObject.SetActive(false);
-     
+        savedata = GameObject.Find("Save_Data").gameObject;
     }
+
 
     private void OnTriggerEnter(Collider other)
     {
@@ -30,7 +28,7 @@ public class south_in_script : MonoBehaviour
         switch (SceneManager.GetActiveScene().name)
         {
             case "루덴시안":
-                Rudencia_south_NPC_Folder.gameObject.SetActive(true); // 남쪽 NPC(포탈) 활성화
+                
                 LoadingScene.NEXT_SCENE_NUMBER = SOUTH_SCENE_NUMBER;
                 player.transform.position = new Vector3(-1.1499f, 0, -33.6f);
                 SceneManager.LoadScene(LoadingScene.LOADING_SCENE_NUMBER);

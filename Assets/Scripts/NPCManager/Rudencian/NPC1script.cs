@@ -48,8 +48,10 @@ public class NPC1script : MonoBehaviour
             if (Physics.Raycast(ray, out hit, 100.0f, _mask))
             {
                 if (hit.collider.gameObject.layer == (int)Define.Layer.NPC1)
-                {                   
-                    Shop shop = GetComponent<Shop>();
+                {
+                    GameObject go = GameObject.Find("SHOP CANVAS").gameObject;
+                   
+                    Shop shop = go.gameObject.GetComponent<Shop>();
                     shop.Enter();
                     Managers.Sound.Play("Inven_open");    
                 }

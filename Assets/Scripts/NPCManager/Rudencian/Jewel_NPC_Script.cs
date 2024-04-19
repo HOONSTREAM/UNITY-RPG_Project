@@ -34,7 +34,9 @@ public class Jewel_NPC_Script : MonoBehaviour
             {
                 if (hit.collider.gameObject.layer == (int)Define.Layer.NPC5)
                 {
-                    NPC2_shop shop = gameObject.GetComponent<NPC2_shop>();
+                    GameObject go = GameObject.Find("SHOP CANVAS").gameObject;
+
+                    NPC2_shop shop = go.gameObject.GetComponent<NPC2_shop>();
                     shop.Enter();
                     Managers.Sound.Play("Inven_open");
                 }

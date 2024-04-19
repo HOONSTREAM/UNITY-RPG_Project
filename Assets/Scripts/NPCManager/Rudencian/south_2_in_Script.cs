@@ -7,13 +7,14 @@ public class south_2_in_Script : MonoBehaviour
 {
     public GameObject savedata;
     private const int SOUTH2_SCENE_NUMBER = 9;
-    public GameObject Rudencian_NPC_Folder;
+
 
 
     private void Start()
     {
-
+        savedata = GameObject.Find("Save_Data").gameObject;
     }
+
 
     private void OnTriggerEnter(Collider other)
     {
