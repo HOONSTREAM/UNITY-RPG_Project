@@ -29,19 +29,35 @@ public class NewInvenUI : MonoBehaviour
 
     private void Start()
     {
-       
+
         stat = GetComponent<PlayerStat>(); //골드 업데이트를 위한 플레이어 스텟 참조
-        inven = PlayerInventory.Instance;       
-        slots= slotHolder.GetComponentsInChildren<Slot>();    
-        inventoryPanel.SetActive(activeInventory);
+        inven = PlayerInventory.Instance;
+        slots = slotHolder.GetComponentsInChildren<Slot>();
         inven.onChangeItem += RedrawSlotUI;
         Managers.UI.SetCanvas(Inventory_canvas, true);
         //인벤토리 드래그 가능하도록 하는 이벤트
         UI_Base.BindEvent(inventoryPanel, (PointerEventData data) => { inventoryPanel.transform.position = data.position; }, Define.UIEvent.Drag);
 
+
+        TraverseChildrenRecursively(inventoryPanel.transform);
+
+        inventoryPanel.SetActive(activeInventory);
     }
 
-    private void Update()
+   private void TraverseChildrenRecursively(Transform parent)
+    {
+        foreach (Transform child in parent)
+        {
+            Debug.Log("Child name: " + child.name);  // 현재 자식의 이름을 출력
+            TraverseChildrenRecursively(child);    // 재귀적으로 현재 자식의 자식들도 순회
+          
+            if(child.name == "Content")
+            {
+                PlayerInventory.Instance._player_Inven_Content = child.gameObject;
+            }
+        }
+    }
+        private void Update()
     {
        
         if (Input.GetKeyDown(KeyCode.I))

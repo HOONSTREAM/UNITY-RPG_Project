@@ -25,7 +25,8 @@ public class PlayerInventory : MonoBehaviour
     #endregion
 
     public static PlayerInventory Instance;
-    PlayerStat stat;
+    public GameObject _player_Inven_Content; // 플레이어 인벤토리의 Content (모든슬롯)
+    private PlayerStat stat;
     public List<Item> player_items;
     public Slot slot;
 
@@ -38,8 +39,8 @@ public class PlayerInventory : MonoBehaviour
     {
         Instance = this; 
         player_items = new List<Item>();
-        stat = GetComponent<PlayerStat>();
-        slot = GetComponent<Slot>();
+        stat = gameObject.GetComponent<PlayerStat>();
+        slot = gameObject.GetComponent<Slot>();
 
 
        // LoadInventory();

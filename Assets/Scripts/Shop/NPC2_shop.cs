@@ -31,6 +31,8 @@ public class NPC2_shop : MonoBehaviour
 
     void Start()
     {
+        playerslotHolder = PlayerInventory.Instance._player_Inven_Content.transform;
+
         NPCname = "케일";
         shopitemDB = ItemDataBase.instance.GetAllItems(); //아이템 데이터베이스 복사 
         TotalGoldText.text = "0";
@@ -51,6 +53,8 @@ public class NPC2_shop : MonoBehaviour
             slots[2].shopitem = shopitemDB["Necklace"][0];
             slots[3].shopitem = shopitemDB["Necklace"][1];
         }
+
+
 
     }
 

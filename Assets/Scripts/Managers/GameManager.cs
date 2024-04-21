@@ -10,7 +10,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     private GameObject _player; //나중에 서버랑 연동되면 딕셔너리로 int ID로 관리
-
+    
 
     #region NPC ID 참조
     private const int KNIGHT_HELKEN_NPC_ID = 1003; // 기사 헬켄
