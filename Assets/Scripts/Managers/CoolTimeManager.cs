@@ -15,11 +15,12 @@ public class CoolTimeManager : MonoBehaviour
 
                 return monsters.Slime_Cool_Time();
 
-
-
             case "Punch_man":
 
                 return monsters.Punch_man_Cool_Time();
+
+            case "Turtle_Slime":
+                return monsters.Turtle_Slime_Cool_Time();
 
             default:
                 return 0;

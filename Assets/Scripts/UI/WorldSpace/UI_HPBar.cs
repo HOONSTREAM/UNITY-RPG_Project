@@ -33,6 +33,9 @@ public class UI_HPBar :UI_Base
             case "Punch_man":
                 text.text = "펀치맨";
                 break;
+            case "Turtle_Slime":
+                text.text = "터틀슬라임";
+                break;
         }
        
              

@@ -115,6 +115,25 @@ public class Stat : MonoBehaviour
             StartCoroutine("MonsterDead");
 
         }
+
+        else if (gameObject.name == "Turtle_Slime")
+        {
+            PlayerStat playerstat = attacker as PlayerStat; // 캐스팅
+
+            if (playerstat != null)
+            {
+                playerstat.EXP += Managers.StatFactory.GetExperiencePoints(gameObject);
+                playerstat.onchangestat.Invoke();
+                GameObject dropitem = Fielditem.GetComponent<FieldItem>().Turtle_Slime_DropFieldItem();
+                dropitem.transform.position = transform.position; //드랍아이템 위치
+                dropitem.transform.position += new Vector3(0, 0.4f, 0); //2D 스프라이트 잘림방지
+
+            }
+
+            StartCoroutine("MonsterDead");
+
+        }
+
     }
 
     IEnumerator MonsterDead()

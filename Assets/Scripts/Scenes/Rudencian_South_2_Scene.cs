@@ -28,8 +28,8 @@ public class Rudencian_South_2_Scene : BaseScene
 
 
         //몬스터 생성
-        GameObject go = new GameObject { name = "Spawning Pool" };
-        SpawningPool pool = go.GetAddComponent<SpawningPool>();
+        GameObject go = new GameObject { name = "Spawning Pool_South2" };
+        Spawning_Pool_South2 pool = go.GetAddComponent<Spawning_Pool_South2>();
         pool.SetKeepMonsterCount(8);
 
 
