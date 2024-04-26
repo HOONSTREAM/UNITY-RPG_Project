@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Title_Fade_in : MonoBehaviour
 {
@@ -37,7 +38,8 @@ public class Title_Fade_in : MonoBehaviour
         {
 
             time += Time.deltaTime / Fade_time;
-            alpha.a = Mathf.Lerp(0, 1, time);            
+            alpha.a = Mathf.Lerp(0, 1, time);
+            Title.GetComponent<Image>().color = alpha;
             Title_name.color = alpha;
             Title_hangul_name.color = alpha;
             yield return null;

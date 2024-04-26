@@ -20,7 +20,8 @@ public class Rudencian_Shop_Scene : BaseScene
         
         GameObject player = Managers.Game.GetPlayer();
         Camera.main.gameObject.GetAddComponent<CameraController>().SetPlayer(player);
-        player.transform.position = new Vector3(-6.2817f, 0, 3.5255f);
+        player.transform.position = new Vector3(-9.055326f, 0, 5.73f);
+        player.transform.rotation = new Quaternion(0, 180f, 0, 0);
         // Scene 전환 되고나서 계속 움직이는 현상 방지
         PlayerController pc = player.gameObject.GetComponent<PlayerController>();
         pc.State = Define.State.Idle;
