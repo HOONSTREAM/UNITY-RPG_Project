@@ -369,7 +369,7 @@ PrefabInstance:
     - target: {fileID: 114802653281787388, guid: c877b55d7ad264745ba48601d2be3d73, type: 3}
       propertyPath: target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 3642953558046613469}
     - target: {fileID: 114802653281787388, guid: c877b55d7ad264745ba48601d2be3d73, type: 3}
       propertyPath: maxZoom
       value: 18
@@ -40746,3 +40746,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c8fdf664e0b46241ad5f4722074b37d, type: 3}
+--- !u!4 &3642953558046613469 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1858714700756422088, guid: 6c8fdf664e0b46241ad5f4722074b37d, type: 3}
+  m_PrefabInstance: {fileID: 3642953558046613468}
+  m_PrefabAsset: {fileID: 0}
