@@ -12386,7 +12386,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7910964836869391157}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 1.1465046, y: -0.0000038146973, z: -6.6400175}
+  m_LocalPosition: {x: -6.23, y: -0.0000038146973, z: -16.74}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -12456,7 +12456,7 @@ Transform:
   - {fileID: 1236944779887470983}
   - {fileID: 8610830301004717115}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!95 &4861592020407041731
 Animator:
@@ -12602,6 +12602,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 520a39c4eb32d0447a5744ef6807a76b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _player_Inven_Content: {fileID: 0}
   player_items: []
   slot: {fileID: 0}
 --- !u!114 &8772318026448429738
