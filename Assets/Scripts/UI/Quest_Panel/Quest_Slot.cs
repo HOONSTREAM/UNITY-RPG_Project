@@ -128,6 +128,19 @@ public class Quest_Slot : MonoBehaviour , IPointerUpHandler
                 
                 break;
 
+            case 4:
+                reward_gold.text = QuestDatabase.instance.QuestDB[3].num_1.ToString();
+                reward_exp.text = QuestDatabase.instance.QuestDB[3].num_2.ToString();
+
+
+
+                summing_up_explaination.text = $"촌장 월터를 찾아가 대화를 한다.";
+
+                UpdateSlotUI();
+
+                break;
+
+
 
 
         }

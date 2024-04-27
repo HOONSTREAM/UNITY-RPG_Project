@@ -44,6 +44,8 @@ public class QuestDatabase : MonoBehaviour
     {
         for (int i = 0; i < Player_Quest.Instance.PlayerQuest.Count; i++)
         {
+            if (Player_Quest.Instance.PlayerQuest[i].Quest_ID != 1) { continue; }
+
             if (Player_Quest.Instance.PlayerQuest[i].is_complete == false)
             {
                 if (Player_Quest.Instance.PlayerQuest[i].monster_counter >= 2)
@@ -73,6 +75,8 @@ public class QuestDatabase : MonoBehaviour
 
         for (int i = 0; i < Player_Quest.Instance.PlayerQuest.Count; i++)
         {
+            if (Player_Quest.Instance.PlayerQuest[i].Quest_ID != 2) { continue; }
+
             for (int k = 0; k < PlayerInventory.Instance.player_items.Count; k++)
             {
                 if (PlayerInventory.Instance.player_items[k].ItemID == SLIME_DROP_ETC_ITEM_ID && PlayerInventory.Instance.player_items[k].amount >= COLLECTING_SLIME_ITEM_AMOUNT) // 슬라임 액체
@@ -96,8 +100,11 @@ public class QuestDatabase : MonoBehaviour
     }
     public void HelKen_Meet_Quest_Conditions_for_completion()
     {
+        
         for (int i = 0; i < Player_Quest.Instance.PlayerQuest.Count; i++)
         {
+            if (Player_Quest.Instance.PlayerQuest[i].Quest_ID != 3) { continue; }
+
             if (Player_Quest.Instance.PlayerQuest[i].npc_meet == false)
             {
                 GameObject.Find("GUI_User_Interface").
@@ -113,11 +120,16 @@ public class QuestDatabase : MonoBehaviour
             GameObject.Find("GUI_User_Interface").
                gameObject.GetComponent<Print_Info_Text>().PrintUserText("퀘스트 완료");
 
-            //다음 메인퀘스트 자동 추가 TODO
-            //Player_Quest.Instance.AddQuest(QuestDatabase.instance.QuestDB[2]);
+            //다음 메인퀘스트 자동 추가
+            Player_Quest.Instance.AddQuest(QuestDatabase.instance.QuestDB[3]);
         }
     }
+
+    public 
     #endregion
+
+
+
 
     public int Get_Slime_Hunting_Quest_Complete_amount()
     {
