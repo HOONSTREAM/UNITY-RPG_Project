@@ -29,7 +29,8 @@ public class Helken_NPC_Script : MonoBehaviour , IPointerClickHandler, TalkManag
 
     public void Additional_Talk()
     {
-       
+        if (QuestDatabase.instance.QuestDB[2].npc_meet == true) { return; }
+
         is_Additional_Talk_open = true; // 대화하기 버튼 승인 
 
         GameObject.Find("@TalkManager").gameObject.GetComponent<TalkManager>().Additional_Talk_Helken(); // 대화내용 수정

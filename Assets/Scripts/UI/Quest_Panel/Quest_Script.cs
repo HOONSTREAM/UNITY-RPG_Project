@@ -21,6 +21,7 @@ public class Quest_Script : MonoBehaviour
     public Transform quest_slotHolder;
     public Slot[] Player_slots;
     public Transform player_slotHolder;
+    
 
     public bool activequestpanel = false;
 
@@ -99,6 +100,12 @@ public class Quest_Script : MonoBehaviour
                 case 3: 
 
                     QuestDatabase.instance.HelKen_Meet_Quest_Conditions_for_completion();
+
+                    break;
+
+                case 4:
+
+                    QuestDatabase.instance.Rudencian_Chief_Meet_Quest_Conditions_for_completion();
 
                     break;
 

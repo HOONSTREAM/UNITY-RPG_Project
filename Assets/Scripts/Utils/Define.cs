@@ -50,6 +50,8 @@ public enum Layer
         Rudencian_Bank,
         Rudencian_Inn,
         Rudencian_jewel_shop,
+        Rudencian_chief_house,
+
 
 
     }

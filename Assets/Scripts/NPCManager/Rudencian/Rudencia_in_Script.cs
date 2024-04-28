@@ -63,6 +63,16 @@ public class Rudencia_in_Script : MonoBehaviour
 
                 break;
 
+            case "촌장 월터의 집":
+
+                player.transform.position = new Vector3(-9.819f, 0, -0.763f);
+                player.transform.rotation = new Quaternion(0, 180f, 0, 0);
+                pc.State = Define.State.Idle;
+
+                SceneManager.LoadScene(LoadingScene.LOADING_SCENE_NUMBER);
+
+                break;
+
         }
         
 
