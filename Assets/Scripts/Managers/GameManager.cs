@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -114,10 +115,11 @@ public class GameManager : MonoBehaviour
 
                     if (Talkindex == 2) // 추가 대화가 끝에 도달했는지 검사 
                     {
+                        Debug.Log($"{Talkindex}입니다. 그리고 추가대화 도달 if문에대한건 true");
                         Talk_Panel_next_button.gameObject.SetActive(false);
                         selection.gameObject.SetActive(true);
                         Additional_Talk_button.gameObject.SetActive(false);
-                        scanobject.gameObject.GetComponent<Helken_NPC_Script>().is_Additional_Talk_open = false;
+                        scanobject.gameObject.GetComponent<House_Chief_NPC_Script>().is_Additional_Talk_open = false;
                         talkmanager.Reset_TalkData(); // Talk Data 리셋
                         Talkindex = 0;
 

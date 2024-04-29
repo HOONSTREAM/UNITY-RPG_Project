@@ -41,10 +41,7 @@ public class House_Chief_NPC_Script : MonoBehaviour, IPointerClickHandler, TalkM
         return;
     }
 
-    public void Helken_Quest()
-    {
-
-    }
+   
 
 
 }
