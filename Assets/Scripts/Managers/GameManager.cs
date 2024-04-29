@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
 
                     selection.gameObject.SetActive(false);
 
-                    if(Talkindex == 2) // 추가 대화가 끝에 도달했는지 검사 
+                    if(Talkindex == 4) // 추가 대화가 끝에 도달했는지 검사 
                     {
                         Talk_Panel_next_button.gameObject.SetActive(false);
                         selection.gameObject.SetActive(true);
@@ -113,7 +113,7 @@ public class GameManager : MonoBehaviour
 
                     selection.gameObject.SetActive(false);
 
-                    if (Talkindex == 2) // 추가 대화가 끝에 도달했는지 검사 
+                    if (Talkindex == 4) // 추가 대화가 끝에 도달했는지 검사 
                     {
                         Debug.Log($"{Talkindex}입니다. 그리고 추가대화 도달 if문에대한건 true");
                         Talk_Panel_next_button.gameObject.SetActive(false);

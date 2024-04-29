@@ -170,7 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _level: 0
   _hp: 0
-  _maxHp: 0
+  _maxhp: 0
   _mp: 0
   _maxMp: 0
   _movespeed: 0
@@ -255,6 +255,7 @@ MonoBehaviour:
   attackRange: 2
   Hit_Particle: {fileID: 0}
   _maxChaseDistance: 10
+  DamageText: {fileID: 4278063725070747892, guid: 75c0a07571a1a6448a830f6c6e19cf76, type: 3}
 --- !u!1 &2283790857954846239
 GameObject:
   m_ObjectHideFlags: 0

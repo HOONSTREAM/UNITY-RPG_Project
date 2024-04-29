@@ -1,3 +1,4 @@
+using DamageNumbersPro;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,8 @@ using UnityEngine.AI;
 
 public class MonsterController : BaseController
 {
+
+
     Stat _stat;
     [SerializeField]
     float _scanRange = 2.0f; // 플레이어 스캔범위
@@ -16,6 +19,8 @@ public class MonsterController : BaseController
     [SerializeField]
     float _maxChaseDistance = 10.0f; // 최대 추적 거리 설정
 
+
+    public DamageNumber DamageText;
 
     public override void Init() //가상함수
     {
@@ -148,6 +153,7 @@ public class MonsterController : BaseController
             if (targetStat.Hp > 0)
             {
 
+                Print_Damage_Text(targetStat);
                 Monster_Hit_Effect();
 
                 float distance = (LockTarget.transform.position - transform.position).magnitude;
@@ -186,6 +192,28 @@ public class MonsterController : BaseController
         Destroy(hit_particles, 1.5f);
         
     }
+
+
+    /// <summary>
+    /// 몬스터가 플레이어에게 타격하는 데미지를 출력합니다.
+    /// </summary>
+    /// <param name="targetStat"></param>
+    private void Print_Damage_Text(Stat targetStat)
+    {
+        if (targetStat.Hp >= 0)
+        {
+            int damage_amount = Random.Range((int)((_stat.ATTACK - targetStat.DEFENSE) * 0.8), (int)((_stat.ATTACK - targetStat.DEFENSE) * 1.1)); // 능력치의 80% ~ 110%
+
+
+            if (damage_amount <= 0)
+            {
+                damage_amount = 0;
+            }
+
+            DamageNumber damageNumber = DamageText.Spawn(LockTarget.transform.position, damage_amount);
+        }
+    }
+
 
     /// <summary>
     /// 몬스터 히트 사운드를 선정합니다.

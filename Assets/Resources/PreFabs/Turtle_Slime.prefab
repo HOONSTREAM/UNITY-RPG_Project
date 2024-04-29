@@ -650,6 +650,7 @@ MonoBehaviour:
   attackRange: 2
   Hit_Particle: {fileID: 0}
   _maxChaseDistance: 10
+  DamageText: {fileID: 4278063725070747892, guid: 75c0a07571a1a6448a830f6c6e19cf76, type: 3}
 --- !u!114 &-2994861750203289227
 MonoBehaviour:
   m_ObjectHideFlags: 0
