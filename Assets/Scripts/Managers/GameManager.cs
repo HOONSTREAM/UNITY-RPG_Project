@@ -9,12 +9,13 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    private GameObject _player; //나중에 서버랑 연동되면 딕셔너리로 int ID로 관리
+    private GameObject _player; 
     
 
-    #region NPC ID 참조
-    private const int KNIGHT_HELKEN_NPC_ID = 1003; // 기사 헬켄
+    #region NPC ID 참조 
+    private const int KNIGHT_HELKEN_NPC_ID = 1003; 
     private const int INN_OWNER_HECSEN_NPC_ID = 1004;
+    private const int RUDENCIAN_HOUSE_CHIEF_NPC_ID = 1006;
 
     #endregion
 
@@ -33,9 +34,9 @@ public class GameManager : MonoBehaviour
     public GameObject Talk_Panel_next_button;
     public GameObject Additional_Talk_button;
 
-    public GameObject Helken_selection; //헬켄 NPC 대화 선택지 
+    public GameObject selection; //NPC 대화 선택지 
    
-
+    
 
     public void TalkAction() 
     {
@@ -65,20 +66,20 @@ public class GameManager : MonoBehaviour
                 {
                    
                     Talk_Panel_next_button.gameObject.SetActive(false);
-                    Helken_selection.gameObject.SetActive(IsTalkAction);
+                    selection.gameObject.SetActive(IsTalkAction);
                     Additional_Talk_button.gameObject.SetActive(true);
 
                     Talkindex = 0; // 톡 인덱스 초기화
                 }
                 else if (scanobject.gameObject.GetComponent<Helken_NPC_Script>().is_Additional_Talk_open == true)
                 {
-                    
-                    Helken_selection.gameObject.SetActive(false);
+
+                    selection.gameObject.SetActive(false);
 
                     if(Talkindex == 2) // 추가 대화가 끝에 도달했는지 검사 
                     {
                         Talk_Panel_next_button.gameObject.SetActive(false);
-                        Helken_selection.gameObject.SetActive(true);
+                        selection.gameObject.SetActive(true);
                         Additional_Talk_button.gameObject.SetActive(false);
                         scanobject.gameObject.GetComponent<Helken_NPC_Script>().is_Additional_Talk_open = false;
                         talkmanager.Reset_TalkData(); // Talk Data 리셋
@@ -93,6 +94,40 @@ public class GameManager : MonoBehaviour
             case INN_OWNER_HECSEN_NPC_ID:
                 // TODO 
                 break;
+
+            case RUDENCIAN_HOUSE_CHIEF_NPC_ID:
+
+                // (대화하기 버튼 진행을 하지 않았고, 첫 대화의 인덱스 최종에 도달한 경우)
+                if (Talkindex == 1 && scanobject.gameObject.GetComponent<House_Chief_NPC_Script>().is_Additional_Talk_open == false)
+                {
+
+                    Talk_Panel_next_button.gameObject.SetActive(false);
+                    selection.gameObject.SetActive(IsTalkAction);
+                    Additional_Talk_button.gameObject.SetActive(true);
+
+                    Talkindex = 0; // 톡 인덱스 초기화
+                }
+                else if (scanobject.gameObject.GetComponent<House_Chief_NPC_Script>().is_Additional_Talk_open == true)
+                {
+
+                    selection.gameObject.SetActive(false);
+
+                    if (Talkindex == 2) // 추가 대화가 끝에 도달했는지 검사 
+                    {
+                        Talk_Panel_next_button.gameObject.SetActive(false);
+                        selection.gameObject.SetActive(true);
+                        Additional_Talk_button.gameObject.SetActive(false);
+                        scanobject.gameObject.GetComponent<Helken_NPC_Script>().is_Additional_Talk_open = false;
+                        talkmanager.Reset_TalkData(); // Talk Data 리셋
+                        Talkindex = 0;
+
+                    }
+
+                }
+
+
+                break;
+
 
             default:
 

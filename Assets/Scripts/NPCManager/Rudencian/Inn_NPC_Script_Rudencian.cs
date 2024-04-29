@@ -52,6 +52,8 @@ public class Inn_NPC_Script_Rudencian : MonoBehaviour, IPointerClickHandler, Tal
 
     }
 
+    
+
 
     /// <summary>
     /// 추가 대화가 생겼을 때, 확장기능을 제공하는 인터페이스 메서드 입니다.
