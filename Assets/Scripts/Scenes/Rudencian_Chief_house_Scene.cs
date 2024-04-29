@@ -13,7 +13,9 @@ public class Rudencian_Chief_house_Scene : BaseScene
 
         Dictionary<int, Data.Stat> dict = Managers.Data.StatDict;
 
-        
+
+        Managers.Sound.Clear();
+        Managers.Sound.Play("·çµ§½Ã¾È", Define.Sound.Bgm);
 
         GameObject player = Managers.Game.GetPlayer();
         Camera.main.gameObject.GetAddComponent<CameraController>().SetPlayer(player);

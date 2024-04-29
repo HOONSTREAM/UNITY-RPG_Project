@@ -71,6 +71,7 @@ public class TalkManager : MonoBehaviour
 
     public void Additional_Talk_Rudencian_House_Chief()
     {
+       
         for (int k = 0; k < Player_Quest.Instance.PlayerQuest.Count; k++)
         {
             if (Player_Quest.Instance.PlayerQuest[k].Quest_ID == 4 && Player_Quest.Instance.PlayerQuest[k].npc_meet == true) // 퀘스트 완료조건 

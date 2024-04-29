@@ -48,7 +48,7 @@ public class NewInvenUI : MonoBehaviour
     {
         foreach (Transform child in parent)
         {
-            Debug.Log("Child name: " + child.name);  // 현재 자식의 이름을 출력
+            
             TraverseChildrenRecursively(child);    // 재귀적으로 현재 자식의 자식들도 순회
           
             if(child.name == "Content")

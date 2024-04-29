@@ -34,6 +34,8 @@ public class SoundManager
         }
     }
 
+
+  
     public void Clear()
     {
         foreach(AudioSource audiosource in _audiosource)
@@ -134,5 +136,7 @@ public class SoundManager
         return audioclip;
 
     }
+
+
 
 }

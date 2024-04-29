@@ -18,6 +18,15 @@ public class Quest_4 : Quest_Effect
         player.GetComponent<PlayerStat>().EXP += QuestDatabase.instance.QuestDB[3].num_2;
         player.GetComponent<PlayerStat>().onchangestat.Invoke();
         Managers.Sound.Play("Coin");
+
+
+
+        Managers.Sound.Clear();
+        Managers.Sound.Play("Quest Start DRUMS BIG", Define.Sound.Effect);
+        GameObject go = Managers.Resources.Instantiate("Chapter_Start");
+        Destroy(go, 5.0f);
+
+
         return true;
     }
 }

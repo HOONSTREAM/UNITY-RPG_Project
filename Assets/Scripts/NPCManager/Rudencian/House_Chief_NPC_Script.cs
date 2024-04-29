@@ -29,6 +29,7 @@ public class House_Chief_NPC_Script : MonoBehaviour, IPointerClickHandler, TalkM
 
     public void Additional_Talk()
     {
+        if (QuestDatabase.instance.QuestDB[2].is_complete == false) { return; }
         if (QuestDatabase.instance.QuestDB[3].npc_meet == true) { return; }
 
         is_Additional_Talk_open = true; // 대화하기 버튼 승인 

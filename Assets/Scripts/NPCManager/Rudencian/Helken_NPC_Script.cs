@@ -29,6 +29,7 @@ public class Helken_NPC_Script : MonoBehaviour , IPointerClickHandler, TalkManag
 
     public void Additional_Talk()
     {
+        if (QuestDatabase.instance.QuestDB[1].is_complete == false) { return; } // 슬라임액체모으기 퀘스트 미완료일경우 대화진행안함
         if (QuestDatabase.instance.QuestDB[2].npc_meet == true) { return; }
 
         is_Additional_Talk_open = true; // 대화하기 버튼 승인 
