@@ -25,7 +25,7 @@ public class Quest_4 : Quest_Effect
         Managers.Sound.Play("Quest Start DRUMS BIG", Define.Sound.Effect);
         GameObject go = Managers.Resources.Instantiate("Chapter_Start");
         Destroy(go, 5.0f);
-
+        
 
         return true;
     }
