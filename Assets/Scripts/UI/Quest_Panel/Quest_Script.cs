@@ -86,29 +86,24 @@ public class Quest_Script : MonoBehaviour
             switch (Player_Quest.Instance.PlayerQuest[i].Quest_ID)
             {
                 case 1:
-
                     QuestDatabase.instance.Kill_Slime_Quest_Conditions_for_completion();
-
                     break;
 
                 case 2: 
-
-                    QuestDatabase.instance.Slime_collecting_drop_item_quest_Conditions_for_completion();
-                   
+                    QuestDatabase.instance.Slime_collecting_drop_item_quest_Conditions_for_completion();                
                   break;
 
                 case 3: 
-
                     QuestDatabase.instance.HelKen_Meet_Quest_Conditions_for_completion();
-
                     break;
 
                 case 4:
-
                     QuestDatabase.instance.Rudencian_Chief_Meet_Quest_Conditions_for_completion();
-
                     break;
 
+                case 5:
+                    QuestDatabase.instance.Rudencian_Training_officer_Rookiss_NPC_Meet_Quest_Conditions_for_completion();
+                    break;
             }
         }
     }

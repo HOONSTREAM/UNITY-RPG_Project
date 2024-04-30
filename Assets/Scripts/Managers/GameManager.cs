@@ -154,7 +154,7 @@ public class GameManager : MonoBehaviour
 
                     selection.gameObject.SetActive(false);
 
-                    if (Talkindex == 1) // 추가 대화가 끝에 도달했는지 검사 
+                    if (Talkindex == 4) // 추가 대화가 끝에 도달했는지 검사 
                     {
 
                         Talk_Panel_next_button.gameObject.SetActive(false);

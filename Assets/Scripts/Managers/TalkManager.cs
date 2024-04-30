@@ -32,7 +32,7 @@ public class TalkManager : MonoBehaviour
         TalkData.Add(RUDENCIAN_HELKEN_NPC_ID, new string[] { "반갑다. 나는 기사 헬켄이라고 한다.", "나에게 볼 일이 있는가?" });
         TalkData.Add(RUDENCIAN_INN_NPC_ID, new string[] { " 체력을 회복 해 드리겠습니다." });
         TalkData.Add(RUDENCIAN_HOUSE_CHIEF_NPC_ID, new string[] { "만나서 반갑습니다. 모험가님.. 저는 촌장 월터라고 합니다." });
-        TalkData.Add(RUDENCIAN_ROOKISS_NPC_ID, new string[]{"루키스 톡 테스트 중"});
+        TalkData.Add(RUDENCIAN_ROOKISS_NPC_ID, new string[]{"강해지고 싶다면 나를 찾아와서 훈련을 받아보는건 어떤가?"});
     }
 
     public string GetTalk(int id, int talkIndex)
@@ -102,11 +102,24 @@ public class TalkManager : MonoBehaviour
 
     public void Addtional_Talk_Rudencian_training_officer_RooKiss()
     {
+
+        for (int k = 0; k < Player_Quest.Instance.PlayerQuest.Count; k++)
+        {
+            if (Player_Quest.Instance.PlayerQuest[k].Quest_ID == 5 && Player_Quest.Instance.PlayerQuest[k].npc_meet == true) // 퀘스트가 이미 완료되었으면 리턴 
+            {
+                return;
+            }
+
+            Player_Quest.Instance.PlayerQuest[k].npc_meet = true;
+        }
+
         TalkData.Remove(RUDENCIAN_ROOKISS_NPC_ID);
-        TalkData.Add(RUDENCIAN_ROOKISS_NPC_ID, new string[] {"루키스 대화연장내용 테스트"});
+        TalkData.Add(RUDENCIAN_ROOKISS_NPC_ID, new string[] {"반가워 모험가. 나는 수련관 루키스라고 한다. 촌장님께는 얘기를 전해들었다. 훈련을 받고싶다고 ? ", 
+                                                             "강해지는 것은 당연히 쉽지 않지.. 하지만 충분히 자신을 단련시키다보면 매우 강해진 자신을 볼 수 있을 것이다.",
+                                                             "여러 무기를 자신이 선택해서 단련시킬 수 있으니, 상황에 따라 유연하게 대처가 가능하려면 가능한 여러 종류의 무기를 숙달시키는게 좋다. 하지만 이것은 권장일 뿐, 선택은 너의 몫이다.",
+                                                             "루덴시안 남쪽 필드로 가서, 펀치맨을 잡아보도록 해. 20마리를 잡고서, 나에게 돌아와서 보고해."});
 
     }
-
 
     public void Reset_TalkData()
     {

@@ -147,7 +147,32 @@ public class QuestDatabase : MonoBehaviour
                gameObject.GetComponent<Print_Info_Text>().PrintUserText("퀘스트 완료");
 
             //다음 메인퀘스트 자동 추가
-           //Player_Quest.Instance.AddQuest(QuestDatabase.instance.QuestDB[4]);
+           Player_Quest.Instance.AddQuest(QuestDatabase.instance.QuestDB[4]);
+        }
+    }
+    public void Rudencian_Training_officer_Rookiss_NPC_Meet_Quest_Conditions_for_completion()
+    {
+        for (int i = 0; i < Player_Quest.Instance.PlayerQuest.Count; i++)
+        {
+            if (Player_Quest.Instance.PlayerQuest[i].Quest_ID != 5) { continue; }
+
+            if (Player_Quest.Instance.PlayerQuest[i].npc_meet == false)
+            {
+                GameObject.Find("GUI_User_Interface").
+               gameObject.GetComponent<Print_Info_Text>().PrintUserText("퀘스트 조건이 충족되지 않았습니다.");
+
+                return;
+            }
+
+            Player_Quest.Instance.PlayerQuest[i].Quest_Clear();
+
+            Player_Quest.Instance.RemoveQuest(i);
+            Player_Quest.Instance.onChangequest.Invoke();
+            GameObject.Find("GUI_User_Interface").
+               gameObject.GetComponent<Print_Info_Text>().PrintUserText("퀘스트 완료");
+
+            //다음 메인퀘스트 자동 추가
+            //Player_Quest.Instance.AddQuest(QuestDatabase.instance.QuestDB[5]);
         }
     }
 
