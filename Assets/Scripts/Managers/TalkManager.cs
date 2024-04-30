@@ -10,6 +10,7 @@ public class TalkManager : MonoBehaviour
     private const int RUDENCIAN_HELKEN_NPC_ID = 1003;
     private const int RUDENCIAN_INN_NPC_ID = 1004;
     private const int RUDENCIAN_HOUSE_CHIEF_NPC_ID = 1006;
+    private const int RUDENCIAN_ROOKISS_NPC_ID = 1007;
 
     public interface Additional_Talking
     {
@@ -31,6 +32,7 @@ public class TalkManager : MonoBehaviour
         TalkData.Add(RUDENCIAN_HELKEN_NPC_ID, new string[] { "반갑다. 나는 기사 헬켄이라고 한다.", "나에게 볼 일이 있는가?" });
         TalkData.Add(RUDENCIAN_INN_NPC_ID, new string[] { " 체력을 회복 해 드리겠습니다." });
         TalkData.Add(RUDENCIAN_HOUSE_CHIEF_NPC_ID, new string[] { "만나서 반갑습니다. 모험가님.. 저는 촌장 월터라고 합니다." });
+        TalkData.Add(RUDENCIAN_ROOKISS_NPC_ID, new string[]{"루키스 톡 테스트 중"});
     }
 
     public string GetTalk(int id, int talkIndex)
@@ -91,10 +93,17 @@ public class TalkManager : MonoBehaviour
                                                                  "샤르덴을 봉인하기 위해선, 그 <용의 검>을 찾는게 최 우선이어야 할 것이다..",
                                                                  "어려운 부탁임을 나는 알고있고, 자네도 곤란하게 생각할 지도 모르지만, 우리 루덴시안, 더 크게는 아르카디아 대륙을 위해 자네가 두번째로 전설적인 영웅으로 남아보는건 어떤가..",
                                                                  "촌장으로서 부탁하네. 루덴시안, 그리고 이 아르카디아 대륙을 꼭 자네가 구해주었으면 하네.",
-                                                                 "수련관 루키스를 찾아가보게. 자네를 훈련시켜 줄 것이다."});
+                                                                 "수련관 루키스를 찾아가보게. 자네를 훈련시켜 줄 사람이 있네."});
 
 
         return;
+
+    }
+
+    public void Addtional_Talk_Rudencian_training_officer_RooKiss()
+    {
+        TalkData.Remove(RUDENCIAN_ROOKISS_NPC_ID);
+        TalkData.Add(RUDENCIAN_ROOKISS_NPC_ID, new string[] {"루키스 대화연장내용 테스트"});
 
     }
 
@@ -106,6 +115,8 @@ public class TalkManager : MonoBehaviour
         return;
 
     }
+
+    
 
    
 }

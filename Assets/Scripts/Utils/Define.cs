@@ -36,6 +36,8 @@ public enum Layer
         NPC4 = 18,
         NPC5 = 19,
         NPC6 = 20,
+        NPC7 = 21,
+
         
 
 

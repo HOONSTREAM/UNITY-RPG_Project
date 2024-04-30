@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
     private const int KNIGHT_HELKEN_NPC_ID = 1003; 
     private const int INN_OWNER_HECSEN_NPC_ID = 1004;
     private const int RUDENCIAN_HOUSE_CHIEF_NPC_ID = 1006;
+    private const int RUDENCIAN_ROOKISS_NPC_ID = 1007;
 
     #endregion
 
@@ -58,14 +59,20 @@ public class GameManager : MonoBehaviour
 
         NPC_name.text = scanobject.name;
 
+        NPC_Additional_Talk_Button_Open_Method(objdata);
+
+    }
+
+    private void NPC_Additional_Talk_Button_Open_Method(Object_Data objdata)
+    {
         switch (objdata.ID) // NPC별 특수기능 검사 
         {
             case KNIGHT_HELKEN_NPC_ID:
 
                 // (대화하기 버튼 진행을 하지 않았고, 첫 대화의 인덱스 최종에 도달한 경우)
-                if(Talkindex == 2 && scanobject.gameObject.GetComponent<Helken_NPC_Script>().is_Additional_Talk_open == false)
+                if (Talkindex == 2 && scanobject.gameObject.GetComponent<Helken_NPC_Script>().is_Additional_Talk_open == false)
                 {
-                   
+
                     Talk_Panel_next_button.gameObject.SetActive(false);
                     selection.gameObject.SetActive(IsTalkAction);
                     Additional_Talk_button.gameObject.SetActive(true);
@@ -77,7 +84,7 @@ public class GameManager : MonoBehaviour
 
                     selection.gameObject.SetActive(false);
 
-                    if(Talkindex == 4) // 추가 대화가 끝에 도달했는지 검사 
+                    if (Talkindex == 4) // 추가 대화가 끝에 도달했는지 검사 
                     {
                         Talk_Panel_next_button.gameObject.SetActive(false);
                         selection.gameObject.SetActive(true);
@@ -85,8 +92,8 @@ public class GameManager : MonoBehaviour
                         scanobject.gameObject.GetComponent<Helken_NPC_Script>().is_Additional_Talk_open = false;
                         talkmanager.Reset_TalkData(); // Talk Data 리셋
                         Talkindex = 0;
-                        
-                    }                   
+
+                    }
 
                 }
 
@@ -115,7 +122,7 @@ public class GameManager : MonoBehaviour
 
                     if (Talkindex == 8) // 추가 대화가 끝에 도달했는지 검사 
                     {
-                        
+
                         Talk_Panel_next_button.gameObject.SetActive(false);
                         selection.gameObject.SetActive(true);
                         Additional_Talk_button.gameObject.SetActive(false);
@@ -130,14 +137,47 @@ public class GameManager : MonoBehaviour
 
                 break;
 
+            case RUDENCIAN_ROOKISS_NPC_ID:
+
+                if (Talkindex == 1 && scanobject.gameObject.GetComponent<RooKiss_NPC_Script>().is_Additional_Talk_open == false)
+                {
+
+                    Talk_Panel_next_button.gameObject.SetActive(false);
+                    selection.gameObject.SetActive(IsTalkAction);
+                    Additional_Talk_button.gameObject.SetActive(true);
+
+                    Talkindex = 0; // 톡 인덱스 초기화
+                }
+
+                else if (scanobject.gameObject.GetComponent<RooKiss_NPC_Script>().is_Additional_Talk_open == true)
+                {
+
+                    selection.gameObject.SetActive(false);
+
+                    if (Talkindex == 1) // 추가 대화가 끝에 도달했는지 검사 
+                    {
+
+                        Talk_Panel_next_button.gameObject.SetActive(false);
+                        selection.gameObject.SetActive(true);
+                        Additional_Talk_button.gameObject.SetActive(false);
+                        scanobject.gameObject.GetComponent<RooKiss_NPC_Script>().is_Additional_Talk_open = false;
+                        talkmanager.Reset_TalkData(); // Talk Data 리셋
+                        Talkindex = 0;
+
+                    }
+
+                }
+
+
+                break;
+
+
 
             default:
 
                 break;
 
         }
-
-
     }
 
     /// <summary>
@@ -172,6 +212,47 @@ public class GameManager : MonoBehaviour
         Talkindex++;
         
     }
+
+    public void Tracking_NPC_Press_Additional_Talk_Button()
+    {
+        switch (scanobject.name)
+        {
+            case "기사 헬켄":
+                scanobject.gameObject.GetComponent<Helken_NPC_Script>().Additional_Talk();
+                break;
+            case "수련관 루키스":
+                scanobject.gameObject.GetComponent<RooKiss_NPC_Script>().Additional_Talk();
+                break;
+            case "촌장 월터":
+                scanobject.gameObject.GetComponent<House_Chief_NPC_Script>().Additional_Talk();
+                break;
+            case "여관주인 헥센":
+                break;
+
+        }
+    }
+
+    public void Tracking_NPC_Press_End_Button()
+    {
+        switch (scanobject.name)
+        {
+            case "기사 헬켄":
+                scanobject.gameObject.GetComponent<Helken_NPC_Script>().Helken_Taking_end_button();
+                break;
+            case "수련관 루키스":
+                scanobject.gameObject.GetComponent<RooKiss_NPC_Script>().Taking_end_button();
+                break;
+            case "촌장 월터":
+                scanobject.gameObject.GetComponent<House_Chief_NPC_Script>().Taking_end_button();
+                break;
+            case "여관주인 헥센":
+                
+                break;
+
+
+        }
+    }
+
     /*==================================================================================*/
     #endregion
 

@@ -13808,7 +13808,7 @@ MonoBehaviour:
   NPC_name: {fileID: 1497511837}
   Talk_Panel_next_button: {fileID: 236109029}
   Additional_Talk_button: {fileID: 447856323}
-  Helken_selection: {fileID: 2122088889}
+  selection: {fileID: 2122088889}
 --- !u!4 &1117486484
 Transform:
   m_ObjectHideFlags: 0
@@ -24801,7 +24801,7 @@ GameObject:
   - component: {fileID: 2122088891}
   - component: {fileID: 2122088890}
   m_Layer: 5
-  m_Name: helken_selection_button_background
+  m_Name: selection_button_background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

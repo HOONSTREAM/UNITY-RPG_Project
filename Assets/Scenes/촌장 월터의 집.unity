@@ -4551,9 +4551,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1656080175}
-        m_TargetAssemblyTypeName: House_Chief_NPC_Script, Assembly-CSharp
-        m_MethodName: Taking_end_button
+      - m_Target: {fileID: 1360747967}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: Tracking_NPC_Press_End_Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5796,9 +5796,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1656080175}
-        m_TargetAssemblyTypeName: House_Chief_NPC_Script, Assembly-CSharp
-        m_MethodName: Additional_Talk
+      - m_Target: {fileID: 1360747967}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: Tracking_NPC_Press_Additional_Talk_Button
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
