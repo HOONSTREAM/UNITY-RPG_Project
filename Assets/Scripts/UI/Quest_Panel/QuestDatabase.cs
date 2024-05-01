@@ -10,6 +10,8 @@ public class QuestDatabase : MonoBehaviour
 
     public List<Quest> QuestDB = new List<Quest>();
 
+    public delegate void QuestComplete();
+    public QuestComplete QuestCompleteCondition;
 
     private const int KILL_SLIME_MAIN_QUEST_ID = 1;
     private const int KILL_PUNCH_MAN_MAIN_QUEST_ID = 6;
@@ -28,7 +30,7 @@ public class QuestDatabase : MonoBehaviour
     }
 
 
-   public void Kill_Slime_For_Main_Quest()
+    public void Kill_Slime_For_Main_Quest()
     {
 
         for (int i = 0; i < QuestDatabase.instance.QuestDB.Count; i++)
@@ -39,6 +41,7 @@ public class QuestDatabase : MonoBehaviour
                 {
                     QuestDatabase.instance.QuestDB[i].monster_counter++;
                     Player_Quest.Instance.onChangequest.Invoke(); // 카운터 증가 즉시 반영
+                    QuestCompleteCondition.Invoke(); // 카운터가 완료조건에 만족했는지 확인하고 완료되었으면 플레이어에게 알림.
                 }
 
                 break;
@@ -56,6 +59,7 @@ public class QuestDatabase : MonoBehaviour
                 {
                     QuestDatabase.instance.QuestDB[i].monster_counter++;
                     Player_Quest.Instance.onChangequest.Invoke(); // 카운터 증가 즉시 반영
+                    QuestCompleteCondition.Invoke(); // 카운터가 완료조건에 만족했는지 확인하고 완료되었으면 플레이어에게 알림.
                 }
 
                 break;
@@ -197,6 +201,7 @@ public class QuestDatabase : MonoBehaviour
 
             //다음 메인퀘스트 자동 추가
             Player_Quest.Instance.AddQuest(QuestDatabase.instance.QuestDB[5]);
+
         }
     }
     public void Kill_Punch_man_Quest_Conditions_for_completion()

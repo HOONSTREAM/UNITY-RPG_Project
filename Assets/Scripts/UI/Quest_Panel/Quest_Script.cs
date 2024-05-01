@@ -44,7 +44,9 @@ public class Quest_Script : MonoBehaviour
         UI_Base.BindEvent(Quest_Panel, (PointerEventData data) => { Quest_Panel.transform.position = data.position; }, Define.UIEvent.Drag);  //인벤토리 드래그 가능하도록 하는 이벤트
         RedrawSlotUI();
 
-        
+        QuestDatabase.instance.QuestCompleteCondition+=Quest_Complete_Alarm;       
+
+
         Player_Quest.Instance.AddQuest(QuestDatabase.instance.QuestDB[0]);
 
     }
@@ -164,5 +166,51 @@ public class Quest_Script : MonoBehaviour
 
     }
 
+    private void Quest_Complete_Alarm()
+    {
+        if(Player_Quest.Instance.PlayerQuest.Count == 0) { return;  }
+
+        for (int i = 0; i < Player_Quest.Instance.PlayerQuest.Count; i++)
+        {
+            switch (Player_Quest.Instance.PlayerQuest[i].Quest_ID)
+            {
+                case 1:
+
+                    if (QuestDatabase.instance.QuestDB[0].monster_counter == 2)
+                    {
+                        GameObject go = Managers.Resources.Instantiate("Quest_Complete").gameObject;
+                        Managers.Sound.Play("GUI_Sound/misc_sound");
+                        Destroy(go, 5.0f);
+                    }
+
+
+                    break;
+
+                case 2:
+                    for (int k = 0; k < PlayerInventory.Instance.player_items.Count; k++)
+                    {
+                        if (PlayerInventory.Instance.player_items[k].itemname == "슬라임의 액체" && PlayerInventory.Instance.player_items[k].amount == 10) // 슬라임 액체
+                        {
+                            GameObject go = Managers.Resources.Instantiate("Quest_Complete").gameObject;
+                            Managers.Sound.Play("GUI_Sound/misc_sound");
+                            Destroy(go, 5.0f);
+                        }
+                    }
+                            break;                   
+
+                case 6:
+                    if (QuestDatabase.instance.QuestDB[6].monster_counter == 2)
+                    {
+                        GameObject go = Managers.Resources.Instantiate("Quest_Complete").gameObject;
+                        Managers.Sound.Play("GUI_Sound/misc_sound");
+                        Destroy(go, 5.0f);
+                    }
+                    break;
+
+            }
+        }
+    }
+    
+             
 
 }

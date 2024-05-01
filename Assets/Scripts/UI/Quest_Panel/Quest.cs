@@ -32,6 +32,7 @@ using UnityEngine;
         public bool is_complete;
         public int monster_counter;
         public bool npc_meet;
+        public bool npc_meet_2;
 
         public List<Quest_Effect> efts;
 
@@ -66,7 +67,7 @@ using UnityEngine;
             quest.is_complete = this.is_complete;
             quest.monster_counter = this.monster_counter;
             quest.npc_meet = this.npc_meet;
-
+            quest.npc_meet_2 = this.npc_meet_2;
 
 
            return quest;  

@@ -100,7 +100,7 @@ public class TalkManager : MonoBehaviour
 
     }
 
-    public void Addtional_Talk_Rudencian_training_officer_RooKiss()
+    public void Additional_Talk_Rudencian_training_officer_RooKiss()
     {
 
         for (int k = 0; k < Player_Quest.Instance.PlayerQuest.Count; k++)
@@ -119,6 +119,24 @@ public class TalkManager : MonoBehaviour
                                                              "여러 무기를 자신이 선택해서 단련시킬 수 있으니, 상황에 따라 유연하게 대처가 가능하려면 가능한 여러 종류의 무기를 숙달시키는게 좋다. 하지만 이것은 권장일 뿐, 선택은 너의 몫이다.",
                                                              "루덴시안 남쪽 필드로 가서, 펀치맨을 잡아보도록 해. 20마리를 잡고서, 나에게 돌아와서 보고해."});
 
+    }
+
+    public void Additional_Talk_RooKiss_Punchman_hunting()
+    {
+        for (int k = 0; k < Player_Quest.Instance.PlayerQuest.Count; k++)
+        {
+            if (Player_Quest.Instance.PlayerQuest[k].Quest_ID == 6 && Player_Quest.Instance.PlayerQuest[k].npc_meet_2 == true) // 퀘스트가 이미 완료되었으면 리턴 
+            {
+                return;
+            }
+
+            
+            Player_Quest.Instance.PlayerQuest[k].npc_meet_2 = true;
+            TalkData.Remove(RUDENCIAN_ROOKISS_NPC_ID);
+            TalkData.Add(RUDENCIAN_ROOKISS_NPC_ID, new string[] {"펀치맨을 성공적으로 처치했군. 고생많았어."});
+
+
+        }
     }
 
     public void Reset_TalkData()

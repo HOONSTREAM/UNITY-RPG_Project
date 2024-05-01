@@ -32,9 +32,10 @@ public class RooKiss_NPC_Script : MonoBehaviour, IPointerClickHandler, TalkManag
         if (QuestDatabase.instance.QuestDB[4].npc_meet == true) { return; }
         if (QuestDatabase.instance.QuestDB[4].is_complete == true) { return; } // 펀치맨 잡기 퀘스트 진행
 
+        
         is_Additional_Talk_open = true; // 대화하기 버튼 승인 
 
-        GameObject.Find("@TalkManager").gameObject.GetComponent<TalkManager>().Addtional_Talk_Rudencian_training_officer_RooKiss(); // 대화내용 수정
+        GameObject.Find("@TalkManager").gameObject.GetComponent<TalkManager>().Additional_Talk_Rudencian_training_officer_RooKiss(); // 대화내용 수정
         gamemanager.selection.SetActive(false);
         gamemanager.SelectedNPC = gameObject;
         gamemanager.TalkAction();

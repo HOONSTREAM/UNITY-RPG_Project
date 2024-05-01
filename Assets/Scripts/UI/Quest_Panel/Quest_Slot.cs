@@ -160,7 +160,8 @@ public class Quest_Slot : MonoBehaviour , IPointerUpHandler
 
 
 
-                summing_up_explaination.text = $"ÆÝÄ¡¸Ç : ({quest.monster_counter} / {QuestDatabase.instance.Get_Punch_man_Hunting_Quest_Complete_amount()})";
+                summing_up_explaination.text = $"ÆÝÄ¡¸Ç : ({quest.monster_counter} / {QuestDatabase.instance.Get_Punch_man_Hunting_Quest_Complete_amount()})\n";
+                                             
 
                 UpdateSlotUI();
                 break;

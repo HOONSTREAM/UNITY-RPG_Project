@@ -13,6 +13,7 @@ public class Player_Quest : MonoBehaviour
 
     public delegate void OnChangeQuest();
     public OnChangeQuest onChangequest;
+    
 
 
 
