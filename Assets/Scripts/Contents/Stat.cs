@@ -92,7 +92,7 @@ public class Stat : MonoBehaviour
                 dropitem.transform.position = transform.position; //드랍아이템 위치
                 dropitem.transform.position += new Vector3(0, 0.4f, 0); //2D 스프라이트 잘림방지
 
-                QuestDatabase.instance.Kill_Slime_For_Main_Quest();
+                Managers.Quest_Completion.Kill_Slime_For_Main_Quest();
             }
 
             StartCoroutine("MonsterDead");
@@ -113,7 +113,7 @@ public class Stat : MonoBehaviour
 
                 if (QuestDatabase.instance.QuestDB[4].is_complete == true)
                 {
-                    QuestDatabase.instance.Kill_Punch_man_For_Main_Quest();
+                    Managers.Quest_Completion.Kill_Punch_man_For_Main_Quest();
                 }
                 
             }

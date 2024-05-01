@@ -44,8 +44,6 @@ public class Quest_Script : MonoBehaviour
         UI_Base.BindEvent(Quest_Panel, (PointerEventData data) => { Quest_Panel.transform.position = data.position; }, Define.UIEvent.Drag);  //인벤토리 드래그 가능하도록 하는 이벤트
         RedrawSlotUI();
 
-        QuestDatabase.instance.QuestCompleteCondition+=Quest_Complete_Alarm;       
-
 
         Player_Quest.Instance.AddQuest(QuestDatabase.instance.QuestDB[0]);
 
@@ -60,7 +58,6 @@ public class Quest_Script : MonoBehaviour
 
         Onupdate_UserInterface_Summary_Quest_Panel();
     }
-
     void RedrawSlotUI()
     {
         for (int i = 0; i < quest_slots.Length; i++)
@@ -80,7 +77,6 @@ public class Quest_Script : MonoBehaviour
 
         }
     }
-
     public void Quest_Complete_Button_Func()
     {
         for (int i = 0; i < Player_Quest.Instance.PlayerQuest.Count; i++)
@@ -88,26 +84,26 @@ public class Quest_Script : MonoBehaviour
             switch (Player_Quest.Instance.PlayerQuest[i].Quest_ID)
             {
                 case 1:
-                    QuestDatabase.instance.Kill_Slime_Quest_Conditions_for_completion();
+                    Managers.Quest_Completion.Kill_Slime_Quest_Conditions_for_completion();
                     break;
 
                 case 2: 
-                    QuestDatabase.instance.Slime_collecting_drop_item_quest_Conditions_for_completion();                
+                    Managers.Quest_Completion.Slime_collecting_drop_item_quest_Conditions_for_completion();                
                   break;
 
                 case 3: 
-                    QuestDatabase.instance.HelKen_Meet_Quest_Conditions_for_completion();
+                    Managers.Quest_Completion.HelKen_Meet_Quest_Conditions_for_completion();
                     break;
 
                 case 4:
-                    QuestDatabase.instance.Rudencian_Chief_Meet_Quest_Conditions_for_completion();
+                    Managers.Quest_Completion.Rudencian_Chief_Meet_Quest_Conditions_for_completion();
                     break;
 
                 case 5:
-                    QuestDatabase.instance.Rudencian_Training_officer_Rookiss_NPC_Meet_Quest_Conditions_for_completion();
+                    Managers.Quest_Completion.Rudencian_Training_officer_Rookiss_NPC_Meet_Quest_Conditions_for_completion();
                     break;
                 case 6:
-                    QuestDatabase.instance.Kill_Punch_man_Quest_Conditions_for_completion();
+                    Managers.Quest_Completion.Kill_Punch_man_Quest_Conditions_for_completion();
                     break;
             }
         }
@@ -123,7 +119,6 @@ public class Quest_Script : MonoBehaviour
         return;
 
     }
-
     public void Exit_Button()
     {
         if (Quest_Panel.activeSelf)
@@ -140,10 +135,9 @@ public class Quest_Script : MonoBehaviour
 
     }
 
-
     private void Onupdate_UserInterface_Summary_Quest_Panel()
     {
-        if(Player_Quest.Instance.PlayerQuest.Count == 0)
+        if (Player_Quest.Instance.PlayerQuest.Count == 0)
         {
             Quest_summary_name.text = "퀘스트 없음";
             Quest_summary_type.text = "";
@@ -151,9 +145,9 @@ public class Quest_Script : MonoBehaviour
 
         }
 
-        for(int i = 0; i<Player_Quest.Instance.PlayerQuest.Count; i++)
+        for (int i = 0; i < Player_Quest.Instance.PlayerQuest.Count; i++)
         {
-            if(Player_Quest.Instance.PlayerQuest[i].questtype == QuestType.Main)
+            if (Player_Quest.Instance.PlayerQuest[i].questtype == QuestType.Main)
             {
                 Quest_summary_name.text = Player_Quest.Instance.PlayerQuest[i].quest_name;
                 Quest_summary_type.text = Player_Quest.Instance.PlayerQuest[i].questtype.ToString();
@@ -166,51 +160,5 @@ public class Quest_Script : MonoBehaviour
 
     }
 
-    private void Quest_Complete_Alarm()
-    {
-        if(Player_Quest.Instance.PlayerQuest.Count == 0) { return;  }
-
-        for (int i = 0; i < Player_Quest.Instance.PlayerQuest.Count; i++)
-        {
-            switch (Player_Quest.Instance.PlayerQuest[i].Quest_ID)
-            {
-                case 1:
-
-                    if (QuestDatabase.instance.QuestDB[0].monster_counter == 2)
-                    {
-                        GameObject go = Managers.Resources.Instantiate("Quest_Complete").gameObject;
-                        Managers.Sound.Play("GUI_Sound/misc_sound");
-                        Destroy(go, 5.0f);
-                    }
-
-
-                    break;
-
-                case 2:
-                    for (int k = 0; k < PlayerInventory.Instance.player_items.Count; k++)
-                    {
-                        if (PlayerInventory.Instance.player_items[k].itemname == "슬라임의 액체" && PlayerInventory.Instance.player_items[k].amount == 10) // 슬라임 액체
-                        {
-                            GameObject go = Managers.Resources.Instantiate("Quest_Complete").gameObject;
-                            Managers.Sound.Play("GUI_Sound/misc_sound");
-                            Destroy(go, 5.0f);
-                        }
-                    }
-                            break;                   
-
-                case 6:
-                    if (QuestDatabase.instance.QuestDB[6].monster_counter == 2)
-                    {
-                        GameObject go = Managers.Resources.Instantiate("Quest_Complete").gameObject;
-                        Managers.Sound.Play("GUI_Sound/misc_sound");
-                        Destroy(go, 5.0f);
-                    }
-                    break;
-
-            }
-        }
-    }
-    
-             
 
 }

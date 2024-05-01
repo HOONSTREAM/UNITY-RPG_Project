@@ -29,68 +29,25 @@ public class Quest_Slot : MonoBehaviour , IPointerUpHandler
     [SerializeField]
     private TextMeshProUGUI reward_exp;
 
-    
-
-    public void UpdateSlotUI()
-    {
-        quest_icon.sprite = quest.quest_image;
-        quest_name.text = quest.quest_name;       
-        quest_icon.gameObject.SetActive(true);
-
-        if(quest.questtype == QuestType.Main)
-        {
-            main_or_sub.text = "<메인퀘스트>";
-
-        }
-        else if (quest.questtype == QuestType.Sub)
-        {
-            main_or_sub.text = "<서브퀘스트>";
-
-        }
-
-        else if((quest.questtype == QuestType.Repetition))
-        {
-            main_or_sub.text = "<반복퀘스트>";
-        }
-
-        else 
-        {
-            main_or_sub.text = " ";
-        }
-
-    
-        return;
-    }
-    public void RemoveSlot()
-    {
-        quest = null;
-        quest_icon.gameObject.SetActive(false); //초기화 (아이콘 표시 안함)
-        quest_name.text = "";
-        main_or_sub.text = " ";
-        explaination_quest.text = "";
-        summing_up_explaination.text = " ";
-        reward_gold.text = "0";
-        reward_exp.text = "0";
-
-
-        return;
-    }
-
 
     public void OnPointerUp(PointerEventData eventData)
     {
 
         explaination_quest.text = quest.Description;
         summing_up_explaination.text = quest.summing_up_Description;
-        
+        OnUpdate_Quest_Progress();
+    }
+
+    private void OnUpdate_Quest_Progress()
+    {
 
         switch (quest.Quest_ID)
         {
             case 1:
                 reward_gold.text = QuestDatabase.instance.QuestDB[0].num_1.ToString();
                 reward_exp.text = QuestDatabase.instance.QuestDB[0].num_2.ToString();
-                summing_up_explaination.text = $"레드슬라임 : ({quest.monster_counter} / {QuestDatabase.instance.Get_Slime_Hunting_Quest_Complete_amount()})";
-
+                summing_up_explaination.text = $"레드슬라임 : ({quest.monster_counter} / {Managers.Quest_Completion.Get_Slime_Hunting_Quest_Complete_amount()})";
+               
                 UpdateSlotUI();
 
                 break;
@@ -100,15 +57,16 @@ public class Quest_Slot : MonoBehaviour , IPointerUpHandler
 
                 reward_gold.text = QuestDatabase.instance.QuestDB[1].num_1.ToString();
                 reward_exp.text = QuestDatabase.instance.QuestDB[1].num_2.ToString();
-                for(int i = 0; i<PlayerInventory.Instance.player_items.Count; i++)
+                for (int i = 0; i < PlayerInventory.Instance.player_items.Count; i++)
                 {
-                    if (PlayerInventory.Instance.player_items[i].ItemID == QuestDatabase.instance.Get_Slime_Drop_item_ID())
+                    if (PlayerInventory.Instance.player_items[i].ItemID == Managers.Quest_Completion.Get_Slime_Drop_item_ID())
                     {
                         slime_etc_item_amount = PlayerInventory.Instance.player_items[i].amount;
                     }
                 }
 
-                summing_up_explaination.text = $"슬라임액체 : ({slime_etc_item_amount} / {QuestDatabase.instance.Get_Slime_collecting_item_amount()})";
+                summing_up_explaination.text = $"슬라임액체 : ({slime_etc_item_amount} / {Managers.Quest_Completion.Get_Slime_collecting_item_amount()})";
+               
 
                 UpdateSlotUI();
 
@@ -118,14 +76,14 @@ public class Quest_Slot : MonoBehaviour , IPointerUpHandler
 
                 reward_gold.text = QuestDatabase.instance.QuestDB[2].num_1.ToString();
                 reward_exp.text = QuestDatabase.instance.QuestDB[2].num_2.ToString();
-                
+
 
 
                 summing_up_explaination.text = $"기사 헬켄을 찾아 대화를 한다.";
 
                 UpdateSlotUI();
 
-                
+
                 break;
 
             case 4:
@@ -160,8 +118,8 @@ public class Quest_Slot : MonoBehaviour , IPointerUpHandler
 
 
 
-                summing_up_explaination.text = $"펀치맨 : ({quest.monster_counter} / {QuestDatabase.instance.Get_Punch_man_Hunting_Quest_Complete_amount()})\n";
-                                             
+                summing_up_explaination.text = $"펀치맨 : ({quest.monster_counter} / {Managers.Quest_Completion.Get_Punch_man_Hunting_Quest_Complete_amount()})\n";
+
 
                 UpdateSlotUI();
                 break;
@@ -171,7 +129,51 @@ public class Quest_Slot : MonoBehaviour , IPointerUpHandler
 
 
         }
+    }
 
+    public void UpdateSlotUI()
+    {
+        quest_icon.sprite = quest.quest_image;
+        quest_name.text = quest.quest_name;
+        quest_icon.gameObject.SetActive(true);
+
+        if (quest.questtype == QuestType.Main)
+        {
+            main_or_sub.text = "<메인퀘스트>";
+
+        }
+        else if (quest.questtype == QuestType.Sub)
+        {
+            main_or_sub.text = "<서브퀘스트>";
+
+        }
+
+        else if ((quest.questtype == QuestType.Repetition))
+        {
+            main_or_sub.text = "<반복퀘스트>";
+        }
+
+        else
+        {
+            main_or_sub.text = " ";
+        }
+
+
+        return;
+    }
+    public void RemoveSlot()
+    {
+        quest = null;
+        quest_icon.gameObject.SetActive(false); //초기화 (아이콘 표시 안함)
+        quest_name.text = "";
+        main_or_sub.text = " ";
+        explaination_quest.text = "";
+        summing_up_explaination.text = " ";
+        reward_gold.text = "0";
+        reward_exp.text = "0";
+
+
+        return;
     }
 
 }
