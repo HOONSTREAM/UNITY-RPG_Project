@@ -104,6 +104,9 @@ public class Quest_Script : MonoBehaviour
                 case 5:
                     QuestDatabase.instance.Rudencian_Training_officer_Rookiss_NPC_Meet_Quest_Conditions_for_completion();
                     break;
+                case 6:
+                    QuestDatabase.instance.Kill_Punch_man_Quest_Conditions_for_completion();
+                    break;
             }
         }
     }

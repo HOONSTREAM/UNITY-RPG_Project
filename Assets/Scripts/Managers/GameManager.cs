@@ -117,7 +117,9 @@ public class GameManager : MonoBehaviour
                 }
                 else if (scanobject.gameObject.GetComponent<House_Chief_NPC_Script>().is_Additional_Talk_open == true)
                 {
-
+                    Managers.Sound.Clear();
+                    Managers.Sound.Play("월터메인퀘스트사운드", Define.Sound.Bgm);
+                  
                     selection.gameObject.SetActive(false);
 
                     if (Talkindex == 8) // 추가 대화가 끝에 도달했는지 검사 
@@ -129,6 +131,8 @@ public class GameManager : MonoBehaviour
                         scanobject.gameObject.GetComponent<House_Chief_NPC_Script>().is_Additional_Talk_open = false;
                         talkmanager.Reset_TalkData(); // Talk Data 리셋
                         Talkindex = 0;
+                        Managers.Sound.Clear();
+                        Managers.Sound.Play("루덴시안");
 
                     }
 

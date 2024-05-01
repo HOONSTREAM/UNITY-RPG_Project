@@ -153,6 +153,20 @@ public class Quest_Slot : MonoBehaviour , IPointerUpHandler
 
                 break;
 
+            case 6:
+
+                reward_gold.text = QuestDatabase.instance.QuestDB[5].num_1.ToString();
+                reward_exp.text = QuestDatabase.instance.QuestDB[5].num_2.ToString();
+
+
+
+                summing_up_explaination.text = $"ÆÝÄ¡¸Ç : ({quest.monster_counter} / {QuestDatabase.instance.Get_Punch_man_Hunting_Quest_Complete_amount()})";
+
+                UpdateSlotUI();
+                break;
+
+
+
 
 
         }
