@@ -30,6 +30,11 @@ public class Quest_Slot : MonoBehaviour , IPointerUpHandler
     private TextMeshProUGUI reward_exp;
 
 
+
+    private void Start()
+    {
+      
+    }
     public void OnPointerUp(PointerEventData eventData)
     {
 

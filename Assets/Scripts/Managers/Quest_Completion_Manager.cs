@@ -241,7 +241,7 @@ public class Quest_Completion_Manager : MonoBehaviour
         return PUNCHMAN_HUNTING_QUEST_COMPLETE_AMOUNT;
     }
 
-    private void Quest_Complete_Alarm()
+    public void Quest_Complete_Alarm()
     {
         GameObject go = Managers.Resources.Instantiate("Quest_Complete").gameObject;
         Managers.Sound.Play("GUI_Sound/misc_sound");

@@ -29,8 +29,10 @@ public class Quest_Script : MonoBehaviour
     public TextMeshProUGUI Quest_summary_name;
     public TextMeshProUGUI Quest_summary_type;
     public TextMeshProUGUI Quest_summary;
+    private bool IsAlarm_execute = false;
 
-    
+
+
     void Start()
     {
         stat = GetComponent<PlayerStat>(); //골드 업데이트를 위한 플레이어 스텟 참조
@@ -137,6 +139,9 @@ public class Quest_Script : MonoBehaviour
 
     private void Onupdate_UserInterface_Summary_Quest_Panel()
     {
+
+        
+
         if (Player_Quest.Instance.PlayerQuest.Count == 0)
         {
             Quest_summary_name.text = "퀘스트 없음";
@@ -151,11 +156,67 @@ public class Quest_Script : MonoBehaviour
             {
                 Quest_summary_name.text = Player_Quest.Instance.PlayerQuest[i].quest_name;
                 Quest_summary_type.text = Player_Quest.Instance.PlayerQuest[i].questtype.ToString();
-                Quest_summary.text = Player_Quest.Instance.PlayerQuest[i].summing_up_Description;
 
-                break;
+                switch (Player_Quest.Instance.PlayerQuest[i].Quest_ID)
+                {
+                    case 1:
+                       Quest_summary.text = $"레드슬라임 : ({Player_Quest.Instance.PlayerQuest[i].monster_counter} / {Managers.Quest_Completion.Get_Slime_Hunting_Quest_Complete_amount()})";
+                       
+                        if (Player_Quest.Instance.PlayerQuest[i].monster_counter >= Managers.Quest_Completion.Get_Slime_Hunting_Quest_Complete_amount() && IsAlarm_execute == false)
+                        {
+                            Managers.Quest_Completion.Quest_Complete_Alarm();
+                            IsAlarm_execute = true;
+                        }
+                        
+                            break;
+                    case 2:
+
+                        int slime_etc_item_amount = 0;
+
+                        Quest_summary.text = $"슬라임액체 : ({slime_etc_item_amount} / {Managers.Quest_Completion.Get_Slime_collecting_item_amount()})";
+
+                        IsAlarm_execute = false;
+                      
+                        for (int k = 0; k < PlayerInventory.Instance.player_items.Count; i++)
+                        {
+
+                            if (PlayerInventory.Instance.player_items[i].ItemID == Managers.Quest_Completion.Get_Slime_Drop_item_ID())
+                            {
+                                slime_etc_item_amount = PlayerInventory.Instance.player_items[i].amount;
+
+                                break;
+                            }
+                          
+                        }
+
+                        Quest_summary.text = $"슬라임액체 : ({slime_etc_item_amount} / {Managers.Quest_Completion.Get_Slime_collecting_item_amount()})";
+
+                        if (slime_etc_item_amount >= Managers.Quest_Completion.Get_Slime_collecting_item_amount())
+                        {
+                            Managers.Quest_Completion.Quest_Complete_Alarm();
+                            IsAlarm_execute = true;
+                        }
+
+                        break;
+
+                    case 3:
+                        Quest_summary.text = $"기사 헬켄을 찾아 대화를 한다.";
+                        break;
+                    case 4:
+                        Quest_summary.text = $"촌장 월터를 찾아가 대화를 한다.";
+                        break;
+                    case 5:
+                        Quest_summary.text = $"수련관 루키스를 찾아가 대화를 한다.";
+                        break;
+                    case 6:
+                        Quest_summary.text = $"펀치맨 : ({Player_Quest.Instance.PlayerQuest[i].monster_counter} / {Managers.Quest_Completion.Get_Punch_man_Hunting_Quest_Complete_amount()})\n";
+                        break;
+
+                }
+
 
             }
+
         }
 
     }
