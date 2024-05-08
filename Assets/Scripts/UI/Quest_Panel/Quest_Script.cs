@@ -29,9 +29,7 @@ public class Quest_Script : MonoBehaviour
     public TextMeshProUGUI Quest_summary_name;
     public TextMeshProUGUI Quest_summary_type;
     public TextMeshProUGUI Quest_summary;
-    private bool IsAlarm_execute = false;
-
-
+   
 
     void Start()
     {
@@ -107,6 +105,10 @@ public class Quest_Script : MonoBehaviour
                 case 6:
                     Managers.Quest_Completion.Kill_Punch_man_Quest_Conditions_for_completion();
                     break;
+                case 7:
+                    Managers.Quest_Completion.Rookiss_NPC_Meet_Quest_Conditions_for_completion_Second();
+                    break;
+
             }
         }
     }
@@ -139,84 +141,92 @@ public class Quest_Script : MonoBehaviour
 
     private void Onupdate_UserInterface_Summary_Quest_Panel()
     {
-
-        
-
+       
         if (Player_Quest.Instance.PlayerQuest.Count == 0)
         {
             Quest_summary_name.text = "퀘스트 없음";
             Quest_summary_type.text = "";
             Quest_summary.text = "";
-
         }
 
-        for (int i = 0; i < Player_Quest.Instance.PlayerQuest.Count; i++)
+        foreach (var quest in Player_Quest.Instance.PlayerQuest)
         {
-            if (Player_Quest.Instance.PlayerQuest[i].questtype == QuestType.Main)
+            if (quest.questtype == QuestType.Main)
             {
-                Quest_summary_name.text = Player_Quest.Instance.PlayerQuest[i].quest_name;
-                Quest_summary_type.text = Player_Quest.Instance.PlayerQuest[i].questtype.ToString();
+                Quest_summary_name.text = quest.quest_name;
+                Quest_summary_type.text = quest.questtype.ToString();
 
-                switch (Player_Quest.Instance.PlayerQuest[i].Quest_ID)
+                switch (quest.Quest_ID)
                 {
                     case 1:
-                       Quest_summary.text = $"레드슬라임 : ({Player_Quest.Instance.PlayerQuest[i].monster_counter} / {Managers.Quest_Completion.Get_Slime_Hunting_Quest_Complete_amount()})";
-                       
-                        if (Player_Quest.Instance.PlayerQuest[i].monster_counter >= Managers.Quest_Completion.Get_Slime_Hunting_Quest_Complete_amount() && IsAlarm_execute == false)
+                        Quest_summary.text = $"레드슬라임 : ({quest.monster_counter} / {Managers.Quest_Completion.Get_Slime_Hunting_Quest_Complete_amount()})";
+
+                        // 퀘스트 완료 조건이 충족되지 않았을 때만 알람 실행
+                        if (quest.monster_counter >= Managers.Quest_Completion.Get_Slime_Hunting_Quest_Complete_amount() && !quest.is_achievement_of_conditions)
                         {
                             Managers.Quest_Completion.Quest_Complete_Alarm();
-                            IsAlarm_execute = true;
+                            quest.is_achievement_of_conditions = true;
                         }
-                        
-                            break;
-                    case 2:
+                        break;
 
+                    case 2:
                         int slime_etc_item_amount = 0;
 
-                        Quest_summary.text = $"슬라임액체 : ({slime_etc_item_amount} / {Managers.Quest_Completion.Get_Slime_collecting_item_amount()})";
+                        // 인벤토리의 아이템을 순회하여 슬라임 드롭 아이템의 수량을 찾음
 
-                        IsAlarm_execute = false;
-                      
-                        for (int k = 0; k < PlayerInventory.Instance.player_items.Count; i++)
+                        foreach (var item in PlayerInventory.Instance.player_items)
                         {
-
-                            if (PlayerInventory.Instance.player_items[i].ItemID == Managers.Quest_Completion.Get_Slime_Drop_item_ID())
+                            if (item.ItemID == Managers.Quest_Completion.Get_Slime_Drop_item_ID())
                             {
-                                slime_etc_item_amount = PlayerInventory.Instance.player_items[i].amount;
+                                slime_etc_item_amount = item.amount;
 
                                 break;
                             }
-                          
                         }
 
                         Quest_summary.text = $"슬라임액체 : ({slime_etc_item_amount} / {Managers.Quest_Completion.Get_Slime_collecting_item_amount()})";
 
-                        if (slime_etc_item_amount >= Managers.Quest_Completion.Get_Slime_collecting_item_amount())
+                        // 퀘스트 완료 조건이 충족되지 않았을 때만 알람 실행
+                        if (slime_etc_item_amount >= Managers.Quest_Completion.Get_Slime_collecting_item_amount() && !quest.is_achievement_of_conditions)
                         {
                             Managers.Quest_Completion.Quest_Complete_Alarm();
-                            IsAlarm_execute = true;
+                            quest.is_achievement_of_conditions = true;
                         }
-
                         break;
 
                     case 3:
                         Quest_summary.text = $"기사 헬켄을 찾아 대화를 한다.";
                         break;
+
                     case 4:
                         Quest_summary.text = $"촌장 월터를 찾아가 대화를 한다.";
                         break;
+
                     case 5:
                         Quest_summary.text = $"수련관 루키스를 찾아가 대화를 한다.";
                         break;
+
                     case 6:
-                        Quest_summary.text = $"펀치맨 : ({Player_Quest.Instance.PlayerQuest[i].monster_counter} / {Managers.Quest_Completion.Get_Punch_man_Hunting_Quest_Complete_amount()})\n";
+                        Quest_summary.text = $"펀치맨 : ({quest.monster_counter} / {Managers.Quest_Completion.Get_Punch_man_Hunting_Quest_Complete_amount()})";
+
+                        // 퀘스트 완료 조건이 충족되지 않았을 때만 알람 실행
+                        if (quest.monster_counter >= Managers.Quest_Completion.Get_Punch_man_Hunting_Quest_Complete_amount() && !quest.is_achievement_of_conditions)
+                        {
+                            Managers.Quest_Completion.Quest_Complete_Alarm();
+                            quest.is_achievement_of_conditions = true;
+                        }
                         break;
 
+                    case 7:
+                        Quest_summary.text = $"수련관 루키스를 찾아가 대화를 한다.";
+                        break;
                 }
 
-
+                break;
+            
             }
 
+           
         }
 
     }

@@ -29,18 +29,29 @@ public class RooKiss_NPC_Script : MonoBehaviour, IPointerClickHandler, TalkManag
     public void Additional_Talk()
     {
         if (QuestDatabase.instance.QuestDB[3].is_complete == false) { return; }
-        if (QuestDatabase.instance.QuestDB[4].npc_meet == true) { return; }
-        if (QuestDatabase.instance.QuestDB[4].is_complete == true) { return; } // 펀치맨 잡기 퀘스트 진행
-
         
-        is_Additional_Talk_open = true; // 대화하기 버튼 승인 
+        if (QuestDatabase.instance.QuestDB[5].is_complete == true && !QuestDatabase.instance.QuestDB[6].is_complete)
+        {
+            is_Additional_Talk_open = true; // 대화하기 버튼 승인 
 
-        GameObject.Find("@TalkManager").gameObject.GetComponent<TalkManager>().Additional_Talk_Rudencian_training_officer_RooKiss(); // 대화내용 수정
-        gamemanager.selection.SetActive(false);
-        gamemanager.SelectedNPC = gameObject;
-        gamemanager.TalkAction();
+            GameObject.Find("@TalkManager").gameObject.GetComponent<TalkManager>().Additional_Talk_Rudencian_training_officer_RooKiss_Quest2(); // 대화내용 수정
+            gamemanager.selection.SetActive(false);
+            gamemanager.SelectedNPC = gameObject;
+            gamemanager.TalkAction();
+        }
 
+        else
+        {
+            is_Additional_Talk_open = true; // 대화하기 버튼 승인 
+
+            GameObject.Find("@TalkManager").gameObject.GetComponent<TalkManager>().Additional_Talk_Rudencian_training_officer_RooKiss(); // 대화내용 수정
+            gamemanager.selection.SetActive(false);
+            gamemanager.SelectedNPC = gameObject;
+            gamemanager.TalkAction();
+        }
+       
         return;
+
     }
 
     public void RooKiss_Quest()

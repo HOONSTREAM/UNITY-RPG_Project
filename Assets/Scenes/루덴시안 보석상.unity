@@ -7166,7 +7166,7 @@ MonoBehaviour:
   NPC_name: {fileID: 0}
   Talk_Panel_next_button: {fileID: 0}
   Additional_Talk_button: {fileID: 0}
-  Helken_selection: {fileID: 0}
+  selection: {fileID: 0}
 --- !u!4 &327291424
 Transform:
   m_ObjectHideFlags: 0
@@ -17055,7 +17055,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &844465430
 RectTransform:
   m_ObjectHideFlags: 0
@@ -32635,7 +32635,7 @@ MonoBehaviour:
   NPC_name: {fileID: 0}
   Talk_Panel_next_button: {fileID: 0}
   Additional_Talk_button: {fileID: 0}
-  Helken_selection: {fileID: 0}
+  selection: {fileID: 0}
 --- !u!1001 &1851040543
 PrefabInstance:
   m_ObjectHideFlags: 0

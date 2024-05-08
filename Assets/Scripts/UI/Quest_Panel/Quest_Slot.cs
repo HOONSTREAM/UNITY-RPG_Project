@@ -130,6 +130,20 @@ public class Quest_Slot : MonoBehaviour , IPointerUpHandler
                 break;
 
 
+            case 7:
+
+                reward_gold.text = QuestDatabase.instance.QuestDB[6].num_1.ToString();
+                reward_exp.text = QuestDatabase.instance.QuestDB[6].num_2.ToString();
+
+
+
+                summing_up_explaination.text = "수련관 루키스와 두번째 대화";
+
+
+                UpdateSlotUI();
+
+                break;
+
 
 
 

@@ -121,23 +121,26 @@ public class TalkManager : MonoBehaviour
 
     }
 
-    public void Additional_Talk_RooKiss_Punchman_hunting()
+
+    public void Additional_Talk_Rudencian_training_officer_RooKiss_Quest2()
     {
+
         for (int k = 0; k < Player_Quest.Instance.PlayerQuest.Count; k++)
         {
-            if (Player_Quest.Instance.PlayerQuest[k].Quest_ID == 6 && Player_Quest.Instance.PlayerQuest[k].npc_meet_2 == true) // 퀘스트가 이미 완료되었으면 리턴 
+            if (Player_Quest.Instance.PlayerQuest[k].Quest_ID == 7 && Player_Quest.Instance.PlayerQuest[k].npc_meet == true) // 퀘스트가 이미 완료되었으면 리턴 
             {
                 return;
             }
 
-            
-            Player_Quest.Instance.PlayerQuest[k].npc_meet_2 = true;
-            TalkData.Remove(RUDENCIAN_ROOKISS_NPC_ID);
-            TalkData.Add(RUDENCIAN_ROOKISS_NPC_ID, new string[] {"펀치맨을 성공적으로 처치했군. 고생많았어."});
-
-
+            Player_Quest.Instance.PlayerQuest[k].npc_meet = true;
         }
+
+        TalkData.Remove(RUDENCIAN_ROOKISS_NPC_ID);
+        TalkData.Add(RUDENCIAN_ROOKISS_NPC_ID, new string[] {"장비착용 퀘스트 8로 진행하기 위한 테스트 진행중 "});
+
     }
+
+
 
     public void Reset_TalkData()
     {

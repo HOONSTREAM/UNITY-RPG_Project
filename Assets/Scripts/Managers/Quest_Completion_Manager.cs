@@ -6,6 +6,7 @@ public class Quest_Completion_Manager : MonoBehaviour
 {
     private const int KILL_SLIME_MAIN_QUEST_ID = 1;
     private const int KILL_PUNCH_MAN_MAIN_QUEST_ID = 6;
+    private const int SECOND_MEET_ROOKISS_QUEST_ID = 7;
 
     private readonly int SLIME_HUNTING_QUEST_COMPLETE_AMOUNT = 2;
     private readonly int COLLECTING_SLIME_ITEM_AMOUNT = 10;
@@ -215,6 +216,34 @@ public class Quest_Completion_Manager : MonoBehaviour
 
 
             }
+        }
+    }
+
+
+    public void Rookiss_NPC_Meet_Quest_Conditions_for_completion_Second()
+    {
+        for (int i = 0; i < Player_Quest.Instance.PlayerQuest.Count; i++)
+        {
+            if (Player_Quest.Instance.PlayerQuest[i].Quest_ID != SECOND_MEET_ROOKISS_QUEST_ID) { continue; }
+
+            if (Player_Quest.Instance.PlayerQuest[i].npc_meet == false)
+            {
+                GameObject.Find("GUI_User_Interface").
+               gameObject.GetComponent<Print_Info_Text>().PrintUserText("퀘스트 조건이 충족되지 않았습니다.");
+
+                return;
+            }
+
+            Player_Quest.Instance.PlayerQuest[i].Quest_Clear();
+
+            Player_Quest.Instance.RemoveQuest(i);
+            Player_Quest.Instance.onChangequest.Invoke();
+            GameObject.Find("GUI_User_Interface").
+               gameObject.GetComponent<Print_Info_Text>().PrintUserText("퀘스트 완료");
+
+            //다음 메인퀘스트 자동 추가
+          //  Player_Quest.Instance.AddQuest(QuestDatabase.instance.QuestDB[7]);
+
         }
     }
 

@@ -160,8 +160,27 @@ public class GameManager : MonoBehaviour
 
                 else if (scanobject.gameObject.GetComponent<RooKiss_NPC_Script>().is_Additional_Talk_open == true)
                 {
+                    if (QuestDatabase.instance.QuestDB[5].is_complete == true && !QuestDatabase.instance.QuestDB[6].is_complete)
+                    {
+                        selection.gameObject.SetActive(false);
 
-                    selection.gameObject.SetActive(false);
+                        if (Talkindex == 1) // 추가 대화가 끝에 도달했는지 검사 
+                        {
+
+                            Talk_Panel_next_button.gameObject.SetActive(false);
+                            selection.gameObject.SetActive(true);
+                            Additional_Talk_button.gameObject.SetActive(false);
+                            scanobject.gameObject.GetComponent<RooKiss_NPC_Script>().is_Additional_Talk_open = false;
+                            talkmanager.Reset_TalkData(); // Talk Data 리셋
+                            Talkindex = 0;
+
+                        }
+
+                        break;
+                    }
+
+
+                        selection.gameObject.SetActive(false);
 
                     if (Talkindex == 4) // 추가 대화가 끝에 도달했는지 검사 
                     {
