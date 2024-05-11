@@ -3582,7 +3582,7 @@ RectTransform:
   m_GameObject: {fileID: 462937300}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 801911849}
@@ -3590,9 +3590,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 82.286865, y: -351.58942}
+  m_AnchoredPosition: {x: 77.332214, y: 149}
   m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 1.3228683, y: -3.0158942}
+  m_Pivot: {x: 1.2733223, y: 2.076378}
 --- !u!114 &462937302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3620,7 +3620,7 @@ MonoBehaviour:
   _emitterConstraintEnabled:
     enabled: 0
   _emitterConstraintTransform: {fileID: 0}
-  _shape: 4
+  _shape: 0
   _spread: 0
   _spreadLoop: 1
   _startDelay: 0
@@ -3804,7 +3804,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     m_ConstantMin: 0
-    m_ConstantMax: 1
+    m_ConstantMax: 0.2
   _colorOverLifetime:
     m_Mode: 1
     m_GradientMin:
@@ -4244,7 +4244,7 @@ MonoBehaviour:
         m_PostInfinity: 2
         m_RotationOrder: 4
       m_ConstantMin: 0
-      m_ConstantMax: 0
+      m_ConstantMax: 20
     xCurve:
       m_Mode: 0
       m_CurveMultiplier: 0
@@ -4529,7 +4529,7 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
     m_ConstantMin: 0
-    m_ConstantMax: 2
+    m_ConstantMax: 0
   _alignToDirection: 0
   _gravity:
     m_Mode: 0
@@ -4685,8 +4685,8 @@ MonoBehaviour:
     m_ConstantMin: 0
     m_ConstantMax: 0
   _sheetModule:
-    enabled: 0
-  _textureTile: {x: 1, y: 1}
+    enabled: 1
+  _textureTile: {x: 4, y: 4}
   _sheetType: 2
   _frameOverTime:
     m_Mode: 0
@@ -4725,9 +4725,9 @@ MonoBehaviour:
   _frameSpeedRange:
     from: 0
     to: 1
-  _textureSheetFPS: 25
+  _textureSheetFPS: 30
   _textureSheetCycles: 1
-  _rate: 10
+  _rate: 5
   _rateOverLifetime: 0
   _rateOverDistance: 0
   _bursts: []
@@ -4929,7 +4929,7 @@ MonoBehaviour:
   moduleMovementFoldout: 1
   moduleEventsFoldout: 0
   moduleAdvancedFoldout: 0
-  m_Sprite: {fileID: 21300000, guid: c723bdc671899d044b57ba85683ccca3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 198921e82714ae04383597eaaa671c05, type: 3}
   m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
 --- !u!222 &462937303
 CanvasRenderer:
@@ -5917,7 +5917,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &899987668
 Transform:
   m_ObjectHideFlags: 0
