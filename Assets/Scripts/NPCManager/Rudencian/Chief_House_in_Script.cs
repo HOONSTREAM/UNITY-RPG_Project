@@ -7,9 +7,6 @@ public class Chief_House_in_Script : MonoBehaviour
 {
     public GameObject savedata;
 
-
-    private const int RUDENCIAN_CHIEF_HOUSE_SCENE_NUMBER = 10;
-
     private void Start()
     {
         savedata = GameObject.Find("Save_Data").gameObject;
@@ -17,13 +14,13 @@ public class Chief_House_in_Script : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        LoadingScene.NEXT_SCENE_NUMBER = RUDENCIAN_CHIEF_HOUSE_SCENE_NUMBER;
+        LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Rudencian_House_chief_Scene();
 
         GameObject player = Managers.Game.GetPlayer();
         DontDestroyOnLoad(player);
         DontDestroyOnLoad(savedata);
 
-        SceneManager.LoadScene(LoadingScene.LOADING_SCENE_NUMBER);
+        SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
     }
 
 }

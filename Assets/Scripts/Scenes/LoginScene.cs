@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class LoginScene : MonoBehaviour
 {
-    private const int LOADING_SCENE_NUMBER = 0;
 
     public TMP_InputField ID;
     public TMP_InputField Password;
@@ -20,6 +19,7 @@ public class LoginScene : MonoBehaviour
 
     private void Start()
     {
+        LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Start_Scene();
         GameObject Init_player = Managers.Game.GetPlayer();
         Camera.main.gameObject.GetAddComponent<CameraController>().SetPlayer(Init_player);
         gameObject.GetAddComponent<CursorController>();
@@ -89,7 +89,7 @@ public class LoginScene : MonoBehaviour
         if (Password.text == pass)
 
         {              
-            SceneManager.LoadScene(LOADING_SCENE_NUMBER);
+            SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
         }
 
         else

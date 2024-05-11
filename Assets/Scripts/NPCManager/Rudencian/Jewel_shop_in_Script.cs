@@ -7,8 +7,6 @@ public class Jewel_shop_in_Script : MonoBehaviour
 {
     public GameObject savedata;
 
-    private const int RUDENCIAN_JEWEL_SHOP_SCENE_NUMBER = 7;
-
     private void Start()
     {
         savedata = GameObject.Find("Save_Data").gameObject;
@@ -16,12 +14,12 @@ public class Jewel_shop_in_Script : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        LoadingScene.NEXT_SCENE_NUMBER = RUDENCIAN_JEWEL_SHOP_SCENE_NUMBER;
+        LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Rudencian_jewel_Scene();
 
         GameObject player = Managers.Game.GetPlayer();
         DontDestroyOnLoad(player);
         DontDestroyOnLoad(savedata);
 
-        SceneManager.LoadScene(LoadingScene.LOADING_SCENE_NUMBER);
+        SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
     }
 }

@@ -7,10 +7,6 @@ public class south_in_script : MonoBehaviour
 {
     public GameObject savedata;
     
-    private const int SOUTH_SCENE_NUMBER = 3;
-    private const int SOUTH2_SCENE_NUMBER = 9;
-
-
     private void Start()
     {
         savedata = GameObject.Find("Save_Data").gameObject;
@@ -19,7 +15,7 @@ public class south_in_script : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        LoadingScene.NEXT_SCENE_NUMBER = SOUTH_SCENE_NUMBER;
+        LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Rudencian_south();
 
         GameObject player = Managers.Game.GetPlayer();
         DontDestroyOnLoad(player);
@@ -29,15 +25,15 @@ public class south_in_script : MonoBehaviour
         {
             case "·çµ§½Ã¾È":
                 
-                LoadingScene.NEXT_SCENE_NUMBER = SOUTH_SCENE_NUMBER;
+                LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Rudencian_south();
                 player.transform.position = new Vector3(-1.1499f, 0, -33.6f);
-                SceneManager.LoadScene(LoadingScene.LOADING_SCENE_NUMBER);
+                SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
                 break;
 
             case "·çµ§½Ã¾È ³²ÂÊ2":
-                LoadingScene.NEXT_SCENE_NUMBER = SOUTH_SCENE_NUMBER;
+                LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Rudencian_south();
                 player.transform.position = new Vector3(37f, 0, 30f);            
-                SceneManager.LoadScene(LoadingScene.LOADING_SCENE_NUMBER);
+                SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
                 break;
 
         }

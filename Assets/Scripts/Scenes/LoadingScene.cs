@@ -7,8 +7,7 @@ using UnityEngine.UI;
 
 public class LoadingScene : MonoBehaviour
 {
-    public static int NEXT_SCENE_NUMBER = 1;
-    public const int LOADING_SCENE_NUMBER = 0;
+    public static int NEXT_SCENE_NUMBER = 0;
 
     [SerializeField]
     private Slider loadingbar;

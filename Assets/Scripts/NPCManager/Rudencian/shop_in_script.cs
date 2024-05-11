@@ -7,10 +7,6 @@ public class shop_in_script : MonoBehaviour
 {
     public GameObject savedata;
  
-
-    private const int RUDENCIAN_SHOP_SCENE_NUMBER = 2;
-
-
     private void Start()
     {
         savedata = GameObject.Find("Save_Data").gameObject;
@@ -19,12 +15,12 @@ public class shop_in_script : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        LoadingScene.NEXT_SCENE_NUMBER = RUDENCIAN_SHOP_SCENE_NUMBER;
+        LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Rudencian_shop();
         GameObject player = Managers.Game.GetPlayer();
         DontDestroyOnLoad(player);
         DontDestroyOnLoad(savedata);
         
-        SceneManager.LoadScene(LoadingScene.LOADING_SCENE_NUMBER);
+        SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
 
     }
 

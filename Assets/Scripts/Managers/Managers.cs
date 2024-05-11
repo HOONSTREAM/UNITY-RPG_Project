@@ -18,12 +18,14 @@ public class Managers : MonoBehaviour
     Monster_Stat_Factory _stat_factory = new Monster_Stat_Factory();
     Monster_Info_Manager _monster_info = new Monster_Info_Manager();
     Quest_Completion_Manager _quest_completion = new Quest_Completion_Manager();
+    Scene_Number_Manager _scene_number = new Scene_Number_Manager();
 
     public static GameManager Game { get { return Instance._game; } }
     public static CoolTimeManager CoolTime { get { return Instance._cool; } }
     public static Monster_Stat_Factory StatFactory { get { return Instance._stat_factory; } }
     public static Monster_Info_Manager Monster_Info { get { return Instance._monster_info; } }
     public static Quest_Completion_Manager Quest_Completion { get { return Instance._quest_completion; } }
+    public static Scene_Number_Manager Scene_Number { get { return Instance._scene_number; } }
 
     #endregion
 

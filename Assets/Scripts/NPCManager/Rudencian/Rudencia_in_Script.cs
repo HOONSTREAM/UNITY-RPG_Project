@@ -7,12 +7,9 @@ using UnityEngine.SceneManagement;
 public class Rudencia_in_Script : MonoBehaviour
 {
     
-    private const int RUDENCIAN_SCENE_NUMBER = 1;
-
-
     private void OnTriggerEnter(Collider other)
     {
-        LoadingScene.NEXT_SCENE_NUMBER = RUDENCIAN_SCENE_NUMBER;
+        LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Rudencian_scene();
 
         GameObject player = Managers.Game.GetPlayer();
         PlayerController pc = player.gameObject.GetComponent<PlayerController>();
@@ -25,7 +22,7 @@ public class Rudencia_in_Script : MonoBehaviour
                 player.transform.position = new Vector3(-15.118f, 0, -10.432f);
                 pc.State = Define.State.Idle;      
                 
-                SceneManager.LoadScene(LoadingScene.LOADING_SCENE_NUMBER);
+                SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
                 break;
 
             case "루덴시안 남쪽":
@@ -33,7 +30,7 @@ public class Rudencia_in_Script : MonoBehaviour
                 player.transform.position = new Vector3(23.25f, 0, -41.45f);               
                 pc.State = Define.State.Idle;
             
-                SceneManager.LoadScene(LoadingScene.LOADING_SCENE_NUMBER);
+                SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
                 break;
 
             case "루덴시안 상점":
@@ -41,7 +38,7 @@ public class Rudencia_in_Script : MonoBehaviour
                 player.transform.position = new Vector3(23.25f, 0, -33.15f);              
                 pc.State = Define.State.Idle;
 
-                SceneManager.LoadScene(LoadingScene.LOADING_SCENE_NUMBER);
+                SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
                 break;
 
             case "루덴시안 은행":
@@ -49,7 +46,7 @@ public class Rudencia_in_Script : MonoBehaviour
                 player.transform.position = new Vector3(-4.93f, 0, -30.87f);            
                 pc.State = Define.State.Idle;
 
-                SceneManager.LoadScene(LoadingScene.LOADING_SCENE_NUMBER);
+                SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
                 break;
 
             case "루덴시안 여관":
@@ -59,7 +56,7 @@ public class Rudencia_in_Script : MonoBehaviour
                 player.transform.rotation = new Quaternion(0, 180f, 0, 0);
                 pc.State = Define.State.Idle;
 
-                SceneManager.LoadScene(LoadingScene.LOADING_SCENE_NUMBER);
+                SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
 
                 break;
 
@@ -69,9 +66,20 @@ public class Rudencia_in_Script : MonoBehaviour
                 player.transform.rotation = new Quaternion(0, 180f, 0, 0);
                 pc.State = Define.State.Idle;
 
-                SceneManager.LoadScene(LoadingScene.LOADING_SCENE_NUMBER);
+                SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
 
                 break;
+
+            case "에반의 집":
+
+                player.transform.position = new Vector3(-23.0f, 0, -20.0f);
+                player.transform.rotation = new Quaternion(0, 180f, 0, 0);
+                pc.State = Define.State.Idle;
+
+                SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
+
+                break;
+
 
         }
         
