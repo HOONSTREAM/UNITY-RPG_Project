@@ -181,7 +181,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9d87b6322d0ff354199ccd09d473e6e7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d159ae25eeb0db5418c3a63375f0e2dc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -696,7 +696,7 @@ GameObject:
   - component: {fileID: 1745172730}
   - component: {fileID: 1745172729}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: START_SCENE_CANVAS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
