@@ -89,9 +89,6 @@ public class Ability_Script : MonoBehaviour
         //기본적인 세팅 (한손검,양손검)
         PlayerAbility.Instance.AddSkill(SkillDataBase.instance.SkillDB[0]);
         PlayerAbility.Instance.AddSkill(SkillDataBase.instance.SkillDB[1]);
-        PlayerAbility.Instance.AddSkill(SkillDataBase.instance.SkillDB[2]);
-        PlayerAbility.Instance.AddSkill(SkillDataBase.instance.SkillDB[3]);
-
         Ability_Interface_Panel.gameObject.SetActive(false); // 어빌리티 인터페이스 패널 초기화 
 
 }

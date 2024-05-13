@@ -47,6 +47,8 @@ public class ItemDataBase : MonoBehaviour
     private List<Item> Consumable = new List<Item>();
     [SerializeField]
     private List<Item> Etcs = new List<Item>();
+    [SerializeField]
+    private List<Item> SkillBook = new List<Item>();
 
 
 
@@ -75,7 +77,8 @@ public class ItemDataBase : MonoBehaviour
             {"Vehicle", new ReadOnlyCollection<Item>(Vehicle)},
             {"Cape", new ReadOnlyCollection<Item>(Cape)},
             {"Consumable", new ReadOnlyCollection<Item>(Consumable) },
-            {"Etcs", new ReadOnlyCollection<Item>(Etcs) }
+            {"Etcs", new ReadOnlyCollection<Item>(Etcs) },
+            {"SkillBook" , new ReadOnlyCollection<Item>(SkillBook)}
         };
 
         return allItems;

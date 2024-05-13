@@ -65,21 +65,40 @@ public class Skill_ToolTipController : MonoBehaviour,IPointerEnterHandler, IPoin
 
 
                         break;
+
+                  
+
                 }
           
             }
 
-            else // 스펠인경우
-            {
-                tooltip.SetupTooltip(skill.skill_name, skill.stat_1, skill.stat_2, skill.num_1, skill.num_2, skill.Description, skill.skill_image);
-                tooltip.stat_1.gameObject.SetActive(true);
-                tooltip.stat_2.gameObject.SetActive(true);
-                tooltip.num_1.gameObject.SetActive(true);
-                tooltip.num_2.gameObject.SetActive(true);
+            else if(skill.skilltype == SkillType.Buff)// 스펠인경우
+
+            { 
+                switch (skill.skill_name)
+                {
+                    case "어드밴스드어택":
+                        tooltip.SetupTooltip(skill.skill_name, skill.stat_1, skill.stat_2, skill.num_1, skill.num_2, skill.Description, skill.skill_image);
+                        tooltip.stat_2.gameObject.SetActive(false); // 나타낼 필요 없는 정보            
+                        tooltip.num_2.gameObject.SetActive(false); // 나타낼 필요 없는 정보 
+                        break;
+                    case "난공불락":
+                        tooltip.SetupTooltip(skill.skill_name, skill.stat_1, skill.stat_2, skill.num_1, skill.num_2, skill.Description, skill.skill_image);
+                        tooltip.stat_2.gameObject.SetActive(false); // 나타낼 필요 없는 정보            
+                        tooltip.num_2.gameObject.SetActive(false); // 나타낼 필요 없는 정보 
+                        break;
+
+                    default:
+                        tooltip.SetupTooltip(skill.skill_name, skill.stat_1, skill.stat_2, skill.num_1, skill.num_2, skill.Description, skill.skill_image);
+                        tooltip.stat_1.gameObject.SetActive(true);
+                        tooltip.stat_2.gameObject.SetActive(true);
+                        tooltip.num_1.gameObject.SetActive(true);
+                        tooltip.num_2.gameObject.SetActive(true);
+                        break;
+                }
+
             }
-
-
-            
+                       
         }
 
         ontooltip = OnToolTipUpdated.On;

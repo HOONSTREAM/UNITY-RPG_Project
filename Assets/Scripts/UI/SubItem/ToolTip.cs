@@ -62,6 +62,35 @@ public class ToolTip : MonoBehaviour
     
     }
 
+    public void Setup_skillBook(string name, string rank, string des)
+    {
+        itemname.text = name;
+
+        switch (rank)
+        {
+            case "Common":
+                rank = "커먼";
+                break;
+            case "UnCommon":
+                rank = "언커먼";
+                break;
+            case "Rare":
+                rank = "레어";
+                break;
+            case "Unique":
+                rank = "유니크";
+                break;
+            case "Legend":
+                rank = "전설";
+                break;
+
+        }
+
+        item_rank.text = rank;
+        Description.text = des;
+
+    }
+
     private void Update()
     {
         transform.position = Input.mousePosition;
