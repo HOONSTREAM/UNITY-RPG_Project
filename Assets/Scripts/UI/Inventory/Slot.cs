@@ -56,7 +56,7 @@ public class Slot : MonoBehaviour, IPointerUpHandler
         
         }
 
-        else if (item.itemtype == ItemType.Consumables || item.itemtype == ItemType.Etc)
+        else if (item.itemtype == ItemType.Consumables || item.itemtype == ItemType.Etc || item.itemtype == ItemType.SkillBook)
         {
             amount_text.text = item.amount.ToString();
 
@@ -117,7 +117,7 @@ public class Slot : MonoBehaviour, IPointerUpHandler
             }
             
             
-            if(item.itemtype == ItemType.Consumables || item.itemtype == ItemType.Etc)
+            if(item.itemtype == ItemType.Consumables || item.itemtype == ItemType.Etc || item.itemtype == ItemType.SkillBook)
             {
                 if(item.amount > 1)
                 {
@@ -159,7 +159,7 @@ public class Slot : MonoBehaviour, IPointerUpHandler
                 Equip_Drop_Panel.SetActive(true);
                 Equip_Drop_Panel.transform.position = Input.mousePosition;
             }
-            else if(this.item.itemtype == ItemType.Consumables)// 家葛前牢版快 
+            else if(this.item.itemtype == ItemType.Consumables || item.itemtype == ItemType.SkillBook)// 家葛前牢版快 
             {
                 GameObject go = GameObject.Find("NewInvenUI").gameObject;
                 Slot_Equip_Drop equip_drop = go.GetComponent<Slot_Equip_Drop>();

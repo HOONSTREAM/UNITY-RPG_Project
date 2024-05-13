@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using static CartoonHeroes.SetCharacter;
 using static UnityEditor.Progress;
 
 public class Slot_Equip_Drop : MonoBehaviour
@@ -110,10 +111,9 @@ public class Slot_Equip_Drop : MonoBehaviour
                 GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("아이템을 버립니다.");
                 Equip_Drop_Selection.SetActive(false);
             }
-
         }
 
-        else if(slot_item.itemtype == ItemType.Consumables)
+        else if(slot_item.itemtype == ItemType.Consumables || slot_item.itemtype == ItemType.SkillBook)
         {
             if (slot_item.amount > 1) //갯수가 1개보다 많은경우 버릴 갯수 조사
             {

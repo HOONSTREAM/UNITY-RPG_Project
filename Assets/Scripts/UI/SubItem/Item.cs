@@ -12,6 +12,8 @@ public enum ItemType
     Equipment,
     Consumables,
     Etc,
+    SkillBook,
+
 }
 
 public enum ItemRank
@@ -101,6 +103,9 @@ public class Item
                 return false;
 
             case ItemType.Consumables:
+                return true;
+
+            case ItemType.SkillBook:
                 return true;
 
             case ItemType.Etc:

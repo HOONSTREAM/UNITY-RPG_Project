@@ -42,15 +42,45 @@ public class ToolTipController : MonoBehaviour,IPointerEnterHandler,IPointerExit
                 return;
             }
 
-            else
+            switch (item.itemtype)
             {
-                tooltip.gameObject.SetActive(true);
+                case ItemType.SkillBook: // 모든 스텟정보를 필요로 하지않고, 스킬북 설명만 노출
 
-                tooltip.SetupTooltip(item.itemname, item.stat_1, item.stat_2, item.stat_3, item.stat_4,item.num_1, item.num_2, item.num_3 , item.num_4, item.itemrank.ToString(),item.Description);
-               
+                    tooltip.gameObject.SetActive(true);
+
+                    tooltip.SetupTooltip(item.itemname, item.stat_1, item.stat_2, item.stat_3, item.stat_4, item.num_1, item.num_2, item.num_3, item.num_4, item.itemrank.ToString(), item.Description);
+
+                    tooltip.num_1.gameObject.SetActive(false);
+                    tooltip.num_2.gameObject.SetActive(false);
+                    tooltip.num_3.gameObject.SetActive(false);
+                    tooltip.num_4.gameObject.SetActive(false);
+                    tooltip.stat_1.gameObject.SetActive(false);
+                    tooltip.stat_2.gameObject.SetActive(false);
+                    tooltip.stat_3.gameObject.SetActive(false);
+                    tooltip.stat_4.gameObject.SetActive(false);
+
+                    break;
+
+                default:
+
+                    tooltip.gameObject.SetActive(true);
+
+                    tooltip.num_1.gameObject.SetActive(true);
+                    tooltip.num_2.gameObject.SetActive(true);
+                    tooltip.num_3.gameObject.SetActive(true);
+                    tooltip.num_4.gameObject.SetActive(true);
+                    tooltip.stat_1.gameObject.SetActive(true);
+                    tooltip.stat_2.gameObject.SetActive(true);
+                    tooltip.stat_3.gameObject.SetActive(true);
+                    tooltip.stat_4.gameObject.SetActive(true);
+
+                    tooltip.SetupTooltip(item.itemname, item.stat_1, item.stat_2, item.stat_3, item.stat_4, item.num_1, item.num_2, item.num_3, item.num_4, item.itemrank.ToString(), item.Description);
+
+
+                    break;
+
             }
-
-
+          
         }
 
         ontooltip = OnToolTipUpdated.On;
