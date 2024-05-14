@@ -12371,6 +12371,7 @@ GameObject:
   - component: {fileID: 7302938522569241752}
   - component: {fileID: -8645764731108034840}
   - component: {fileID: 2880340381061867525}
+  - component: {fileID: 8054221124806902667}
   m_Layer: 0
   m_Name: UnityChan
   m_TagString: Untagged
@@ -12759,6 +12760,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   One_Hand_Wepaon_Long_Sword: {fileID: 4248778428234464803}
   Two_Hand_Weapon_Great_Sword: {fileID: 7194635620063556896}
+--- !u!114 &8054221124806902667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7910964836869391157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 645b57b2736f46b43b1be468e1f14ef2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player_class: {fileID: 0}
 --- !u!1 &7927821325285654552
 GameObject:
   m_ObjectHideFlags: 0

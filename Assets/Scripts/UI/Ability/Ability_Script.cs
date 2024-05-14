@@ -221,8 +221,7 @@ private void Update()
 
     }
     public void Accumulate_Ability_Func()
-
-      
+    
     {
         GameObject monster = Managers.Monster_Info.Get_Monster_Info();
         
@@ -232,8 +231,11 @@ private void Update()
         }
 
 
+
+
         if (PlayerEquipment.Instance.player_equip.TryGetValue(EquipType.Weapon, out Item value) && value.weapontype == WeaponType.One_Hand) 
         {
+
 
             for (int i = 0; i < Ability_Slots.Length; i++)
             {
@@ -256,6 +258,20 @@ private void Update()
                         {
                             continue;
                         }
+
+
+                        /// TEST CODE
+                        if ((int)slot.skill.Ability >= Managers.Game.GetPlayer().GetComponent<Player_Class>().class_acquisition_required_Ability())
+                        {
+                            
+                            if(Managers.Game.GetPlayer().GetComponent<Player_Class>().Get_Player_Class() != Player_Class.ClassType.Warrior)
+                            {
+                                GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("직업을 가져야 어빌을 올릴 수 있습니다.");
+                                return;
+                            }
+
+                        }
+                        ///
 
                         if(3*(monster.GetComponent<Stat>().LEVEL) < (int)(slot.skill.Ability))
                         {
@@ -347,7 +363,7 @@ private void Update()
                     }
                     if (double.Parse(Ability_Slots[i].LEVEL.text) == Ability_MASTER_LEVEL)
                     {
-                        Debug.Log("어빌이 100에 달성하였습니다.");
+                      
                         // TODO : 그레이드 진행
                         Ability_Slots[i].Name_grade.text = "MASTER";
                         return;

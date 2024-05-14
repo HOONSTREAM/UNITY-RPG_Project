@@ -48,7 +48,7 @@ public class Equipment_Tooltip_Controller : MonoBehaviour, IPointerEnterHandler,
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("Storage_OnPointerEnter ¡¯¿‘");
+        
         if (ontooltip != OnToolTipUpdated.On)
         {
 
