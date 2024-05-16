@@ -64,7 +64,7 @@ public class Skill_Quick_Slot : MonoBehaviour, IPointerUpHandler
 
         else if (skill.skilltype == SkillType.Active) 
         {
-            //TODO: 퀵슬롯을 사용했을 때 로직
+            Debug.Log("스킬사용");
             return;
         }
 

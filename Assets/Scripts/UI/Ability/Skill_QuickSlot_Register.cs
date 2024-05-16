@@ -95,7 +95,17 @@ public class Skill_QuickSlot_Register : MonoBehaviour
 
         else if (skill_info.skilltype == SkillType.Active)
         {
-            //TODO: 퀵슬롯을 사용했을 때 로직
+
+            bool isUsed = this.skill_info.Skill_Use();
+
+            if (isUsed)
+
+            {
+                //TODO: 퀵슬롯을 사용했을 때 로직
+                Debug.Log("스킬사용 완료");
+
+            }
+
             return;
         }
     }

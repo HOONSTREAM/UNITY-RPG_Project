@@ -51,8 +51,7 @@ public class Ability_Slot : MonoBehaviour , IPointerUpHandler
         }
         else if(this.skill.skilltype == SkillType.Buff) 
         { 
-            
-            
+                     
             Ability_Script abs = GameObject.Find("Ability_Slot_CANVAS").gameObject.GetComponent<Ability_Script>();
             Skill_QuickSlot_Register quick_slot = abs.GetComponent<Skill_QuickSlot_Register>();
             abs.Get_Slotnum(slotnum);  //slot에 대한 정보를 넘겨줌
@@ -60,6 +59,16 @@ public class Ability_Slot : MonoBehaviour , IPointerUpHandler
             Skill_Quickslot_Panel.SetActive(true);
             Skill_Quickslot_Panel.transform.position = Input.mousePosition;
 
+        }
+
+        else if(this.skill.skilltype == SkillType.Active)
+        {
+            Ability_Script abs = GameObject.Find("Ability_Slot_CANVAS").gameObject.GetComponent<Ability_Script>();
+            Skill_QuickSlot_Register quick_slot = abs.GetComponent<Skill_QuickSlot_Register>();
+            abs.Get_Slotnum(slotnum);  //slot에 대한 정보를 넘겨줌
+            quick_slot.Get_Slotnum(slotnum); //slot에 대한 정보를 넘겨줌
+            Skill_Quickslot_Panel.SetActive(true);
+            Skill_Quickslot_Panel.transform.position = Input.mousePosition;
         }
 
     }

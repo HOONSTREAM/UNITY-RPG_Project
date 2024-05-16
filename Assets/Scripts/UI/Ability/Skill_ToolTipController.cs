@@ -98,6 +98,16 @@ public class Skill_ToolTipController : MonoBehaviour,IPointerEnterHandler, IPoin
                 }
 
             }
+
+            else if(skill.skilltype == SkillType.Active)
+            {
+                tooltip.SetupTooltip(skill.skill_name, skill.stat_1, skill.stat_2, skill.num_1, skill.num_2, skill.Description, skill.skill_image);
+                tooltip.stat_1.gameObject.SetActive(true);
+                tooltip.stat_2.gameObject.SetActive(true);
+                tooltip.num_1.gameObject.SetActive(true);
+                tooltip.num_2.gameObject.SetActive(true);
+
+            }
                        
         }
 
