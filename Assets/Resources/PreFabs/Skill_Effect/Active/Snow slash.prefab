@@ -4906,8 +4906,9 @@ GameObject:
   - component: {fileID: 2145314521902459719}
   - component: {fileID: 2629628210209888467}
   - component: {fileID: 9159431108497599183}
-  - component: {fileID: 4298548249637997891}
   - component: {fileID: -3763960286251510648}
+  - component: {fileID: 8709341281739821217}
+  - component: {fileID: 7097902136046431737}
   m_Layer: 0
   m_Name: Snow slash
   m_TagString: Untagged
@@ -9786,8 +9787,26 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!136 &4298548249637997891
-CapsuleCollider:
+--- !u!114 &-3763960286251510648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2060900179291159282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bdd31b3c3e527648b0bff9a79c60baf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxCenter: {x: 0.164, y: -0.07, z: 0.64}
+  boxSize: {x: 4, y: 0.761, z: 2.8262}
+  boxRotation: {x: 0, y: 0, z: 0, w: 1}
+  monsterLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
+--- !u!65 &8709341281739821217
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -9804,12 +9823,10 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.4688063
-  m_Height: 2.9376125
-  m_Direction: 1
-  m_Center: {x: 1.8838222, y: -0.3428415, z: 0.80407476}
---- !u!114 &-3763960286251510648
+  serializedVersion: 3
+  m_Size: {x: 4.004183, y: 0.7617818, z: 2.8621893}
+  m_Center: {x: 0.16471386, y: -0.07809311, z: 0.64256287}
+--- !u!114 &7097902136046431737
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9818,9 +9835,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2060900179291159282}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bdd31b3c3e527648b0bff9a79c60baf, type: 3}
+  m_Script: {fileID: 11500000, guid: 30111c7e6369dae458be5a6721bab2f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boxCenter: {x: 0.164, y: -0.07, z: 0.64}
+  boxSize: {x: 4, y: 0.761, z: 2.8262}
+  debugColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!1 &5243545912859313696
 GameObject:
   m_ObjectHideFlags: 0
