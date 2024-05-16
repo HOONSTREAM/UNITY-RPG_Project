@@ -9805,6 +9805,7 @@ MonoBehaviour:
   monsterLayerMask:
     serializedVersion: 2
     m_Bits: 256
+  hit_particle: {fileID: 6569831958482197371, guid: 6f06795fbf665464d81cb0fcad2c518f, type: 3}
 --- !u!65 &8709341281739821217
 BoxCollider:
   m_ObjectHideFlags: 0

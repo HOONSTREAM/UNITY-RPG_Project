@@ -113,7 +113,7 @@ public class PlayerController : BaseController
         }
 
     }
-  
+
     /// <summary>
     /// 플레이어의 애니메이션 클립 이벤트에 등록되어, 타격 타이밍에 실행되는 메서드 입니다.
     /// </summary>

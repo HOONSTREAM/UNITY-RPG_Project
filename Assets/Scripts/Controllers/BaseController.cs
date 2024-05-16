@@ -34,13 +34,11 @@ public abstract class BaseController : MonoBehaviour
                     break;
                 case Define.State.Die:
                     anim.CrossFade("Die", 0.1f);
-
                     break;
-
+              
             }
         }
     }
-
     private void Start()
     {
         Init();
@@ -85,4 +83,6 @@ public abstract class BaseController : MonoBehaviour
     {
 
     }
+
+ 
 }
