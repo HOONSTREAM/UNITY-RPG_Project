@@ -21,15 +21,21 @@ public class Test_Active : SkillEffect
 
             SkillDataBase.instance.SkillDB[4].CanUseSkill = false;
             GameObject effect = Managers.Resources.Instantiate("Skill_Effect/Active/Snow slash");
+            GameObject casting_player = Managers.Resources.Instantiate("Skill_Effect/Active/Freeze circle");
+
             Vector3 skill_dir = Managers.Game.GetPlayer().transform.forward * 1.0f;
             Vector3 skill_effect_pos = Managers.Game.GetPlayer().transform.position + skill_dir + new Vector3(0, 1.0f, 0);
 
             effect.transform.position = skill_effect_pos;
             effect.transform.position = skill_effect_pos; effect.transform.rotation = Managers.Game.GetPlayer().transform.rotation;
-            Managers.Sound.Play("hit22", Define.Sound.Effect);
+            casting_player.transform.position = Managers.Game.GetPlayer().transform.position;
+
+            
+            Managers.Sound.Play("ICE_HIT/ice_blast_projectile_spell_04", Define.Sound.Effect);
 
 
             Destroy(effect, 2.0f);
+            Destroy(casting_player, 0.8f);
 
             _ = Delayed_Skill_Action(); //discard 연산자: _는 DelayedAction의 결과를 무시하는 데 사용되며,
                                         //이는 작업의 완료를 기다릴 필요가 없음을 나타냄.

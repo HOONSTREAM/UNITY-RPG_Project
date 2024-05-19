@@ -4925,7 +4925,7 @@ Transform:
   m_GameObject: {fileID: 2060900179291159282}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7797250654411759116}
@@ -9799,13 +9799,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bdd31b3c3e527648b0bff9a79c60baf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boxCenter: {x: 0.164, y: -0.07, z: 0.64}
-  boxSize: {x: 4, y: 0.761, z: 2.8262}
+  boxCenter: {x: 0.2538373, y: -0.07809308, z: 0.6425629}
+  boxSize: {x: 4.740425, y: 1.521273, z: 2.862189}
   boxRotation: {x: 0, y: 0, z: 0, w: 1}
   monsterLayerMask:
     serializedVersion: 2
     m_Bits: 256
-  hit_particle: {fileID: 6569831958482197371, guid: 6f06795fbf665464d81cb0fcad2c518f, type: 3}
+  hit_particle: {fileID: 4924508274929071776, guid: a079ead9dbc89b946bf8f1b3ec63c08c, type: 3}
   DamageText: {fileID: 4278063725070747892, guid: 30c16111e9b7f004cabd241e4c2e236f, type: 3}
 --- !u!65 &8709341281739821217
 BoxCollider:
@@ -9826,8 +9826,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.004183, y: 0.7617818, z: 2.8621893}
-  m_Center: {x: 0.16471386, y: -0.07809311, z: 0.64256287}
+  m_Size: {x: 4.7404246, y: 1.5212731, z: 2.8621893}
+  m_Center: {x: 0.25383735, y: -0.07809308, z: 0.64256287}
 --- !u!114 &7097902136046431737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9840,9 +9840,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30111c7e6369dae458be5a6721bab2f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boxCenter: {x: 0.164, y: -0.07, z: 0.64}
-  boxSize: {x: 4, y: 0.761, z: 2.8262}
-  debugColor: {r: 0, g: 1, b: 0, a: 1}
+  boxCenter: {x: 0.2538373, y: -0.07809308, z: 0.6425629}
+  boxSize: {x: 4.740425, y: 1.521273, z: 2.862189}
+  debugColor: {r: 0.9056604, g: 0.035460733, b: 0, a: 1}
 --- !u!1 &5243545912859313696
 GameObject:
   m_ObjectHideFlags: 0
