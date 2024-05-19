@@ -35,6 +35,9 @@ public abstract class BaseController : MonoBehaviour
                 case Define.State.Die:
                     anim.CrossFade("Die", 0.1f);
                     break;
+                case Define.State.SnowSlash:
+                    anim.CrossFade("SnowSlash", 0.1f, -1, 0);
+                    break;
               
             }
         }

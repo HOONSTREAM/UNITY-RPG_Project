@@ -9806,6 +9806,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   hit_particle: {fileID: 6569831958482197371, guid: 6f06795fbf665464d81cb0fcad2c518f, type: 3}
+  DamageText: {fileID: 4278063725070747892, guid: 30c16111e9b7f004cabd241e4c2e236f, type: 3}
 --- !u!65 &8709341281739821217
 BoxCollider:
   m_ObjectHideFlags: 0

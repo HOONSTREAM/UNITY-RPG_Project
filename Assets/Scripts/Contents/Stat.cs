@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEditor.PackageManager;
 using UnityEngine;
 
@@ -66,6 +67,23 @@ public class Stat : MonoBehaviour
 
         Hp -= total_damage;
 
+
+        if (Hp <= 0)
+        {
+            Hp = 0;
+            OnDead(attacker);
+        }
+
+    }
+
+    public virtual void On_Active_Skill_Attacked(Stat attacker,int damage)
+    {
+        if(damage < 0)
+        {
+            damage = 0;
+        }
+
+        Hp -= damage;
 
         if (Hp <= 0)
         {

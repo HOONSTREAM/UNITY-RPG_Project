@@ -18,6 +18,8 @@ public class Define
         Moving,
         Idle,
         Skill,
+        SnowSlash,
+
 
     }
 

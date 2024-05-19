@@ -32,7 +32,7 @@ using UnityEngine;
         public int skill_cool_time = 0;
   
         public List<SkillEffect> efts;
-
+        public bool CanUseSkill = true;
 
         public virtual bool Skill_Use()
         {
@@ -40,14 +40,22 @@ using UnityEngine;
 
             foreach (SkillEffect effect in efts)
             {
+            if (CanUseSkill) // 스킬을 사용할 수 있는지 검사
+            {
                 isUsed = effect.ExecuteRole(skilltype);
             }
+               
+            }
             return isUsed;
+
         }
 
- 
-        /*클래스는 기본적으로 참조 형태이기때문에 리스트에 다이렉트로 리스트정보를 추가하게 되면 참조주소가 같은 곳을 가리키게 된다. 클론함수로 해결 */
-        public Skill Clone()
+
+   
+
+
+    /*클래스는 기본적으로 참조 형태이기때문에 리스트에 다이렉트로 리스트정보를 추가하게 되면 참조주소가 같은 곳을 가리키게 된다. 클론함수로 해결 */
+    public Skill Clone()
         {
             Skill skill = new Skill();
            skill.Skill_ID = this.Skill_ID;
@@ -62,7 +70,9 @@ using UnityEngine;
            skill.efts = this.efts;
            skill.Ability = this.Ability;
            skill.skill_cool_time = this.skill_cool_time;
+           skill.CanUseSkill = this.CanUseSkill;
 
             return skill;
         }
-    }
+
+}
