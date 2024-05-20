@@ -25,8 +25,7 @@ public class LoginScene : MonoBehaviour
 
     public void Load_Game()
     {
-        LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Rudencian_scene();
-        Managers.Save.Load();
+        Managers.Save.LoadPlayerData();
     }
 
     public void Game_Exit()
