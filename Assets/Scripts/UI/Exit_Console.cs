@@ -116,9 +116,9 @@ public class Exit_Console : MonoBehaviour
 #endif
     }
 
-    public void NotExitGame()
+    public void Return_To_The_Game()
     {
-        Managers.Sound.Play("Coin");
+        
         ExitConsole.gameObject.SetActive(false);
     }
 }

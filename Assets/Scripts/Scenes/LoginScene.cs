@@ -8,126 +8,35 @@ using UnityEngine.UI;
 public class LoginScene : MonoBehaviour
 {
 
-    public TMP_InputField ID;
-    public TMP_InputField Password;
-
-    public GameObject ID_enter_rejection;
-    public GameObject ID_register_complete;
-    public GameObject Not_enterd_ID_or_password;
-    public GameObject ID_already_exist;
-
-
     private void Start()
     {
         LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Start_Scene();
         GameObject Init_player = Managers.Game.GetPlayer();
         Camera.main.gameObject.GetAddComponent<CameraController>().SetPlayer(Init_player);
         gameObject.GetAddComponent<CursorController>();
-
-        ID_enter_rejection.gameObject.SetActive(false);
-        ID_register_complete.gameObject.SetActive(false);
-        Not_enterd_ID_or_password.gameObject.SetActive(false);
-        ID_already_exist.gameObject.SetActive(false);
-
+       
     }
 
-    private bool CheckInput(string id, string password)
+    public void New_Game_Start()
     {
-        if (id == "" || password == "")
-        {
-            Not_enterd_ID_or_password.gameObject.SetActive(true);
-            ID.text = "";
-            Password.text = "";
-            return false;
-        }
-
-        else
-        {
-            return true;
-        }
-
+        SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
     }
-    public void SaveUserData()
+
+
+    public void Load_Game()
     {
-        if (!CheckInput(ID.text, Password.text))
-        {
-            return;
-        }
-        // 사용자의 아이디는 Key로 패스워드를 값(value)로 설정해서 저장함.
-
-
-        if (!PlayerPrefs.HasKey(ID.text))
-        {
-            Managers.Sound.Play("GUI_Sound/load",Define.Sound.Effect);
-            PlayerPrefs.SetString(ID.text, Password.text);
-            ID_register_complete.gameObject.SetActive(true);
-            ID.text = "";
-            Password.text = "";
-
-        }
-
-        else
-        {
-            Managers.Sound.Play("GUI_Sound/misc_menu", Define.Sound.Effect);
-            ID_already_exist.gameObject.SetActive(true);
-            ID.text = "";
-            Password.text = "";
-        }
-
+        LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Rudencian_scene();
+        Managers.Save.Load();
     }
 
-    public void CheckUserData()
+    public void Game_Exit()
     {
-
-        if (!CheckInput(ID.text, Password.text))
-        {
-            return;
-        }
-
-        string pass = PlayerPrefs.GetString(ID.text);
-
-        if (Password.text == pass)
-
-        {              
-            SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
-        }
-
-        else
-        {
-            Managers.Sound.Play("GUI_Sound/misc_menu", Define.Sound.Effect);
-            ID_enter_rejection.gameObject.SetActive(true);
-            ID.text = "";
-            Password.text = "";
-        }
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit(); // 어플리케이션 종료
+#endif
     }
 
-    public void Verification_complete_button()
-    {
-        if (ID_enter_rejection.activeSelf)
-        {
-            ID_enter_rejection.gameObject.SetActive(false);
-
-        }
-
-        if (ID_register_complete.activeSelf)
-        {
-            ID_register_complete.gameObject.SetActive(false);
-
-        }
-
-        if (Not_enterd_ID_or_password.activeSelf)
-        {
-            Not_enterd_ID_or_password.gameObject.SetActive(false);
-
-        }
-
-        if (ID_already_exist.activeSelf)
-        {
-            ID_already_exist.gameObject.SetActive(false);
-
-        }
-
-        return;
-    }
 
 }

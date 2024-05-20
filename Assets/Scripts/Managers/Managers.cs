@@ -19,6 +19,7 @@ public class Managers : MonoBehaviour
     Monster_Info_Manager _monster_info = new Monster_Info_Manager();
     Quest_Completion_Manager _quest_completion = new Quest_Completion_Manager();
     Scene_Number_Manager _scene_number = new Scene_Number_Manager();
+    SaveManager _save_manager = new SaveManager();
 
     public static GameManager Game { get { return Instance._game; } }
     public static CoolTimeManager CoolTime { get { return Instance._cool; } }
@@ -26,6 +27,8 @@ public class Managers : MonoBehaviour
     public static Monster_Info_Manager Monster_Info { get { return Instance._monster_info; } }
     public static Quest_Completion_Manager Quest_Completion { get { return Instance._quest_completion; } }
     public static Scene_Number_Manager Scene_Number { get { return Instance._scene_number; } }
+
+    public static SaveManager Save { get { return Instance._save_manager; } }
 
     #endregion
 
