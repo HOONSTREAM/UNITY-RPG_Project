@@ -40,57 +40,14 @@ public class SaveManager : MonoBehaviour
             PlayerStorage storage = ES3.Load<PlayerStorage>("PlayerStorage");
             PlayerQuickSlot quick_slot = ES3.Load<PlayerQuickSlot>("PlayerQuickSlot");
             PlayerAbility ability = ES3.Load<PlayerAbility>("PlayerAbility");
-            Player_Quest  quest = ES3.Load<Player_Quest>("PlayerQuest");
+            Player_Quest quest = ES3.Load<Player_Quest>("PlayerQuest");
             PlayerSkillQuickSlot skill_quick_slot = ES3.Load<PlayerSkillQuickSlot>("PlayerSkillQuickSlot");
             Player_Class Class = ES3.Load<Player_Class>("PlayerClass");
 
 
             string sceneName = ES3.Load<string>("CurrentScene");
 
-            SceneManager.LoadScene(sceneName);
-
-            // 씬 로드 후 플레이어 배치
-            SceneManager.sceneLoaded += (scene, mode) =>
-            {
-                if (scene.name == sceneName)
-                {
-                    //GameObject Spawn_player = Managers.Game.Spawn(Define.WorldObject.Player, "UnityChan");
-                    //Camera.main.gameObject.GetAddComponent<CameraController>().SetPlayer(player);
-
-                    GameObject player = Managers.Game.GetPlayer();
-                    player.transform.position = position; // 마지막 저장위치
-
-                    PlayerStat stat = player.GetComponent<PlayerStat>();
-                    stat = Player_Stat;
-
-                    PlayerInventory Player_Inven = player.GetComponent<PlayerInventory>();
-                    Player_Inven = inventory;
-
-                    PlayerEquipment player_Equip = player.GetComponent<PlayerEquipment>();
-                    player_Equip = equipment;
-
-                    PlayerStorage player_storage = player.GetComponent<PlayerStorage>();
-                    player_storage = storage;
-
-                    PlayerQuickSlot player_quickslot = player.GetComponent<PlayerQuickSlot>();
-                    player_quickslot = quick_slot;
-
-                    PlayerAbility player_ability = player.GetComponent<PlayerAbility>();
-                    player_ability = ability;
-
-                    Player_Quest player_Quest = player.GetComponent<Player_Quest>();
-                    player_Quest = quest;
-
-                    PlayerSkillQuickSlot playerSkillQuickSlot = player.GetComponent<PlayerSkillQuickSlot>();
-                    playerSkillQuickSlot = skill_quick_slot;
-
-                    Player_Class player_Class = player.GetComponent<Player_Class>();
-                    player_Class = Class;
-
-
-                    Debug.Log("Player data loaded.");
-                }
-            };
+            StartCoroutine(LoadSceneAndSetupPlayer(sceneName, position, Player_Stat, inventory, equipment, storage, quick_slot, ability, quest, skill_quick_slot, Class));
         }
         else
         {
@@ -98,5 +55,54 @@ public class SaveManager : MonoBehaviour
 
             return;
         }
+
+
+
+            IEnumerator LoadSceneAndSetupPlayer(string sceneName, Vector3 position, PlayerStat Player_Stat, PlayerInventory inventory, PlayerEquipment equipment, PlayerStorage storage, PlayerQuickSlot quick_slot, PlayerAbility ability, Player_Quest quest, PlayerSkillQuickSlot skill_quick_slot, Player_Class Class)
+            
+            {
+                // 씬을 비동기적으로 로드합니다.
+                AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
+
+                // 씬이 완전히 로드될 때까지 기다립니다.
+                while (!asyncLoad.isDone)
+                {
+                    yield return null;
+                }
+
+                // 씬이 로드된 후 플레이어 배치
+                GameObject player = Managers.Game.GetPlayer();
+                player.transform.position = position; // 마지막 저장위치
+
+                PlayerStat stat = player.GetComponent<PlayerStat>();
+                stat = Player_Stat;
+
+                PlayerInventory Player_Inven = player.GetComponent<PlayerInventory>();
+                Player_Inven = inventory;
+
+                PlayerEquipment player_Equip = player.GetComponent<PlayerEquipment>();
+                player_Equip = equipment;
+
+                PlayerStorage player_storage = player.GetComponent<PlayerStorage>();
+                player_storage = storage;
+
+                PlayerQuickSlot player_quickslot = player.GetComponent<PlayerQuickSlot>();
+                player_quickslot = quick_slot;
+
+                PlayerAbility player_ability = player.GetComponent<PlayerAbility>();
+                player_ability = ability;
+
+                Player_Quest player_Quest = player.GetComponent<Player_Quest>();
+                player_Quest = quest;
+
+                PlayerSkillQuickSlot playerSkillQuickSlot = player.GetComponent<PlayerSkillQuickSlot>();
+                playerSkillQuickSlot = skill_quick_slot;
+
+                Player_Class player_Class = player.GetComponent<Player_Class>();
+                player_Class = Class;
+
+                Debug.Log("Player data loaded.");
+            }
+        }
     }
-}
+
