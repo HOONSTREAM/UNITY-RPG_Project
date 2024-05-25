@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using static PlayerInventory;
 
@@ -8,6 +9,20 @@ public class EquipTypeItem : SerializableDictionary<EquipType, Item> { }
 
 public class PlayerEquipment : MonoBehaviour
 {
+
+    #region 테스트코드 장비장착정보 저장
+    [System.Serializable]
+    public class EquipData
+    {
+        public EquipTypeItem equip_items; 
+
+        public EquipData(EquipTypeItem items)
+        {
+            this.equip_items = items;
+        }
+    }
+    #endregion
+
     private const int MAX_INVENTORY_COUNT = 20;
 
     public static PlayerEquipment Instance;
@@ -27,7 +42,32 @@ public class PlayerEquipment : MonoBehaviour
        
     }
 
- 
+    #region 테스트 메서드 장착정보 저장
+    public void Save_Equipment()
+    {
+        EquipData data = new EquipData(player_equip);
+        ES3.Save("Player_equipment", data);
+
+
+
+        Debug.Log("Player_Equipment saved using EasySave3");
+    }
+
+    public void Load_Equipment()
+    {
+        if (ES3.KeyExists("Player_equipment"))
+        {
+            EquipData data = ES3.Load<EquipData>("Player_equipment");
+            player_equip = data.equip_items;
+            Debug.Log("Player_Equipment loaded using EasySave3");
+        }
+        else
+        {
+            Debug.Log("No inventory data found, creating a new one.");
+        }
+    }
+
+    #endregion
     public bool EquipItem(Slot _item)
     {
         if (player_equip.Count <MAX_INVENTORY_COUNT)  //아이템 추가할때 슬롯보다 작을때만 아이템 추가

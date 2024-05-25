@@ -32,7 +32,7 @@ public class NPC1_shop : MonoBehaviour
 
     void Start()
     {
-        playerslotHolder = PlayerInventory.Instance._player_Inven_Content.transform;
+        playerslotHolder = PlayerInventory.Instance._player_Inven_Content.gameObject.transform;
 
         NPCname = "브로아";
         shopitemDB = ItemDataBase.instance.GetAllItems(); //아이템 데이터베이스 복사 

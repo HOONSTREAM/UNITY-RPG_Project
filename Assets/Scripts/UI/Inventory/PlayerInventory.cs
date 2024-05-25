@@ -6,6 +6,7 @@ using System.Reflection;
 using UnityEngine;
 using static UnityEditor.Progress;
 
+[System.Serializable]
 public class PlayerInventory : MonoBehaviour
 {
 
@@ -21,7 +22,6 @@ public class PlayerInventory : MonoBehaviour
             this.items = items;
         }
     }
-
     #endregion
 
     public static PlayerInventory Instance;
@@ -42,8 +42,6 @@ public class PlayerInventory : MonoBehaviour
         stat = gameObject.GetComponent<PlayerStat>();
         slot = gameObject.GetComponent<Slot>();
 
-
-       // LoadInventory();
     }
 
 
@@ -51,24 +49,24 @@ public class PlayerInventory : MonoBehaviour
     public void SaveInventory()
     {
         InventoryData data = new InventoryData(player_items);
-        string json = JsonUtility.ToJson(data);
-        File.WriteAllText(Application.persistentDataPath + "/inventory.json", json);
-        Debug.Log("Inventory saved");
+        ES3.Save("player_inventory", data);
+
+       
+
+        Debug.Log("Inventory saved using EasySave3");
     }
 
     public void LoadInventory()
     {
-        string path = Application.persistentDataPath + "/inventory.json";
-        if (File.Exists(path))
+        if (ES3.KeyExists("player_inventory"))
         {
-            string json = File.ReadAllText(path);
-            InventoryData data = JsonUtility.FromJson<InventoryData>(json);
+            InventoryData data = ES3.Load<InventoryData>("player_inventory");
             player_items = data.items;
-            Debug.Log("Inventory loaded");
+            Debug.Log("Inventory loaded using EasySave3");
         }
         else
         {
-            Debug.Log("No inventory file found, creating a new one.");
+            Debug.Log("No inventory data found, creating a new one.");
         }
     }
 

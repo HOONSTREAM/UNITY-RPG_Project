@@ -44,7 +44,8 @@ MonoBehaviour:
   updateReferencesWhenSceneChanges: 1
   updateReferencesWhenSceneIsSaved: 1
   updateReferencesWhenSceneIsOpened: 1
-  referenceFolders: []
+  referenceFolders:
+  - 
   logDebugInfo: 0
   logWarnings: 1
   logErrors: 1

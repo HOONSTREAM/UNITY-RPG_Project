@@ -82,7 +82,6 @@ public class Item
     public int sellprice;
     public List<ItemEffect> efts;
 
-
     public virtual bool Use()
     {
         bool isUsed = false;

@@ -70,6 +70,7 @@ public abstract class SerializableDictionaryBase<TKey, TValue, TValueStorage> : 
 	}
 }
 
+[System.Serializable]
 public class SerializableDictionary<TKey, TValue> : SerializableDictionaryBase<TKey, TValue, TValue>
 {
 	public SerializableDictionary()
