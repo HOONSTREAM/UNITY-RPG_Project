@@ -41,7 +41,10 @@ public class NewInvenUI : MonoBehaviour
 
         TraverseChildrenRecursively(inventoryPanel.transform);
 
+
         inventoryPanel.SetActive(activeInventory);
+        
+        
     }
 
    private void TraverseChildrenRecursively(Transform parent)
@@ -105,10 +108,10 @@ public class NewInvenUI : MonoBehaviour
     {
         activeInventory = !activeInventory;
         inventoryPanel.SetActive(activeInventory);
+        PlayerInventory.Instance.onChangeItem.Invoke();
         Managers.UI.SetCanvas(Inventory_canvas, true);
         RedrawSlotUI();
         Managers.Sound.Play("Inven_Open");
-
     }
     public void Xbutton_Exit()
     {

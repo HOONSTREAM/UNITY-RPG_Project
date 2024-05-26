@@ -9,6 +9,7 @@ public class SaveManager : MonoBehaviour
 
 
     // 플레이어 데이터 저장
+    // TODO : 스텟 즉시반영 안됨
     public void SavePlayerData()
     {
         GameObject player = Managers.Game.GetPlayer();
@@ -49,13 +50,18 @@ public class SaveManager : MonoBehaviour
 
                     PlayerStat stat = player.GetComponent<PlayerStat>();
                     CopyPlayerStat(stat, Player_Stat);
+                    
+
                     PlayerInventory.Instance.LoadInventory();
                     PlayerEquipment.Instance.Load_Equipment();
-
+                   
 
                     Debug.Log("Player data loaded.");
-              
+                   
+
                 }
+
+               
             }
 
 
@@ -64,6 +70,9 @@ public class SaveManager : MonoBehaviour
         {
             Debug.LogWarning("No save data found.");
         }
+
+
+        return;
     }
 
     private void CopyPlayerStat(PlayerStat dest, PlayerStat src)
@@ -87,6 +96,7 @@ public class SaveManager : MonoBehaviour
         dest.improvement_Ability_attack = src.improvement_Ability_attack;
         dest.buff_damage = 0;
         dest.buff_DEFENSE = 0;
+
 
     }
 

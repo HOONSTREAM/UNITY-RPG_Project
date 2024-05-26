@@ -124,15 +124,16 @@ public class PlayerStat : Stat
         equipment = GetComponent<PlayerEquipment>();
 
         #region 최초 1회 실행하여 버그 방지
-        OnUpdateStatUI();
+        OnUpdateStatUI_UI_Interface();
         Equipment_UI equipment_ui = FindObjectOfType<Equipment_UI>();
         equipment_ui.OnUpdateEquip_Stat_Panel_UI();
         #endregion
 
-        onchangestat += OnUpdateStatUI;
+        onchangestat += OnUpdateStatUI_UI_Interface;
         onchangestat += equipment_ui.OnUpdateEquip_Stat_Panel_UI;
        
     }
+
 
     #region 스텟세팅 (장착장비검사,어빌리티검사)
 
@@ -555,7 +556,7 @@ public class PlayerStat : Stat
     /// 
     /// 
     /// <returns>리턴값은 없고, 플레이어 스텟창을 계속 업데이트 함.</returns>
-    private void OnUpdateStatUI()
+    private void OnUpdateStatUI_UI_Interface()
     {
 
         GameObject inttxt = GameObject.Find("INTnum").gameObject;

@@ -42,13 +42,16 @@ public class GameScene : BaseScene
         Camera.main.gameObject.GetAddComponent<CameraController>().SetPlayer(player);
 
 
-        //TEST CODE
+
+
         PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Weapon_oneHand"][0]);
         PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["SkillBook"][0]);
         PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["SkillBook"][0]);
         PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["SkillBook"][1]);
         PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["SkillBook"][1]);
         PlayerAbility.Instance.AddSkill(SkillDataBase.instance.SkillDB[4]);
+
+
 
         StartCoroutine(WaitAndExecute());
        

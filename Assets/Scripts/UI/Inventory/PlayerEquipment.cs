@@ -5,7 +5,7 @@ using UnityEngine;
 using static PlayerInventory;
 
 [System.Serializable]
-public class EquipTypeItem : SerializableDictionary<EquipType, Item> { }
+//public class EquipTypeItem : SerializableDictionary<EquipType, Item> { }
 
 public class PlayerEquipment : MonoBehaviour
 {
@@ -14,9 +14,9 @@ public class PlayerEquipment : MonoBehaviour
     [System.Serializable]
     public class EquipData
     {
-        public EquipTypeItem equip_items; 
+        public Dictionary<EquipType, Item> equip_items; 
 
-        public EquipData(EquipTypeItem items)
+        public EquipData(Dictionary<EquipType, Item> items)
         {
             this.equip_items = items;
         }
@@ -28,7 +28,7 @@ public class PlayerEquipment : MonoBehaviour
     public static PlayerEquipment Instance;
 
     [SerializeField]
-    public EquipTypeItem player_equip; 
+    public Dictionary<EquipType, Item> player_equip; 
 
     private PlayerStat stat;
 
@@ -38,6 +38,7 @@ public class PlayerEquipment : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        player_equip = new Dictionary<EquipType, Item>();
         stat = GetComponent<PlayerStat>(); //PrintUserText 함수 사용
        
     }
