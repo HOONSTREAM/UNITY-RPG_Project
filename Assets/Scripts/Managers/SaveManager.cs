@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Playables;
@@ -10,14 +11,14 @@ public class SaveManager : MonoBehaviour
 
 
     // 플레이어 데이터 저장
-    // TODO : 스텟 즉시반영 안됨
+    // TODO : 스텟 즉시반영 안됨, 인벤토리 즉시 반영안됨
     public void SavePlayerData()
     {
         GameObject player = Managers.Game.GetPlayer();
 
         ES3.Save("PlayerPosition", player.transform.position);
         ES3.Save("PlayerStat", player.GetComponent<PlayerStat>());
-        ES3.Save("PlayerWeaponController",player.GetComponent<PlayerWeaponController>());
+        ES3.Save("Player_Equip_Weapon",player.GetComponent<PlayerWeaponController>().Equip_Weapon);
 
         PlayerInventory.Instance.SaveInventory();
         PlayerEquipment.Instance.Save_Equipment();
@@ -36,7 +37,7 @@ public class SaveManager : MonoBehaviour
             // 데이터를 미리 로드합니다.
             Vector3 position = ES3.Load<Vector3>("PlayerPosition");
             PlayerStat Player_Stat = ES3.Load<PlayerStat>("PlayerStat");
-            PlayerWeaponController weapon_controller = ES3.Load<PlayerWeaponController>("PlayerWeaponController");
+            Item weapon_controller = ES3.Load<PlayerWeaponController>("PlayerWeaponController").Equip_Weapon;
 
 
             string sceneName = ES3.Load<string>("CurrentScene");
@@ -55,14 +56,27 @@ public class SaveManager : MonoBehaviour
 
                     PlayerStat stat = player.GetComponent<PlayerStat>();
                     CopyPlayerStat(stat, Player_Stat);
-
-                    PlayerWeaponController weapon = player.GetComponent<PlayerWeaponController>();
-                    CopyPlayerWeaponController(weapon, weapon_controller);
                     
 
                     PlayerInventory.Instance.LoadInventory();
                     PlayerEquipment.Instance.Load_Equipment();
-                    
+
+                    PlayerWeaponController weapon = player.GetComponent<PlayerWeaponController>();
+                    weapon.Equip_Weapon = weapon_controller;
+
+                    switch (weapon.Equip_Weapon.weapontype)
+                    {
+                        case WeaponType.One_Hand:
+                            player.GetComponent<PlayerAnimController>().Change_oneHand_weapon_animClip();
+                            break;
+                        case WeaponType.Two_Hand:
+                            player.GetComponent<PlayerAnimController>().Change_TwoHand_weapon_animClip();
+                            break;
+                        case WeaponType.No_Weapon:
+                            player.GetComponent<PlayerAnimController>().Change_No_Weapon_animClip();
+                            break;
+                    }
+
 
                     Debug.Log("Player data loaded.");
 
@@ -113,13 +127,6 @@ public class SaveManager : MonoBehaviour
         dest.onChangeItem = src.onChangeItem;
         dest.slot = src.slot;
         dest.player_items = new List<Item>(src.player_items);
-    }
-
-    private void CopyPlayerWeaponController(PlayerWeaponController dest, PlayerWeaponController src)
-    {
-        dest.Equip_Weapon = src.Equip_Weapon;
-        dest.One_Hand_Wepaon_Long_Sword = src.One_Hand_Wepaon_Long_Sword;
-        dest.Two_Hand_Weapon_Great_Sword = src.Two_Hand_Weapon_Great_Sword;
     }
 
 

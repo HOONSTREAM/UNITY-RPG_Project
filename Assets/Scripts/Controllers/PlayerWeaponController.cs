@@ -10,17 +10,6 @@ public class PlayerWeaponController : MonoBehaviour
     public GameObject Two_Hand_Weapon_Great_Sword;
 
 
-
-
-    private void Start()
-    {
-        One_Hand_Wepaon_Long_Sword = GameObject.Find("Sword1_R").gameObject;
-        Two_Hand_Weapon_Great_Sword = GameObject.Find("Sword2_R").gameObject;
-        One_Hand_Wepaon_Long_Sword.gameObject.SetActive(false);
-        Two_Hand_Weapon_Great_Sword.gameObject.SetActive(false);
-
-        Change_Weapon_Prefabs();
-    }
     public Item Get_request_Change_Weapon_EquipType(Item item)
     {
         return Equip_Weapon = item;
