@@ -104,6 +104,8 @@ public class NewInvenUI : MonoBehaviour
 
         
     }
+
+    //TODO : 인스턴스화 시간차 극복 
     public void Inventory_Button_Open()
     {
         activeInventory = !activeInventory;

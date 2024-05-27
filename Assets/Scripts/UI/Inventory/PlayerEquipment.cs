@@ -39,7 +39,7 @@ public class PlayerEquipment : MonoBehaviour
     {
         Instance = this;
         player_equip = new Dictionary<EquipType, Item>();
-        stat = GetComponent<PlayerStat>(); //PrintUserText 함수 사용
+        stat = GetComponent<PlayerStat>(); 
        
     }
 

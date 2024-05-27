@@ -1,3 +1,4 @@
+using Data;
 using JetBrains.Annotations;
 using System;
 using System.Collections;
@@ -8,7 +9,6 @@ using UnityEngine.SceneManagement;
 
 public class SaveManager : MonoBehaviour
 {
-
 
     // 플레이어 데이터 저장
     // TODO : 스텟 즉시반영 안됨, 인벤토리 즉시 반영안됨
@@ -37,7 +37,7 @@ public class SaveManager : MonoBehaviour
             // 데이터를 미리 로드합니다.
             Vector3 position = ES3.Load<Vector3>("PlayerPosition");
             PlayerStat Player_Stat = ES3.Load<PlayerStat>("PlayerStat");
-            Item weapon_controller = ES3.Load<PlayerWeaponController>("PlayerWeaponController").Equip_Weapon;
+            Item weapon_controller = ES3.Load<Item>("Player_Equip_Weapon");
 
 
             string sceneName = ES3.Load<string>("CurrentScene");
@@ -52,6 +52,7 @@ public class SaveManager : MonoBehaviour
                 {
                     // 씬이 로드된 후 플레이어 배치
                     GameObject player = Managers.Game.GetPlayer();
+                    
                     player.transform.position = position; // 마지막 저장위치
 
                     PlayerStat stat = player.GetComponent<PlayerStat>();
@@ -77,6 +78,8 @@ public class SaveManager : MonoBehaviour
                             break;
                     }
 
+
+                    StartCoroutine(After_1second_Load_Inven_and_Stat()); // 인스턴스화 시간차 극복을 위해, 1.5초 뒤에 스텟과 인벤 데이터 로드
 
                     Debug.Log("Player data loaded.");
 
@@ -129,6 +132,14 @@ public class SaveManager : MonoBehaviour
         dest.player_items = new List<Item>(src.player_items);
     }
 
+    IEnumerator After_1second_Load_Inven_and_Stat()
+    {
+        yield return new WaitForSeconds(1.0f);
+        Managers.Game.GetPlayer().GetComponent<PlayerStat>().onchangestat.Invoke();
+
+        PlayerInventory.Instance.onChangeItem.Invoke(); //TODO : 인벤토리가 열려야 업데이트 되는 문제 해결 필요
+
+    }
 
 }
 
