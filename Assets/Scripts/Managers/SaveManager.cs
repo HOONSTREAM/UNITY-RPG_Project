@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Playables;
@@ -16,6 +17,8 @@ public class SaveManager : MonoBehaviour
 
         ES3.Save("PlayerPosition", player.transform.position);
         ES3.Save("PlayerStat", player.GetComponent<PlayerStat>());
+        ES3.Save("PlayerWeaponController",player.GetComponent<PlayerWeaponController>());
+
         PlayerInventory.Instance.SaveInventory();
         PlayerEquipment.Instance.Save_Equipment();
       
@@ -33,7 +36,9 @@ public class SaveManager : MonoBehaviour
             // 데이터를 미리 로드합니다.
             Vector3 position = ES3.Load<Vector3>("PlayerPosition");
             PlayerStat Player_Stat = ES3.Load<PlayerStat>("PlayerStat");
-           
+            PlayerWeaponController weapon_controller = ES3.Load<PlayerWeaponController>("PlayerWeaponController");
+
+
             string sceneName = ES3.Load<string>("CurrentScene");
 
 
@@ -50,14 +55,16 @@ public class SaveManager : MonoBehaviour
 
                     PlayerStat stat = player.GetComponent<PlayerStat>();
                     CopyPlayerStat(stat, Player_Stat);
+
+                    PlayerWeaponController weapon = player.GetComponent<PlayerWeaponController>();
+                    CopyPlayerWeaponController(weapon, weapon_controller);
                     
 
                     PlayerInventory.Instance.LoadInventory();
                     PlayerEquipment.Instance.Load_Equipment();
-                   
+                    
 
                     Debug.Log("Player data loaded.");
-                   
 
                 }
 
@@ -106,6 +113,13 @@ public class SaveManager : MonoBehaviour
         dest.onChangeItem = src.onChangeItem;
         dest.slot = src.slot;
         dest.player_items = new List<Item>(src.player_items);
+    }
+
+    private void CopyPlayerWeaponController(PlayerWeaponController dest, PlayerWeaponController src)
+    {
+        dest.Equip_Weapon = src.Equip_Weapon;
+        dest.One_Hand_Wepaon_Long_Sword = src.One_Hand_Wepaon_Long_Sword;
+        dest.Two_Hand_Weapon_Great_Sword = src.Two_Hand_Weapon_Great_Sword;
     }
 
 

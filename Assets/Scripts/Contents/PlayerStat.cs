@@ -245,7 +245,7 @@ public class PlayerStat : Stat
     /// <param name="stat">첫 번째 인자 : JSON 플레이어 스텟 데이터 </param>
     /// <param name="item">두 번째 인자 : 해당 아이템 </param>
     /// </summary>
-    private void check_Weapon_equip(Data.Stat stat, Item item)
+    public void check_Weapon_equip(Data.Stat stat, Item item)
     {
         if(item == null)
         {
