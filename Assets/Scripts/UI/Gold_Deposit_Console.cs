@@ -12,16 +12,12 @@ public class Gold_Deposit_Console : MonoBehaviour
 
     public TMP_InputField inputamounttext;
     public int inputamount;
-    private GameObject canvas; //스크립트가 등록되어있는 캔버스
     public GameObject amountInputConsole; //해당 골드 입력 창
-    public TextMeshProUGUI Storage_gold_text;
+    [SerializeField]
+    private TextMeshProUGUI Storage_gold_text;
 
     public int StorageGoldAmount;
-    void Awake()
-    {
-        canvas = GameObject.Find("StorageUI").gameObject;
-    }
-
+    
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.KeypadEnter))
@@ -58,7 +54,17 @@ public class Gold_Deposit_Console : MonoBehaviour
 
         inputamount = 0; // 입력값 초기화
 
+
+        PlayerStorage.Instance.Storage_Gold = StorageGoldAmount;
+
         amountInputConsole.SetActive(false);
+
+        return;
+    }
+
+    public void Load_Storage_Gold(int amount)
+    {
+        Storage_gold_text.text = amount.ToString();
 
         return;
     }

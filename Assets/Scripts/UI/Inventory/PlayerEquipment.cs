@@ -10,7 +10,7 @@ using static PlayerInventory;
 public class PlayerEquipment : MonoBehaviour
 {
 
-    #region 테스트코드 장비장착정보 저장
+    #region 장비장착정보 저장
     [System.Serializable]
     public class EquipData
     {
@@ -44,7 +44,7 @@ public class PlayerEquipment : MonoBehaviour
     }
 
 
-    #region 테스트 메서드 장착정보 저장
+    #region 메서드 장착정보 저장
     public void Save_Equipment()
     {
         EquipData data = new EquipData(player_equip);

@@ -20,8 +20,10 @@ public class SaveManager : MonoBehaviour
         ES3.Save("PlayerStat", player.GetComponent<PlayerStat>());
         ES3.Save("Player_Equip_Weapon",player.GetComponent<PlayerWeaponController>().Equip_Weapon);
 
+
         PlayerInventory.Instance.SaveInventory();
         PlayerEquipment.Instance.Save_Equipment();
+        PlayerStorage.Instance.Save_Storage();
       
 
         ES3.Save("CurrentScene", SceneManager.GetActiveScene().name);
@@ -61,6 +63,7 @@ public class SaveManager : MonoBehaviour
 
                     PlayerInventory.Instance.LoadInventory();
                     PlayerEquipment.Instance.Load_Equipment();
+                    PlayerStorage.Instance.Load_Storage();
 
                     PlayerWeaponController weapon = player.GetComponent<PlayerWeaponController>();
                     weapon.Equip_Weapon = weapon_controller;
@@ -79,7 +82,7 @@ public class SaveManager : MonoBehaviour
                     }
 
 
-                    StartCoroutine(After_1second_Load_Inven_and_Stat()); // 인스턴스화 시간차 극복을 위해, 1.5초 뒤에 스텟과 인벤 데이터 로드
+                    StartCoroutine(After_1second_Load_Stat()); // 인스턴스화 시간차 극복을 위해, 일정시간 뒤에 스텟데이터 로드
 
                     Debug.Log("Player data loaded.");
 
@@ -132,12 +135,10 @@ public class SaveManager : MonoBehaviour
         dest.player_items = new List<Item>(src.player_items);
     }
 
-    IEnumerator After_1second_Load_Inven_and_Stat()
+    IEnumerator After_1second_Load_Stat()
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.3f);
         Managers.Game.GetPlayer().GetComponent<PlayerStat>().onchangestat.Invoke();
-
-        PlayerInventory.Instance.onChangeItem.Invoke(); //TODO : 인벤토리가 열려야 업데이트 되는 문제 해결 필요
 
     }
 

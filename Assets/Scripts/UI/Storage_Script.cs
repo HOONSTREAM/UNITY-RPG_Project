@@ -49,13 +49,14 @@ public class Storage_Script : MonoBehaviour
 
     public void Enter() 
     {
-        RedrawSlotUI();
+       
         activestorage = !activestorage;
         StoragePanel.SetActive(activestorage);
         Managers.UI.SetCanvas(Storage_Canvas, true); // 캔버스 SortOrder 순서를 열릴때 마다 정의함. (제일 마지막에 열린것이 가장 위로)
         Managers.Sound.Play("Inven_Open");
 
-        
+        StartCoroutine(Wait_and_Load_Storage_Slot());
+
         for (int i = 0; i < Player_slots.Length; i++)
         {
                 Player_slots[i].isStorageMode = activestorage;
@@ -126,6 +127,10 @@ public class Storage_Script : MonoBehaviour
 
     }
 
-
+    IEnumerator Wait_and_Load_Storage_Slot()
+    {
+        yield return new WaitForSeconds(0.2f);
+        RedrawSlotUI();
+    }
 
 }

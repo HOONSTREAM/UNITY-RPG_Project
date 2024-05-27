@@ -105,12 +105,13 @@ public class NewInvenUI : MonoBehaviour
         
     }
 
-    //TODO : 인스턴스화 시간차 극복 
+    
     public void Inventory_Button_Open()
     {
         activeInventory = !activeInventory;
         inventoryPanel.SetActive(activeInventory);
-        PlayerInventory.Instance.onChangeItem.Invoke();
+
+        StartCoroutine(After_1second_Update_Inven_Slot());
         Managers.UI.SetCanvas(Inventory_canvas, true);
         RedrawSlotUI();
         Managers.Sound.Play("Inven_Open");
@@ -130,7 +131,15 @@ public class NewInvenUI : MonoBehaviour
         return;
     }
 
-    
+    /// <summary>
+    /// 인스턴스화 시간차에 의하여 아이템 갯수나 장착정보 등이 적용되지 않는현상을 해결하기 위해 1초 대기 후 델리게이트 함수들을 호출합니다.
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator After_1second_Update_Inven_Slot()
+    {
+        yield return new WaitForSeconds(0.2f);
+        PlayerInventory.Instance.onChangeItem.Invoke();
+    }
 }
 
 
