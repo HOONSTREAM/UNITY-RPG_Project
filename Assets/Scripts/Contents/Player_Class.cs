@@ -18,6 +18,7 @@ public class Player_Class : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI Player_class_UI_Text;
 
+    [SerializeField]
     private ClassType _classtype = ClassType.Warrior;
     
     void Start()

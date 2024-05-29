@@ -19,7 +19,7 @@ public class SaveManager : MonoBehaviour
         ES3.Save("PlayerPosition", player.transform.position);
         ES3.Save("PlayerStat", player.GetComponent<PlayerStat>());
         ES3.Save("Player_Equip_Weapon",player.GetComponent<PlayerWeaponController>().Equip_Weapon);
-        
+        ES3.Save("Player_Class", player.GetComponent<Player_Class>().Get_Player_Class());
 
         PlayerInventory.Instance.SaveInventory();
         PlayerEquipment.Instance.Save_Equipment();
@@ -45,7 +45,7 @@ public class SaveManager : MonoBehaviour
             Vector3 position = ES3.Load<Vector3>("PlayerPosition");
             PlayerStat Player_Stat = ES3.Load<PlayerStat>("PlayerStat");
             Item weapon_controller = ES3.Load<Item>("Player_Equip_Weapon");
-
+            Player_Class.ClassType class_type = ES3.Load<Player_Class.ClassType>("Player_Class");
 
             string sceneName = ES3.Load<string>("CurrentScene");
 
@@ -62,8 +62,10 @@ public class SaveManager : MonoBehaviour
                     
                     player.transform.position = position; // 마지막 저장위치
 
-                    PlayerStat stat = player.GetComponent<PlayerStat>();
+                    PlayerStat stat = player.GetComponent<PlayerStat>(); //마지막 저장 플레이어 스텟
                     CopyPlayerStat(stat, Player_Stat);
+
+                    player.GetComponent<Player_Class>().Set_Player_Class(class_type); //마지막 저장 플레이어의 직업
                     
 
                     PlayerInventory.Instance.LoadInventory();
@@ -74,6 +76,8 @@ public class SaveManager : MonoBehaviour
                     PlayerQuickSlot.Instance.Load_Item_Quickslot_Info();
                     Player_Quest.Instance.Load_Player_Quest_Info();
 
+
+                    // 장착 무기에 따라 애니메이션을 조정합니다.
 
                     PlayerWeaponController weapon = player.GetComponent<PlayerWeaponController>();
                     weapon.Equip_Weapon = weapon_controller;
