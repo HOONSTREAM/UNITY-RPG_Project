@@ -1,10 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static PlayerEquipment;
 using static UnityEditor.Progress;
 
 public class PlayerAbility : MonoBehaviour
 {
+
+
+    #region 플레이어 어빌리티 정보 저장
+    [System.Serializable]
+    public class AbilityData
+    {
+        public List<Skill> skills;
+
+        public AbilityData(List<Skill> player_skills)
+        {
+            this.skills = player_skills;
+        }
+    }
+    #endregion
+
+
+
     public static PlayerAbility Instance;
 
     private PlayerStat stat;
@@ -15,7 +33,32 @@ public class PlayerAbility : MonoBehaviour
     public OnChangeSkill onChangeSkill;
 
 
+    #region 메서드 어빌리티 정보 저장
+    public void Save_Ability_Info()
+    {
+        AbilityData data = new AbilityData(PlayerSkill);
+        ES3.Save("Player_Ability", data);
 
+
+
+        Debug.Log("Player_Ability saved using EasySave3");
+    }
+
+    public void Load_Ability_Info()
+    {
+        if (ES3.KeyExists("Player_Ability"))
+        {
+            AbilityData data = ES3.Load<AbilityData>("Player_Ability");
+            PlayerSkill = data.skills;
+            Debug.Log("Player_Ability loaded using EasySave3");
+        }
+        else
+        {
+            Debug.Log("No Player_Ability data found, creating a new one.");
+        }
+    }
+
+    #endregion
     private void Awake()
     {
        

@@ -65,7 +65,7 @@ public class PlayerEquipment : MonoBehaviour
         }
         else
         {
-            Debug.Log("No inventory data found, creating a new one.");
+            Debug.Log("No Player_Equipment data found, creating a new one.");
         }
     }
 

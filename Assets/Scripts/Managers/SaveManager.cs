@@ -11,7 +11,7 @@ public class SaveManager : MonoBehaviour
 {
 
     // 플레이어 데이터 저장
-    // TODO : 스텟 즉시반영 안됨, 인벤토리 즉시 반영안됨
+    // TODO : 암호화, 타이틀창에서 저장 슬롯창 띄워 선택저장 (복사 여러개 가능하도록)
     public void SavePlayerData()
     {
         GameObject player = Managers.Game.GetPlayer();
@@ -19,11 +19,16 @@ public class SaveManager : MonoBehaviour
         ES3.Save("PlayerPosition", player.transform.position);
         ES3.Save("PlayerStat", player.GetComponent<PlayerStat>());
         ES3.Save("Player_Equip_Weapon",player.GetComponent<PlayerWeaponController>().Equip_Weapon);
-
+        
 
         PlayerInventory.Instance.SaveInventory();
         PlayerEquipment.Instance.Save_Equipment();
         PlayerStorage.Instance.Save_Storage();
+        PlayerAbility.Instance.Save_Ability_Info();
+        PlayerSkillQuickSlot.Instance.Save_Skill_Quickslot_Info();
+        PlayerQuickSlot.Instance.Save_Item_Quickslot_Info();
+        Player_Quest.Instance.Save_Player_Quest_Info();
+
       
 
         ES3.Save("CurrentScene", SceneManager.GetActiveScene().name);
@@ -64,6 +69,11 @@ public class SaveManager : MonoBehaviour
                     PlayerInventory.Instance.LoadInventory();
                     PlayerEquipment.Instance.Load_Equipment();
                     PlayerStorage.Instance.Load_Storage();
+                    PlayerAbility.Instance.Load_Ability_Info();
+                    PlayerSkillQuickSlot.Instance.Load_Skill_Quickslot_Info();
+                    PlayerQuickSlot.Instance.Load_Item_Quickslot_Info();
+                    Player_Quest.Instance.Load_Player_Quest_Info();
+
 
                     PlayerWeaponController weapon = player.GetComponent<PlayerWeaponController>();
                     weapon.Equip_Weapon = weapon_controller;
@@ -82,7 +92,7 @@ public class SaveManager : MonoBehaviour
                     }
 
 
-                    StartCoroutine(After_1second_Load_Stat()); // 인스턴스화 시간차 극복을 위해, 일정시간 뒤에 스텟데이터 로드
+                    StartCoroutine(After_1second_Load_Player_Info()); // 인스턴스화 시간차 극복을 위해, 일정시간 뒤에 스텟데이터 로드
 
                     Debug.Log("Player data loaded.");
 
@@ -127,19 +137,15 @@ public class SaveManager : MonoBehaviour
 
     }
 
-    private void CopyPlayerInven(PlayerInventory dest, PlayerInventory src)
-    {     
-        dest._player_Inven_Content = src._player_Inven_Content;
-        dest.onChangeItem = src.onChangeItem;
-        dest.slot = src.slot;
-        dest.player_items = new List<Item>(src.player_items);
-    }
 
-    IEnumerator After_1second_Load_Stat()
+    IEnumerator After_1second_Load_Player_Info()
     {
         yield return new WaitForSeconds(0.3f);
         Managers.Game.GetPlayer().GetComponent<PlayerStat>().onchangestat.Invoke();
-
+        Managers.Game.GetPlayer().GetComponent<PlayerAbility>().onChangeSkill.Invoke();
+        Managers.Game.GetPlayer().GetComponent<PlayerSkillQuickSlot>().onChangeskill_quickslot.Invoke();
+        Managers.Game.GetPlayer().GetComponent<PlayerQuickSlot>().onChangeItem.Invoke();
+        Managers.Game.GetPlayer().GetComponent<Player_Quest>().onChangequest.Invoke();
     }
 
 }
