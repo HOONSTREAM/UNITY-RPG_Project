@@ -19,20 +19,19 @@ public class LoginScene : MonoBehaviour
 
     public void New_Game_Start()
     {
+        
         SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
+        
     }
 
 
     public void Load_Game()
     {
-       
-        if (SceneManager.GetActiveScene() != null)
-        {
-            Managers.Save.LoadPlayerData();
-        }
-       
+        
+        SceneManager.LoadScene(1);
     }
 
+   
     public void Game_Exit()
     {
 #if UNITY_EDITOR

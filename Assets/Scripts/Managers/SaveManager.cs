@@ -59,7 +59,6 @@ public class SaveManager : MonoBehaviour
         LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Rudencian_scene();
         SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
 
-      
 
         DontDestroyOnLoad(Managers.Game.GetPlayer());
         DontDestroyOnLoad(GameObject.Find("Save_Data").gameObject);

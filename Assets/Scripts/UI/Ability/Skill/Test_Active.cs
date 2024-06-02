@@ -18,7 +18,6 @@ public class Test_Active : SkillEffect
         {
             
 
-
             SkillDataBase.instance.SkillDB[4].CanUseSkill = false;
             GameObject effect = Managers.Resources.Instantiate("Skill_Effect/Active/Snow slash");
             GameObject casting_player = Managers.Resources.Instantiate("Skill_Effect/Active/Freeze circle");

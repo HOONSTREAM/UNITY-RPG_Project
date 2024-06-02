@@ -359,6 +359,7 @@ public class GameManager : MonoBehaviour
 
     public void Set_Player_and_Save_Data_PreFabs()
     {
+        
        GameObject savedata = Managers.Resources.Instantiate("Save_Data"); //Save_Data 오브젝트 새로 생성
 
         Dictionary<int, Data.Stat> dict = Managers.Data.StatDict;
