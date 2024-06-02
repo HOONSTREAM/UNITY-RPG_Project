@@ -17,9 +17,7 @@ public class Jewel_shop_in_Script : MonoBehaviour
         LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Rudencian_jewel_Scene();
 
         GameObject player = Managers.Game.GetPlayer();
-        DontDestroyOnLoad(player);
-        DontDestroyOnLoad(savedata);
-
+        
         SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
     }
 }

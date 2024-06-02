@@ -18,8 +18,7 @@ public class south_in_script : MonoBehaviour
         LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Rudencian_south();
 
         GameObject player = Managers.Game.GetPlayer();
-        DontDestroyOnLoad(player);
-        DontDestroyOnLoad(savedata);
+        
 
         switch (SceneManager.GetActiveScene().name)
         {

@@ -357,6 +357,23 @@ public class GameManager : MonoBehaviour
         Managers.Resources.Destroy(go);
     }
 
-   
+    public void Set_Player_and_Save_Data_PreFabs()
+    {
+       GameObject savedata = Managers.Resources.Instantiate("Save_Data"); //Save_Data 오브젝트 새로 생성
+
+        Dictionary<int, Data.Stat> dict = Managers.Data.StatDict;
+
+
+        GameObject player = Managers.Game.Spawn(Define.WorldObject.Player, "UnityChan");
+        Camera.main.gameObject.GetAddComponent<CameraController>().SetPlayer(player);
+
+        DontDestroyOnLoad(player);
+        DontDestroyOnLoad(savedata);
+
+        return;
+
+    }
+
+
 
 }

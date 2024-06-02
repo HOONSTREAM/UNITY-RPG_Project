@@ -25,7 +25,12 @@ public class LoginScene : MonoBehaviour
 
     public void Load_Game()
     {
-        Managers.Save.LoadPlayerData();
+       
+        if (SceneManager.GetActiveScene() != null)
+        {
+            Managers.Save.LoadPlayerData();
+        }
+       
     }
 
     public void Game_Exit()
