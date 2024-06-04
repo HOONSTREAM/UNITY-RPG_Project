@@ -7,8 +7,13 @@ using UnityEditor.Playables;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+[DefaultExecutionOrder(100)]
 public class SaveManager : MonoBehaviour
 {
+    private void Awake()
+    {
+        DontDestroyOnLoad(this.gameObject);
+    }
 
     private string sceneName;
 
@@ -16,6 +21,10 @@ public class SaveManager : MonoBehaviour
     {
        
         GameObject player = Managers.Game.GetPlayer();
+
+        if (player == null)
+            return;
+
 
         ES3.Save("PlayerPosition", player.transform.position);
         ES3.Save("PlayerStat", player.GetComponent<PlayerStat>());
@@ -34,23 +43,15 @@ public class SaveManager : MonoBehaviour
 
         ES3.Save("CurrentScene", SceneManager.GetActiveScene().name);
 
-        Debug.Log("Player data saved.");
     }
 
     
     public void LoadPlayerData()
     {
-       
         if (ES3.KeyExists("PlayerPosition"))
         {
             Set_Player_SaveData();
         }
-        else
-        {
-            Debug.LogWarning("저장된 데이터가 없습니다.");
-        }
-   
-        return;
     }
 
     
@@ -60,69 +61,46 @@ public class SaveManager : MonoBehaviour
         SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
 
 
-        DontDestroyOnLoad(Managers.Game.GetPlayer());
-        DontDestroyOnLoad(GameObject.Find("Save_Data").gameObject);
+        GameObject player = Managers.Game.GetPlayer();
+        if (player == null)
+            return;
 
-        // 데이터 로드 로그
-        Debug.Log("저장된 데이터를 로드합니다.");
+        DontDestroyOnLoad(player);
+        GameObject saveData = GameObject.Find("Save_Data");
+        if (saveData != null)
+        {
+            DontDestroyOnLoad(saveData);
+        }
 
-        // 각 데이터 로드 후 확인
         Vector3 position = ES3.Load<Vector3>("PlayerPosition");
-        Debug.Log($"PlayerPosition: {position}");
-
         PlayerStat Player_Stat = ES3.Load<PlayerStat>("PlayerStat");
-        Debug.Log($"PlayerStat: {Player_Stat}");
-
         Item weapon_controller = ES3.Load<Item>("Player_Equip_Weapon");
-        Debug.Log($"Player_Equip_Weapon: {weapon_controller}");
-
         Player_Class.ClassType class_type = ES3.Load<Player_Class.ClassType>("Player_Class");
-        Debug.Log($"Player_Class: {class_type}");
-
         sceneName = ES3.Load<string>("CurrentScene");
-        Debug.Log($"CurrentScene: {sceneName}");
 
         OnSceneLoaded(SceneManager.GetActiveScene(), LoadSceneMode.Single);
 
         void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
 
-            Debug.Log("씬이 로드되었습니다.");
 
             GameObject player = Managers.Game.GetPlayer();
 
-            player.transform.position = position; // 마지막 저장위치
-            Debug.Log($"플레이어 위치 설정: {position}");
-
+            player.transform.position = position; // 마지막 저장위치           
             PlayerStat stat = player.GetComponent<PlayerStat>(); // 마지막 저장 플레이어 스탯
             CopyPlayerStat(stat, Player_Stat);
-            Debug.Log("플레이어 스탯 설정 완료.");
-
+        
             player.GetComponent<Player_Class>().Set_Player_Class(class_type); // 마지막 저장 플레이어의 직업
-            Debug.Log($"플레이어 직업 설정: {class_type}");
-
-            PlayerInventory.Instance.LoadInventory();
-            Debug.Log("인벤토리 로드 완료.");
-
-            PlayerEquipment.Instance.Load_Equipment();
-            Debug.Log("장비 로드 완료.");
-
-            PlayerStorage.Instance.Load_Storage();
-            Debug.Log("저장소 로드 완료.");
-
-            PlayerAbility.Instance.Load_Ability_Info();
-            Debug.Log("능력 정보 로드 완료.");
-
+          
+            PlayerInventory.Instance.LoadInventory();          
+            PlayerEquipment.Instance.Load_Equipment();      
+            PlayerStorage.Instance.Load_Storage();            
+            PlayerAbility.Instance.Load_Ability_Info();       
             PlayerSkillQuickSlot.Instance.Load_Skill_Quickslot_Info();
-            Debug.Log("스킬 퀵슬롯 정보 로드 완료.");
-
-            PlayerQuickSlot.Instance.Load_Item_Quickslot_Info();
-            Debug.Log("아이템 퀵슬롯 정보 로드 완료.");
-
+            PlayerQuickSlot.Instance.Load_Item_Quickslot_Info();       
             Player_Quest.Instance.Load_Player_Quest_Info();
-            Debug.Log("퀘스트 정보 로드 완료.");
+        
 
-            // 장착 무기에 따라 애니메이션 조정
             PlayerWeaponController weapon = player.GetComponent<PlayerWeaponController>();
             weapon.Equip_Weapon = weapon_controller;
 
@@ -130,62 +108,30 @@ public class SaveManager : MonoBehaviour
             {
                 case WeaponType.One_Hand:
                     player.GetComponent<PlayerAnimController>().Change_oneHand_weapon_animClip();
-                    Debug.Log("애니메이션 변경: One Hand");
+                  
                     break;
                 case WeaponType.Two_Hand:
                     player.GetComponent<PlayerAnimController>().Change_TwoHand_weapon_animClip();
-                    Debug.Log("애니메이션 변경: Two Hand");
+                   
                     break;
                 case WeaponType.No_Weapon:
                     player.GetComponent<PlayerAnimController>().Change_No_Weapon_animClip();
-                    Debug.Log("애니메이션 변경: No Weapon");
+             
                     break;
             }
 
-            StartCoroutine(After_1second_Load_Player_Info()); // 인스턴스화 시간차 극복을 위해, 일정 시간 뒤에 스탯 데이터 로드
-            Debug.Log("1초 후 플레이어 정보 로드 시작.");
+            Managers.Game.GetPlayer().GetComponent<PlayerStat>().onchangestat.Invoke();
+            Managers.Game.GetPlayer().GetComponent<PlayerAbility>().onChangeSkill.Invoke();
+            Managers.Game.GetPlayer().GetComponent<PlayerSkillQuickSlot>().onChangeskill_quickslot.Invoke();
+            Managers.Game.GetPlayer().GetComponent<PlayerQuickSlot>().onChangeItem.Invoke();
+            Managers.Game.GetPlayer().GetComponent<Player_Quest>().onChangequest.Invoke();
 
-            Debug.Log("플레이어 데이터 로드 완료.");
+            Move_To_LastSave_Scene();
 
 
         }
     }
-    private void CopyPlayerStat(PlayerStat dest, PlayerStat src)
-    {
-        dest.LEVEL = src.LEVEL;
-        dest.Hp = src.Hp;
-        dest.Mp = src.Mp;
-        dest.MAXHP = src.MAXHP;
-        dest.MaxMp = src.MaxMp;
-        dest.MOVESPEED = src.MOVESPEED;
-        dest.ATTACK = src.ATTACK;
-        dest.DEFENSE = src.DEFENSE;
-        dest.EXP = src.EXP;
-        dest.Gold = src.Gold;
-        dest.STR = src.STR;
-        dest.INT = src.INT;
-        dest.VIT = src.VIT;
-        dest.AGI = src.AGI;
-        dest.one_hand_sword_AbilityAttack = src.one_hand_sword_AbilityAttack;
-        dest.two_hand_sword_AbilityAttack = src.two_hand_sword_AbilityAttack;
-        dest.improvement_Ability_attack = src.improvement_Ability_attack;
-        dest.buff_damage = 0;
-        dest.buff_DEFENSE = 0;
 
-
-    }
-
-    IEnumerator After_1second_Load_Player_Info()
-    {
-        yield return new WaitForSeconds(0.3f);
-        Managers.Game.GetPlayer().GetComponent<PlayerStat>().onchangestat.Invoke();
-        Managers.Game.GetPlayer().GetComponent<PlayerAbility>().onChangeSkill.Invoke();
-        Managers.Game.GetPlayer().GetComponent<PlayerSkillQuickSlot>().onChangeskill_quickslot.Invoke();
-        Managers.Game.GetPlayer().GetComponent<PlayerQuickSlot>().onChangeItem.Invoke();
-        Managers.Game.GetPlayer().GetComponent<Player_Quest>().onChangequest.Invoke();
-
-        Move_To_LastSave_Scene();
-    }
     private void Move_To_LastSave_Scene()
     {
         switch (sceneName)
@@ -224,5 +170,33 @@ public class SaveManager : MonoBehaviour
         SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
     }
 
+
+    private void CopyPlayerStat(PlayerStat dest, PlayerStat src)
+    {
+        dest.LEVEL = src.LEVEL;
+        dest.Hp = src.Hp;
+        dest.Mp = src.Mp;
+        dest.MAXHP = src.MAXHP;
+        dest.MaxMp = src.MaxMp;
+        dest.MOVESPEED = src.MOVESPEED;
+        dest.ATTACK = src.ATTACK;
+        dest.DEFENSE = src.DEFENSE;
+        dest.EXP = src.EXP;
+        dest.Gold = src.Gold;
+        dest.STR = src.STR;
+        dest.INT = src.INT;
+        dest.VIT = src.VIT;
+        dest.AGI = src.AGI;
+        dest.one_hand_sword_AbilityAttack = src.one_hand_sword_AbilityAttack;
+        dest.two_hand_sword_AbilityAttack = src.two_hand_sword_AbilityAttack;
+        dest.improvement_Ability_attack = src.improvement_Ability_attack;
+        dest.buff_damage = 0;
+        dest.buff_DEFENSE = 0;
+
+
+    }
+
+   
+   
 }
 

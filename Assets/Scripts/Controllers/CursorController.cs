@@ -25,13 +25,24 @@ public class CursorController : MonoBehaviour
 
     void Start()
     {
-        _attackIcon = Managers.Resources.Load<Texture2D>("Textures/Cursor/cursor(12)");
-        _handIcon = Managers.Resources.Load<Texture2D>("Textures/Cursor/cursor(1)");
-        _NPCIcon = Managers.Resources.Load<Texture2D>("Textures/Cursor/cursor(10)");
+        Init();
     }
 
+    private void Init()
+    {
+        _attackIcon = Managers.Resources.Load<Texture2D>("Textures/Cursor/Cursor_Basic2");
+        _handIcon = Managers.Resources.Load<Texture2D>("Textures/Cursor/Cursor_Basic2");
+        _NPCIcon = Managers.Resources.Load<Texture2D>("Textures/Cursor/Cursor_Basic2");
 
+        Cursor.SetCursor(_handIcon, new Vector2(_handIcon.width / 3, 0), CursorMode.Auto);
+        cursorType = CursorType.Hand;
+    }
     void Update()
+    {
+        Mouse_Control();
+    }
+
+    private void Mouse_Control()
     {
         if (Input.GetMouseButton(0))
         {
@@ -64,14 +75,15 @@ public class CursorController : MonoBehaviour
                 }
 
             }
-            else 
+
+            else
             {
                 if (cursorType != CursorType.Hand)
                 {
                     Cursor.SetCursor(_NPCIcon, new Vector2(_NPCIcon.width / 3, 0), CursorMode.Auto);
                     cursorType = CursorType.NPC;
                 }
-               
+
 
             }
         }
