@@ -41,6 +41,8 @@ public class Stat : MonoBehaviour
     public int DEFENSE { get { return _defense; } set { _defense = value; } }
     public float MOVESPEED { get { return _movespeed; } set { _movespeed = value; } }
 
+    private bool _monster_isDead = false;
+
 
     private void Start()
     {
@@ -99,6 +101,10 @@ public class Stat : MonoBehaviour
     /// </summary>
     protected virtual void OnDead(Stat attacker)
     {
+        if (_monster_isDead) return; // 여러번 호출됨을 방지합니다.
+
+        _monster_isDead = true;
+
         if (gameObject.name == "Slime")
         {
             PlayerStat playerstat = attacker as PlayerStat;
