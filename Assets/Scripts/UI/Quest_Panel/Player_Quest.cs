@@ -3,26 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using static PlayerSkillQuickSlot;
 
+
+// 참고사항 : 유니티에서 public으로 선언된 필드는 인스펙터에 노출됩니다.
+// 만약 public으로 선언된 List가 인스펙터에서 기본값으로 설정되지 않았더라도,
+// 유니티는 기본 생성자로 인해 해당 리스트를 자동으로 초기화합니다.
+// 즉, public List<Quest> PlayerQuest;와 같이 선언된 리스트는 자동으로 빈 리스트로 초기화됩니다.
+
 public class Player_Quest : MonoBehaviour
 {
-
-    #region 플레이어 퀘스트 정보 저장
-    [System.Serializable]
-    public class Player_Quest_Data
-    {
-        public List<Quest> quests;
-
-        public Player_Quest_Data(List<Quest> player_quest_data)
-        {
-            this.quests = player_quest_data;
-        }
-    }
-    #endregion
-
-
     public static Player_Quest Instance;
 
-    private PlayerStat stat;
+    
     public List<Quest> PlayerQuest;
 
 
@@ -30,41 +21,11 @@ public class Player_Quest : MonoBehaviour
     public OnChangeQuest onChangequest;
 
 
-    #region 메서드 퀘스트 정보 저장
-    public void Save_Player_Quest_Info()
-    {
-        Player_Quest_Data data = new Player_Quest_Data(PlayerQuest);
-        ES3.Save("Player_Quest_Data", data);
-
-
-
-        Debug.Log("Player_Quest_Data saved using EasySave3");
-    }
-
-    public void Load_Player_Quest_Info()
-    {
-        if (ES3.KeyExists("Player_Quest_Data"))
-        {
-            Player_Quest_Data data = ES3.Load<Player_Quest_Data>("Player_Quest_Data");
-            PlayerQuest = data.quests;
-            Debug.Log("Player_Quest_Data loaded using EasySave3");
-        }
-        else
-        {
-            Debug.Log("No Player_Quest_Data data found, creating a new one.");
-        }
-    }
-    #endregion
-
     private void Awake()
     {
-
         Instance = this;
         PlayerQuest = new List<Quest>();
-        stat = GetComponent<PlayerStat>();
-
     }
-
 
     public bool AddQuest(Quest _quest) 
     {
@@ -86,11 +47,6 @@ public class Player_Quest : MonoBehaviour
             PlayerQuest.RemoveAt(index);
             onChangequest.Invoke();
 
-        }
-
-        else
-        {
-            return;
         }
 
         return;

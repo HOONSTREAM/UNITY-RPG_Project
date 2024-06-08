@@ -21,11 +21,7 @@ public class PlayerAbility : MonoBehaviour
     }
     #endregion
 
-
-
     public static PlayerAbility Instance;
-
-    private PlayerStat stat;
     public List<Skill> PlayerSkill;
    
 
@@ -64,8 +60,7 @@ public class PlayerAbility : MonoBehaviour
        
         Instance = this;
         PlayerSkill = new List<Skill>();
-        stat = GetComponent<PlayerStat>();
-        
+             
     }
 
     public bool AddSkill(Skill _skill) //스킬창은 갯수제한 없음

@@ -39,7 +39,7 @@ public class Quest_Script : MonoBehaviour
         Player_slots = player_slotHolder.GetComponentsInChildren<Slot>();
 
         Quest_Panel.SetActive(activequestpanel);
-        quest.onChangequest += RedrawSlotUI;  // Invoke 함수 등록 이벤트 발생마다 함수 호출
+        Player_Quest.Instance.onChangequest += RedrawSlotUI;  // Invoke 함수 등록 이벤트 발생마다 함수 호출
         Managers.UI.SetCanvas(Quest_CANVAS, true);       
         UI_Base.BindEvent(Quest_Panel, (PointerEventData data) => { Quest_Panel.transform.position = data.position; }, Define.UIEvent.Drag);  //인벤토리 드래그 가능하도록 하는 이벤트
         RedrawSlotUI();
@@ -65,12 +65,12 @@ public class Quest_Script : MonoBehaviour
             quest_slots[i].slotnum = i;
         }
 
-        for (int i = 0; i < quest_slots.Length; i++) //싹 밀어버리고
+        for (int i = 0; i < quest_slots.Length; i++) 
         {
             quest_slots[i].RemoveSlot();
         }
 
-        for (int i = 0; i < quest.PlayerQuest.Count; i++) //리스트배열로 저장되어있는 인벤토리의 아이템정보를 받아와 다시 재정렬 
+        for (int i = 0; i < quest.PlayerQuest.Count; i++)  
         {
             quest_slots[i].quest = quest.PlayerQuest[i];
             quest_slots[i].UpdateSlotUI();

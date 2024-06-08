@@ -37,7 +37,7 @@ public class SaveManager : MonoBehaviour
         PlayerAbility.Instance.Save_Ability_Info();
         PlayerSkillQuickSlot.Instance.Save_Skill_Quickslot_Info();
         PlayerQuickSlot.Instance.Save_Item_Quickslot_Info();
-        Player_Quest.Instance.Save_Player_Quest_Info();
+        QuestDatabase.instance.Save_QuestDB_Info();
 
       
 
@@ -97,9 +97,9 @@ public class SaveManager : MonoBehaviour
             PlayerStorage.Instance.Load_Storage();            
             PlayerAbility.Instance.Load_Ability_Info();       
             PlayerSkillQuickSlot.Instance.Load_Skill_Quickslot_Info();
-            PlayerQuickSlot.Instance.Load_Item_Quickslot_Info();       
-            Player_Quest.Instance.Load_Player_Quest_Info();
-        
+            PlayerQuickSlot.Instance.Load_Item_Quickslot_Info();
+            QuestDatabase.instance.Load_QuestDB_Info();
+
 
             PlayerWeaponController weapon = player.GetComponent<PlayerWeaponController>();
             weapon.Equip_Weapon = weapon_controller;
@@ -193,6 +193,24 @@ public class SaveManager : MonoBehaviour
         dest.buff_damage = 0;
         dest.buff_DEFENSE = 0;
 
+    }
+
+    private void CopyPlayerQuestData(Quest dest, Quest src)
+    {
+        dest.questtype = src.questtype;
+        dest.Quest_ID = src.Quest_ID;
+        dest.quest_name = src.quest_name;
+        dest.reward_1 = src.reward_1;
+        dest.reward_2 = src.reward_2;
+        dest.num_1 = src.num_1;
+        dest.num_2 = src.num_2;
+        dest.Description = src.Description;
+        dest.summing_up_Description = src.summing_up_Description;
+        dest.quest_image = src.quest_image;
+        dest.is_complete = src.is_complete;
+        dest.monster_counter = src.monster_counter;
+        dest.npc_meet = src.npc_meet;
+        dest.is_achievement_of_conditions = src.is_achievement_of_conditions;
 
     }
 
