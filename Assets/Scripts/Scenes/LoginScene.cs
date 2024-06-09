@@ -56,6 +56,10 @@ public class LoginScene : MonoBehaviour
 
         CheckPlayer();
 
+        yield return new WaitForSeconds(_loading_canvas_destroy_time);
+
+        Managers.Save.ShowLoadCompleteAlarm();
+
     }
     private void CheckPlayer()
     {
@@ -66,6 +70,7 @@ public class LoginScene : MonoBehaviour
             Managers.Save.LoadPlayerData(); // 플레이어가 존재하면, 저장된 데이터를 로드합니다.
                                              
             Destroy(_loading_canvas, _loading_canvas_destroy_time);
+            
         }
 
     }

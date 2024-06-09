@@ -13,6 +13,7 @@ public class SaveManager : MonoBehaviour
 
     private const float SAVE_COMPLETE_ALARM_DURATION = 5.0f;
     private const string SAVE_COMPLETE_RESOURCE = "Save_Complete";
+    private const string LOAD_COMPLETE_RESOURCE = "Load_Complete";
     private const string SAVE_COMPLETE_SOUND = "GUI_Sound/misc_sound";
     private const string LOADING_BACKGROUND = "LOADING_CANVAS";
 
@@ -62,6 +63,13 @@ public class SaveManager : MonoBehaviour
     private void ShowSaveCompleteAlarm()
     {
         GameObject go = Managers.Resources.Instantiate(SAVE_COMPLETE_RESOURCE).gameObject;
+        Managers.Sound.Play(SAVE_COMPLETE_SOUND);
+        Destroy(go, SAVE_COMPLETE_ALARM_DURATION);
+    }
+
+    public void ShowLoadCompleteAlarm()
+    {
+        GameObject go = Managers.Resources.Instantiate(LOAD_COMPLETE_RESOURCE).gameObject;
         Managers.Sound.Play(SAVE_COMPLETE_SOUND);
         Destroy(go, SAVE_COMPLETE_ALARM_DURATION);
     }
@@ -187,6 +195,7 @@ public class SaveManager : MonoBehaviour
         }
 
         SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
+        
     }
 
 

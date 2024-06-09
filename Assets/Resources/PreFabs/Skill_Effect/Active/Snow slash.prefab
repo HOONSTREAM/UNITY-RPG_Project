@@ -9800,7 +9800,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxCenter: {x: 0.2538373, y: -0.07809308, z: 0.6425629}
-  boxSize: {x: 4.740425, y: 1.521273, z: 2.862189}
+  boxSize: {x: 10, y: 2, z: 7}
   boxRotation: {x: 0, y: 0, z: 0, w: 1}
   monsterLayerMask:
     serializedVersion: 2
@@ -9826,7 +9826,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 4.7404246, y: 1.5212731, z: 2.8621893}
+  m_Size: {x: 10, y: 2, z: 7}
   m_Center: {x: 0.25383735, y: -0.07809308, z: 0.64256287}
 --- !u!114 &7097902136046431737
 MonoBehaviour:
@@ -9841,7 +9841,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxCenter: {x: 0.2538373, y: -0.07809308, z: 0.6425629}
-  boxSize: {x: 4.740425, y: 1.521273, z: 2.862189}
+  boxSize: {x: 10, y: 2, z: 7}
   debugColor: {r: 0.9056604, g: 0.035460733, b: 0, a: 1}
 --- !u!1 &5243545912859313696
 GameObject:
