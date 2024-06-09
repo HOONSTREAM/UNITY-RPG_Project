@@ -10,6 +10,11 @@ using UnityEngine.SceneManagement;
 [DefaultExecutionOrder(100)]
 public class SaveManager : MonoBehaviour
 {
+
+    private const float SAVE_COMPLETE_ALARM_DURATION = 5.0f;
+    private const string SAVE_COMPLETE_RESOURCE = "Save_Complete";
+    private const string SAVE_COMPLETE_SOUND = "GUI_Sound/misc_sound";
+
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
@@ -25,12 +30,25 @@ public class SaveManager : MonoBehaviour
         if (player == null)
             return;
 
+        SavePlayerDetails(player);
+        SavePlayerProgress();
 
+        ES3.Save("CurrentScene", SceneManager.GetActiveScene().name);
+
+        ShowSaveCompleteAlarm();
+    }
+
+
+    private void SavePlayerDetails(GameObject player)
+    {
         ES3.Save("PlayerPosition", player.transform.position);
         ES3.Save("PlayerStat", player.GetComponent<PlayerStat>());
-        ES3.Save("Player_Equip_Weapon",player.GetComponent<PlayerWeaponController>().Equip_Weapon);
+        ES3.Save("Player_Equip_Weapon", player.GetComponent<PlayerWeaponController>().Equip_Weapon);
         ES3.Save("Player_Class", player.GetComponent<Player_Class>().Get_Player_Class());
+    }
 
+    private void SavePlayerProgress()
+    {
         PlayerInventory.Instance.SaveInventory();
         PlayerEquipment.Instance.Save_Equipment();
         PlayerStorage.Instance.Save_Storage();
@@ -38,14 +56,15 @@ public class SaveManager : MonoBehaviour
         PlayerSkillQuickSlot.Instance.Save_Skill_Quickslot_Info();
         PlayerQuickSlot.Instance.Save_Item_Quickslot_Info();
         QuestDatabase.instance.Save_QuestDB_Info();
-
-      
-
-        ES3.Save("CurrentScene", SceneManager.GetActiveScene().name);
-
     }
 
-    
+    private void ShowSaveCompleteAlarm()
+    {
+        GameObject go = Managers.Resources.Instantiate(SAVE_COMPLETE_RESOURCE).gameObject;
+        Managers.Sound.Play(SAVE_COMPLETE_SOUND);
+        Destroy(go, SAVE_COMPLETE_ALARM_DURATION);
+    }
+
     public void LoadPlayerData()
     {
         if (ES3.KeyExists("PlayerPosition"))
@@ -195,26 +214,6 @@ public class SaveManager : MonoBehaviour
 
     }
 
-    private void CopyPlayerQuestData(Quest dest, Quest src)
-    {
-        dest.questtype = src.questtype;
-        dest.Quest_ID = src.Quest_ID;
-        dest.quest_name = src.quest_name;
-        dest.reward_1 = src.reward_1;
-        dest.reward_2 = src.reward_2;
-        dest.num_1 = src.num_1;
-        dest.num_2 = src.num_2;
-        dest.Description = src.Description;
-        dest.summing_up_Description = src.summing_up_Description;
-        dest.quest_image = src.quest_image;
-        dest.is_complete = src.is_complete;
-        dest.monster_counter = src.monster_counter;
-        dest.npc_meet = src.npc_meet;
-        dest.is_achievement_of_conditions = src.is_achievement_of_conditions;
-
-    }
-
-   
-   
+    
 }
 
