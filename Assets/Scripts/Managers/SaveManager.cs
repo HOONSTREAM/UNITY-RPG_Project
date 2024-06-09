@@ -14,6 +14,7 @@ public class SaveManager : MonoBehaviour
     private const float SAVE_COMPLETE_ALARM_DURATION = 5.0f;
     private const string SAVE_COMPLETE_RESOURCE = "Save_Complete";
     private const string SAVE_COMPLETE_SOUND = "GUI_Sound/misc_sound";
+    private const string LOADING_BACKGROUND = "LOADING_CANVAS";
 
     private void Awake()
     {
@@ -68,17 +69,16 @@ public class SaveManager : MonoBehaviour
     public void LoadPlayerData()
     {
         if (ES3.KeyExists("PlayerPosition"))
-        {
+        {            
             Set_Player_SaveData();
         }
     }
 
-    
     private void Set_Player_SaveData()
     {
         LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Rudencian_scene();
-        SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
 
+        SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
 
         GameObject player = Managers.Game.GetPlayer();
         if (player == null)

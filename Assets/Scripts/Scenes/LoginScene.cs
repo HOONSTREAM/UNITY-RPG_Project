@@ -7,6 +7,10 @@ using UnityEngine.UI;
 
 public class LoginScene : MonoBehaviour
 {
+    [SerializeField]
+    private GameObject _loading_canvas;
+    private const float _loading_canvas_destroy_time = 3.0f;
+    private const float _player_data_load_wait_time = 2.0f;
 
     private void Awake()
     {
@@ -37,17 +41,18 @@ public class LoginScene : MonoBehaviour
     }
     private IEnumerator LoadScene_And_CheckPlayer()
     {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(1);
+        LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Rudencian_scene();
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(Managers.Scene_Number.Get_loading_scene());
+        _loading_canvas = Managers.Resources.Instantiate("LOADING_CANVAS").gameObject;
+        DontDestroyOnLoad(_loading_canvas);
 
         while (!asyncLoad.isDone)
         {
             yield return null;
         }
 
-        Debug.Log("씬 로드 완료");
-
         // 씬이 로드된 후 플레이어를 확인
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(_player_data_load_wait_time);
 
         CheckPlayer();
 
@@ -58,7 +63,9 @@ public class LoginScene : MonoBehaviour
 
         else
         {
-            Managers.Save.LoadPlayerData(); // 플레이어가 존재하면, 저장된 데이터를 로드합니다.  
+            Managers.Save.LoadPlayerData(); // 플레이어가 존재하면, 저장된 데이터를 로드합니다.
+                                             
+            Destroy(_loading_canvas, _loading_canvas_destroy_time);
         }
 
     }
