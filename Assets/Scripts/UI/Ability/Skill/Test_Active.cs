@@ -16,7 +16,7 @@ public class Test_Active : SkillEffect
 
         if (PlayerEquipment.Instance.player_equip.TryGetValue(EquipType.Weapon, out Item value2) && value2.weapontype == WeaponType.One_Hand)
         {
-            
+            if (SkillDataBase.instance.SkillDB[4].CanUseSkill == false) return false;
 
             SkillDataBase.instance.SkillDB[4].CanUseSkill = false;
             GameObject effect = Managers.Resources.Instantiate("Skill_Effect/Active/Snow slash");

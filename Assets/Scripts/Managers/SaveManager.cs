@@ -16,6 +16,7 @@ public class SaveManager : MonoBehaviour
     private const string LOAD_COMPLETE_RESOURCE = "Load_Complete";
     private const string SAVE_COMPLETE_SOUND = "GUI_Sound/misc_sound";
     private const string LOADING_BACKGROUND = "LOADING_CANVAS";
+    private const float WAIT_FOR_SET_STAT_AND_GOLD = 1.0f;
 
     private void Awake()
     {
@@ -147,14 +148,9 @@ public class SaveManager : MonoBehaviour
                     break;
             }
 
-            Managers.Game.GetPlayer().GetComponent<PlayerStat>().onchangestat.Invoke();
-            Managers.Game.GetPlayer().GetComponent<PlayerAbility>().onChangeSkill.Invoke();
-            Managers.Game.GetPlayer().GetComponent<PlayerSkillQuickSlot>().onChangeskill_quickslot.Invoke();
-            Managers.Game.GetPlayer().GetComponent<PlayerQuickSlot>().onChangeItem.Invoke();
-            Managers.Game.GetPlayer().GetComponent<Player_Quest>().onChangequest.Invoke();
 
             Move_To_LastSave_Scene();
-
+            Coroutine_Runner.Instance.StartCoroutine(Set_PlayerStat_and_Gold());
 
         }
     }
@@ -196,6 +192,16 @@ public class SaveManager : MonoBehaviour
 
         SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
         
+    }
+
+    IEnumerator Set_PlayerStat_and_Gold()
+    {
+        yield return new WaitForSeconds(WAIT_FOR_SET_STAT_AND_GOLD);
+        Managers.Game.GetPlayer().GetComponent<PlayerStat>().onchangestat.Invoke();
+        Managers.Game.GetPlayer().GetComponent<PlayerAbility>().onChangeSkill.Invoke();
+        Managers.Game.GetPlayer().GetComponent<PlayerSkillQuickSlot>().onChangeskill_quickslot.Invoke();
+        Managers.Game.GetPlayer().GetComponent<PlayerQuickSlot>().onChangeItem.Invoke();
+        Managers.Game.GetPlayer().GetComponent<Player_Quest>().onChangequest.Invoke();
     }
 
 
