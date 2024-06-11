@@ -44,10 +44,20 @@ public class SaveManager : MonoBehaviour
 
     private void SavePlayerDetails(GameObject player)
     {
+        if (player.GetComponent<PlayerBuff_Slot>().buff_slot.Count > 0)
+        {          
+            player.GetComponent<PlayerStat>().ATTACK -= player.GetComponent<PlayerStat>().buff_damage;
+            player.GetComponent<PlayerStat>().DEFENSE -= player.GetComponent<PlayerStat>().buff_DEFENSE;
+        }
+
         ES3.Save("PlayerPosition", player.transform.position);
         ES3.Save("PlayerStat", player.GetComponent<PlayerStat>());
         ES3.Save("Player_Equip_Weapon", player.GetComponent<PlayerWeaponController>().Equip_Weapon);
         ES3.Save("Player_Class", player.GetComponent<Player_Class>().Get_Player_Class());
+
+
+        player.GetComponent<PlayerStat>().ATTACK += player.GetComponent<PlayerStat>().buff_damage;
+        player.GetComponent<PlayerStat>().DEFENSE += player.GetComponent<PlayerStat>().buff_DEFENSE;
     }
 
     private void SavePlayerProgress()

@@ -7,7 +7,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "SkillEffect/Buff/Advanced_DEFENSE")]
 public class Advanced_DEFENSE : SkillEffect
 {
-    private int ADVANCED_DEFENSE_BUFF_AMOUNT = 50;
+    private const int ADVANCED_DEFENSE_BUFF_AMOUNT = 50;
+    private const string SKILL_EFFECT_PATH = "Skill_Effect/Unlock_FX_7";
+    private const string SKILL_SOUND_PATH = "spell";
 
     public bool skillusing = false;
     public int skill_sustainment_time;
@@ -16,7 +18,7 @@ public class Advanced_DEFENSE : SkillEffect
 
     private void Init()
     {
-        skill_sustainment_time= GameObject.Find("SkillDatabase").gameObject.GetComponent<SkillDataBase>().SkillDB[3].skill_cool_time;
+        skill_sustainment_time= SkillDataBase.instance.SkillDB[3].skill_cool_time;
         buff_slot_holder = GameObject.Find("skill_coolTime_Content").gameObject.transform;
         buff_slots = buff_slot_holder.GetComponentsInChildren<Buff_Slot>();
 
@@ -64,11 +66,12 @@ public class Advanced_DEFENSE : SkillEffect
 
 
         stat.DEFENSE += ADVANCED_DEFENSE_BUFF_AMOUNT;
+        stat.buff_DEFENSE += ADVANCED_DEFENSE_BUFF_AMOUNT;
         stat.onchangestat.Invoke();
 
-        Managers.Sound.Play("spell", Define.Sound.Effect);
+        Managers.Sound.Play(SKILL_SOUND_PATH , Define.Sound.Effect);
 
-        GameObject effect = Managers.Resources.Instantiate("Skill_Effect/Unlock_FX_7");
+        GameObject effect = Managers.Resources.Instantiate(SKILL_EFFECT_PATH);
         effect.transform.parent = Managers.Game.GetPlayer().transform; // 부모설정
         effect.transform.position = Managers.Game.GetPlayer().gameObject.transform.position + new Vector3(0.0f, 2.2f, 0.0f); ;
 
@@ -95,6 +98,7 @@ public class Advanced_DEFENSE : SkillEffect
         PlayerStat stat = player.GetComponent<PlayerStat>();
 
         stat.DEFENSE -= ADVANCED_DEFENSE_BUFF_AMOUNT;
+        stat.buff_DEFENSE -= ADVANCED_DEFENSE_BUFF_AMOUNT;
         stat.onchangestat.Invoke();
         skillusing = false;
 

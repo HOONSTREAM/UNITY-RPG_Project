@@ -3,13 +3,17 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Unity.Collections;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "SkillEffect/Buff/Advanced_Attack")]
 public class Advanced_Attack : SkillEffect
 {
-    private int ADVANCED_ATTACK_BUFF_AMOUNT = 50;
+    private const int ADVANCED_ATTACK_BUFF_AMOUNT = 50;
+    private const string SKILL_EFFECT_PATH = "Skill_Effect/Unlock_FX_2";
+    private const string SKILL_SOUND_PATH = "spell";
+
 
     public bool skillusing = false;
     public int skill_sustainment_time; 
@@ -18,7 +22,7 @@ public class Advanced_Attack : SkillEffect
 
     private void Init()
     {
-        skill_sustainment_time = GameObject.Find("SkillDatabase").gameObject.GetComponent<SkillDataBase>().SkillDB[2].skill_cool_time;
+        skill_sustainment_time = SkillDataBase.instance.SkillDB[2].skill_cool_time;
         buff_slot_holder = GameObject.Find("skill_coolTime_Content").gameObject.transform;
         buff_slots = buff_slot_holder.GetComponentsInChildren<Buff_Slot>();
 
@@ -66,11 +70,12 @@ public class Advanced_Attack : SkillEffect
 
 
         stat.ATTACK += ADVANCED_ATTACK_BUFF_AMOUNT;
+        stat.buff_damage += ADVANCED_ATTACK_BUFF_AMOUNT;
         stat.onchangestat.Invoke();
 
-        Managers.Sound.Play("spell", Define.Sound.Effect);
+        Managers.Sound.Play(SKILL_SOUND_PATH, Define.Sound.Effect);
 
-        GameObject effect = Managers.Resources.Instantiate("Skill_Effect/Unlock_FX_2");
+        GameObject effect = Managers.Resources.Instantiate(SKILL_EFFECT_PATH);
 
         
         effect.transform.parent = Managers.Game.GetPlayer().transform; // 부모설정
@@ -102,7 +107,8 @@ public class Advanced_Attack : SkillEffect
          PlayerStat stat = player.GetComponent<PlayerStat>();
         
          stat.ATTACK -= ADVANCED_ATTACK_BUFF_AMOUNT;
-         stat.onchangestat.Invoke();
+        stat.buff_damage -= ADVANCED_ATTACK_BUFF_AMOUNT;
+        stat.onchangestat.Invoke();
          skillusing = false;
 
         return;

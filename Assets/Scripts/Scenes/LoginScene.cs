@@ -9,8 +9,10 @@ public class LoginScene : MonoBehaviour
 {
     [SerializeField]
     private GameObject _loading_canvas;
-    private const float _loading_canvas_destroy_time = 3.0f;
-    private const float _player_data_load_wait_time = 2.0f;
+
+    private const float LOADING_CANVAS_DESTROY_TIME = 3.0f;
+    private const float PLAYER_DATA_LOAD_WAIT_TIME = 2.0f;
+    private const string LOADING_CANVAS_PREPAB_PATH = "LOADING_CANVAS";
 
     private void Awake()
     {
@@ -43,7 +45,7 @@ public class LoginScene : MonoBehaviour
     {
         LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Rudencian_scene();
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(Managers.Scene_Number.Get_loading_scene());
-        _loading_canvas = Managers.Resources.Instantiate("LOADING_CANVAS").gameObject;
+        _loading_canvas = Managers.Resources.Instantiate(LOADING_CANVAS_PREPAB_PATH).gameObject;
         DontDestroyOnLoad(_loading_canvas);
 
         while (!asyncLoad.isDone)
@@ -52,11 +54,11 @@ public class LoginScene : MonoBehaviour
         }
 
         // 씬이 로드된 후 플레이어를 확인
-        yield return new WaitForSeconds(_player_data_load_wait_time);
+        yield return new WaitForSeconds(PLAYER_DATA_LOAD_WAIT_TIME);
 
         CheckPlayer();
 
-        yield return new WaitForSeconds(_loading_canvas_destroy_time);
+        yield return new WaitForSeconds(LOADING_CANVAS_DESTROY_TIME);
 
         Managers.Save.ShowLoadCompleteAlarm();
 
@@ -69,7 +71,7 @@ public class LoginScene : MonoBehaviour
         {
             Managers.Save.LoadPlayerData(); // 플레이어가 존재하면, 저장된 데이터를 로드합니다.
                                              
-            Destroy(_loading_canvas, _loading_canvas_destroy_time);
+            Destroy(_loading_canvas, LOADING_CANVAS_DESTROY_TIME);
             
         }
 
