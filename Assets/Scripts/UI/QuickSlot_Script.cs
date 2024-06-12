@@ -37,7 +37,7 @@ public class QuickSlot_Script : MonoBehaviour
             if (PlayerQuickSlot.Instance.quick_slot_item.Count == 0)
             {
                 GameObject player = Managers.Game.GetPlayer();
-                GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("퀵슬롯에 아이템이 없습니다.");
+                Print_Info_Text.Instance.PrintUserText("퀵슬롯에 아이템이 없습니다.");
                 return;
             }
 
@@ -51,7 +51,7 @@ public class QuickSlot_Script : MonoBehaviour
             if (PlayerQuickSlot.Instance.quick_slot_item.Count == 0)
             {
                 GameObject player = Managers.Game.GetPlayer();
-                GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("퀵슬롯에 아이템이 없습니다.");
+                Print_Info_Text.Instance.PrintUserText("퀵슬롯에 아이템이 없습니다.");
                 return;
             }
 
@@ -65,7 +65,7 @@ public class QuickSlot_Script : MonoBehaviour
             if (PlayerQuickSlot.Instance.quick_slot_item.Count == 0)
             {
                 GameObject player = Managers.Game.GetPlayer();
-                GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("퀵슬롯에 아이템이 없습니다.");
+                Print_Info_Text.Instance.PrintUserText("퀵슬롯에 아이템이 없습니다.");
                 return;
             }
 
@@ -79,7 +79,7 @@ public class QuickSlot_Script : MonoBehaviour
             if (PlayerQuickSlot.Instance.quick_slot_item.Count == 0)
             {
                 GameObject player = Managers.Game.GetPlayer();
-                GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("퀵슬롯에 아이템이 없습니다.");
+                Print_Info_Text.Instance.PrintUserText("퀵슬롯에 아이템이 없습니다.");
                 return;
             }
 

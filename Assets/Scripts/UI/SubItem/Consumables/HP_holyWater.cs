@@ -18,7 +18,7 @@ public class HP_holyWater : ItemEffect
             stat.Hp = stat.MAXHP;
         }
         Managers.Sound.Play("꿀꺽 꿀꺽", Define.Sound.Effect);
-        GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText($"성수를 사용하여 HP {HP_RECOVERY_FIGURES_HOLY_WATER} 을 회복합니다. ");
+        Print_Info_Text.Instance.PrintUserText($"성수를 사용하여 HP {HP_RECOVERY_FIGURES_HOLY_WATER} 을 회복합니다. ");
 
         return true;
     }

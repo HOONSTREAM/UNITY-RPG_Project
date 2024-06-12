@@ -85,7 +85,7 @@ public class PlayerStat : Stat
                 GameObject go = GameObject.Find("Level_Text").gameObject;
                 go.GetComponent<TextMeshProUGUI>().text = $"{LEVEL}";
                 Managers.Sound.Play("univ0007");
-                GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("레벨이 올랐습니다.");
+                Print_Info_Text.Instance.PrintUserText("레벨이 올랐습니다.");
 
                 LEVEL_up_Effect();
        

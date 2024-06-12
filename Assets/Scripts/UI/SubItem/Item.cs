@@ -28,12 +28,13 @@ public enum ItemRank
 
 public enum WeaponType
 {
+    No_Weapon,
     One_Hand,
     Two_Hand,
     Bow,
     Axe,
     Kanata,
-    No_Weapon
+ 
 }
 
 public enum EquipType // 12 + 1칸 (반지는 2개)

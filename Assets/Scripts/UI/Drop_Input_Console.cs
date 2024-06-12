@@ -29,7 +29,7 @@ public class Drop_Input_Console : MonoBehaviour
 
         if (slot_equip_drop.slot_item.amount < inputamount)
         {
-            GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("소지 중인 물품의 갯수가 부족합니다.");
+            Print_Info_Text.Instance.PrintUserText("소지 중인 물품의 갯수가 부족합니다.");
             amountInputConsole.SetActive(false);
             return;
         }
@@ -38,7 +38,7 @@ public class Drop_Input_Console : MonoBehaviour
         {
             PlayerInventory.Instance.RemoveItem(slot_equip_drop.slot_number);
         }
-        GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("아이템을 버립니다.");
+        Print_Info_Text.Instance.PrintUserText("아이템을 버립니다.");
         amountInputConsole.SetActive(false);
     }
 }

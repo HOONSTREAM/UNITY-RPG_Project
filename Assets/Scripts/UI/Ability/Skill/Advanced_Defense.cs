@@ -53,7 +53,7 @@ public class Advanced_DEFENSE : SkillEffect
         
         if (skillusing == true)
         {
-            GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("쿨타임 입니다.");
+            Print_Info_Text.Instance.PrintUserText("쿨타임 입니다.");
 
             return false;
 
@@ -62,7 +62,7 @@ public class Advanced_DEFENSE : SkillEffect
         skillusing = true;
 
 
-        GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("방어력을 일시적으로 강화합니다.");
+        Print_Info_Text.Instance.PrintUserText("방어력을 일시적으로 강화합니다.");
 
 
         stat.DEFENSE += ADVANCED_DEFENSE_BUFF_AMOUNT;

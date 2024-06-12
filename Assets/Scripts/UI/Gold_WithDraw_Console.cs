@@ -41,7 +41,7 @@ public class Gold_WithDraw_Console : MonoBehaviour
 
         if (StorageGoldAmount < inputamount)
         {
-            GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("찾고자 하는 골드가 맡겨져 있는 골드보다 많습니다.");
+            Print_Info_Text.Instance.PrintUserText("찾고자 하는 골드가 맡겨져 있는 골드보다 많습니다.");
             amountInputConsole.SetActive(false);
             return;
         }
@@ -51,7 +51,7 @@ public class Gold_WithDraw_Console : MonoBehaviour
         stat.onchangestat.Invoke();
         Storage_gold_text.text = StorageGoldAmount.ToString();
 
-        GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText($"{inputamount}골드를 찾아 현재 소지중인 골드는 {stat.Gold} 골드 입니다. ");
+        Print_Info_Text.Instance.PrintUserText($"{inputamount}골드를 찾아 현재 소지중인 골드는 {stat.Gold} 골드 입니다. ");
 
         inputamount = 0; // 입력값 초기화
 

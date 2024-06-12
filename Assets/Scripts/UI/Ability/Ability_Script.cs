@@ -266,7 +266,7 @@ private void Update()
                             
                             if(Managers.Game.GetPlayer().GetComponent<Player_Class>().Get_Player_Class() != Player_Class.ClassType.Warrior)
                             {
-                                GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("직업을 가져야 어빌을 올릴 수 있습니다.");
+                                Print_Info_Text.Instance.PrintUserText("직업을 가져야 어빌을 올릴 수 있습니다.");
                                 return;
                             }
 
@@ -275,7 +275,7 @@ private void Update()
 
                         if(3*(monster.GetComponent<Stat>().LEVEL) < (int)(slot.skill.Ability))
                         {
-                            GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("몬스터 레벨이 너무 낮습니다.");
+                            Print_Info_Text.Instance.PrintUserText("몬스터 레벨이 너무 낮습니다.");
                             return;
                         }
 
@@ -379,7 +379,7 @@ private void Update()
 
                         if (3 * (monster.GetComponent<Stat>().LEVEL) < (int)(slot.skill.Ability))
                         {
-                            GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("몬스터 레벨이 너무 낮습니다.");
+                            Print_Info_Text.Instance.PrintUserText("몬스터 레벨이 너무 낮습니다.");
                             return;
                         }
                         // 어빌리티가 업데이트 되기 전의 변수를 저장합니다.

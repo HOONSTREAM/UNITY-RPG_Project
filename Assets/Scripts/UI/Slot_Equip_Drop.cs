@@ -100,7 +100,7 @@ public class Slot_Equip_Drop : MonoBehaviour
         {
             if (slot_item.Equip) //이미 장착중인경우 버릴 수 없음.
             {
-                GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("장착중인 아이템은 버릴 수 없습니다.");
+                Print_Info_Text.Instance.PrintUserText("장착중인 아이템은 버릴 수 없습니다.");
                 Equip_Drop_Selection.SetActive(false);
                 return;
             }
@@ -108,7 +108,7 @@ public class Slot_Equip_Drop : MonoBehaviour
             else
             {
                 PlayerInventory.Instance.RemoveItem(slot_number);
-                GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("아이템을 버립니다.");
+                Print_Info_Text.Instance.PrintUserText("아이템을 버립니다.");
                 Equip_Drop_Selection.SetActive(false);
             }
         }
@@ -125,7 +125,7 @@ public class Slot_Equip_Drop : MonoBehaviour
             else
             {
                 PlayerInventory.Instance.RemoveItem(slot_number);
-                GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("소비 아이템을 버립니다.");
+                Print_Info_Text.Instance.PrintUserText("소비 아이템을 버립니다.");
                 Consumable_use_Drop_Selection.SetActive(false);
             }
         }
@@ -142,7 +142,7 @@ public class Slot_Equip_Drop : MonoBehaviour
             else
             {
                 PlayerInventory.Instance.RemoveItem(slot_number);
-                GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("기타 아이템을 버립니다.");              
+                Print_Info_Text.Instance.PrintUserText("기타 아이템을 버립니다.");              
                 ETC_Drop_Selection.SetActive(false);
             }
         }

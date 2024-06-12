@@ -17,7 +17,7 @@ public class Hp_Potion : ItemEffect
             stat.Hp = stat.MAXHP;
         }
         Managers.Sound.Play("꿀꺽 꿀꺽", Define.Sound.Effect);
-        GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText($"소모품을 사용하여 HP {HP_RECOVERY_FIGURES_HP_POTION} 을 회복합니다. ");
+        Print_Info_Text.Instance.PrintUserText($"소모품을 사용하여 HP {HP_RECOVERY_FIGURES_HP_POTION} 을 회복합니다. ");
 
         return true;
     }

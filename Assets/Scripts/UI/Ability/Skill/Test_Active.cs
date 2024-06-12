@@ -47,7 +47,7 @@ public class Test_Active : SkillEffect
 
         else
         {
-            GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("한손검을 장착해야 사용할 수 있습니다.");
+            Print_Info_Text.Instance.PrintUserText("한손검을 장착해야 사용할 수 있습니다.");
 
             return false;
         }

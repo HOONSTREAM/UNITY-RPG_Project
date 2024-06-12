@@ -47,7 +47,7 @@ public class Storage_WithDraw_Console : MonoBehaviour
         {
             GameObject player = Managers.Game.GetPlayer();
             PlayerStat stat = player.GetComponent<PlayerStat>();
-            GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("찾으려는 갯수에 비해 보관중인 물품 갯수가 적습니다.");
+            Print_Info_Text.Instance.PrintUserText("찾으려는 갯수에 비해 보관중인 물품 갯수가 적습니다.");
             return;
         }
 

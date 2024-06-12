@@ -59,7 +59,7 @@ public class LoginScene : MonoBehaviour
         CheckPlayer();
 
         yield return new WaitForSeconds(LOADING_CANVAS_DESTROY_TIME);
-
+       
         Managers.Save.ShowLoadCompleteAlarm();
 
     }

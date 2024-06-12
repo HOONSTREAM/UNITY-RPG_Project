@@ -57,7 +57,7 @@ public class Advanced_Attack : SkillEffect
 
         if (skillusing == true)
         {
-            GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("쿨타임 입니다.");
+            Print_Info_Text.Instance.PrintUserText("쿨타임 입니다.");
 
             return false;
 
@@ -66,7 +66,7 @@ public class Advanced_Attack : SkillEffect
         skillusing = true;
 
 
-        GameObject.Find("GUI_User_Interface").gameObject.GetComponent<Print_Info_Text>().PrintUserText("공격력을 일시적으로 강화합니다.");
+        Print_Info_Text.Instance.PrintUserText("공격력을 일시적으로 강화합니다.");
 
 
         stat.ATTACK += ADVANCED_ATTACK_BUFF_AMOUNT;

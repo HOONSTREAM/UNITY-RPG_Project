@@ -17,13 +17,13 @@ public class SaveManager : MonoBehaviour
     private const string SAVE_COMPLETE_SOUND = "GUI_Sound/misc_sound";
     private const string LOADING_BACKGROUND = "LOADING_CANVAS";
     private const float WAIT_FOR_SET_STAT_AND_GOLD = 1.0f;
-
+    private string sceneName;
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
     }
 
-    private string sceneName;
+   
 
     public void SavePlayerData()
     {
