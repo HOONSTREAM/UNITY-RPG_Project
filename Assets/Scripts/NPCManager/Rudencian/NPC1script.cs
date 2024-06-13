@@ -11,8 +11,8 @@ public class NPC1script : MonoBehaviour
 {
   
 
-    private int _mask = (1 << (int)Define.Layer.NPC1);
-    Texture2D _attackIcon;
+    private int _mask = (1 << (int)Define.Layer.NPC);
+    private const string NPC_TAG = "Kenen_NPC";
     GameObject _player;
 
     #region NPC´ëÈ­
@@ -30,7 +30,6 @@ public class NPC1script : MonoBehaviour
     void Start()
     {
         _player = Managers.Game.GetPlayer();
-        _attackIcon = Managers.Resources.Load<Texture2D>("Textures/Cursor/cursor(10)");
     }
     
     void Update()
@@ -47,7 +46,7 @@ public class NPC1script : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, 100.0f, _mask))
             {
-                if (hit.collider.gameObject.layer == (int)Define.Layer.NPC1)
+                if (hit.collider.CompareTag(NPC_TAG))
                 {
                     GameObject go = GameObject.Find("SHOP CANVAS").gameObject;
                    

@@ -3,6 +3,7 @@ using JetBrains.Annotations;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor.Playables;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -212,6 +213,10 @@ public class SaveManager : MonoBehaviour
         Managers.Game.GetPlayer().GetComponent<PlayerSkillQuickSlot>().onChangeskill_quickslot.Invoke();
         Managers.Game.GetPlayer().GetComponent<PlayerQuickSlot>().onChangeItem.Invoke();
         Managers.Game.GetPlayer().GetComponent<Player_Quest>().onChangequest.Invoke();
+
+        //전체 로드 완료후 플레이어 최종 레벨 텍스트 로드(리팩토링 필요)
+        GameObject go = GameObject.Find("Level_Text").gameObject;
+        go.GetComponent<TextMeshProUGUI>().text = $"{Managers.Game.GetPlayer().GetComponent<PlayerStat>().LEVEL}";
     }
 
 

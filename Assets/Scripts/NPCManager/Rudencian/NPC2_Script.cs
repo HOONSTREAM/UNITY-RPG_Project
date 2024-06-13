@@ -18,14 +18,13 @@ using UnityEngine.EventSystems;
 /// </summary>
 public class NPC2_Script : MonoBehaviour , IPointerClickHandler
 {
-    private int _mask = (1 << (int)Define.Layer.NPC2);
-    Texture2D _attackIcon;
+    private int _mask = (1 << (int)Define.Layer.NPC);
+    private const string NPC_TAG = "Sala_NPC";
     GameObject _player;
    
     void Awake()
     {
-        _player = Managers.Resources.Load<GameObject>("PreFabs/UnityChan"); // 플레이어 세팅 
-        _attackIcon = Managers.Resources.Load<Texture2D>("Textures/Cursor/cursor(10)");
+        _player = Managers.Game.GetPlayer();        
     }
 
  /*IPointer 인터페이스를 사용하고, MainCamera Physics Raycaster를 활용하면 UI 뒤 3D오브젝트를 뚫지않게끔 할수 있다.*/
@@ -37,7 +36,7 @@ public class NPC2_Script : MonoBehaviour , IPointerClickHandler
 
         if (Physics.Raycast(ray, out hit, 100.0f, _mask))
         {
-            if (hit.collider.gameObject.layer == (int)Define.Layer.NPC2)
+            if (hit.collider.CompareTag(NPC_TAG))
             {
 
                 PlayerController pc = _player.GetComponent<PlayerController>();

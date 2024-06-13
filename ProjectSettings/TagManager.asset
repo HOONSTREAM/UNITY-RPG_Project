@@ -4,8 +4,15 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Collide
   - FieldItem
+  - Jewel_NPC
+  - Kenen_NPC
+  - Broa_NPC
+  - Sala_NPC
+  - HelKen_NPC
+  - RooKiss_NPC
+  - Heksen_NPC
+  - House_Chief_NPC
   layers:
   - Default
   - TransparentFX
@@ -20,15 +27,15 @@ TagManager:
   - Block
   - Building
   - NPC
-  - NPC1
-  - NPC2
+  - 
+  - 
   - Console
-  - NPC3
+  - 
   - FieldItem
-  - NPC4
-  - NPC5
-  - NPC6
-  - NPC7
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 

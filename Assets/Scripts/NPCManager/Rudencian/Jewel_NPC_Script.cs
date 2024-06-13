@@ -7,14 +7,13 @@ using UnityEngine;
 /// </summary>
 public class Jewel_NPC_Script : MonoBehaviour
 {
-    private int _mask = (1 << (int)Define.Layer.NPC5);
-    Texture2D _attackIcon;
+    private int _mask = (1 << (int)Define.Layer.NPC);
+    private const string NPC_TAG = "Jewel_NPC";
     GameObject _player;
 
     void Awake()
     {
-        _player = Managers.Game.GetPlayer();
-        _attackIcon = Managers.Resources.Load<Texture2D>("Textures/Cursor/cursor(10)");
+        _player = Managers.Game.GetPlayer();       
     }
 
     
@@ -32,7 +31,7 @@ public class Jewel_NPC_Script : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, 100.0f, _mask))
             {
-                if (hit.collider.gameObject.layer == (int)Define.Layer.NPC5)
+                if (hit.collider.CompareTag(NPC_TAG))
                 {
                     GameObject go = GameObject.Find("SHOP CANVAS").gameObject;
 

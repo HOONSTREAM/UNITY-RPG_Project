@@ -14,7 +14,7 @@ public class NPCscript : MonoBehaviour
     
 
     private int _mask = (1 << (int)Define.Layer.NPC);
-    Texture2D _attackIcon;
+    private const string NPC_TAG = "Broa_NPC";
     GameObject _player;
     #region NPC´ëÈ­
 
@@ -31,7 +31,6 @@ public class NPCscript : MonoBehaviour
     void Awake()
     {
         _player = Managers.Game.GetPlayer();
-
     }
     
     void Update()
@@ -48,7 +47,7 @@ public class NPCscript : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit, 100.0f, _mask))
             {
-                if (hit.collider.gameObject.layer == (int)Define.Layer.NPC)
+                if (hit.collider.CompareTag(NPC_TAG))
                 {
                     PlayerController pc = _player.GetComponent<PlayerController>();
                     pc.State = Define.State.Idle;
