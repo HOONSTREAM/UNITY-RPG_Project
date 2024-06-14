@@ -41,6 +41,8 @@ public class GameScene : BaseScene
         PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["SkillBook"][0]);
         PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["SkillBook"][1]);
         PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["SkillBook"][1]);
+        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Consumable"][3]);
+
         PlayerAbility.Instance.AddSkill(SkillDataBase.instance.SkillDB[4]);
 
 

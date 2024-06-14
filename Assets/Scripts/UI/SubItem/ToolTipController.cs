@@ -50,14 +50,7 @@ public class ToolTipController : MonoBehaviour,IPointerEnterHandler,IPointerExit
 
                     tooltip.SetupTooltip(item.itemname, item.stat_1, item.stat_2, item.stat_3, item.stat_4, item.num_1, item.num_2, item.num_3, item.num_4, item.itemrank.ToString(), item.Description);
 
-                    tooltip.num_1.gameObject.SetActive(false);
-                    tooltip.num_2.gameObject.SetActive(false);
-                    tooltip.num_3.gameObject.SetActive(false);
-                    tooltip.num_4.gameObject.SetActive(false);
-                    tooltip.stat_1.gameObject.SetActive(false);
-                    tooltip.stat_2.gameObject.SetActive(false);
-                    tooltip.stat_3.gameObject.SetActive(false);
-                    tooltip.stat_4.gameObject.SetActive(false);
+                    Dont_Display_Stat_Item(item);
 
                     break;
 
@@ -65,17 +58,12 @@ public class ToolTipController : MonoBehaviour,IPointerEnterHandler,IPointerExit
 
                     tooltip.gameObject.SetActive(true);
 
-                    tooltip.num_1.gameObject.SetActive(true);
-                    tooltip.num_2.gameObject.SetActive(true);
-                    tooltip.num_3.gameObject.SetActive(true);
-                    tooltip.num_4.gameObject.SetActive(true);
-                    tooltip.stat_1.gameObject.SetActive(true);
-                    tooltip.stat_2.gameObject.SetActive(true);
-                    tooltip.stat_3.gameObject.SetActive(true);
-                    tooltip.stat_4.gameObject.SetActive(true);
+
+                    On_Display_Stat_Item(item);
 
                     tooltip.SetupTooltip(item.itemname, item.stat_1, item.stat_2, item.stat_3, item.stat_4, item.num_1, item.num_2, item.num_3, item.num_4, item.itemrank.ToString(), item.Description);
 
+                    Dont_Display_Stat_Item_Menu(item);
 
                     break;
 
@@ -98,6 +86,46 @@ public class ToolTipController : MonoBehaviour,IPointerEnterHandler,IPointerExit
         }
 
         return;
+    }
+
+    private void Dont_Display_Stat_Item_Menu(Item item)
+    {
+        if(item.itemname == "ÀÌÄ«·ç½ºÀÇ ±êÅÐ")
+        {
+            tooltip.num_1.gameObject.SetActive(false);
+            tooltip.num_2.gameObject.SetActive(false);
+            tooltip.num_3.gameObject.SetActive(false);
+            tooltip.num_4.gameObject.SetActive(false);
+            tooltip.stat_1.gameObject.SetActive(false);
+            tooltip.stat_2.gameObject.SetActive(false);
+            tooltip.stat_3.gameObject.SetActive(false);
+            tooltip.stat_4.gameObject.SetActive(false);
+        }
+
+    }
+
+    private void Dont_Display_Stat_Item(Item item)
+    {
+        tooltip.num_1.gameObject.SetActive(false);
+        tooltip.num_2.gameObject.SetActive(false);
+        tooltip.num_3.gameObject.SetActive(false);
+        tooltip.num_4.gameObject.SetActive(false);
+        tooltip.stat_1.gameObject.SetActive(false);
+        tooltip.stat_2.gameObject.SetActive(false);
+        tooltip.stat_3.gameObject.SetActive(false);
+        tooltip.stat_4.gameObject.SetActive(false);
+    }
+
+    private void On_Display_Stat_Item(Item item)
+    {
+        tooltip.num_1.gameObject.SetActive(true);
+        tooltip.num_2.gameObject.SetActive(true);
+        tooltip.num_3.gameObject.SetActive(true);
+        tooltip.num_4.gameObject.SetActive(true);
+        tooltip.stat_1.gameObject.SetActive(true);
+        tooltip.stat_2.gameObject.SetActive(true);
+        tooltip.stat_3.gameObject.SetActive(true);
+        tooltip.stat_4.gameObject.SetActive(true);
     }
 
   
