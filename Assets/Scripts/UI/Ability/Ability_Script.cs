@@ -121,7 +121,7 @@ private void Update()
 
         active_Ability_panel = !active_Ability_panel;
         Ability_Panel.SetActive(active_Ability_panel);
-        Managers.UI.SetCanvas(Ability_canvas, true); // 캔버스 SortOrder 순서를 열릴때 마다 정의함. (제일 마지막에 열린것이 가장 위로)
+        Managers.UI.SetCanvas(Ability_canvas, true); // 캔버스 SortOrder 순서를 열릴때 마다 정의함. (제일 마지막에 열린것이 가장 위로)      
         Managers.Sound.Play("Inven_Open");
 
         return;
@@ -229,8 +229,6 @@ private void Update()
         {
             return;
         }
-
-
 
 
         if (PlayerEquipment.Instance.player_equip.TryGetValue(EquipType.Weapon, out Item value) && value.weapontype == WeaponType.One_Hand) 
@@ -517,3 +515,5 @@ private void Update()
     }
 
 }
+
+

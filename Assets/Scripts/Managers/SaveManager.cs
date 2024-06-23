@@ -17,7 +17,7 @@ public class SaveManager : MonoBehaviour
     private const string LOAD_COMPLETE_RESOURCE = "Load_Complete";
     private const string SAVE_COMPLETE_SOUND = "GUI_Sound/misc_sound";
     private const string LOADING_BACKGROUND = "LOADING_CANVAS";
-    private const float WAIT_FOR_SET_STAT_AND_GOLD = 1.0f;
+    private const float WAIT_FOR_SET_STAT_AND_GOLD = 2.0f;
     private string sceneName;
     private void Awake()
     {
