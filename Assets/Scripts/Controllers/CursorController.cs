@@ -15,7 +15,7 @@ public class CursorController : MonoBehaviour
 
     CursorType cursorType = CursorType.None;
 
-    private int _mask = (1 << (int)Define.Layer.Ground | 1 << (int)Define.Layer.Monster | 1 << (int)Define.Layer.NPC);
+    private int _mask = (1 << (int)Define.Layer.Ground | 1 << (int)Define.Layer.Monster | 1 << (int)Define.Layer.NPC | 1 << (int)Define.Layer.UI);
     [SerializeField]
     Texture2D _attackIcon;
     [SerializeField]
@@ -72,6 +72,16 @@ public class CursorController : MonoBehaviour
                 {
                     Cursor.SetCursor(_handIcon, new Vector2(_handIcon.width / 3, 0), CursorMode.Auto);
                     cursorType = CursorType.Hand;
+                }
+
+            }
+
+            else if (hit.collider.gameObject.layer == (int)Define.Layer.UI)
+            {
+                if (cursorType != CursorType.Hand)
+                {
+                    Cursor.SetCursor(_NPCIcon, new Vector2(_NPCIcon.width / 3, 0), CursorMode.Auto);
+                    cursorType = CursorType.NPC;
                 }
 
             }
