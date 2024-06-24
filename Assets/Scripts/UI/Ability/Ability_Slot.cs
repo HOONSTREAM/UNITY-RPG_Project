@@ -10,6 +10,9 @@ public class Ability_Slot : MonoBehaviour , IPointerUpHandler
 {
     public int slotnum;
 
+    private const float Ability_INTERMEDIATE_LEVEL = 50.00f;
+    private const float Ability_MASTER_LEVEL = 100.00f;
+
     public GameObject Skill_Quickslot_Panel;
     public Skill skill;
     public Image skill_icon;
@@ -24,9 +27,25 @@ public class Ability_Slot : MonoBehaviour , IPointerUpHandler
   
     public void UpdateSlotUI()
     {
+        
         skill_icon.sprite = skill.skill_image;
         skill_name.text = skill.skill_name;
         skill_icon.gameObject.SetActive(true);
+        LEVEL.text = skill.Ability.ToString();
+        
+        if(skill.Ability >= 50.00f)
+        {
+            Name_grade.text = "SENIOR";
+        }
+        else if(skill.Ability >= 100.00f)
+        {
+            Name_grade.text = "MASTER";
+            
+        }
+
+        grade_amount.text = skill.Ability_Grade.ToString();
+
+        
 
         return;
     }

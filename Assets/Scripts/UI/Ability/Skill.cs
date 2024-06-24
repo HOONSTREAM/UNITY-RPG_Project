@@ -30,6 +30,7 @@ using UnityEngine;
         public Sprite skill_image;
         public double Ability = 0.00;
         public int skill_cool_time = 0;
+        public int Ability_Grade = 0;
   
         public List<SkillEffect> efts;
         public bool CanUseSkill = true;

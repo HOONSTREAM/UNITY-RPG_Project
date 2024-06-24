@@ -177,8 +177,8 @@ public class PlayerStat : Stat
                 if (Ability_script.Ability_Slots[i].skill_name.text == "한손검")
                 {
                     double Ability_attack_improvement = (double.Parse(Ability_script.Ability_Slots[i].LEVEL.text) * 5); //TODO :여기서 Grade 수치 * 500 도 더해야함 
-
-                    one_hand_sword_AbilityAttack = (int)Ability_attack_improvement;
+                    double Abillity_Grade_improvement = (double.Parse(Ability_script.Ability_Slots[i].grade_amount.text)*500);
+                    one_hand_sword_AbilityAttack = (int)Ability_attack_improvement + (int)Abillity_Grade_improvement;
 
                     break;
                 }
