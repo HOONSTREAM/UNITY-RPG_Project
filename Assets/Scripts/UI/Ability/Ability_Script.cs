@@ -12,6 +12,14 @@ using static SerializableDictionary;
 
 public class Ability_Script : MonoBehaviour
 {
+
+    #region 무기 타입
+
+    private readonly string ONE_HAND_SWORD = "한손검";
+    private readonly string TWO_HAND_SWORD = "양손검";
+
+    #endregion
+
     public bool active_Ability_panel = false;
     public GameObject Ability_Panel;
     public GameObject Ability_canvas;
@@ -21,9 +29,6 @@ public class Ability_Script : MonoBehaviour
 
     private PlayerAbility Ability; 
     private PlayerStat stat; //플레이어 스텟 참조 (골드업데이트)
-
-    public delegate void OnUpdateAbility();
-    public OnUpdateAbility onupdate_Ability;
 
     public Ability_Slot[] Ability_Slots;
     public Transform Ability_slotHolder;
@@ -42,22 +47,33 @@ public class Ability_Script : MonoBehaviour
    
 
 
-    private readonly double Ability_INCREASE_AMOUNT = Math.Round(50.0f,2);
+    private readonly double ABILITY_INCREASE_AMOUNT = Math.Round(0.1f,2);
     private readonly double ABILITY_MASTER_LEVEL = 100.00f;
-    private const float MAX_Ability_COUNT = 1.0f;
-   
+    private const float MAX_ABILITY_COUNT = 1.0f;
+
+    /// <summary>
+    /// 어빌리티 구간별, 상승하는 카운트 밸류값을 정의합니다.
+    /// 카운트 밸류값이란, 카운트가 100% 모두 차오르게 되면, 어빌리티 상승값(ABILITY_INCREASE_AMOUNT)이 적용되어 어빌리티가 상승합니다.
+    /// </summary>
+    private static readonly Dictionary<int, float> LEVEL_INCREASES = new Dictionary<int, float>
+    {
+        { 90, 0.05f },
+        { 80, 0.15f },
+        { 70, 0.2f },
+        { 60, 0.35f },
+        { 50, 0.4f },
+        { 40, 0.4f },
+        { 30, 0.4f },
+        { 20, 0.5f },
+        { 10, 0.5f },
+        { 0, 0.7f }
+
+    };
 
 
-    private readonly float AN_INCREASE_MORE_THAN_Ability_90 = 0.05f;
-    private readonly float AN_INCREASE_MORE_THAN_Ability_80 = 0.15f;
-    private readonly float AN_INCREASE_MORE_THAN_Ability_70 = 0.2f;
-    private readonly float AN_INCREASE_MORE_THAN_Ability_60 = 0.35f;
-    private readonly float AN_INCREASE_MORE_THAN_Ability_50 = 0.4f;
-    private readonly float AN_INCREASE_MORE_THAN_Ability_40 = 0.4f;
-    private readonly float AN_INCREASE_MORE_THAN_Ability_30 = 0.4f;
-    private readonly float AN_INCREASE_MORE_THAN_Ability_20 = 0.5f;
-    private readonly float AN_INCREASE_MORE_THAN_Ability_10 = 0.5f;
-    private readonly float AN_INCREASE_LESS_THAN_10 = 0.7f;
+    /// <summary>
+    /// 카운트밸류값을 100%초과하는 분에 대해서 임시로 저장하는 변수입니다.
+    /// </summary>
     private float potentialNewValue = 0.0f;
 
     #endregion
@@ -71,9 +87,9 @@ public class Ability_Script : MonoBehaviour
     #endregion
 
 
-    private void Start() //Player Controller에 붙이면, 프리펩이므로 Start 전의 프리펩이 붙어서 slot이 업데이트가 안됨. 
+    private void Start()
     {
-        stat = Managers.Game.GetPlayer().GetComponent<PlayerStat>(); //골드 업데이트를 위한 플레이어 스텟 참조
+        stat = Managers.Game.GetPlayer().GetComponent<PlayerStat>(); 
         Ability = PlayerAbility.Instance;
         Ability_Slots = Ability_slotHolder.GetComponentsInChildren<Ability_Slot>();       
         Ability.onChangeSkill += RedrawSlotUI;
@@ -83,19 +99,15 @@ public class Ability_Script : MonoBehaviour
 
         Ability_Panel.SetActive(active_Ability_panel);
 
-        onupdate_Ability += Accumulate_Ability_Func;
-        
-
-
 
         //기본적인 세팅 (한손검,양손검)
         PlayerAbility.Instance.AddSkill(SkillDataBase.instance.SkillDB[0]);
         PlayerAbility.Instance.AddSkill(SkillDataBase.instance.SkillDB[1]);
         Ability_Interface_Panel.gameObject.SetActive(false); // 어빌리티 인터페이스 패널 초기화 
 
-}
+     }
+    private void Update()
 
-private void Update()
     {
 
         if (Input.GetKeyDown(KeyCode.K))
@@ -110,14 +122,18 @@ private void Update()
 
         }
     }
-    public Skill Get_Slotnum(int slotnum) //슬롯에 있는 스킬 을 참조받아 변수에 저장해두고, 그 슬롯의 넘버도 보관
+
+    /// <summary>
+    /// 슬롯에 있는 스킬 을 참조받아 변수에 저장해두고, 그 슬롯의 넘버도 보관하는 참조용 메서드입니다.
+    /// </summary>
+    /// <param name="slotnum"></param>
+    /// <returns></returns>
+    public Skill Get_Slotnum(int slotnum) 
     {
         skill_slot_number = slotnum;
         return skill_info = Ability_Slots[slotnum].skill;
 
     }
-
-
     public void Toggle_Ability_Skill_UI()
     {
         active_Ability_panel = !active_Ability_panel;
@@ -127,7 +143,6 @@ private void Update()
 
         return;
     }
-
     public void Close_Ability_Skill_UI()
     {
         if (Ability_Panel.activeSelf)
@@ -139,7 +154,6 @@ private void Update()
 
         return;
     } // 어빌리티창 off
-
     public void X_Button_Ability_Interface()
     {
         if (Ability_Interface_Panel.activeSelf)
@@ -196,246 +210,22 @@ private void Update()
     public void Accumulate_Ability_Func()
 
     {
-
         GameObject monster = Managers.Monster_Info.Get_Monster_Info();
 
-        if (monster == null)
+        if (monster == null) return;
+
+        if (PlayerEquipment.Instance.player_equip.TryGetValue(EquipType.Weapon, out Item value) &&
+            value.weapontype == WeaponType.One_Hand)
         {
-            return;
+            ProcessAbilitySlots(monster, WeaponType.One_Hand);
         }
-
-
-        if (PlayerEquipment.Instance.player_equip.TryGetValue(EquipType.Weapon, out Item value) && value.weapontype == WeaponType.One_Hand)
+        else if (PlayerEquipment.Instance.player_equip.TryGetValue(EquipType.Weapon, out Item value2) &&
+                 value2.weapontype == WeaponType.Two_Hand)
         {
-
-
-            for (int i = 0; i < Ability_Slots.Length; i++)
-            {
-
-                foreach (var slot in Ability_Slots)
-                {
-                    if (slot.skill_name.text != "한손검")
-                    {
-                        continue;
-                    }
-
-
-                    if ((int)slot.skill.Ability >= Managers.Game.GetPlayer().GetComponent<Player_Class>().class_acquisition_required_Ability())
-                    {
-
-                        if (Managers.Game.GetPlayer().GetComponent<Player_Class>().Get_Player_Class() != Player_Class.ClassType.Warrior)
-                        {
-                            Print_Info_Text.Instance.PrintUserText("직업을 가져야 어빌을 올릴 수 있습니다.");
-                            return;
-                        }
-
-                    }
-                   
-
-                    if (3 * (monster.GetComponent<Stat>().LEVEL) < (int)(slot.skill.Ability))
-                    {
-                        Print_Info_Text.Instance.PrintUserText("몬스터 레벨이 너무 낮습니다.");
-                        return;
-                    }
-
-                    
-                    int Ability_attack_value_before_change = stat.Onupdate_Ability_attack(); //어빌리티가 업데이트 되기 전의 변수를 저장합니다.
-
-                    float LEVEL = float.Parse(slot.LEVEL.text);
-
-
-                    float increaseAmount = 0f;
-
-                    // 레벨에 따라 increaseAmount 값을 조정합니다.
-                    if (LEVEL >= 90) increaseAmount = AN_INCREASE_MORE_THAN_Ability_90;
-                    else if (LEVEL >= 80) increaseAmount = AN_INCREASE_MORE_THAN_Ability_80;
-                    else if (LEVEL >= 70) increaseAmount = AN_INCREASE_MORE_THAN_Ability_70;
-                    else if (LEVEL >= 60) increaseAmount = AN_INCREASE_MORE_THAN_Ability_60;
-                    else if (LEVEL >= 50) increaseAmount = AN_INCREASE_MORE_THAN_Ability_50;
-                    else if (LEVEL >= 40) increaseAmount = AN_INCREASE_MORE_THAN_Ability_40;
-                    else if (LEVEL >= 30) increaseAmount = AN_INCREASE_MORE_THAN_Ability_30;
-                    else if (LEVEL >= 20) increaseAmount = AN_INCREASE_MORE_THAN_Ability_20;
-                    else if (LEVEL >= 10) increaseAmount = AN_INCREASE_MORE_THAN_Ability_10;
-                    else if (LEVEL <= 10) increaseAmount = AN_INCREASE_LESS_THAN_10;
-
-
-                    // 계산된 증가량을 적용합니다.
-                    slot._slider.value += increaseAmount;
-
-
-                    //계산된 증가량을 저장하여 차이 증가량을 남겨 다음 증가량에 보존시키기 위한 변수
-                    potentialNewValue += increaseAmount;
-
-
-
-                    if (potentialNewValue >= MAX_Ability_COUNT)
-                    {
-
-                        if (slot.skill.Ability == ABILITY_MASTER_LEVEL)
-                        {
-                            Print_Info_Text.Instance.PrintUserText("최대 어빌리티를 초과하여, 그레이드가 상승하였습니다.");
-                            slot.skill.Ability_Grade++;
-                            slot.skill.Ability = 0.0f;
-                        }
-
-                        float excess = potentialNewValue - MAX_Ability_COUNT;
-                        excess = (float)Math.Round(excess, 2);
-                        slot.LEVEL.text = (slot.skill.Ability + Ability_INCREASE_AMOUNT).ToString(); // 어빌리티 레벨 증가
-                        slot.skill.Ability += Ability_INCREASE_AMOUNT; // LEVEL 변수도 증가시켜줍니다.
-
-                        int Ability_attack_value_after_change = stat.Onupdate_Ability_attack();
-
-                        stat.ATTACK += Ability_attack_value_after_change - Ability_attack_value_before_change;
-
-                        stat.onchangestat.Invoke();
-
-                        slot._slider.value = excess;
-                        potentialNewValue = excess;
-                    }
-
-                    else
-                    {
-                        slot._slider.value = potentialNewValue;
-                    }
-
-
-
-                    PlayerAbility.Instance.onChangeSkill.Invoke();
-                    OnUpdate_Ability_Interface(WeaponType.One_Hand);
-
-                    return;
-                }
-
-                PlayerAbility.Instance.onChangeSkill.Invoke();
-                OnUpdate_Ability_Interface(WeaponType.One_Hand);
-                return;
-
-            }
-
-
+            ProcessAbilitySlots(monster, WeaponType.Two_Hand);
         }
+    
 
-        else if (PlayerEquipment.Instance.player_equip.TryGetValue(EquipType.Weapon, out Item value2) && value2.weapontype == WeaponType.Two_Hand) // 무기를 장착중이고, 두손검인경우
-        {
-
-            for (int i = 0; i < Ability_Slots.Length; i++)
-            {
-
-                foreach (var slot in Ability_Slots)
-                {
-
-                    if (slot.skill_name.text != "양손검")
-                    {
-                        continue;
-                    }
-
-                    if ((int)slot.skill.Ability >= Managers.Game.GetPlayer().GetComponent<Player_Class>().class_acquisition_required_Ability())
-                    {
-
-                        if (Managers.Game.GetPlayer().GetComponent<Player_Class>().Get_Player_Class() != Player_Class.ClassType.Paladin)
-                        {
-                            Print_Info_Text.Instance.PrintUserText("직업을 가져야 어빌을 올릴 수 있습니다.");
-                            return;
-                        }
-
-                    }
-
-
-                    if (3 * (monster.GetComponent<Stat>().LEVEL) < (int)(slot.skill.Ability))
-                    {
-                        Print_Info_Text.Instance.PrintUserText("몬스터 레벨이 너무 낮습니다.");
-                        return;
-                    }
-                    // 어빌리티가 업데이트 되기 전의 변수를 저장합니다.
-                    int Ability_attack_value_before_change = stat.Onupdate_Ability_attack();
-                    // LEVEL.text를 float으로 변환합니다.
-                    float LEVEL = float.Parse(slot.LEVEL.text);
-
-                    // 증가할 value를 저장할 변수를 선언합니다.
-                    float increaseAmount = 0f;
-
-                    // 레벨에 따라 increaseAmount 값을 조정합니다.
-                    if (LEVEL >= 90) increaseAmount = AN_INCREASE_MORE_THAN_Ability_90;
-                    else if (LEVEL >= 80) increaseAmount = AN_INCREASE_MORE_THAN_Ability_80;
-                    else if (LEVEL >= 70) increaseAmount = AN_INCREASE_MORE_THAN_Ability_70;
-                    else if (LEVEL >= 60) increaseAmount = AN_INCREASE_MORE_THAN_Ability_60;
-                    else if (LEVEL >= 50) increaseAmount = AN_INCREASE_MORE_THAN_Ability_50;
-                    else if (LEVEL >= 40) increaseAmount = AN_INCREASE_MORE_THAN_Ability_40;
-                    else if (LEVEL >= 30) increaseAmount = AN_INCREASE_MORE_THAN_Ability_30;
-                    else if (LEVEL >= 20) increaseAmount = AN_INCREASE_MORE_THAN_Ability_20;
-                    else if (LEVEL >= 10) increaseAmount = AN_INCREASE_MORE_THAN_Ability_10;
-                    else if (LEVEL <= 10) increaseAmount = AN_INCREASE_LESS_THAN_10;
-
-
-                    // 계산된 증가량을 적용합니다.
-                    slot._slider.value += increaseAmount;
-
-
-                    //계산된 증가량을 저장하여 차이 증가량을 남겨 다음 증가량에 보존시키기 위한 변수
-                    potentialNewValue += increaseAmount;
-
-
-
-                    if (potentialNewValue >= MAX_Ability_COUNT)
-                    {
-
-                        if (slot.skill.Ability == ABILITY_MASTER_LEVEL)
-                        {
-                            Print_Info_Text.Instance.PrintUserText("최대 어빌리티를 초과하여, 그레이드가 상승하였습니다.");
-                            slot.skill.Ability_Grade++;
-                            slot.skill.Ability = 0.0f;
-                        }
-
-                        float excess = potentialNewValue - MAX_Ability_COUNT;
-                        excess = (float)Math.Round(excess, 2);
-                        slot.LEVEL.text = (slot.skill.Ability + Ability_INCREASE_AMOUNT).ToString(); // 어빌리티 레벨 증가
-
-                        slot.skill.Ability += Ability_INCREASE_AMOUNT; // LEVEL 변수도 증가시켜줍니다.
-                        int Ability_attack_value_after_change = stat.Onupdate_Ability_attack();
-
-                        stat.ATTACK += Ability_attack_value_after_change - Ability_attack_value_before_change;
-
-                        stat.onchangestat.Invoke();
-
-
-                        slot._slider.value = excess;
-                        potentialNewValue = excess;
-                    }
-
-                    else
-                    {
-                        slot._slider.value = potentialNewValue;
-                    }
-
-                    PlayerAbility.Instance.onChangeSkill.Invoke();
-                    OnUpdate_Ability_Interface(WeaponType.Two_Hand);
-
-                    return;
-                }
-                PlayerAbility.Instance.onChangeSkill.Invoke();
-                OnUpdate_Ability_Interface(WeaponType.Two_Hand);
-
-                return;
-
-            }
-
-
-        }
-
-
-    }
-
-    public void Explaination_Panel_Open()
-    {
-        Ability_Explaination_Panel.SetActive(true);
-    }
-
-    public void Explaination_Panel_Close()
-    {
-        if (Ability_Explaination_Panel.activeSelf)
-        {
-            Ability_Explaination_Panel.SetActive(false);
-        }
     }
 
     IEnumerator StartCountdown()
@@ -479,6 +269,121 @@ private void Update()
         StartCoroutine("StartCountdown");
 
         return;
+    }
+
+    public void Explaination_Panel_Open()
+    {
+        Ability_Explaination_Panel.SetActive(true);
+    }
+
+    public void Explaination_Panel_Close()
+    {
+        if (Ability_Explaination_Panel.activeSelf)
+        {
+            Ability_Explaination_Panel.SetActive(false);
+        }
+    }
+
+        
+
+    //TEST
+
+    private void ProcessAbilitySlots(GameObject monster, WeaponType weaponType)
+    {
+        foreach (var slot in Ability_Slots)
+        {
+            if ((weaponType == WeaponType.One_Hand && slot.skill_name.text != ONE_HAND_SWORD) ||
+                (weaponType == WeaponType.Two_Hand && slot.skill_name.text != TWO_HAND_SWORD))
+            {
+                continue;
+            }
+
+           // if (IsMaxAbilityReached(slot, weaponType)) return;
+
+           // if (!IsValidMonsterLevel(monster, slot)) return;
+
+            UpdateAbilitySlot(slot);
+
+            PlayerAbility.Instance.onChangeSkill.Invoke();
+            OnUpdate_Ability_Interface(weaponType);
+        }
+    }
+
+    private bool IsMaxAbilityReached(Ability_Slot slot, WeaponType weaponType)
+    {
+        if (slot.skill.Ability >= Managers.Game.GetPlayer().GetComponent<Player_Class>().class_acquisition_required_Ability())
+        {
+            if ((weaponType == WeaponType.One_Hand && Managers.Game.GetPlayer().GetComponent<Player_Class>().Get_Player_Class() != Player_Class.ClassType.Warrior) ||
+                (weaponType == WeaponType.Two_Hand && Managers.Game.GetPlayer().GetComponent<Player_Class>().Get_Player_Class() != Player_Class.ClassType.Paladin))
+            {
+                Print_Info_Text.Instance.PrintUserText("직업을 가져야 어빌을 올릴 수 있습니다.");
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private bool IsValidMonsterLevel(GameObject monster, Ability_Slot slot)
+    {
+        if (3 * monster.GetComponent<Stat>().LEVEL < (int)slot.skill.Ability)
+        {
+            Print_Info_Text.Instance.PrintUserText("몬스터 레벨이 너무 낮습니다.");
+            return false;
+        }
+
+        return true;
+    }
+
+    private void UpdateAbilitySlot(Ability_Slot slot)
+    {
+        int abilityAttackValueBeforeChange = stat.Onupdate_Ability_attack();
+        float level = float.Parse(slot.LEVEL.text);
+
+        float increaseAmount = GetIncreaseAmount(level);
+
+        slot._slider.value += increaseAmount;
+        potentialNewValue += increaseAmount;
+
+        if (potentialNewValue >= MAX_ABILITY_COUNT)
+        {
+            HandleAbilityOverflow(slot);
+        }
+        else
+        {
+            slot._slider.value = potentialNewValue;
+        }
+
+        int abilityAttackValueAfterChange = stat.Onupdate_Ability_attack();
+        stat.ATTACK += abilityAttackValueAfterChange - abilityAttackValueBeforeChange;
+        stat.onchangestat.Invoke();
+    }
+
+    private float GetIncreaseAmount(float level)
+    {
+        foreach (var kvp in LEVEL_INCREASES)
+        {
+            if (level >= kvp.Key)
+            {
+                return kvp.Value;
+            }
+        }
+        return 0.0f;
+    }
+
+    private void HandleAbilityOverflow(Ability_Slot slot)
+    {
+        if (slot.skill.Ability == ABILITY_MASTER_LEVEL)
+        {
+            Print_Info_Text.Instance.PrintUserText("최대 어빌리티를 초과하여, 그레이드가 상승하였습니다.");
+            slot.skill.Ability_Grade++;
+            slot.skill.Ability = 0.0f;
+        }
+
+        float excess = potentialNewValue - MAX_ABILITY_COUNT;
+        slot.LEVEL.text = (slot.skill.Ability + ABILITY_INCREASE_AMOUNT).ToString();
+        slot.skill.Ability += ABILITY_INCREASE_AMOUNT;
+        slot._slider.value = (float)Math.Round(excess, 2);
+        potentialNewValue = excess;
     }
 
 }

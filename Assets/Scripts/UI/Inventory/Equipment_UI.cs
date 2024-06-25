@@ -30,14 +30,11 @@ public class Equipment_UI : MonoBehaviour
 
     private GameObject nametxt;
     private GameObject jobtxt;
-    private GameObject guildtxt;
-    private GameObject fametxt;
     private GameObject atktxt;
     private GameObject hptxt;
     private GameObject mptxt;
     private GameObject mvspeedtxt;
     private GameObject deftxt;
-
 
     #endregion
 
@@ -52,8 +49,6 @@ public class Equipment_UI : MonoBehaviour
     {
         nametxt = GameObject.Find("stat_name").gameObject;
         jobtxt = GameObject.Find("stat_job").gameObject;
-        guildtxt = GameObject.Find("stat_guild").gameObject;
-        fametxt = GameObject.Find("stat_fame").gameObject;
         atktxt = GameObject.Find("stat_atk").gameObject;
         hptxt = GameObject.Find("stat_hp").gameObject;
         mptxt = GameObject.Find("stat_mp").gameObject;
@@ -81,10 +76,8 @@ public class Equipment_UI : MonoBehaviour
 
     public void OnUpdateEquip_Stat_Panel_UI()
     {
-        nametxt.GetComponent<TextMeshProUGUI>().text = Managers.Game.GetPlayer().name;
-        jobtxt.GetComponent<TextMeshProUGUI>().text = "무직"; //TODO 
-        guildtxt.GetComponent<TextMeshProUGUI>().text = "길드없음";
-        fametxt.GetComponent<TextMeshProUGUI>().text = "0"; //TODO
+        nametxt.GetComponent<TextMeshProUGUI>().text = "지크";
+        jobtxt.GetComponent<TextMeshProUGUI>().text = Managers.Game.GetPlayer().GetComponent<Player_Class>().Get_Player_Class().ToString();
         atktxt.GetComponent<TextMeshProUGUI>().text = $"{(stat.ATTACK * 0.8)} ~ {(stat.ATTACK * 1.1)}";
         hptxt.GetComponent<TextMeshProUGUI>().text = $"{stat.MAXHP}";
         mptxt.GetComponent<TextMeshProUGUI>().text = $"{stat.MaxMp}";
