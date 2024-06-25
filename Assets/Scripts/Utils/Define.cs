@@ -19,6 +19,7 @@ public class Define
         Idle,
         Skill,
         SnowSlash,
+       
 
 
     }
