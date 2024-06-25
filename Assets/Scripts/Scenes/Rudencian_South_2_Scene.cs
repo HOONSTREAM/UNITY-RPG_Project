@@ -8,7 +8,7 @@ public class Rudencian_South_2_Scene : BaseScene
     {
         base.Init();
 
-        SceneType = Define.Scene.Rudencian_South;
+        SceneType = Define.Scene.Rudencian_South2;
 
         Dictionary<int, Data.Stat> dict = Managers.Data.StatDict;
 

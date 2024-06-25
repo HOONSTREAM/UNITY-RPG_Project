@@ -58,9 +58,8 @@ public enum Layer
         Rudencian_jewel_shop,
         Rudencian_chief_house,
         Start_House,
-
-
-
+        Rudencian_Deep_Place,
+        Rudencian_South2,
 
     }
 
