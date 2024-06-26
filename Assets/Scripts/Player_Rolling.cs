@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player_Rolling : MonoBehaviour
 {
-    private const float rollDistance = 1.5f; // 구르기 거리
+    private const float rollDistance = 3.5f; // 구르기 거리
     private const float rollDuration = 0.2f; // 구르기 시간
     private bool isRolling = false;
     private Vector3 rollDirection;
@@ -13,6 +13,8 @@ public class Player_Rolling : MonoBehaviour
     private Animator animator;
     private CharacterController characterController;
     private PlayerController playerController;
+
+    public bool IsRolling => isRolling; // 구르기 상태를 외부에서 접근할 수 있도록 공개
 
     void Start()
     {
@@ -36,18 +38,12 @@ public class Player_Rolling : MonoBehaviour
 
     void StartRoll()
     {
-        playerController.State = Define.State.Idle; // 구르기 완료 후 상태를 Idle로 변경
-
-        // 애니메이션 트리거 설정
-        animator.SetTrigger("Roll");
 
         isRolling = true;
         rollDirection = transform.forward;
         rollTimer = rollDuration;
 
-        // 이동 취소
-        
-        
+        playerController.State = Define.State.Idle; // 상태를 Idle로 설정
 
         // Roll 메서드를 호출하여 즉시 이동 시작
         Roll();
@@ -69,4 +65,6 @@ public class Player_Rolling : MonoBehaviour
             playerController.State = Define.State.Idle; // 구르기 완료 후 상태를 Idle로 변경
         }
     }
+
+
 }
