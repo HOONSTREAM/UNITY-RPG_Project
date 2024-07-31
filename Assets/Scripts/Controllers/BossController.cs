@@ -10,14 +10,14 @@ public class BossController : BaseController
 
     Stat _stat;
     [SerializeField]
-    float _scanRange = 2.0f; // 플레이어 스캔범위
+    float _scanRange = 60.0f; // 플레이어 스캔범위
     [SerializeField]
     float attackRange = 2.0f;
 
     public GameObject Hit_Particle; // 몬스터가 플레이어를 타격 할 때 나타나는 이펙트 
 
     [SerializeField]
-    float _maxChaseDistance = 10.0f; // 최대 추적 거리 설정
+    float _maxChaseDistance = 60.0f; // 최대 추적 거리 설정
 
 
     public DamageNumber DamageText;
@@ -28,9 +28,10 @@ public class BossController : BaseController
         WorldObjectType = Define.WorldObject.Monster;
 
         _stat = gameObject.GetComponent<Stat>();
-        if (gameObject.GetComponentInChildren<UI_HPBar>() == null)
+
+        if (gameObject.GetComponentInChildren<King_Slime_HP>() == null)
         {
-            Managers.UI.MakeWorldSpaceUI<UI_HPBar>(transform);
+            Managers.UI.ShowSceneUI<King_Slime_HP>("King_Slime_HP");
 
             _stat.MOVESPEED = 1.25f; //몬스터의 이동속도 초기세팅 
 
@@ -183,7 +184,7 @@ public class BossController : BaseController
     private void Monster_Hit_Effect()
     {
 
-        Vector3 particlePosition = LockTarget.transform.position + new Vector3(0.0f, 1.0f, 0.0f);
+        Vector3 particlePosition = LockTarget.transform.position + new Vector3(0.0f, 1.0f, 1.0f);
         Quaternion particleRotation = Quaternion.LookRotation(LockTarget.transform.forward);
 
 
@@ -222,7 +223,6 @@ public class BossController : BaseController
     {
         Managers.Sound.Play("hit22", Define.Sound.Effect);
     }
-
 
 
 }

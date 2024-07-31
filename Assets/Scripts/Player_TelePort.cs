@@ -15,13 +15,13 @@ public class Player_TelePort : MonoBehaviour
     private Animator animator;
     private CharacterController characterController;
     private PlayerController playerController;
-
-    
+   
     void Start()
     {
         animator = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
         playerController = GetComponent<PlayerController>();
+        
     }
 
     void Update()
@@ -57,7 +57,6 @@ public class Player_TelePort : MonoBehaviour
     IEnumerator StartRollCoroutine()
     {
         Managers.Sound.Play("Player_TelePort_2", Define.Sound.Effect);
-        
 
         
 
@@ -81,18 +80,20 @@ public class Player_TelePort : MonoBehaviour
             Vector3 move = rollDirection * rollSpeed * Time.deltaTime;
             characterController.Move(move);
 
-            GameObject go = Managers.Resources.Instantiate("TelePort");
-            go.transform.position = gameObject.transform.position;
-            Destroy(go, 3.0f);
-
+           
             yield return null;
         }
 
-       
 
+
+        
+        GameObject go = Managers.Resources.Instantiate("TelePort");
+        go.transform.position = gameObject.transform.position;
+        Destroy(go, 3.0f);
 
 
         isRolling = false;
+        
         playerController.State = Define.State.Idle; // 구르기 완료 후 상태를 Idle로 변경
     }
 

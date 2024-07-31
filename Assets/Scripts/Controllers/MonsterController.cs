@@ -10,9 +10,9 @@ public class MonsterController : BaseController
 
     Stat _stat;
     [SerializeField]
-    float _scanRange = 2.0f; // 플레이어 스캔범위
+    float _scanRange = 4.0f; // 플레이어 스캔범위
     [SerializeField]
-    float attackRange = 2.0f;
+    float attackRange = 4.0f;
 
     public GameObject Hit_Particle; // 몬스터가 플레이어를 타격 할 때 나타나는 이펙트 
 
@@ -28,6 +28,7 @@ public class MonsterController : BaseController
         WorldObjectType = Define.WorldObject.Monster;
 
         _stat = gameObject.GetComponent<Stat>();
+
         if(gameObject.GetComponentInChildren<UI_HPBar>() == null)
         {
             Managers.UI.MakeWorldSpaceUI<UI_HPBar>(transform);

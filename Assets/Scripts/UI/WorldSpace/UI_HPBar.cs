@@ -9,8 +9,7 @@ public class UI_HPBar :UI_Base
     enum GameObjects 
     { 
         HPBar,
-        Monster_name,
-       
+        Monster_name,      
     }
 
     Stat _stat;
@@ -18,7 +17,7 @@ public class UI_HPBar :UI_Base
   
     public override void Init()
     {
-       Bind<GameObject>(typeof(GameObjects));
+       Bind<GameObject>(typeof(GameObjects)); 
      
        _stat = transform.parent.GetComponent<Stat>();
 
@@ -36,6 +35,8 @@ public class UI_HPBar :UI_Base
             case "Turtle_Slime":
                 text.text = "터틀슬라임";
                 break;
+            
+            
         }
        
              

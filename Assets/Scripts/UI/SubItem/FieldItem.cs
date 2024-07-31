@@ -108,6 +108,40 @@ public class FieldItem : MonoBehaviour
 
     }
 
+    public GameObject King_Slime_DropFieldItem() //필드에 아이템 생성
+    {
+        System.Random random = new System.Random();
+
+        int random_number = 0;
+
+        GameObject go = Instantiate(fielditemPrefab, pos, Quaternion.identity); //Quaternion.identity는 회전없음을 나타내는 쿼터니언
+
+        random_number = random.Next(1, 5);
+
+
+        switch (random_number)
+        {
+
+            case 1:
+                go.GetComponent<FieldItem>().SetItem(ItemDataBase.instance.GetAllItems()["Consumable"][UnityEngine.Random.Range(0, 2)]);
+                break;
+            case 2:
+                go.GetComponent<FieldItem>().SetItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
+                break;
+            case 3:
+                go.GetComponent<FieldItem>().SetItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
+                break;
+            case 4:
+                go.GetComponent<FieldItem>().SetItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
+                break;
+
+        }
+
+
+        return go;
+
+    }
+
 
 
 

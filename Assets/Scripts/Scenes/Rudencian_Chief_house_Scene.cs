@@ -15,7 +15,7 @@ public class Rudencian_Chief_house_Scene : BaseScene
 
 
         Managers.Sound.Clear();
-        Managers.Sound.Play("·çµ§½Ã¾È", Define.Sound.Bgm);
+        Managers.Sound.Play("New_Rudencian_240731", Define.Sound.Bgm);
 
         GameObject player = Managers.Game.GetPlayer();
         Camera.main.gameObject.GetAddComponent<CameraController>().SetPlayer(player);

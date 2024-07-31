@@ -7,6 +7,7 @@ public class Monsters
     private const int SLIME_COOL_TIME = 3000; // 슬라임 쿨타임
     private const int PUNCH_MAN_COOL_TIME = 6000; // 펀치맨 쿨타임 
     private const int TURTLE_SLIME_COOL_TIME = 6000; // 터틀슬라임 쿨타임
+    private const int KING_SLIME_COOL_TIME = 5000; // 킹슬라임 쿨타임
 
     [SerializeField]
     private List<GameObject> monster;
@@ -16,6 +17,7 @@ public class Monsters
         monster.Add(Managers.Resources.Load<GameObject>("PreFabs/Slime"));
         monster.Add(Managers.Resources.Load<GameObject>("PreFabs/Punch_man"));
         monster.Add(Managers.Resources.Load<GameObject>("PreFabs/Turtle_Slime"));
+        monster.Add(Managers.Resources.Load<GameObject>("PreFabs/King_Slime"));
     }
 
     public int Slime_Cool_Time()
@@ -31,6 +33,11 @@ public class Monsters
     public int Turtle_Slime_Cool_Time()
     {
         return TURTLE_SLIME_COOL_TIME;
+    }
+
+    public int King_Slime_Cool_Time()
+    {
+        return KING_SLIME_COOL_TIME;
     }
 
 

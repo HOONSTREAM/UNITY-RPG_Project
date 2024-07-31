@@ -22,6 +22,9 @@ public class CoolTimeManager : MonoBehaviour
             case "Turtle_Slime":
                 return monsters.Turtle_Slime_Cool_Time();
 
+            case "King_Slime":
+                return monsters.King_Slime_Cool_Time();
+
             default:
                 return 0;
         }

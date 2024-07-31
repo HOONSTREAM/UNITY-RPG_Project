@@ -13,7 +13,7 @@ public class Rudencian_South_2_Scene : BaseScene
         Dictionary<int, Data.Stat> dict = Managers.Data.StatDict;
 
         Managers.Sound.Clear();
-        Managers.Sound.Play("루덴시안남쪽필드", Define.Sound.Bgm);
+        Managers.Sound.Play("Rudencian_monster_zone", Define.Sound.Bgm);
 
         GameObject player = Managers.Game.GetPlayer();
         Camera.main.gameObject.GetAddComponent<CameraController>().SetPlayer(player);
