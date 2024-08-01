@@ -87,7 +87,7 @@ public class Player_TelePort : MonoBehaviour
 
 
         
-        GameObject go = Managers.Resources.Instantiate("TelePort");
+        GameObject go = Managers.Resources.Instantiate("Skill_Effect/TelePort");
         go.transform.position = gameObject.transform.position;
         Destroy(go, 3.0f);
 

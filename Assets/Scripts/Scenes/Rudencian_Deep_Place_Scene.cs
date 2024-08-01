@@ -28,6 +28,11 @@ public class Rudencian_Deep_Place_Scene : BaseScene
         gameObject.GetAddComponent<CursorController>();
 
 
+
+        Managers.Sound.Play("Alarm_Sound", Define.Sound.Effect);
+        GameObject go = Managers.Resources.Instantiate("Boss_appearance");
+        Destroy(go, 5.0f);
+
     }
 
 

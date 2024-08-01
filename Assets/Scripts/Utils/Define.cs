@@ -19,9 +19,16 @@ public class Define
         Idle,
         Skill,
         SnowSlash,
-       
+        
+    }
 
-
+    public enum Monster_State
+    {
+        Die,
+        Moving,
+        Idle,
+        Skill,
+        King_Slime_Skill,
     }
 
 public enum Layer

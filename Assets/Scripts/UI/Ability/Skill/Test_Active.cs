@@ -30,7 +30,7 @@ public class Test_Active : SkillEffect
             casting_player.transform.position = Managers.Game.GetPlayer().transform.position;
 
             
-            Managers.Sound.Play("ICE_HIT/ice_blast_projectile_spell_04", Define.Sound.Effect);
+            Managers.Sound.Play("snowslash", Define.Sound.Effect);
 
 
             Destroy(effect, 2.0f);

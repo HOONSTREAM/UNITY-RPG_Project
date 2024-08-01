@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class MonsterController : BaseController
+public class MonsterController : Base_Monster_Controller
 {
 
 
@@ -13,6 +13,7 @@ public class MonsterController : BaseController
     float _scanRange = 4.0f; // 플레이어 스캔범위
     [SerializeField]
     float attackRange = 4.0f;
+    
 
     public GameObject Hit_Particle; // 몬스터가 플레이어를 타격 할 때 나타나는 이펙트 
 
@@ -37,7 +38,7 @@ public class MonsterController : BaseController
 
         }
 
-        Hit_Particle = Managers.Resources.Load<GameObject>("PreFabs/Monster_Hit_Effect");
+        Hit_Particle = Managers.Resources.Load<GameObject>("PreFabs/Hit_Effect/Monster_Hit_Effect");
 
     }
 
@@ -51,7 +52,7 @@ public class MonsterController : BaseController
         if(distance <= _scanRange)
         {
             LockTarget = player;
-            State = Define.State.Moving;
+            State = Define.Monster_State.Moving;
             return;
         }
         
@@ -69,13 +70,14 @@ public class MonsterController : BaseController
             _DesPos = LockTarget.transform.position; //타겟에서 내 포지션을 빼면 가야할 방향벡터가 나옴.
             float distance = (_DesPos - transform.position).magnitude;
 
+
             //타겟과의 거리가 공격범위 이내면 공격상태로 전환
             if (distance <= attackRange)
             {
 
                 NavMeshAgent nma = gameObject.GetComponentInChildren<NavMeshAgent>();
                 nma.SetDestination(transform.position); //이동중지
-                State = Define.State.Skill; // 공격상태로 변경
+                State = Define.Monster_State.Skill; // 공격상태로 변경
 
                 return;
 
@@ -83,7 +85,7 @@ public class MonsterController : BaseController
 
             else if (distance > _maxChaseDistance) // 추적거리 초과시 추적 중단
             {
-                State = Define.State.Idle;
+                State = Define.Monster_State.Idle;
                 NavMeshAgent nma = gameObject.GetComponentInChildren<NavMeshAgent>();
                 nma.SetDestination(transform.position); //이동중지
 
@@ -96,7 +98,7 @@ public class MonsterController : BaseController
 
         if (dir.magnitude < 0.5f) // 방향의 스칼라값이 0에 수렴하면 (목적지에 도착했으면)
         {
-            State = Define.State.Idle;
+            State = Define.Monster_State.Idle;
         }
 
         else
@@ -135,7 +137,7 @@ public class MonsterController : BaseController
     IEnumerator wait_attack()
     {
         yield return new WaitForSeconds(Managers.CoolTime.monster_attack_cooltime(this.gameObject.name));
-        State = Define.State.Skill;
+        State = Define.Monster_State.Skill;
     }
 
 
@@ -164,17 +166,17 @@ public class MonsterController : BaseController
                 }
                 else
                 {
-                    State = Define.State.Moving;
+                    State = Define.Monster_State.Moving;
                 }
             }
             else
             {
-                State = Define.State.Idle;
+                State = Define.Monster_State.Idle;
             }
         }
         else
         {
-            State = Define.State.Idle;
+            State = Define.Monster_State.Idle;
         }
 
     }

@@ -15,7 +15,7 @@ public class SaveManager : MonoBehaviour
     private const float SAVE_COMPLETE_ALARM_DURATION = 5.0f;
     private const string SAVE_COMPLETE_RESOURCE = "Save_Complete";
     private const string LOAD_COMPLETE_RESOURCE = "Load_Complete";
-    private const string SAVE_COMPLETE_SOUND = "GUI_Sound/misc_sound";
+    private const string SAVE_COMPLETE_SOUND = "Save_Sound";
     private const string LOADING_BACKGROUND = "LOADING_CANVAS";
     private const float WAIT_FOR_SET_STAT_AND_GOLD = 2.0f;
     private string sceneName;
