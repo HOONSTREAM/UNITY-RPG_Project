@@ -75,29 +75,38 @@ public class BossController : Base_Monster_Controller
 
             //타겟과의 거리가 공격범위 이내면 공격상태로 전환
 
-
             if (distance <= king_slime_skill_Range)
             {
-                Debug.Log("킹슬라임 스킬 공격 범위에 들어옴");
-
-
+                
                 NavMeshAgent nma = gameObject.GetComponentInChildren<NavMeshAgent>();
-                nma.SetDestination(transform.position); //이동중지
-                State = Define.Monster_State.King_Slime_Skill; // 공격상태로 변경
+                nma.SetDestination(transform.position); // 이동 중지
 
-                if (distance <= attackRange)
+                // 무작위로 공격 방식을 선택
+                int randomAttack = Random.Range(0, 2); // 0 또는 1 중에서 무작위 선택
+
+                if (randomAttack == 0)
                 {
+                    Debug.Log("킹슬라임 스킬 공격 실시");
+                    State = Define.Monster_State.King_Slime_Skill; // 킹슬라임 스킬 상태로 변경
+                }
+                else
+                {
+                    if(distance <= attackRange)
+                    {
+                        Debug.Log("일반 공격 실시");
+                        State = Define.Monster_State.Skill; // 일반 스킬 상태로 변경
+                    }
+
+                    else
+                    {
+                        return;
+                    }
                    
-                    nma.SetDestination(transform.position); //이동중지
-                    State = Define.Monster_State.Skill; // 공격상태로 변경
-
-                    return;
-
                 }
 
+                return;
             }
 
-            
 
             else if (distance > _maxChaseDistance) // 추적거리 초과시 추적 중단
             {
