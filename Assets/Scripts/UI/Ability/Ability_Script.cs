@@ -154,6 +154,10 @@ public class Ability_Script : MonoBehaviour
 
         return;
     } // 어빌리티창 off
+
+    /// <summary>
+    /// 몬스터 타격 시 자동으로 켜지는 어빌리티 증가 요약창을 끌 수 있는 토클 X버튼을 제공하는 메서드 입니다.
+    /// </summary>
     public void X_Button_Ability_Interface()
     {
         if (Ability_Interface_Panel.activeSelf)
@@ -162,7 +166,7 @@ public class Ability_Script : MonoBehaviour
         }
 
         return;
-    }
+    } 
     void RedrawSlotUI()
     {
         for (int i = 0; i < Ability_Slots.Length; i++)

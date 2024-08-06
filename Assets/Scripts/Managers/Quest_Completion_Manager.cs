@@ -273,7 +273,7 @@ public class Quest_Completion_Manager : MonoBehaviour
     public void Quest_Complete_Alarm()
     {
         GameObject go = Managers.Resources.Instantiate("Quest_Complete").gameObject;
-        Managers.Sound.Play("GUI_Sound/misc_sound");
+        Managers.Sound.Play("Alarm_Sound");
         Destroy(go, 5.0f);
     }
 }
