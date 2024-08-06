@@ -5,25 +5,30 @@ using UnityEngine.EventSystems;
 
 public class Skill_ToolTipController : MonoBehaviour,IPointerEnterHandler, IPointerExitHandler
 {
+    #region 무기종류
+    private const string ONE_HAND_SWORD = "한손검";
+    private const string TWO_HAND_SWORD = "양손검";
+    #endregion
+
 
     public Skill_ToolTip tooltip; 
     public Ability_Slot[] Ability_Slots;
     public Transform Ability_slotholder;
     public GameObject Ability_UI;
     private PlayerStat stat;
+    private Ability_Script Ability_script;
     enum OnToolTipUpdated
     {
         None,
         On,
         off,
-
     }
 
     OnToolTipUpdated ontooltip = OnToolTipUpdated.None;
 
     void Start()
     {
-        
+        Ability_script = GameObject.Find("Ability_Slot_CANVAS").gameObject.GetComponent<Ability_Script>();
         Ability_Slots = Ability_slotholder.GetComponentsInChildren<Ability_Slot>();
         stat = Managers.Game.GetPlayer().gameObject.GetComponent<PlayerStat>();
     }
@@ -49,17 +54,17 @@ public class Skill_ToolTipController : MonoBehaviour,IPointerEnterHandler, IPoin
 
                 switch (skill.skill_name)
                 {
-                    case "한손검":
+                    case ONE_HAND_SWORD:
 
-                        tooltip.SetupAbilityToolTip(skill.skill_name, skill.stat_1, stat.Onupdate_Ability_attack(), skill.Description, skill.skill_image);
+                        tooltip.SetupAbilityToolTip(skill.skill_name, skill.stat_1, Calculate_Weapon_ATK_In_ToolTip(ONE_HAND_SWORD), skill.Description, skill.skill_image);
                         tooltip.stat_2.gameObject.SetActive(false); // 나타낼 필요 없는 정보            
                         tooltip.num_2.gameObject.SetActive(false); // 나타낼 필요 없는 정보 
 
                         break;
 
-                    case "양손검":
+                    case TWO_HAND_SWORD:
 
-                        tooltip.SetupAbilityToolTip(skill.skill_name, skill.stat_1, stat.Onupdate_Ability_attack(), skill.Description, skill.skill_image);
+                        tooltip.SetupAbilityToolTip(skill.skill_name, skill.stat_1, Calculate_Weapon_ATK_In_ToolTip(TWO_HAND_SWORD), skill.Description, skill.skill_image);
                         tooltip.stat_2.gameObject.SetActive(false); // 나타낼 필요 없는 정보            
                         tooltip.num_2.gameObject.SetActive(false); // 나타낼 필요 없는 정보 
 
@@ -77,11 +82,7 @@ public class Skill_ToolTipController : MonoBehaviour,IPointerEnterHandler, IPoin
             { 
                 switch (skill.skill_name)
                 {
-                    case "어드밴스드어택":
-                        tooltip.SetupTooltip(skill.skill_name, skill.stat_1, skill.stat_2, skill.num_1, skill.num_2, skill.Description, skill.skill_image);
-                        tooltip.stat_2.gameObject.SetActive(false); // 나타낼 필요 없는 정보            
-                        tooltip.num_2.gameObject.SetActive(false); // 나타낼 필요 없는 정보 
-                        break;
+                    case "어드밴스드어택":                        
                     case "난공불락":
                         tooltip.SetupTooltip(skill.skill_name, skill.stat_1, skill.stat_2, skill.num_1, skill.num_2, skill.Description, skill.skill_image);
                         tooltip.stat_2.gameObject.SetActive(false); // 나타낼 필요 없는 정보            
@@ -128,4 +129,54 @@ public class Skill_ToolTipController : MonoBehaviour,IPointerEnterHandler, IPoin
 
         return;
     }
+
+    #region 스킬 툴팁에서의 출력되는 공격력을 나타내주는 메서드
+    public int Calculate_Weapon_ATK_In_ToolTip(string skill_name)
+    {
+
+        switch (skill_name)
+        {
+            case ONE_HAND_SWORD:
+
+                int oneHandAttack = 0;
+              
+                for (int i = 0; i < Ability_script.Ability_Slots.Length; i++)
+                {
+                    if (Ability_script.Ability_Slots[i].skill_name.text == ONE_HAND_SWORD)
+                    {
+                        double Ability_attack_improvement = (double.Parse(Ability_script.Ability_Slots[i].LEVEL.text) * 5);
+                        double Abillity_Grade_improvement = (double.Parse(Ability_script.Ability_Slots[i].grade_amount.text) * 500);
+                        oneHandAttack = (int)Ability_attack_improvement + (int)Abillity_Grade_improvement;
+                        break;
+                    }
+                }
+
+                return oneHandAttack;
+             
+            case TWO_HAND_SWORD:
+
+                int twoHandAttack = 0;
+
+                for (int i = 0; i < Ability_script.Ability_Slots.Length; i++)
+                {
+                    if (Ability_script.Ability_Slots[i].skill_name.text == TWO_HAND_SWORD)
+                    {
+                        double Ability_attack_improvement = (double.Parse(Ability_script.Ability_Slots[i].LEVEL.text) * 5);
+                        double Abillity_Grade_improvement = (double.Parse(Ability_script.Ability_Slots[i].grade_amount.text) * 500);
+                        twoHandAttack = (int)Ability_attack_improvement + (int)Abillity_Grade_improvement;
+                        break;
+                    }
+                }
+
+                return twoHandAttack;
+
+            default:
+                return 0;
+
+                
+        }
+       
+    }
+
+    #endregion
 }

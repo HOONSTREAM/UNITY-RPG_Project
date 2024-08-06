@@ -13,16 +13,20 @@ public class Player_Class : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// 직업을 가지기 위한 최소의 어빌리티 수치입니다.
+    /// </summary>
     private const int Class_acquisition_required_Ability = 10;
 
     [SerializeField]
     private TextMeshProUGUI Player_class_UI_Text;
 
     [SerializeField]
-    private ClassType _classtype = ClassType.UnKnown;
+    private ClassType _classtype;
     
     void Start()
     {
+        _classtype = ClassType.UnKnown;
         Player_class_UI_Text = GameObject.Find("job_info_text").gameObject.GetAddComponent<TextMeshProUGUI>();
         Set_Player_Class(_classtype);
     }

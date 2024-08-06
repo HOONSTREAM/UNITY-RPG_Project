@@ -159,10 +159,9 @@ public class PlayerStat : Stat
 
     }
   
+
     /// <summary>
     /// 플레이어가 특정 무기를 장착 후 어빌리티가 향상되어 적용되는 공격력을 리턴해주는 함수.
-    /// 
-    ///
     /// </summary>
     /// <returns> 향상된 데미지 정수값 </returns>
     public int Onupdate_Ability_attack()
@@ -170,10 +169,12 @@ public class PlayerStat : Stat
 
         if (PlayerEquipment.Instance.player_equip.TryGetValue(EquipType.Weapon, out Item One_hand_value) && One_hand_value.weapontype == WeaponType.One_Hand) // 무기를 장착중이고, 한손검인경우
         {
+           
 
             Ability_Script Ability_script = GameObject.Find("Ability_Slot_CANVAS").gameObject.GetComponent<Ability_Script>();
             for (int i = 0; i < Ability_script.Ability_Slots.Length; i++)
             {
+                
                 if (Ability_script.Ability_Slots[i].skill_name.text == "한손검")
                 {
                     double Ability_attack_improvement = (double.Parse(Ability_script.Ability_Slots[i].LEVEL.text) * 5); //TODO :여기서 Grade 수치 * 500 도 더해야함 
@@ -210,6 +211,7 @@ public class PlayerStat : Stat
 
     }
 
+  
     /// <summary>
     ///  플레이어의 부위 전체 장착 여부를 검사하여 스텟을 적용하는 메서드.
     /// <param name="stat">첫 번째 인자 :플레이어 레벨</param>
@@ -539,7 +541,7 @@ public class PlayerStat : Stat
         }
 
     }
-    
+
     #endregion
 
     /// <summary>
