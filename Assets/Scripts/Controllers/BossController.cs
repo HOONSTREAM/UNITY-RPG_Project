@@ -91,17 +91,10 @@ public class BossController : Base_Monster_Controller
                 }
                 else
                 {
-                    if(distance <= attackRange)
-                    {
-                        Debug.Log("일반 공격 실시");
-                        State = Define.Monster_State.Skill; // 일반 스킬 상태로 변경
-                    }
-
-                    else
-                    {
-                        return;
-                    }
-                   
+                    
+                    Debug.Log("일반 공격 실시");
+                    State = Define.Monster_State.Skill; // 일반 스킬 상태로 변경
+      
                 }
 
                 return;
