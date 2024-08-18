@@ -357,6 +357,9 @@ public class GameManager : MonoBehaviour
         Managers.Resources.Destroy(go);
     }
 
+    /// <summary>
+    /// 씬을 처음 실행하는 곳에서 플레이어를 스폰시키기 위한 메서드 입니다.
+    /// </summary>
     public void Set_Player_and_Save_Data_PreFabs()
     {
         

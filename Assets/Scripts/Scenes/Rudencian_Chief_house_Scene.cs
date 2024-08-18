@@ -9,6 +9,7 @@ public class Rudencian_Chief_house_Scene : BaseScene
 
         base.Init();
 
+        Managers.Game.Set_Player_and_Save_Data_PreFabs();
         SceneType = Define.Scene.Rudencian_chief_house;
 
         Dictionary<int, Data.Stat> dict = Managers.Data.StatDict;
@@ -27,7 +28,7 @@ public class Rudencian_Chief_house_Scene : BaseScene
 
 
         gameObject.GetAddComponent<CursorController>();
-
+       
 
     }
 

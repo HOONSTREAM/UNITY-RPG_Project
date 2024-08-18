@@ -47,11 +47,15 @@ public class GameScene : BaseScene
 
 
 
-        StartCoroutine(WaitAndExecute());
+        StartCoroutine(First_Start_Game_Guide_Quest());
        
     }
     
-    private IEnumerator WaitAndExecute()
+    /// <summary>
+    /// 루덴시안에 처음 입장했을 때, 퀘스트 안내를 해주는 메서드 입니다.
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator First_Start_Game_Guide_Quest()
     {
         Managers.Sound.Play("Quest Start DRUMS BIG", Define.Sound.Effect);
         GameObject go = Managers.Resources.Instantiate("Chapter0_Start");
