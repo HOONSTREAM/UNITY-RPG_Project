@@ -14,6 +14,7 @@ public class Ability_Slot : MonoBehaviour , IPointerUpHandler
     private const float Ability_MASTER_LEVEL = 100.00f;
 
     public GameObject Skill_Quickslot_Panel;
+    public GameObject Ability_Grade_Total_Info;
     public Skill skill;
     public Image skill_icon;
     public TextMeshProUGUI skill_name;
@@ -27,7 +28,11 @@ public class Ability_Slot : MonoBehaviour , IPointerUpHandler
   
     public void UpdateSlotUI()
     {
-        
+        if(skill.skilltype == SkillType.Active || skill.skilltype == SkillType.Buff)
+        {
+            Ability_Grade_Total_Info.gameObject.SetActive(false);
+        }
+
         skill_icon.sprite = skill.skill_image;
         skill_name.text = skill.skill_name;
         skill_icon.gameObject.SetActive(true);
@@ -88,6 +93,7 @@ public class Ability_Slot : MonoBehaviour , IPointerUpHandler
             quick_slot.Get_Slotnum(slotnum); //slot에 대한 정보를 넘겨줌
             Skill_Quickslot_Panel.SetActive(true);
             Skill_Quickslot_Panel.transform.position = Input.mousePosition;
+            
         }
 
     }

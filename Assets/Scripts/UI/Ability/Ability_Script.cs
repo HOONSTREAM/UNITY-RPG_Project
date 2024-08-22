@@ -138,9 +138,10 @@ public class Ability_Script : MonoBehaviour
     {
         active_Ability_panel = !active_Ability_panel;
         Ability_Panel.SetActive(active_Ability_panel);
+        RedrawSlotUI();
         Managers.UI.SetCanvas(Ability_canvas, true); // 캔버스 SortOrder 순서를 열릴 때마다 정의함. (제일 마지막에 열린 것이 가장 위로)
         Managers.Sound.Play("Inven_Open");
-
+        
         return;
     }
     public void Close_Ability_Skill_UI()
@@ -182,9 +183,10 @@ public class Ability_Script : MonoBehaviour
         for (int i = 0; i < Ability.PlayerSkill.Count; i++) //리스트배열로 저장되어있는 인벤토리의 아이템정보를 받아와 다시 재정렬 
         {
             Ability_Slots[i].skill = Ability.PlayerSkill[i];
-            Ability_Slots[i].UpdateSlotUI();
-
+            Ability_Slots[i].UpdateSlotUI();         
         }
+
+        
     }
 
     private void OnUpdate_Ability_Interface(WeaponType weapontype)
