@@ -7,10 +7,12 @@ using UnityEngine.Assertions.Must;
 public class TalkManager : MonoBehaviour
 {
 
+    private const int PLAYER_OBJ_DATA_ID = 9999;
     private const int RUDENCIAN_HELKEN_NPC_ID = 1003;
     private const int RUDENCIAN_INN_NPC_ID = 1004;
     private const int RUDENCIAN_HOUSE_CHIEF_NPC_ID = 1006;
     private const int RUDENCIAN_ROOKISS_NPC_ID = 1007;
+    
 
     public interface Additional_Talking
     {
@@ -28,7 +30,8 @@ public class TalkManager : MonoBehaviour
 
     void GenerateData()
     {
-        TalkData.Clear();       
+        TalkData.Clear();  
+        TalkData.Add(PLAYER_OBJ_DATA_ID, new string[] {"어느때나 다름없는 하루가 시작되었네..", "어제 루키스 수련관님이 시켰던 슬라임이나 잡으러 가봐야 하나.. 귀찮네.. 무슨 내가 세계를 구할 영웅이 될것도 아니고.. 그냥 평범하게 살고 싶은데.. 쳇.."});
         TalkData.Add(RUDENCIAN_HELKEN_NPC_ID, new string[] { "반갑다. 나는 기사 헬켄이라고 한다.", "나에게 볼 일이 있는가?" });
         TalkData.Add(RUDENCIAN_INN_NPC_ID, new string[] { " 체력을 회복 해 드리겠습니다. 체력회복이 필요하면, 언제든 저를 찾아오십시오." });
         TalkData.Add(RUDENCIAN_HOUSE_CHIEF_NPC_ID, new string[] { "만나서 반갑네. 나는 이 루덴시안 마을의 촌장, 월터라고 하네." });
@@ -139,8 +142,6 @@ public class TalkManager : MonoBehaviour
         TalkData.Add(RUDENCIAN_ROOKISS_NPC_ID, new string[] {"장비착용 퀘스트 8로 진행하기 위한 테스트 진행중 "});
 
     }
-
-
 
     public void Reset_TalkData()
     {

@@ -44,7 +44,7 @@ public class Title_Fade_in : MonoBehaviour
             Title_hangul_name.color = alpha;
             yield return null;
         }
-        Managers.Sound.Play("GUI_Sound/load", Define.Sound.Effect);
+        Managers.Sound.Play("로딩배경 효과음", Define.Sound.Effect);
         time = 0f;
 
         yield return new WaitForSeconds(1f);

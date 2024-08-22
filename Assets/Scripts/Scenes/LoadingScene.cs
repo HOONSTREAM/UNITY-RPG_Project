@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class LoadingScene : MonoBehaviour
 {
-    public static int NEXT_SCENE_NUMBER = 0;
+    public static int NEXT_SCENE_NUMBER = 0; // 루키스의 집에서 시작합니다.
 
     [SerializeField]
     private Slider loadingbar;

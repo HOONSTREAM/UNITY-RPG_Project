@@ -6,7 +6,7 @@ public class Rudencian_Chief_house_Scene : BaseScene
 {
     protected override void Init()
     {
-
+        
         base.Init();
 
         Managers.Game.Set_Player_and_Save_Data_PreFabs();
@@ -36,4 +36,6 @@ public class Rudencian_Chief_house_Scene : BaseScene
     {
 
     }
+
+   
 }

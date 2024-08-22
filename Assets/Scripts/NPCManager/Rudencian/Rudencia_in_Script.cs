@@ -80,6 +80,16 @@ public class Rudencia_in_Script : MonoBehaviour
 
                 break;
 
+            case "루키스의 집":
+
+             player.transform.position = new Vector3(-21.9f, 0, -20.5f);
+                player.transform.rotation = new Quaternion(0, 85f, 0, 0);
+                pc.State = Define.State.Idle;
+
+                SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
+
+                break;
+
 
         }
         

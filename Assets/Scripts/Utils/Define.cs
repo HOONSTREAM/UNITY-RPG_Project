@@ -68,6 +68,7 @@ public enum Layer
         Start_House,
         Rudencian_Deep_Place,
         Rudencian_South2,
+        Rudencian_Rookiss_Room,
 
     }
 

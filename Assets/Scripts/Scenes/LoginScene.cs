@@ -43,7 +43,7 @@ public class LoginScene : MonoBehaviour
     }
     private IEnumerator LoadScene_And_CheckPlayer()
     {
-        LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Rudencian_scene();
+        LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_RooKiss_Room_Scene();
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(Managers.Scene_Number.Get_loading_scene());
         _loading_canvas = Managers.Resources.Instantiate(LOADING_CANVAS_PREPAB_PATH).gameObject;
         DontDestroyOnLoad(_loading_canvas);

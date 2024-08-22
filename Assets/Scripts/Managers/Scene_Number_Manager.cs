@@ -17,6 +17,7 @@ public class Scene_Number_Manager : MonoBehaviour
     private const int RUDENCIAN_HOUSE_CHIEF_SCENE_NUMBER = 10;
     private const int START_SCENE_NUMBER = 11;
     private const int RUDENCIAN_DEEP_PLACE = 12;
+    private const int RUDENCIAN_ROOKISS_ROOM = 13;
 
 
    public int Get_loading_scene()
@@ -76,5 +77,10 @@ public class Scene_Number_Manager : MonoBehaviour
     public int Get_Deep_Place_Scene()
     {
         return RUDENCIAN_DEEP_PLACE;
+    }
+
+    public int Get_RooKiss_Room_Scene()
+    {
+        return RUDENCIAN_ROOKISS_ROOM;
     }
 }
