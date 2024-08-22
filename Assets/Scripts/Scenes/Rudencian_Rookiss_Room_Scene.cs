@@ -9,12 +9,12 @@ public class Rudencian_Rookiss_Room_Scene : BaseScene
     [SerializeField]
     private Terrain _rookiss_terrain;
     private readonly int TERRAIN_LAYER_GROUND = 9;
+    
     protected override void Init()
     {
 
         base.Init();
 
-        
         Managers.Game.Set_Player_and_Save_Data_PreFabs();
         SceneType = Define.Scene.Rudencian_Rookiss_Room;
 
@@ -28,9 +28,9 @@ public class Rudencian_Rookiss_Room_Scene : BaseScene
         Camera.main.gameObject.GetAddComponent<CameraController>().SetPlayer(player);
         player.transform.position = new Vector3(4.344155f, 0, 7.816045f);
         player.transform.rotation = new Quaternion(0, 180f, 0, 0);
-        // Scene 전환 되고나서 계속 움직이는 현상 방지
-        PlayerController pc = player.gameObject.GetComponent<PlayerController>();
-        pc.State = Define.State.Idle;
+        
+        PlayerController pc = player.gameObject.GetComponent<PlayerController>(); 
+        pc.State = Define.State.Idle; // Scene 전환 되고나서 계속 움직이는 현상 방지합니다.
 
 
         gameObject.GetAddComponent<CursorController>();
@@ -47,11 +47,8 @@ public class Rudencian_Rookiss_Room_Scene : BaseScene
 
         StartCoroutine(First_Start_Game_Guide_Quest());
 
-    }
-
-    public override void Clear()
-    {
-
+        gameManager.selection.gameObject.SetActive(true);
+        Managers.Game.GetPlayer().gameObject.name = "UnityChan";
     }
 
     /// <summary>
@@ -76,11 +73,25 @@ public class Rudencian_Rookiss_Room_Scene : BaseScene
 
         yield return new WaitForSeconds(1.5f);
 
-        gameManager.SelectedNPC = Managers.Game.GetPlayer().gameObject;
-        gameManager.TalkAction();
-        _rookiss_terrain.gameObject.layer = TERRAIN_LAYER_GROUND;
+        Player_First_monologue();
+
+        _rookiss_terrain.gameObject.layer = TERRAIN_LAYER_GROUND; // 플레이어가 이동 할 수있도록 제한을 해제 합니다.
 
         Destroy(go, 5.0f);
+
+
+    }
+
+    private void Player_First_monologue()
+    {
+        Managers.Game.GetPlayer().gameObject.name = "지크";
+        gameManager.SelectedNPC = Managers.Game.GetPlayer().gameObject;
+        gameManager.TalkAction();
+        gameManager.selection.gameObject.SetActive(false);
+    }
+
+    public override void Clear()
+    {
 
     }
 }
