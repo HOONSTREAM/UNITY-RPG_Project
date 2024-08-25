@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.1872, y: 329}
+  m_AnchoredPosition: {x: -13, y: 414.78}
   m_SizeDelta: {x: 788.3398, y: 85.771}
   m_Pivot: {x: 0.73479044, y: 0.5}
 --- !u!222 &5576103838807658042
@@ -66,8 +66,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uAC15\uB825\uD55C \uBCF4\uC2A4\uAC00 \uB4F1\uC7A5\uD558\uC600\uC2B5\uB2C8\uB2E4.
-    \uC801\uB2F9\uD55C \uAC70\uB9AC\uB97C \uB450\uC5B4 \uACF5\uACA9\uC744 \uD68C\uD53C\uD558\uC2ED\uC2DC\uC624!"
+  m_text: "\uAC15\uB825\uD55C \uBCF4\uC2A4\uAC00 \uB4F1\uC7A5\uD558\uC600\uC2B5\uB2C8\uB2E4
+    !"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7af731a305306a448af8656270c54fd0, type: 2}
   m_sharedMaterial: {fileID: -6954940463186632848, guid: 7af731a305306a448af8656270c54fd0, type: 2}
@@ -1322,7 +1322,7 @@ MonoBehaviour:
   _bursts:
   - time: 0
     count: 5
-    used: 1
+    used: 0
   _particleTrailRenderer: {fileID: 0}
   _trailModule:
     enabled: 0

@@ -75,9 +75,13 @@ public class Rudencian_Rookiss_Room_Scene : BaseScene
 
         Player_First_monologue();
 
-        _rookiss_terrain.gameObject.layer = TERRAIN_LAYER_GROUND; // 플레이어가 이동 할 수있도록 제한을 해제 합니다.
+       
+        yield return new WaitForSeconds(3.0f);
 
-        Destroy(go, 5.0f);
+        Managers.Sound.Play("Main_Quest_Start", Define.Sound.Effect);
+        GameObject player_start_alarm = Managers.Resources.Instantiate("Player_Start_Alarm");
+        Destroy(player_start_alarm, 5.0f);
+        _rookiss_terrain.gameObject.layer = TERRAIN_LAYER_GROUND; // 플레이어가 이동 할 수있도록 제한을 해제 합니다.
 
 
     }
@@ -88,6 +92,8 @@ public class Rudencian_Rookiss_Room_Scene : BaseScene
         gameManager.SelectedNPC = Managers.Game.GetPlayer().gameObject;
         gameManager.TalkAction();
         gameManager.selection.gameObject.SetActive(false);
+
+
     }
 
     public override void Clear()
