@@ -31,7 +31,7 @@ public class south_in_script : MonoBehaviour
 
             case "루덴시안 남쪽2":
                 LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Rudencian_south();
-                player.transform.position = new Vector3(37f, 0, 30f);            
+                player.transform.position = new Vector3(31.82f, 0, -0.14f);            
                 SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
                 break;
 

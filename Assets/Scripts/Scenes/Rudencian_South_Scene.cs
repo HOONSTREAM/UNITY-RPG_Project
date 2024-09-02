@@ -31,7 +31,7 @@ public class Rudencian_South_Scene : BaseScene
         //몬스터 생성
         GameObject go = new GameObject { name = "Spawning Pool" };
         SpawningPool pool = go.GetAddComponent<SpawningPool>();
-        pool.SetKeepMonsterCount(8);
+        pool.SetKeepMonsterCount(12);
 
 
 

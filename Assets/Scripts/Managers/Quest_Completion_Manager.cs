@@ -7,6 +7,7 @@ public class Quest_Completion_Manager : MonoBehaviour
     private const int KILL_SLIME_MAIN_QUEST_ID = 1;
     private const int KILL_PUNCH_MAN_MAIN_QUEST_ID = 6;
     private const int SECOND_MEET_ROOKISS_QUEST_ID = 7;
+    private const int EQUIPMENT_WEAR_QUEST_ID = 8;
 
     private readonly int SLIME_HUNTING_QUEST_COMPLETE_AMOUNT = 2;
     private readonly int COLLECTING_SLIME_ITEM_AMOUNT = 10;
@@ -67,16 +68,14 @@ public class Quest_Completion_Manager : MonoBehaviour
 
                     Player_Quest.Instance.RemoveQuest(i);
                     Player_Quest.Instance.onChangequest.Invoke();
-                    GameObject.Find("GUI_User_Interface").
-                    gameObject.GetComponent<Print_Info_Text>().PrintUserText("퀘스트 완료");
+                    Print_Info_Text.Instance.PrintUserText("퀘스트 완료");
                     //다음 메인퀘스트 자동 추가
                     Player_Quest.Instance.AddQuest(QuestDatabase.instance.QuestDB[1]);
 
                     break;
                 }
 
-                GameObject.Find("GUI_User_Interface").
-                gameObject.GetComponent<Print_Info_Text>().PrintUserText("퀘스트 조건이 충족되지 않았습니다.");
+                Print_Info_Text.Instance.PrintUserText("퀘스트 조건이 충족되지 않았습니다.");
 
 
             }
@@ -97,8 +96,7 @@ public class Quest_Completion_Manager : MonoBehaviour
 
                     Player_Quest.Instance.RemoveQuest(i);
                     Player_Quest.Instance.onChangequest.Invoke();
-                    GameObject.Find("GUI_User_Interface").
-                       gameObject.GetComponent<Print_Info_Text>().PrintUserText("퀘스트 완료");
+                    Print_Info_Text.Instance.PrintUserText("퀘스트 완료");
                     //다음 메인퀘스트 자동 추가
                     Player_Quest.Instance.AddQuest(QuestDatabase.instance.QuestDB[2]);
 
@@ -107,8 +105,7 @@ public class Quest_Completion_Manager : MonoBehaviour
             }
         }
 
-        GameObject.Find("GUI_User_Interface").
-            gameObject.GetComponent<Print_Info_Text>().PrintUserText("퀘스트 조건이 충족되지 않았습니다.");
+        Print_Info_Text.Instance.PrintUserText("퀘스트 조건이 충족되지 않았습니다.");
     }
     public void HelKen_Meet_Quest_Conditions_for_completion()
     {
@@ -119,8 +116,7 @@ public class Quest_Completion_Manager : MonoBehaviour
 
             if (Player_Quest.Instance.PlayerQuest[i].npc_meet == false)
             {
-                GameObject.Find("GUI_User_Interface").
-               gameObject.GetComponent<Print_Info_Text>().PrintUserText("퀘스트 조건이 충족되지 않았습니다.");
+                Print_Info_Text.Instance.PrintUserText("퀘스트 조건이 충족되지 않았습니다.");
 
                 return;
             }
@@ -129,8 +125,7 @@ public class Quest_Completion_Manager : MonoBehaviour
 
             Player_Quest.Instance.RemoveQuest(i);
             Player_Quest.Instance.onChangequest.Invoke();
-            GameObject.Find("GUI_User_Interface").
-               gameObject.GetComponent<Print_Info_Text>().PrintUserText("퀘스트 완료");
+            Print_Info_Text.Instance.PrintUserText("퀘스트 완료");
 
             //다음 메인퀘스트 자동 추가
             Player_Quest.Instance.AddQuest(QuestDatabase.instance.QuestDB[3]);
@@ -145,8 +140,7 @@ public class Quest_Completion_Manager : MonoBehaviour
 
             if (Player_Quest.Instance.PlayerQuest[i].npc_meet == false)
             {
-                GameObject.Find("GUI_User_Interface").
-               gameObject.GetComponent<Print_Info_Text>().PrintUserText("퀘스트 조건이 충족되지 않았습니다.");
+                Print_Info_Text.Instance.PrintUserText("퀘스트 조건이 충족되지 않았습니다.");
 
                 return;
             }
@@ -155,8 +149,7 @@ public class Quest_Completion_Manager : MonoBehaviour
 
             Player_Quest.Instance.RemoveQuest(i);
             Player_Quest.Instance.onChangequest.Invoke();
-            GameObject.Find("GUI_User_Interface").
-               gameObject.GetComponent<Print_Info_Text>().PrintUserText("퀘스트 완료");
+            Print_Info_Text.Instance.PrintUserText("퀘스트 완료");
 
             //다음 메인퀘스트 자동 추가
             Player_Quest.Instance.AddQuest(QuestDatabase.instance.QuestDB[4]);
@@ -170,8 +163,7 @@ public class Quest_Completion_Manager : MonoBehaviour
 
             if (Player_Quest.Instance.PlayerQuest[i].npc_meet == false)
             {
-                GameObject.Find("GUI_User_Interface").
-               gameObject.GetComponent<Print_Info_Text>().PrintUserText("퀘스트 조건이 충족되지 않았습니다.");
+                Print_Info_Text.Instance.PrintUserText("퀘스트 조건이 충족되지 않았습니다.");
 
                 return;
             }
@@ -180,8 +172,7 @@ public class Quest_Completion_Manager : MonoBehaviour
 
             Player_Quest.Instance.RemoveQuest(i);
             Player_Quest.Instance.onChangequest.Invoke();
-            GameObject.Find("GUI_User_Interface").
-               gameObject.GetComponent<Print_Info_Text>().PrintUserText("퀘스트 완료");
+            Print_Info_Text.Instance.PrintUserText("퀘스트 완료");
 
             //다음 메인퀘스트 자동 추가
             Player_Quest.Instance.AddQuest(QuestDatabase.instance.QuestDB[5]);
@@ -203,16 +194,14 @@ public class Quest_Completion_Manager : MonoBehaviour
 
                     Player_Quest.Instance.RemoveQuest(i);
                     Player_Quest.Instance.onChangequest.Invoke();
-                    GameObject.Find("GUI_User_Interface").
-                       gameObject.GetComponent<Print_Info_Text>().PrintUserText("퀘스트 완료");
+                    Print_Info_Text.Instance.PrintUserText("퀘스트 완료");
                     //다음 메인퀘스트 자동 추가
                     Player_Quest.Instance.AddQuest(QuestDatabase.instance.QuestDB[6]);
 
                     break;
                 }
 
-                GameObject.Find("GUI_User_Interface").
-                gameObject.GetComponent<Print_Info_Text>().PrintUserText("퀘스트 조건이 충족되지 않았습니다.");
+                Print_Info_Text.Instance.PrintUserText("퀘스트 조건이 충족되지 않았습니다.");
 
 
             }
@@ -228,8 +217,7 @@ public class Quest_Completion_Manager : MonoBehaviour
 
             if (Player_Quest.Instance.PlayerQuest[i].npc_meet == false)
             {
-                GameObject.Find("GUI_User_Interface").
-               gameObject.GetComponent<Print_Info_Text>().PrintUserText("퀘스트 조건이 충족되지 않았습니다.");
+                Print_Info_Text.Instance.PrintUserText("퀘스트 조건이 충족되지 않았습니다.");
 
                 return;
             }
@@ -238,12 +226,38 @@ public class Quest_Completion_Manager : MonoBehaviour
 
             Player_Quest.Instance.RemoveQuest(i);
             Player_Quest.Instance.onChangequest.Invoke();
-            GameObject.Find("GUI_User_Interface").
-               gameObject.GetComponent<Print_Info_Text>().PrintUserText("퀘스트 완료");
+            Print_Info_Text.Instance.PrintUserText("퀘스트 완료");
 
             //다음 메인퀘스트 자동 추가
-          //  Player_Quest.Instance.AddQuest(QuestDatabase.instance.QuestDB[7]);
+            Player_Quest.Instance.AddQuest(QuestDatabase.instance.QuestDB[7]);
+        }
+    }
 
+    public void First_Equipment_Wear_Quest()
+    {
+        for (int i = 0; i < Player_Quest.Instance.PlayerQuest.Count; i++)
+        {
+            if (Player_Quest.Instance.PlayerQuest[i].Quest_ID != EQUIPMENT_WEAR_QUEST_ID) { continue; }
+
+            if (PlayerEquipment.Instance.player_equip.TryGetValue(EquipType.Head, out Item item) && 
+                PlayerEquipment.Instance.player_equip.TryGetValue(EquipType.outter_plate, out Item item_2)&& 
+                PlayerEquipment.Instance.player_equip.TryGetValue(EquipType.shoes, out Item item_3))
+            {
+                Player_Quest.Instance.PlayerQuest[i].Quest_Clear();
+
+                Player_Quest.Instance.RemoveQuest(i);
+                Player_Quest.Instance.onChangequest.Invoke();
+                Print_Info_Text.Instance.PrintUserText("퀘스트 완료");
+
+                //다음 메인퀘스트 자동 추가
+                Player_Quest.Instance.AddQuest(QuestDatabase.instance.QuestDB[7]);
+            }
+
+            else
+            {
+                Print_Info_Text.Instance.PrintUserText("퀘스트 조건이 충족되지 않았습니다.");
+            }
+           
         }
     }
 

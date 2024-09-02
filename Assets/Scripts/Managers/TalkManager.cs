@@ -31,7 +31,10 @@ public class TalkManager : MonoBehaviour
     void GenerateData()
     {
         TalkData.Clear();  
-        TalkData.Add(PLAYER_OBJ_DATA_ID, new string[] {"어느때나 다름없는 하루가 시작되었네..", "어제 루키스 수련관님이 시켰던 슬라임이나 잡으러 가봐야 하나.. 귀찮네.. 무슨 내가 세계를 구할 영웅이 될것도 아니고.. 그냥 평범하게 살고 싶은데.. 쳇.."});
+        TalkData.Add(PLAYER_OBJ_DATA_ID, new string[] {"어느때나 다름없는 하루가 시작되었다..","어렸을 적에 부모님을 여의어 부모의 존재는 거의 기억나지 않는다. 루키스 선생님 말로는 내 부모님이 아르카디아 대륙을 멸망시키려 했던 극악무도한 흑룡 <샤르덴>을 봉인하는 과정에서 희생 당하셨고, 나는 루키스 선생님께 거두어 키워졌다고 한다.",
+        "그리고, 우리 부모님이 <용의 검> 이라는 검의 첫 주인이었다고 얘기해주셨다. ",
+        "<용의 검>이 대체 무엇이길래... ",
+        "어제 루키스 수련관님이 시켰던 슬라임이나 잡으러 가봐야 하나.. 귀찮네.. 무슨 내가 세계를 구할 영웅이 될것도 아니고.. 그냥 평범하게 살고 싶은데.. 쳇.."});
         TalkData.Add(RUDENCIAN_HELKEN_NPC_ID, new string[] { "반갑다. 나는 기사 헬켄이라고 한다.", "나에게 볼 일이 있는가?" });
         TalkData.Add(RUDENCIAN_INN_NPC_ID, new string[] { " 체력을 회복 해 드리겠습니다. 체력회복이 필요하면, 언제든 저를 찾아오십시오." });
         TalkData.Add(RUDENCIAN_HOUSE_CHIEF_NPC_ID, new string[] { "만나서 반갑네. 나는 이 루덴시안 마을의 촌장, 월터라고 하네." });
@@ -124,22 +127,25 @@ public class TalkManager : MonoBehaviour
 
     }
 
-
     public void Additional_Talk_Rudencian_training_officer_RooKiss_Quest2()
     {
 
         for (int k = 0; k < Player_Quest.Instance.PlayerQuest.Count; k++)
         {
-            if (Player_Quest.Instance.PlayerQuest[k].Quest_ID == 7 && Player_Quest.Instance.PlayerQuest[k].npc_meet == true) // 퀘스트가 이미 완료되었으면 리턴 
+            if (Player_Quest.Instance.PlayerQuest[k].Quest_ID == 6 && Player_Quest.Instance.PlayerQuest[k].npc_meet == true) // 퀘스트가 이미 완료되었으면 리턴 
             {
-                return;
+                continue;
             }
 
             Player_Quest.Instance.PlayerQuest[k].npc_meet = true;
         }
 
         TalkData.Remove(RUDENCIAN_ROOKISS_NPC_ID);
-        TalkData.Add(RUDENCIAN_ROOKISS_NPC_ID, new string[] {"장비착용 퀘스트 8로 진행하기 위한 테스트 진행중 "});
+        TalkData.Add(RUDENCIAN_ROOKISS_NPC_ID, new string[] {"펀치맨을 제거하는 것 까지 정말 잘해주었군! , 처음보다 실력이 조금씩 늘어가는 것이 눈에 보이는군!",
+         "이제 본격적인 이야기를 조금씩 해도 될것 같군... <용의 검>이 봉인되어 있는 곳의 또다른 차원을 여는 방법을 너에게 알려주마.",
+         "<용의 검>은 너가 모험을 하면서, 이 대륙에 흩어져있는 <4개의 정령석>을 모아서 차원을 열게 되면, 그 차원에 검이 봉인되어있다고한다.",
+         "정령석이 정확히 어디에 있는지 정확히 알 순없지만, 너의 부모님도 성공적으로 검을 찾아냈 듯, 너에게 신의 축복이 따른다면, 정령석을 어렵지 않게 구할 수 있을거라 믿는다.",
+         "그러고 보니, 네 놈은 달랑 낡은 검 하나만 들고 무엇을 하려고 하는거냐 ! , 어서 상점으로 가서, [머리, 겉옷, 신발] 종류를 구매해서, 장비부터 갖춰보도록 해라."});
 
     }
 

@@ -164,7 +164,7 @@ public class GameManager : MonoBehaviour
                     {
                         selection.gameObject.SetActive(false);
 
-                        if (Talkindex == 1) // 추가 대화가 끝에 도달했는지 검사 
+                        if (Talkindex == 5) // 장비착용 관련 퀘스트 수령 추가 대화가 끝에 도달했는지 검사 
                         {
 
                             Talk_Panel_next_button.gameObject.SetActive(false);
@@ -179,10 +179,9 @@ public class GameManager : MonoBehaviour
                         break;
                     }
 
-
                         selection.gameObject.SetActive(false);
 
-                    if (Talkindex == 4) // 추가 대화가 끝에 도달했는지 검사 
+                    if (Talkindex == 4) // 장비장착 퀘스트 수령 내용 추가 대화가 끝에 도달했는지 검사 ?
                     {
 
                         Talk_Panel_next_button.gameObject.SetActive(false);

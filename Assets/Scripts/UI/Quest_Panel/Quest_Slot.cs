@@ -144,8 +144,16 @@ public class Quest_Slot : MonoBehaviour , IPointerUpHandler
 
                 break;
 
+            case 8:
 
+                reward_gold.text = QuestDatabase.instance.QuestDB[7].num_1.ToString();
+                reward_exp.text = QuestDatabase.instance.QuestDB[7].num_2.ToString();
 
+                summing_up_explaination.text = "[겉갑옷, 투구, 신발] 3개의 방어구를 구입하여 장착하기";
+
+                UpdateSlotUI();
+
+                break;
 
         }
     }

@@ -108,6 +108,9 @@ public class Quest_Script : MonoBehaviour
                 case 7:
                     Managers.Quest_Completion.Rookiss_NPC_Meet_Quest_Conditions_for_completion_Second();
                     break;
+                case 8:
+                    Managers.Quest_Completion.First_Equipment_Wear_Quest();
+                    break;
 
             }
         }
@@ -220,6 +223,11 @@ public class Quest_Script : MonoBehaviour
                     case 7:
                         Quest_summary.text = $"수련관 루키스를 찾아가 대화를 한다.";
                         break;
+
+                    case 8:
+                        Quest_summary.text = $"3부위 방어구를 구매하여 장비를 장착한다.";
+                        break;
+
                 }
 
                 break;

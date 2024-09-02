@@ -43,6 +43,18 @@ public class Rudencian_Rookiss_Room_Scene : BaseScene
         PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["SkillBook"][1]);
         PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Consumable"][3]);
 
+        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
+        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
+        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
+        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
+        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
+        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
+        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
+        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
+        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
+        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
+
+
         PlayerAbility.Instance.AddSkill(SkillDataBase.instance.SkillDB[4]);
 
         StartCoroutine(First_Start_Game_Guide_Quest());
@@ -92,8 +104,6 @@ public class Rudencian_Rookiss_Room_Scene : BaseScene
         gameManager.SelectedNPC = Managers.Game.GetPlayer().gameObject;
         gameManager.TalkAction();
         gameManager.selection.gameObject.SetActive(false);
-
-
     }
 
     public override void Clear()

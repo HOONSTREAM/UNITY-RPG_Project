@@ -35,7 +35,7 @@ public class RooKiss_NPC_Script : MonoBehaviour, IPointerClickHandler, TalkManag
             is_Additional_Talk_open = true; // 대화하기 버튼 승인 
 
             GameObject.Find("@TalkManager").gameObject.GetComponent<TalkManager>().Additional_Talk_Rudencian_training_officer_RooKiss_Quest2(); // 대화내용 수정
-            gamemanager.selection.SetActive(false);
+            gamemanager.selection.SetActive(false);            
             gamemanager.SelectedNPC = gameObject;
             gamemanager.TalkAction();
         }
@@ -51,11 +51,6 @@ public class RooKiss_NPC_Script : MonoBehaviour, IPointerClickHandler, TalkManag
         }
        
         return;
-
-    }
-
-    public void RooKiss_Quest()
-    {
 
     }
 
