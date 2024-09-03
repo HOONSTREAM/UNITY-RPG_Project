@@ -86,19 +86,15 @@ public class Quest_Script : MonoBehaviour
                 case 1:
                     Managers.Quest_Completion.Kill_Slime_Quest_Conditions_for_completion();
                     break;
-
                 case 2: 
                     Managers.Quest_Completion.Slime_collecting_drop_item_quest_Conditions_for_completion();                
                   break;
-
                 case 3: 
                     Managers.Quest_Completion.HelKen_Meet_Quest_Conditions_for_completion();
                     break;
-
                 case 4:
                     Managers.Quest_Completion.Rudencian_Chief_Meet_Quest_Conditions_for_completion();
                     break;
-
                 case 5:
                     Managers.Quest_Completion.Rudencian_Training_officer_Rookiss_NPC_Meet_Quest_Conditions_for_completion();
                     break;
@@ -110,6 +106,9 @@ public class Quest_Script : MonoBehaviour
                     break;
                 case 8:
                     Managers.Quest_Completion.First_Equipment_Wear_Quest();
+                    break;
+                case 9:
+                    Managers.Quest_Completion.First_Ability_Training_Quest();
                     break;
 
             }

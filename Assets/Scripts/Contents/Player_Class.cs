@@ -16,7 +16,7 @@ public class Player_Class : MonoBehaviour
     /// <summary>
     /// 직업을 가지기 위한 최소의 어빌리티 수치입니다.
     /// </summary>
-    private const int Class_acquisition_required_Ability = 10;
+    private const float CLASS_ACQUISITION_REQUIRED_ABILITY = 10.00f; 
 
     [SerializeField]
     private TextMeshProUGUI Player_class_UI_Text;
@@ -57,9 +57,9 @@ public class Player_Class : MonoBehaviour
         return _classtype;
     }
 
-    public int class_acquisition_required_Ability()
+    public float class_acquisition_required_Ability()
     {
-        return Class_acquisition_required_Ability;
+        return CLASS_ACQUISITION_REQUIRED_ABILITY;
     }
 
 

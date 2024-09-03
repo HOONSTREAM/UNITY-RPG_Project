@@ -47,7 +47,7 @@ public class Ability_Script : MonoBehaviour
    
 
 
-    private readonly double ABILITY_INCREASE_AMOUNT = Math.Round(0.1f,2);
+    private readonly double ABILITY_INCREASE_AMOUNT = Math.Round(1.0f,2);
     private readonly double ABILITY_MASTER_LEVEL = 100.00f;
     private const float MAX_ABILITY_COUNT = 1.0f;
 
@@ -304,9 +304,10 @@ public class Ability_Script : MonoBehaviour
                 continue;
             }
 
-           // if (IsMaxAbilityReached(slot, weaponType)) return;
-
-           // if (!IsValidMonsterLevel(monster, slot)) return;
+            // 직업을 가지지 않은 상태에서 10.00 이상 어빌을 달성하지 못하게 합니다.
+            if (IsMaxAbilityReached(slot, weaponType)) return; 
+            // 몬스터 레벨이 너무 낮은 상대로만 어빌을 올릴 수 없도록 합니다.
+            if (!IsValidMonsterLevel(monster, slot)) return;
 
             UpdateAbilitySlot(slot);
 

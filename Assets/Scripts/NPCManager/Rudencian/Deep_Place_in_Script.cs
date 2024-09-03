@@ -10,6 +10,7 @@ using UnityEngine.SceneManagement;
 public class Deep_Place_in_Script : MonoBehaviour
 {
     public GameObject savedata;
+    private readonly int KILL_KING_SLIME_QUEST_ID = 10;
 
     private void Start()
     {
@@ -19,10 +20,19 @@ public class Deep_Place_in_Script : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Deep_Place_Scene();
+        foreach(Quest quest in Player_Quest.Instance.PlayerQuest)
+        {
+            if(quest.Quest_ID != KILL_KING_SLIME_QUEST_ID)
+            {
+                LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Deep_Place_Scene();
 
-        GameObject player = Managers.Game.GetPlayer();
-       
-        SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
+                GameObject player = Managers.Game.GetPlayer();
+
+                SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
+            }
+        }
+
+        Print_Info_Text.Instance.PrintUserText("들어가기엔 아직 능력이 부족합니다.");
+        
     }
 }

@@ -155,6 +155,17 @@ public class Quest_Slot : MonoBehaviour , IPointerUpHandler
 
                 break;
 
+            case 9:
+
+                reward_gold.text = QuestDatabase.instance.QuestDB[8].num_1.ToString();
+                reward_exp.text = QuestDatabase.instance.QuestDB[8].num_2.ToString();
+
+                summing_up_explaination.text = "무기종류 1개 어빌리티 5.00 이상 달성";
+
+                UpdateSlotUI();
+
+                break;
+
         }
     }
 

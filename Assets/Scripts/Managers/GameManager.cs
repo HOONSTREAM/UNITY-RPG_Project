@@ -136,9 +136,6 @@ public class GameManager : MonoBehaviour
                         talkmanager.Reset_TalkData(); // Talk Data 리셋
                         Talkindex = 0;
 
-                        Managers.Sound.Clear();
-                        Managers.Sound.Play("루덴시안");
-
                     }
 
                 }

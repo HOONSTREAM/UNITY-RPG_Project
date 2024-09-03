@@ -8,6 +8,7 @@ public class Quest_Completion_Manager : MonoBehaviour
     private const int KILL_PUNCH_MAN_MAIN_QUEST_ID = 6;
     private const int SECOND_MEET_ROOKISS_QUEST_ID = 7;
     private const int EQUIPMENT_WEAR_QUEST_ID = 8;
+    private const int FIRST_ABILITY_TRAINING_QUEST_ID = 9;
 
     private readonly int SLIME_HUNTING_QUEST_COMPLETE_AMOUNT = 2;
     private readonly int COLLECTING_SLIME_ITEM_AMOUNT = 10;
@@ -15,6 +16,7 @@ public class Quest_Completion_Manager : MonoBehaviour
 
     private const int PUNCHMAN_HUNTING_QUEST_COMPLETE_AMOUNT = 20;
 
+    #region 몬스터 소탕 퀘스트 종류 (몬스터 카운터 증가 관리)
     public void Kill_Slime_For_Main_Quest()
     {
 
@@ -51,6 +53,7 @@ public class Quest_Completion_Manager : MonoBehaviour
             }
         }
     }
+    #endregion
 
     #region 퀘스트 완료조건 메서드
     public void Kill_Slime_Quest_Conditions_for_completion()
@@ -207,8 +210,6 @@ public class Quest_Completion_Manager : MonoBehaviour
             }
         }
     }
-
-
     public void Rookiss_NPC_Meet_Quest_Conditions_for_completion_Second()
     {
         for (int i = 0; i < Player_Quest.Instance.PlayerQuest.Count; i++)
@@ -232,7 +233,6 @@ public class Quest_Completion_Manager : MonoBehaviour
             Player_Quest.Instance.AddQuest(QuestDatabase.instance.QuestDB[7]);
         }
     }
-
     public void First_Equipment_Wear_Quest()
     {
         for (int i = 0; i < Player_Quest.Instance.PlayerQuest.Count; i++)
@@ -250,7 +250,7 @@ public class Quest_Completion_Manager : MonoBehaviour
                 Print_Info_Text.Instance.PrintUserText("퀘스트 완료");
 
                 //다음 메인퀘스트 자동 추가
-                Player_Quest.Instance.AddQuest(QuestDatabase.instance.QuestDB[7]);
+                Player_Quest.Instance.AddQuest(QuestDatabase.instance.QuestDB[8]);
             }
 
             else
@@ -260,7 +260,33 @@ public class Quest_Completion_Manager : MonoBehaviour
            
         }
     }
+    public void First_Ability_Training_Quest()
+    {
+        for (int i = 0; i < Player_Quest.Instance.PlayerQuest.Count; i++)
+        {
+            if (Player_Quest.Instance.PlayerQuest[i].Quest_ID != FIRST_ABILITY_TRAINING_QUEST_ID) { continue; }
 
+            foreach(var ability in PlayerAbility.Instance.PlayerSkill)
+            {
+                if(ability.Ability >= 5.00f)
+                {
+                    Player_Quest.Instance.PlayerQuest[i].Quest_Clear();
+
+                    Player_Quest.Instance.RemoveQuest(i);
+                    Player_Quest.Instance.onChangequest.Invoke();
+                    Print_Info_Text.Instance.PrintUserText("퀘스트 완료");
+
+                    return;
+                }
+
+            }
+
+
+             Print_Info_Text.Instance.PrintUserText("퀘스트 조건이 충족되지 않았습니다.");
+            
+
+        }
+    }
     #endregion
 
 
