@@ -161,7 +161,7 @@ public class GameManager : MonoBehaviour
                     {
                         selection.gameObject.SetActive(false);
 
-                        if (Talkindex == 5) // 장비착용 관련 퀘스트 수령 추가 대화가 끝에 도달했는지 검사 
+                        if (Talkindex == 4) // 장비착용 관련 퀘스트 수령 추가 대화가 끝에 도달했는지 검사 
                         {
 
                             Talk_Panel_next_button.gameObject.SetActive(false);
@@ -176,9 +176,41 @@ public class GameManager : MonoBehaviour
                         break;
                     }
 
+                    // 어빌달성 퀘스트를 완료하였고, 루키스와의 3번째 대화가 아직 진행되지 않은상태인지 점검
+                    if (QuestDatabase.instance.QuestDB[8].is_complete == true && !QuestDatabase.instance.QuestDB[9].is_complete)
+                    {
+                        Debug.Log($"퀘스트 1번 완료상태 : {QuestDatabase.instance.QuestDB[0].is_complete}");
+                        Debug.Log($"퀘스트 2번 완료상태 : {QuestDatabase.instance.QuestDB[1].is_complete}");
+                        Debug.Log($"퀘스트 3번 완료상태 : {QuestDatabase.instance.QuestDB[2].is_complete}");
+                        Debug.Log($"퀘스트 4번 완료상태 : {QuestDatabase.instance.QuestDB[3].is_complete}");
+                        Debug.Log($"퀘스트 5번 완료상태 : {QuestDatabase.instance.QuestDB[4].is_complete}");
+                        Debug.Log($"퀘스트 6번 완료상태 : {QuestDatabase.instance.QuestDB[5].is_complete}");
+                        Debug.Log($"퀘스트 7번 완료상태 : {QuestDatabase.instance.QuestDB[6].is_complete}");
+                        Debug.Log($"퀘스트 8번 완료상태 : {QuestDatabase.instance.QuestDB[7].is_complete}");
+                        Debug.Log($"퀘스트 9번 완료상태 : {QuestDatabase.instance.QuestDB[8].is_complete}");
+                        Debug.Log($"퀘스트 10번 완료상태 : {QuestDatabase.instance.QuestDB[9].is_complete}");
+
+
                         selection.gameObject.SetActive(false);
 
-                    if (Talkindex == 4) // 장비장착 퀘스트 수령 내용 추가 대화가 끝에 도달했는지 검사 ?
+                        if (Talkindex == 6) 
+                        {
+
+                            Talk_Panel_next_button.gameObject.SetActive(false);
+                            selection.gameObject.SetActive(true);
+                            Additional_Talk_button.gameObject.SetActive(false);
+                            scanobject.gameObject.GetComponent<RooKiss_NPC_Script>().is_Additional_Talk_open = false;
+                            talkmanager.Reset_TalkData(); // Talk Data 리셋
+                            Talkindex = 0;
+
+                        }
+
+                        break;
+                    }
+
+                    selection.gameObject.SetActive(false);
+
+                    if (Talkindex == 4) 
                     {
 
                         Talk_Panel_next_button.gameObject.SetActive(false);

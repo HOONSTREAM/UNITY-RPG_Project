@@ -39,6 +39,7 @@ public class House_Chief_NPC_Script : MonoBehaviour, IPointerClickHandler, TalkM
         gamemanager.SelectedNPC = gameObject;
         gamemanager.TalkAction();
 
+        Managers.Quest_Completion.Quest_Complete_Alarm();
         return;
     }
 

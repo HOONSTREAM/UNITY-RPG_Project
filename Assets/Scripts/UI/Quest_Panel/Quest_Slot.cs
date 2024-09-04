@@ -166,6 +166,27 @@ public class Quest_Slot : MonoBehaviour , IPointerUpHandler
 
                 break;
 
+            case 10:
+                reward_gold.text = QuestDatabase.instance.QuestDB[9].num_1.ToString();
+                reward_exp.text = QuestDatabase.instance.QuestDB[9].num_2.ToString();
+
+                summing_up_explaination.text = "수련관 루키스와 3번째 대화";
+
+                UpdateSlotUI();
+
+                break;
+
+            case 11:
+                reward_gold.text = QuestDatabase.instance.QuestDB[10].num_1.ToString();
+                reward_exp.text = QuestDatabase.instance.QuestDB[10].num_2.ToString();
+
+                summing_up_explaination.text = "<킹슬라임> 처치";
+
+                UpdateSlotUI();
+
+                break;
+
+
         }
     }
 

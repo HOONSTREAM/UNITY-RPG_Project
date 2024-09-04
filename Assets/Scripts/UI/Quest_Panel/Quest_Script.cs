@@ -110,6 +110,9 @@ public class Quest_Script : MonoBehaviour
                 case 9:
                     Managers.Quest_Completion.First_Ability_Training_Quest();
                     break;
+                case 10:
+                    Managers.Quest_Completion.Rookiss_NPC_Meet_Quest_Conditions_for_completion_Third();
+                    break;
 
             }
         }
@@ -204,10 +207,6 @@ public class Quest_Script : MonoBehaviour
                         Quest_summary.text = $"촌장 월터를 찾아가 대화를 한다.";
                         break;
 
-                    case 5:
-                        Quest_summary.text = $"수련관 루키스를 찾아가 대화를 한다.";
-                        break;
-
                     case 6:
                         Quest_summary.text = $"펀치맨 : ({quest.monster_counter} / {Managers.Quest_Completion.Get_Punch_man_Hunting_Quest_Complete_amount()})";
 
@@ -219,12 +218,20 @@ public class Quest_Script : MonoBehaviour
                         }
                         break;
 
+                    case 5:
                     case 7:
+                    case 10:
                         Quest_summary.text = $"수련관 루키스를 찾아가 대화를 한다.";
                         break;
 
                     case 8:
                         Quest_summary.text = $"3부위 방어구를 구매하여 장비를 장착한다.";
+                        break;
+                    case 9:
+                        Quest_summary.text = $"무기 종류 어빌 5.00 이상 달성";
+                        break;
+                    case 11:
+                        Quest_summary.text = "<킹슬라임> 처치";
                         break;
 
                 }

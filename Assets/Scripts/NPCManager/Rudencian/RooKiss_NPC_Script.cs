@@ -38,6 +38,20 @@ public class RooKiss_NPC_Script : MonoBehaviour, IPointerClickHandler, TalkManag
             gamemanager.selection.SetActive(false);            
             gamemanager.SelectedNPC = gameObject;
             gamemanager.TalkAction();
+
+            Managers.Quest_Completion.Quest_Complete_Alarm();
+        }
+
+        else if (QuestDatabase.instance.QuestDB[8].is_complete == true && !QuestDatabase.instance.QuestDB[9].is_complete)
+        {
+            is_Additional_Talk_open = true; // 대화하기 버튼 승인 
+
+            GameObject.Find("@TalkManager").gameObject.GetComponent<TalkManager>().Additional_Talk_Rudencian_training_officer_RooKiss_Quest3(); // 대화내용 수정
+            gamemanager.selection.SetActive(false);
+            gamemanager.SelectedNPC = gameObject;
+            gamemanager.TalkAction();
+
+            Managers.Quest_Completion.Quest_Complete_Alarm();
         }
 
         else
@@ -48,6 +62,8 @@ public class RooKiss_NPC_Script : MonoBehaviour, IPointerClickHandler, TalkManag
             gamemanager.selection.SetActive(false);
             gamemanager.SelectedNPC = gameObject;
             gamemanager.TalkAction();
+
+            Managers.Quest_Completion.Quest_Complete_Alarm();
         }
        
         return;

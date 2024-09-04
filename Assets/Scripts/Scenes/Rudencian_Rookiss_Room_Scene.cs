@@ -55,7 +55,6 @@ public class Rudencian_Rookiss_Room_Scene : BaseScene
         PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
 
 
-        PlayerAbility.Instance.AddSkill(SkillDataBase.instance.SkillDB[4]);
 
         StartCoroutine(First_Start_Game_Guide_Quest());
 

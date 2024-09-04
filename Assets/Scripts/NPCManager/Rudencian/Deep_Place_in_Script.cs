@@ -22,7 +22,7 @@ public class Deep_Place_in_Script : MonoBehaviour
     {
         foreach(Quest quest in Player_Quest.Instance.PlayerQuest)
         {
-            if(quest.Quest_ID != KILL_KING_SLIME_QUEST_ID)
+            if(quest.Quest_ID == KILL_KING_SLIME_QUEST_ID)
             {
                 LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Deep_Place_Scene();
 
@@ -33,6 +33,8 @@ public class Deep_Place_in_Script : MonoBehaviour
         }
 
         Print_Info_Text.Instance.PrintUserText("들어가기엔 아직 능력이 부족합니다.");
+
+        return;
         
     }
 }

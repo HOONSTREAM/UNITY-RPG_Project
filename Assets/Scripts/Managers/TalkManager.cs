@@ -134,7 +134,7 @@ public class TalkManager : MonoBehaviour
         {
             if (Player_Quest.Instance.PlayerQuest[k].Quest_ID == 6 && Player_Quest.Instance.PlayerQuest[k].npc_meet == true) // 퀘스트가 이미 완료되었으면 리턴 
             {
-                continue;
+                return;
             }
 
             Player_Quest.Instance.PlayerQuest[k].npc_meet = true;
@@ -148,7 +148,29 @@ public class TalkManager : MonoBehaviour
          "그러고 보니, 네 놈은 달랑 낡은 검 하나만 들고 무엇을 하려고 하는거냐 ! , 어서 상점으로 가서, [머리, 겉옷, 신발] 종류를 구매해서, 장비부터 갖춰보도록 해라."});
 
     }
+    public void Additional_Talk_Rudencian_training_officer_RooKiss_Quest3()
+    {
 
+        for (int k = 0; k < Player_Quest.Instance.PlayerQuest.Count; k++)
+        {
+            if (Player_Quest.Instance.PlayerQuest[k].Quest_ID == 10 && Player_Quest.Instance.PlayerQuest[k].npc_meet == true) // 퀘스트가 이미 완료되었으면 리턴 
+            {
+                return;
+            }
+
+            Player_Quest.Instance.PlayerQuest[k].npc_meet = true;
+        }
+
+        TalkData.Remove(RUDENCIAN_ROOKISS_NPC_ID);
+        TalkData.Add(RUDENCIAN_ROOKISS_NPC_ID, new string[] {"지크, 그래도 처음보다는 확실히 강해진 느낌이 많이 드는구나.", 
+         "하지만 앞으로 펼쳐질 너의 모험을 위해서는 끝없이 너의 기술을 연마하고, 또 연마해서 정밀도를 끝없이 높여야한다.",
+         "나는 너가 이 아르카디아 대륙을 구해낼 영웅이 될 것이라 굳게 믿고있다. 너의 부모님이 그러했듯이 ...",
+         "너에게 마지막 임무를 주려고한다. 이제 더 큰 곳으로 나아가게 될 초석이 될 임무일 것이다. <루덴시안 깊은 곳>에 가서, <킹슬라임>을 제거해라.",
+         "부족하다고 느낄지도 모르는 너의 능력을 믿어라. 특히, C키를 누르면 활용할 수 있는 텔레포트 기술을 활용해 완벽한 타이밍에 피하면, 피해를 입지 않을 수 있다.",
+         "그리고, 너에게 특별히 기술을 하나 알려주도록 하마. <스노우 슬래쉬>. 어빌리티를 수련하는 데엔 도움이 되지않으나, 데미지가 강력해 강한 적을 상대할 때 적절할 것이다.",
+         "승리할 것이라고 믿는다. 이제 더 큰 모험의 세계로 나아가라! 지크! 어서 출발해라!"});
+
+    }
     public void Reset_TalkData()
     {
         GenerateData();
