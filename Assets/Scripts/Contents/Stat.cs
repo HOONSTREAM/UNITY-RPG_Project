@@ -176,6 +176,11 @@ public class Stat : MonoBehaviour
                 dropitem.transform.position = transform.position; //드랍아이템 위치
                 dropitem.transform.position += new Vector3(0, 0.4f, 0); //2D 스프라이트 잘림방지
 
+                if (QuestDatabase.instance.QuestDB[9].is_complete == true)
+                {
+                    Managers.Quest_Completion.Kill_King_Slime_For_Main_Quest();
+                }
+
             }
 
             StartCoroutine("MonsterDead");

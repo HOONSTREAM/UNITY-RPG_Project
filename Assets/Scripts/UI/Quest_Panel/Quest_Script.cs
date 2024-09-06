@@ -113,6 +113,10 @@ public class Quest_Script : MonoBehaviour
                 case 10:
                     Managers.Quest_Completion.Rookiss_NPC_Meet_Quest_Conditions_for_completion_Third();
                     break;
+                case 11:
+                    Managers.Quest_Completion.Kill_king_slime_condition_for_completion();
+                    break;
+
 
             }
         }
@@ -164,10 +168,10 @@ public class Quest_Script : MonoBehaviour
                 switch (quest.Quest_ID)
                 {
                     case 1:
-                        Quest_summary.text = $"레드슬라임 : ({quest.monster_counter} / {Managers.Quest_Completion.Get_Slime_Hunting_Quest_Complete_amount()})";
+                        Quest_summary.text = $"레드슬라임 : ({quest.monster_counter} / {Managers.Quest_Completion.Get_Slime_Hunting_Quest_Complete_amount})";
 
                         // 퀘스트 완료 조건이 충족되지 않았을 때만 알람 실행
-                        if (quest.monster_counter >= Managers.Quest_Completion.Get_Slime_Hunting_Quest_Complete_amount() && !quest.is_achievement_of_conditions)
+                        if (quest.monster_counter >= Managers.Quest_Completion.Get_Slime_Hunting_Quest_Complete_amount && !quest.is_achievement_of_conditions)
                         {
                             Managers.Quest_Completion.Quest_Complete_Alarm();
                             quest.is_achievement_of_conditions = true;
@@ -181,7 +185,7 @@ public class Quest_Script : MonoBehaviour
 
                         foreach (var item in PlayerInventory.Instance.player_items)
                         {
-                            if (item.ItemID == Managers.Quest_Completion.Get_Slime_Drop_item_ID())
+                            if (item.ItemID == Managers.Quest_Completion.Get_Slime_Drop_item_ID)
                             {
                                 slime_etc_item_amount = item.amount;
 
@@ -189,10 +193,10 @@ public class Quest_Script : MonoBehaviour
                             }
                         }
 
-                        Quest_summary.text = $"슬라임액체 : ({slime_etc_item_amount} / {Managers.Quest_Completion.Get_Slime_collecting_item_amount()})";
+                        Quest_summary.text = $"슬라임액체 : ({slime_etc_item_amount} / {Managers.Quest_Completion.Get_Slime_collecting_item_amount})";
 
                         // 퀘스트 완료 조건이 충족되지 않았을 때만 알람 실행
-                        if (slime_etc_item_amount >= Managers.Quest_Completion.Get_Slime_collecting_item_amount() && !quest.is_achievement_of_conditions)
+                        if (slime_etc_item_amount >= Managers.Quest_Completion.Get_Slime_collecting_item_amount && !quest.is_achievement_of_conditions)
                         {
                             Managers.Quest_Completion.Quest_Complete_Alarm();
                             quest.is_achievement_of_conditions = true;
@@ -208,10 +212,10 @@ public class Quest_Script : MonoBehaviour
                         break;
 
                     case 6:
-                        Quest_summary.text = $"펀치맨 : ({quest.monster_counter} / {Managers.Quest_Completion.Get_Punch_man_Hunting_Quest_Complete_amount()})";
+                        Quest_summary.text = $"펀치맨 : ({quest.monster_counter} / {Managers.Quest_Completion.Get_Punch_man_Hunting_Quest_Complete_amount})";
 
                         // 퀘스트 완료 조건이 충족되지 않았을 때만 알람 실행
-                        if (quest.monster_counter >= Managers.Quest_Completion.Get_Punch_man_Hunting_Quest_Complete_amount() && !quest.is_achievement_of_conditions)
+                        if (quest.monster_counter >= Managers.Quest_Completion.Get_Punch_man_Hunting_Quest_Complete_amount && !quest.is_achievement_of_conditions)
                         {
                             Managers.Quest_Completion.Quest_Complete_Alarm();
                             quest.is_achievement_of_conditions = true;
@@ -231,7 +235,8 @@ public class Quest_Script : MonoBehaviour
                         Quest_summary.text = $"무기 종류 어빌 5.00 이상 달성";
                         break;
                     case 11:
-                        Quest_summary.text = "<킹슬라임> 처치";
+                        Quest_summary.text = $"킹슬라임: ({quest.monster_counter} / {Managers.Quest_Completion.Get_King_slime_Hunting_Quest_Complete_amount})";
+                        
                         break;
 
                 }

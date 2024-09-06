@@ -100,7 +100,7 @@ Transform:
   - {fileID: 4936793102529876676}
   - {fileID: 7865111046798169339}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180.307, z: 0}
 --- !u!95 &2510077682719516101
 Animator:
@@ -201,7 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2959f4b04df70a7439191b6e7f653f37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ID: 0
+  ID: 9003
   IsNPC: 0
 --- !u!114 &7859515852767107467
 MonoBehaviour:
@@ -220,7 +220,9 @@ MonoBehaviour:
   LockTarget: {fileID: 0}
   _scanRange: 4
   attackRange: 4
+  king_slime_skill_Range: 8
   Hit_Particle: {fileID: 1349974441137555548, guid: 348f254c91a5864499fb3991b4ed90d4, type: 3}
+  King_Slime_skill_Hit_Particle: {fileID: 0}
   _maxChaseDistance: 10
   DamageText: {fileID: 4278063725070747892, guid: 75c0a07571a1a6448a830f6c6e19cf76, type: 3}
 --- !u!1 &3351612635970659431

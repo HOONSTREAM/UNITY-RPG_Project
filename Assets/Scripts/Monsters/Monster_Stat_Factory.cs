@@ -136,6 +136,10 @@ public class Monster_Stat_Factory
             case "Turtle_Slime":
                 return START_TURTLE_SLIME_EXP;
 
+            case "King_Slime":
+                return START_KING_SLIME_EXP;
+
+
 
             default:
                 // 기본값 설정 혹은 예외 처리

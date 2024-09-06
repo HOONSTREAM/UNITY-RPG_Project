@@ -51,7 +51,7 @@ public class Quest_Slot : MonoBehaviour , IPointerUpHandler
             case 1:
                 reward_gold.text = QuestDatabase.instance.QuestDB[0].num_1.ToString();
                 reward_exp.text = QuestDatabase.instance.QuestDB[0].num_2.ToString();
-                summing_up_explaination.text = $"레드슬라임 : ({quest.monster_counter} / {Managers.Quest_Completion.Get_Slime_Hunting_Quest_Complete_amount()})";
+                summing_up_explaination.text = $"레드슬라임 : ({quest.monster_counter} / {Managers.Quest_Completion.Get_Slime_Hunting_Quest_Complete_amount})";
                
                 UpdateSlotUI();
 
@@ -64,13 +64,13 @@ public class Quest_Slot : MonoBehaviour , IPointerUpHandler
                 reward_exp.text = QuestDatabase.instance.QuestDB[1].num_2.ToString();
                 for (int i = 0; i < PlayerInventory.Instance.player_items.Count; i++)
                 {
-                    if (PlayerInventory.Instance.player_items[i].ItemID == Managers.Quest_Completion.Get_Slime_Drop_item_ID())
+                    if (PlayerInventory.Instance.player_items[i].ItemID == Managers.Quest_Completion.Get_Slime_Drop_item_ID)
                     {
                         slime_etc_item_amount = PlayerInventory.Instance.player_items[i].amount;
                     }
                 }
 
-                summing_up_explaination.text = $"슬라임액체 : ({slime_etc_item_amount} / {Managers.Quest_Completion.Get_Slime_collecting_item_amount()})";
+                summing_up_explaination.text = $"슬라임액체 : ({slime_etc_item_amount} / {Managers.Quest_Completion.Get_Slime_collecting_item_amount})";
                
 
                 UpdateSlotUI();
@@ -123,7 +123,7 @@ public class Quest_Slot : MonoBehaviour , IPointerUpHandler
 
 
 
-                summing_up_explaination.text = $"펀치맨 : ({quest.monster_counter} / {Managers.Quest_Completion.Get_Punch_man_Hunting_Quest_Complete_amount()})\n";
+                summing_up_explaination.text = $"펀치맨 : ({quest.monster_counter} / {Managers.Quest_Completion.Get_Punch_man_Hunting_Quest_Complete_amount})\n";
 
 
                 UpdateSlotUI();
@@ -180,7 +180,7 @@ public class Quest_Slot : MonoBehaviour , IPointerUpHandler
                 reward_gold.text = QuestDatabase.instance.QuestDB[10].num_1.ToString();
                 reward_exp.text = QuestDatabase.instance.QuestDB[10].num_2.ToString();
 
-                summing_up_explaination.text = "<킹슬라임> 처치";
+                summing_up_explaination.text = $"킹슬라임 : ({quest.monster_counter} / {Managers.Quest_Completion.Get_King_slime_Hunting_Quest_Complete_amount})";
 
                 UpdateSlotUI();
 

@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 public class Deep_Place_in_Script : MonoBehaviour
 {
     public GameObject savedata;
-    private readonly int KILL_KING_SLIME_QUEST_ID = 10;
+    private readonly int KILL_KING_SLIME_QUEST_ID = 11;
 
     private void Start()
     {

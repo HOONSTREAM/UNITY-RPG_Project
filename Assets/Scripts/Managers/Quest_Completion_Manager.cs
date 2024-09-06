@@ -10,13 +10,14 @@ public class Quest_Completion_Manager : MonoBehaviour
     private const int THIRD_MEET_ROOKISS_QUEST_ID = 10;
     private const int EQUIPMENT_WEAR_QUEST_ID = 8;
     private const int FIRST_ABILITY_TRAINING_QUEST_ID = 9;
+    private const int KILL_KING_SLIME_MAIN_QUEST_ID = 11;
 
     private readonly int SLIME_HUNTING_QUEST_COMPLETE_AMOUNT = 2;
     private readonly int COLLECTING_SLIME_ITEM_AMOUNT = 10;
     private readonly int SLIME_DROP_ETC_ITEM_ID = 10;
 
     private const int PUNCHMAN_HUNTING_QUEST_COMPLETE_AMOUNT = 20;
-
+    private const int KING_SLIME_HUNTING_QUEST_COMPLETE_AMOUNT = 1;
     #region 몬스터 소탕 퀘스트 종류 (몬스터 카운터 증가 관리)
     public void Kill_Slime_For_Main_Quest()
     {
@@ -48,6 +49,24 @@ public class Quest_Completion_Manager : MonoBehaviour
                     QuestDatabase.instance.QuestDB[i].monster_counter++;
                     Player_Quest.Instance.onChangequest.Invoke(); // 카운터 증가 즉시 반영
                     
+                }
+
+                break;
+            }
+        }
+    }
+
+    public void Kill_King_Slime_For_Main_Quest()
+    {
+        for (int i = 0; i < QuestDatabase.instance.QuestDB.Count; i++)
+        {
+            if (QuestDatabase.instance.QuestDB[i].Quest_ID == KILL_KING_SLIME_MAIN_QUEST_ID)
+            {
+                if (QuestDatabase.instance.QuestDB[i].is_complete == false)
+                {
+                    QuestDatabase.instance.QuestDB[i].monster_counter++;
+                    Player_Quest.Instance.onChangequest.Invoke(); // 카운터 증가 즉시 반영
+
                 }
 
                 break;
@@ -316,28 +335,45 @@ public class Quest_Completion_Manager : MonoBehaviour
 
         }
     }
+
+    public void Kill_king_slime_condition_for_completion()
+    {
+        for (int i = 0; i < Player_Quest.Instance.PlayerQuest.Count; i++)
+        {
+            if (Player_Quest.Instance.PlayerQuest[i].Quest_ID != KILL_KING_SLIME_MAIN_QUEST_ID) { continue; }
+
+            if (Player_Quest.Instance.PlayerQuest[i].is_complete == false)
+            {
+                if (Player_Quest.Instance.PlayerQuest[i].monster_counter >= KING_SLIME_HUNTING_QUEST_COMPLETE_AMOUNT)
+                {
+                    Player_Quest.Instance.PlayerQuest[i].monster_counter = 0; //초기화
+                    Player_Quest.Instance.PlayerQuest[i].Quest_Clear();
+
+                    Player_Quest.Instance.RemoveQuest(i);
+                    Player_Quest.Instance.onChangequest.Invoke();
+                    Print_Info_Text.Instance.PrintUserText("퀘스트 완료");
+
+                    //다음 메인퀘스트 자동 추가
+                    //Player_Quest.Instance.AddQuest(QuestDatabase.instance.QuestDB[1]);
+
+                    break;
+                }
+
+                Print_Info_Text.Instance.PrintUserText("퀘스트 조건이 충족되지 않았습니다.");
+
+
+            }
+        }
+    }
     #endregion
 
 
-    public int Get_Slime_Hunting_Quest_Complete_amount()
-    {
-        return SLIME_HUNTING_QUEST_COMPLETE_AMOUNT;
-    }
+    public int Get_Slime_Hunting_Quest_Complete_amount { get { return SLIME_HUNTING_QUEST_COMPLETE_AMOUNT; } }
+    public int Get_Slime_collecting_item_amount { get { return COLLECTING_SLIME_ITEM_AMOUNT; } }
+    public int Get_Slime_Drop_item_ID { get { return SLIME_DROP_ETC_ITEM_ID; } }
+    public int Get_Punch_man_Hunting_Quest_Complete_amount { get { return PUNCHMAN_HUNTING_QUEST_COMPLETE_AMOUNT; } }
 
-    public int Get_Slime_collecting_item_amount()
-    {
-        return COLLECTING_SLIME_ITEM_AMOUNT;
-    }
-
-    public int Get_Slime_Drop_item_ID()
-    {
-        return SLIME_DROP_ETC_ITEM_ID;
-    }
-
-    public int Get_Punch_man_Hunting_Quest_Complete_amount()
-    {
-        return PUNCHMAN_HUNTING_QUEST_COMPLETE_AMOUNT;
-    }
+    public int Get_King_slime_Hunting_Quest_Complete_amount { get { return KING_SLIME_HUNTING_QUEST_COMPLETE_AMOUNT;} }
 
     public void Quest_Complete_Alarm()
     {
