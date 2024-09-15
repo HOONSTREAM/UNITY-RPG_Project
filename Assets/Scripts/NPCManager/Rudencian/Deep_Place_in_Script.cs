@@ -30,10 +30,14 @@ public class Deep_Place_in_Script : MonoBehaviour
 
                 SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
             }
+
+            else if(quest.Quest_ID != KILL_KING_SLIME_QUEST_ID)
+            {
+                Print_Info_Text.Instance.PrintUserText("들어가기엔 아직 능력이 부족합니다.");
+            }
         }
 
-        Print_Info_Text.Instance.PrintUserText("들어가기엔 아직 능력이 부족합니다.");
-
+        
         return;
         
     }

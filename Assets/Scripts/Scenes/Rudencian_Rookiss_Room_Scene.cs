@@ -38,11 +38,14 @@ public class Rudencian_Rookiss_Room_Scene : BaseScene
 
 
         PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Weapon_oneHand"][0]);
+        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Weapon_TwoHand"][0]);
+        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Head"][0]);
         PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["SkillBook"][0]);
         PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["SkillBook"][0]);
         PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["SkillBook"][1]);
         PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["SkillBook"][1]);
         PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Consumable"][3]);
+
 
         PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
         PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
@@ -104,12 +107,15 @@ public class Rudencian_Rookiss_Room_Scene : BaseScene
         gameManager.SelectedNPC = Managers.Game.GetPlayer().gameObject;
         gameManager.TalkAction();
         gameManager.selection.gameObject.SetActive(false);
+
+        Test();
     }
 
     public override void Clear()
     {
 
     }
+
 
 
     public void Test()
