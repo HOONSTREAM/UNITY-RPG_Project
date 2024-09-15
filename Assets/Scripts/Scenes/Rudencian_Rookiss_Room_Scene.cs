@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Rudencian_Rookiss_Room_Scene : BaseScene
 {
@@ -107,6 +108,17 @@ public class Rudencian_Rookiss_Room_Scene : BaseScene
 
     public override void Clear()
     {
+
+    }
+
+
+    public void Test()
+    {
+        GameObject player = Managers.Game.GetPlayer();
+        player.transform.position = new Vector3(359.3f, 9.0f, 424.1f);
+        player.transform.rotation = new Quaternion(0, 180f, 0, 0);
+
+        SceneManager.LoadScene(14);
 
     }
 }

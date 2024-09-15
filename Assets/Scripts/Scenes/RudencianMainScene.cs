@@ -19,7 +19,7 @@ public class RudencianMainScene : BaseScene
 
             Camera.main.gameObject.GetAddComponent<CameraController>().SetPlayer(Init_player);
             SceneType = Define.Scene.Rudencian;
-            Managers.Sound.Play("New_Rudencian_240731", Define.Sound.Bgm);
+            Managers.Sound.Play("Rudencian", Define.Sound.Bgm);
             Managers.Sound.Play("Nature Ambiance Sound", Define.Sound.Ambiance);
             gameObject.GetAddComponent<CursorController>();
             

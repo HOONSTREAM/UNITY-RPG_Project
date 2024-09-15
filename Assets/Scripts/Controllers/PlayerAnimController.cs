@@ -79,7 +79,6 @@ public class PlayerAnimController : MonoBehaviour
          overrideController["Idle_noWeapon"] = No_Weapon_Idle;
          overrideController["NormalSprint_noWeapon"] = No_Weapon_Run;
          overrideController["Die_noWeapon"] = No_Weapon_Die;
-
-       
+      
     }
 }

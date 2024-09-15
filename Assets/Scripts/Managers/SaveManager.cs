@@ -53,7 +53,7 @@ public class SaveManager : MonoBehaviour
 
         ES3.Save("PlayerPosition", player.transform.position);
         ES3.Save("PlayerStat", player.GetComponent<PlayerStat>());
-        ES3.Save("Player_Equip_Weapon", player.GetComponent<PlayerWeaponController>().Equip_Weapon);
+        ES3.Save("Player_Equip_Weapon", player.GetComponent<PlayerWeaponController>().Equip_Weapon);        
         ES3.Save("Player_Class", player.GetComponent<Player_Class>().Get_Player_Class());
 
 
@@ -70,20 +70,6 @@ public class SaveManager : MonoBehaviour
         PlayerSkillQuickSlot.Instance.Save_Skill_Quickslot_Info();
         PlayerQuickSlot.Instance.Save_Item_Quickslot_Info();
         QuestDatabase.instance.Save_QuestDB_Info();
-    }
-
-    private void ShowSaveCompleteAlarm()
-    {
-        GameObject go = Managers.Resources.Instantiate(SAVE_COMPLETE_RESOURCE).gameObject;
-        Managers.Sound.Play(SAVE_COMPLETE_SOUND);
-        Destroy(go, SAVE_COMPLETE_ALARM_DURATION);
-    }
-
-    public void ShowLoadCompleteAlarm()
-    {
-        GameObject go = Managers.Resources.Instantiate(LOAD_COMPLETE_RESOURCE).gameObject;
-        Managers.Sound.Play(SAVE_COMPLETE_SOUND);
-        Destroy(go, SAVE_COMPLETE_ALARM_DURATION);
     }
 
     public void LoadPlayerData()
@@ -113,7 +99,7 @@ public class SaveManager : MonoBehaviour
 
         Vector3 position = ES3.Load<Vector3>("PlayerPosition");
         PlayerStat Player_Stat = ES3.Load<PlayerStat>("PlayerStat");
-        Item weapon_controller = ES3.Load<Item>("Player_Equip_Weapon");
+        Item weapon_controller = ES3.Load<Item>("Player_Equip_Weapon");       
         Player_Class.ClassType class_type = ES3.Load<Player_Class.ClassType>("Player_Class");
         sceneName = ES3.Load<string>("CurrentScene");
 
@@ -245,6 +231,19 @@ public class SaveManager : MonoBehaviour
 
     }
 
-    
+    private void ShowSaveCompleteAlarm()
+    {
+        GameObject go = Managers.Resources.Instantiate(SAVE_COMPLETE_RESOURCE).gameObject;
+        Managers.Sound.Play(SAVE_COMPLETE_SOUND);
+        Destroy(go, SAVE_COMPLETE_ALARM_DURATION);
+    }
+
+    public void ShowLoadCompleteAlarm()
+    {
+        GameObject go = Managers.Resources.Instantiate(LOAD_COMPLETE_RESOURCE).gameObject;
+        Managers.Sound.Play(SAVE_COMPLETE_SOUND);
+        Destroy(go, SAVE_COMPLETE_ALARM_DURATION);
+    }
+
 }
 
