@@ -53,7 +53,8 @@ public class SaveManager : MonoBehaviour
 
         ES3.Save("PlayerPosition", player.transform.position);
         ES3.Save("PlayerStat", player.GetComponent<PlayerStat>());
-        ES3.Save("Player_Equip_Weapon", player.GetComponent<PlayerWeaponController>().Equip_Weapon);        
+        ES3.Save("Player_Equip_Weapon", player.GetComponent<PlayerWeaponController>().Equip_Weapon);
+        ES3.Save("Player_Equip_Head", player.GetComponent<PlayerHeadController>().Equip_Defense);
         ES3.Save("Player_Class", player.GetComponent<Player_Class>().Get_Player_Class());
 
 
@@ -99,7 +100,8 @@ public class SaveManager : MonoBehaviour
 
         Vector3 position = ES3.Load<Vector3>("PlayerPosition");
         PlayerStat Player_Stat = ES3.Load<PlayerStat>("PlayerStat");
-        Item weapon_controller = ES3.Load<Item>("Player_Equip_Weapon");       
+        Item weapon_controller = ES3.Load<Item>("Player_Equip_Weapon");
+        Item head_controller = ES3.Load<Item>("Player_Equip_Head");
         Player_Class.ClassType class_type = ES3.Load<Player_Class.ClassType>("Player_Class");
         sceneName = ES3.Load<string>("CurrentScene");
 
@@ -128,6 +130,8 @@ public class SaveManager : MonoBehaviour
 
             PlayerWeaponController weapon = player.GetComponent<PlayerWeaponController>();
             weapon.Equip_Weapon = weapon_controller;
+            PlayerHeadController head = player.GetComponent<PlayerHeadController>();
+            head.Equip_Defense = head_controller;
 
             switch (weapon.Equip_Weapon.weapontype)
             {
@@ -144,6 +148,9 @@ public class SaveManager : MonoBehaviour
              
                     break;
             }
+
+            // 머리 아이템 장착
+            player.GetComponent<PlayerHeadController>().Change_Defense_Gear_Prefabs();
 
 
             Move_To_LastSave_Scene();

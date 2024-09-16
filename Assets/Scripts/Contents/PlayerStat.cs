@@ -310,7 +310,7 @@ public class PlayerStat : Stat
             return;
         }
 
-        gameObject.GetComponent<PlayerDefenseController>().Get_request_Change_Defense_EquipType(item);
+        
 
         if (item.equiptype == EquipType.outter_plate)
         {
@@ -320,7 +320,6 @@ public class PlayerStat : Stat
             {
                 if (_chest_def_item.Equip)
                 {
-                    gameObject.GetComponent<PlayerDefenseController>().Change_No_Defense_Gear();
                     VIT = VIT - equipment.player_equip[EquipType.outter_plate].num_3;
                     DEFENSE -= equipment.player_equip[EquipType.outter_plate].num_1;
                     INT = INT - equipment.player_equip[EquipType.outter_plate].num_2;
@@ -329,7 +328,6 @@ public class PlayerStat : Stat
                 }
                 else if (_chest_def_item.Equip == false)
                 {
-                    gameObject.GetComponent<PlayerDefenseController>().Change_Defense_Gear_Prefabs();
                     VIT = VIT + equipment.player_equip[EquipType.outter_plate].num_3;
                     DEFENSE += equipment.player_equip[EquipType.outter_plate].num_1;
                     INT = INT + equipment.player_equip[EquipType.outter_plate].num_2;
@@ -343,7 +341,7 @@ public class PlayerStat : Stat
             {
                 if (_chest_def_item.Equip)
                 {
-                    gameObject.GetComponent<PlayerDefenseController>().Change_No_Defense_Gear();
+                    
                     VIT = VIT - equipment.player_equip[EquipType.Chest].num_3;
                     DEFENSE -= equipment.player_equip[EquipType.Chest].num_1;                
                     INT = INT - equipment.player_equip[EquipType.Chest].num_2;
@@ -352,7 +350,7 @@ public class PlayerStat : Stat
                 }
                 else if (_chest_def_item.Equip == false)
                 {
-                    gameObject.GetComponent<PlayerDefenseController>().Change_Defense_Gear_Prefabs();
+                    
                     VIT = VIT + equipment.player_equip[EquipType.Chest].num_3;
                     DEFENSE += equipment.player_equip[EquipType.Chest].num_1;          
                     INT = INT + equipment.player_equip[EquipType.Chest].num_2;
@@ -367,7 +365,7 @@ public class PlayerStat : Stat
             {
                 if (_pants_def_item.Equip)
                 {
-                    gameObject.GetComponent<PlayerDefenseController>().Change_No_Defense_Gear();
+                    
                     VIT = VIT - equipment.player_equip[EquipType.pants].num_3;
                     DEFENSE -= equipment.player_equip[EquipType.pants].num_1;
                     INT = INT - equipment.player_equip[EquipType.pants].num_2;
@@ -376,7 +374,7 @@ public class PlayerStat : Stat
                 }
                 else if (_pants_def_item.Equip == false)
                 {
-                    gameObject.GetComponent<PlayerDefenseController>().Change_Defense_Gear_Prefabs();
+                    
                     VIT = VIT + equipment.player_equip[EquipType.pants].num_3;
                     DEFENSE += equipment.player_equip[EquipType.pants].num_1;
                     INT = INT + equipment.player_equip[EquipType.pants].num_2;
@@ -391,7 +389,7 @@ public class PlayerStat : Stat
                 {
                     if (_head_def_item.Equip)
                     {
-                       gameObject.GetComponent<PlayerDefenseController>().Change_No_Defense_Gear();
+                       gameObject.GetComponent<PlayerHeadController>().Change_No_Defense_Gear();
                        VIT = VIT - equipment.player_equip[EquipType.Head].num_3;
                        DEFENSE -= equipment.player_equip[EquipType.Head].num_1;                
                        INT = INT - equipment.player_equip[EquipType.Head].num_2;
@@ -401,7 +399,8 @@ public class PlayerStat : Stat
                     else if (_head_def_item.Equip == false)
                     {
 
-                       gameObject.GetComponent<PlayerDefenseController>().Change_Defense_Gear_Prefabs();
+                       gameObject.GetComponent<PlayerHeadController>().Get_request_Change_Defense_EquipType(_head_def_item);
+                       gameObject.GetComponent<PlayerHeadController>().Change_Defense_Gear_Prefabs();
                        VIT = VIT + equipment.player_equip[EquipType.Head].num_3;
                        DEFENSE += equipment.player_equip[EquipType.Head].num_1;                
                        INT = INT + equipment.player_equip[EquipType.Head].num_2;
@@ -417,7 +416,6 @@ public class PlayerStat : Stat
                 {
                    if (_shoes_def_item.Equip)
                   {
-                    gameObject.GetComponent<PlayerDefenseController>().Change_No_Defense_Gear();
                     VIT = VIT - equipment.player_equip[EquipType.shoes].num_3;
                     DEFENSE -= equipment.player_equip[EquipType.shoes].num_1;//총 DEX의 1/10을 데미지에 기여함;                  
                     INT = INT - equipment.player_equip[EquipType.shoes].num_2;
@@ -427,7 +425,6 @@ public class PlayerStat : Stat
                    else if (_shoes_def_item.Equip == false)
                    {
 
-                    gameObject.GetComponent<PlayerDefenseController>().Change_Defense_Gear_Prefabs();
                     VIT = VIT + equipment.player_equip[EquipType.shoes].num_3;
                     DEFENSE = DEFENSE + equipment.player_equip[EquipType.shoes].num_1;  //총 DEX의 1/10을 데미지에 기여함;                  
                     INT = INT + equipment.player_equip[EquipType.shoes].num_2;
@@ -444,7 +441,6 @@ public class PlayerStat : Stat
                 
                 if (_shield_def_item.Equip)
                 {
-                    gameObject.GetComponent<PlayerDefenseController>().Change_No_Defense_Gear();
                     VIT = VIT - equipment.player_equip[EquipType.Shield].num_3;
                     DEFENSE -= equipment.player_equip[EquipType.Shield].num_1;
                     INT = INT - equipment.player_equip[EquipType.Shield].num_2;
@@ -453,7 +449,6 @@ public class PlayerStat : Stat
                 }
                 else if (_shield_def_item.Equip == false)
                 {
-                    gameObject.GetComponent<PlayerDefenseController>().Change_Defense_Gear_Prefabs();
                     VIT = VIT + equipment.player_equip[EquipType.Shield].num_3;
                     DEFENSE += equipment.player_equip[EquipType.Shield].num_1;
                     INT = INT + equipment.player_equip[EquipType.Shield].num_2;
@@ -468,7 +463,6 @@ public class PlayerStat : Stat
             {
                 if (_head_deco_def_item.Equip)
                 {
-                    gameObject.GetComponent<PlayerDefenseController>().Change_No_Defense_Gear();
                     MAXHP = MAXHP - equipment.player_equip[EquipType.Head_decoration].num_1;
                     INT = INT - equipment.player_equip[EquipType.Head_decoration].num_2;
                     VIT = VIT - equipment.player_equip[EquipType.Head_decoration].num_3;
@@ -478,7 +472,6 @@ public class PlayerStat : Stat
 
                 else if (_head_deco_def_item.Equip == false)
                 {
-                    gameObject.GetComponent<PlayerDefenseController>().Change_Defense_Gear_Prefabs();
                     MAXHP = MAXHP + equipment.player_equip[EquipType.Head_decoration].num_1;
                     INT = INT + equipment.player_equip[EquipType.Head_decoration].num_2;
                     VIT = VIT + equipment.player_equip[EquipType.Head_decoration].num_3;
@@ -494,7 +487,6 @@ public class PlayerStat : Stat
             {
                 if (_neck_deco_def_item.Equip)
                 {
-                    gameObject.GetComponent<PlayerDefenseController>().Change_No_Defense_Gear();
                     MaxMp = MaxMp - equipment.player_equip[EquipType.necklace].num_1;
                     INT = INT - equipment.player_equip[EquipType.necklace].num_2;
                     VIT = VIT - equipment.player_equip[EquipType.necklace].num_3;
@@ -505,7 +497,6 @@ public class PlayerStat : Stat
                 else if (_neck_deco_def_item.Equip == false)
                 {
 
-                    gameObject.GetComponent<PlayerDefenseController>().Change_Defense_Gear_Prefabs();
                     MaxMp = MaxMp + equipment.player_equip[EquipType.necklace].num_1;
                     INT = INT + equipment.player_equip[EquipType.necklace].num_2;
                     VIT = VIT + equipment.player_equip[EquipType.necklace].num_3;
@@ -525,7 +516,6 @@ public class PlayerStat : Stat
             {
                 if (_cape_def_item.Equip)
                 {
-                    gameObject.GetComponent<PlayerDefenseController>().Change_No_Defense_Gear();
                     STR = STR - equipment.player_equip[EquipType.cape].num_1;
                     INT = INT - equipment.player_equip[EquipType.cape].num_2;
                     VIT = VIT - equipment.player_equip[EquipType.cape].num_3;
@@ -535,7 +525,6 @@ public class PlayerStat : Stat
 
                 else if (_cape_def_item.Equip == false)
                 {
-                    gameObject.GetComponent<PlayerDefenseController>().Change_Defense_Gear_Prefabs();
                     STR = STR + equipment.player_equip[EquipType.cape].num_1;
                     INT = INT + equipment.player_equip[EquipType.cape].num_2;
                     VIT = VIT + equipment.player_equip[EquipType.cape].num_3;
