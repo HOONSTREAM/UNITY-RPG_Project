@@ -98,6 +98,18 @@ public class PlayerController : BaseController
                 return;
             }
 
+            Check_Terrain_Y_height();
+
+        }
+    }
+
+    private void Check_Terrain_Y_height()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position + Vector3.up * 1.0f, Vector3.down, out hit, 3.0f, LayerMask.GetMask("Ground")))
+        {
+            // 플레이어 위치의 Y값을 지형의 높이에 맞게 설정
+            transform.position = new Vector3(transform.position.x, hit.point.y, transform.position.z);
         }
     }
   

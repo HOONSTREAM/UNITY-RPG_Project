@@ -107,8 +107,8 @@ public class Rudencian_Rookiss_Room_Scene : BaseScene
         gameManager.SelectedNPC = Managers.Game.GetPlayer().gameObject;
         gameManager.TalkAction();
         gameManager.selection.gameObject.SetActive(false);
-
-        Test();
+         
+        // Test(); => 에필레니아 이동 메서드
     }
 
     public override void Clear()
