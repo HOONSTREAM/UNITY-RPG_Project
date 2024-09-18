@@ -17,6 +17,7 @@ public class Rudencian_Rookiss_Room_Scene : BaseScene
         base.Init();
 
         Managers.Game.Set_Player_and_Save_Data_PreFabs();
+        Managers.Save_Manager_Init();
         SceneType = Define.Scene.Rudencian_Rookiss_Room;
 
         Dictionary<int, Data.Stat> dict = Managers.Data.StatDict;
@@ -36,34 +37,10 @@ public class Rudencian_Rookiss_Room_Scene : BaseScene
 
         gameObject.GetAddComponent<CursorController>();
 
-
-        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Weapon_oneHand"][0]);
-        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Weapon_TwoHand"][0]);
-        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Head"][0]);
-        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["SkillBook"][0]);
-        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["SkillBook"][0]);
-        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["SkillBook"][1]);
-        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["SkillBook"][1]);
-        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Consumable"][3]);
-
-
-        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
-        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
-        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
-        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
-        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
-        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
-        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
-        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
-        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
-        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
-
-
-
         StartCoroutine(First_Start_Game_Guide_Quest());
 
         gameManager.selection.gameObject.SetActive(true);
-        Managers.Game.GetPlayer().gameObject.name = "UnityChan";
+        
     }
 
     /// <summary>
@@ -103,12 +80,14 @@ public class Rudencian_Rookiss_Room_Scene : BaseScene
 
     private void Player_First_monologue()
     {
-        Managers.Game.GetPlayer().gameObject.name = "지크";
+        //Managers.Game.GetPlayer().gameObject.name = "지크"; // 플레이어 이름 수정
         gameManager.SelectedNPC = Managers.Game.GetPlayer().gameObject;
         gameManager.TalkAction();
         gameManager.selection.gameObject.SetActive(false);
+
          
-        // Test(); => 에필레니아 이동 메서드
+        Item_Test();
+        Epilenia_Move_Test();
     }
 
     public override void Clear()
@@ -118,7 +97,8 @@ public class Rudencian_Rookiss_Room_Scene : BaseScene
 
 
 
-    public void Test()
+    #region TEST CODE
+    public void Epilenia_Move_Test()
     {
         GameObject player = Managers.Game.GetPlayer();
         player.transform.position = new Vector3(359.3f, 9.0f, 424.1f);
@@ -127,4 +107,30 @@ public class Rudencian_Rookiss_Room_Scene : BaseScene
         SceneManager.LoadScene(14);
 
     }
+
+    public void Item_Test()
+    {
+        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Weapon_oneHand"][0]);
+        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Weapon_TwoHand"][0]);
+        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Head"][0]);
+        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["SkillBook"][0]);
+        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["SkillBook"][0]);
+        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["SkillBook"][1]);
+        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["SkillBook"][1]);
+        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Consumable"][3]);
+
+
+        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
+        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
+        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
+        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
+        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
+        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
+        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
+        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
+        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
+        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
+    }
+
+    #endregion
 }

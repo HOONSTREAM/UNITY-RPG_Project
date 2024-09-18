@@ -18,6 +18,7 @@ public class Scene_Number_Manager : MonoBehaviour
     private const int START_SCENE_NUMBER = 11;
     private const int RUDENCIAN_DEEP_PLACE = 12;
     private const int RUDENCIAN_ROOKISS_ROOM = 13;
+    private const int EPILENIA_MAIN_SCENE_NUMBER = 14;
 
 
    public int Get_loading_scene()
@@ -82,5 +83,10 @@ public class Scene_Number_Manager : MonoBehaviour
     public int Get_RooKiss_Room_Scene()
     {
         return RUDENCIAN_ROOKISS_ROOM;
+    }
+
+    public int Get_Epilenia_Main_Scene()
+    {
+        return EPILENIA_MAIN_SCENE_NUMBER;
     }
 }

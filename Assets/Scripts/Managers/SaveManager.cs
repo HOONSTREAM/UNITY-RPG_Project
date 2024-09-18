@@ -83,7 +83,7 @@ public class SaveManager : MonoBehaviour
 
     private void Set_Player_SaveData()
     {
-        LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Rudencian_scene();
+        LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_RooKiss_Room_Scene();
 
         SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
 
@@ -186,6 +186,12 @@ public class SaveManager : MonoBehaviour
                 break;
             case "촌장 월터의 집":
                 LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Rudencian_House_chief_Scene();
+                break;
+            case "에필레니아":
+                LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Epilenia_Main_Scene();
+                break;
+            case "루키스의 집":
+                LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_RooKiss_Room_Scene();
                 break;
 
             default:
