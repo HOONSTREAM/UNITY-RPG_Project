@@ -87,7 +87,7 @@ public class Rudencian_Rookiss_Room_Scene : BaseScene
 
          
         Item_Test();
-        Epilenia_Move_Test();
+        //Epilenia_Move_Test();
     }
 
     public override void Clear()
@@ -117,7 +117,7 @@ public class Rudencian_Rookiss_Room_Scene : BaseScene
         PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["SkillBook"][0]);
         PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["SkillBook"][1]);
         PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["SkillBook"][1]);
-        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Consumable"][3]);
+        
 
 
         PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);

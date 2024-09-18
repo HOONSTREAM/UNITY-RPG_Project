@@ -116,7 +116,9 @@ public class Quest_Script : MonoBehaviour
                 case 11:
                     Managers.Quest_Completion.Kill_king_slime_condition_for_completion();
                     break;
-
+                case 12:
+                    Managers.Quest_Completion.Rookiss_NPC_Meet_Quest_Conditions_for_completion_Last();
+                    break;
 
             }
         }
@@ -225,6 +227,7 @@ public class Quest_Script : MonoBehaviour
                     case 5:
                     case 7:
                     case 10:
+                    case 12:
                         Quest_summary.text = $"수련관 루키스를 찾아가 대화를 한다.";
                         break;
 

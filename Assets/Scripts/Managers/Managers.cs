@@ -94,16 +94,10 @@ public class Managers : MonoBehaviour
 
     public static void Save_Manager_Init()
     {
-        GameObject save_manager = GameObject.Find("Easy Save 3 Manager").gameObject;
-        if(save_manager == null)
-        {
-            save_manager = new GameObject { name = "Easy Save 3 Manager" };
-            save_manager.AddComponent<ES3ReferenceMgr>();
-            save_manager.AddComponent<ES3AutoSaveMgr>();
-        }
+        GameObject save_manager = Managers.Resources.Instantiate("Easy Save 3 Manager").gameObject;
         DontDestroyOnLoad(save_manager);
-
     }
+
     public static void Clear()
     {
         Sound.Clear();

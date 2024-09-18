@@ -172,9 +172,17 @@ public class Stat : MonoBehaviour
             {
                 playerstat.EXP += Managers.StatFactory.GetExperiencePoints(gameObject);
                 playerstat.onchangestat.Invoke();
+
                 GameObject dropitem = Fielditem.GetComponent<FieldItem>().King_Slime_DropFieldItem();
                 dropitem.transform.position = transform.position; //드랍아이템 위치
                 dropitem.transform.position += new Vector3(0, 0.4f, 0); //2D 스프라이트 잘림방지
+
+                //루덴시안 귀환서 획득
+                PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Consumable"][3]);
+
+                Managers.Sound.Play("Save_Sound", Define.Sound.Effect);
+                GameObject go = Managers.Resources.Instantiate("Get_Move_Paper_To_Rudencian");
+                Destroy(go, 5.0f);
 
                 if (QuestDatabase.instance.QuestDB[9].is_complete == true)
                 {

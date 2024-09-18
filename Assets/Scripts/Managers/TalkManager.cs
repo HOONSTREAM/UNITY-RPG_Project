@@ -171,6 +171,29 @@ public class TalkManager : MonoBehaviour
          "승리할 것이라고 믿는다. 이제 더 큰 모험의 세계로 나아가라! 지크! 어서 출발해라!"});
 
     }
+
+    public void Additional_Talk_Rudencian_training_officer_RooKiss_Quest_Last()
+    {
+
+        for (int k = 0; k < Player_Quest.Instance.PlayerQuest.Count; k++)
+        {
+            if (Player_Quest.Instance.PlayerQuest[k].Quest_ID == 12 && Player_Quest.Instance.PlayerQuest[k].npc_meet == true) // 퀘스트가 이미 완료되었으면 리턴 
+            {
+                return;
+            }
+
+            Player_Quest.Instance.PlayerQuest[k].npc_meet = true;
+        }
+
+        TalkData.Remove(RUDENCIAN_ROOKISS_NPC_ID);
+        TalkData.Add(RUDENCIAN_ROOKISS_NPC_ID, new string[] {"지크, 킹슬라임을 처치한건가? 짧은 시간에 정말 많이 성장했구나 ! ",
+         "이것이 정령석이군.. 나도 정령석이라는 것은 엄청 많이 얘기를 들었지만, 실제로 정령석을 내 눈으로 보는 것은 처음이다.",
+         "다시 한번 얘기하지만, 나는 너가 이 아르카디아 대륙을 구해낼 영웅이 될 것이라 굳게 믿고있다. 너의 부모님이 그러했듯이 ...",
+         "이제, 더이상 나는 너에게 가르칠 것이 없다. <에필레니아>에 가서, 수련관 디스커버를 찾아가라. 편지를 미리 보내놓았으니, 바로 가면 너를 알아볼 것이다.",
+         "고생많았다. 너는 반드시 샤르덴을 처치 할 영웅이 되리라 믿는다. 기회가 된다면, 술이라도 한잔 사도록 하마. 허허.. \n 그리고, 에필레니아로 바로 이동할 수 있는 깃털을 줄테니, 사용해서 바로 이동하거라. 조심히 가거라!",
+         });
+
+    }
     public void Reset_TalkData()
     {
         GenerateData();

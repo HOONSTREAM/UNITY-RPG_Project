@@ -186,6 +186,16 @@ public class Quest_Slot : MonoBehaviour , IPointerUpHandler
 
                 break;
 
+            case 12:
+                reward_gold.text = QuestDatabase.instance.QuestDB[11].num_1.ToString();
+                reward_exp.text = QuestDatabase.instance.QuestDB[11].num_2.ToString();
+
+                summing_up_explaination.text = "수련관 루키스와 마지막 대화";
+
+                UpdateSlotUI();
+
+                break;
+
 
         }
     }

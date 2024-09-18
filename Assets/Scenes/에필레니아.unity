@@ -59489,11 +59489,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4252341647572668, guid: c877b55d7ad264745ba48601d2be3d73, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -6.3
+      value: 373.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4252341647572668, guid: c877b55d7ad264745ba48601d2be3d73, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 48.5
       objectReference: {fileID: 0}
     - target: {fileID: 4252341647572668, guid: c877b55d7ad264745ba48601d2be3d73, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -21.4
+      value: 355
       objectReference: {fileID: 0}
     - target: {fileID: 4252341647572668, guid: c877b55d7ad264745ba48601d2be3d73, type: 3}
       propertyPath: m_LocalRotation.w
@@ -59566,6 +59570,10 @@ PrefabInstance:
     - target: {fileID: 20771580655855324, guid: c877b55d7ad264745ba48601d2be3d73, type: 3}
       propertyPath: m_CullingMask.m_Bits
       value: 1073756928
+      objectReference: {fileID: 0}
+    - target: {fileID: 20832206120163044, guid: c877b55d7ad264745ba48601d2be3d73, type: 3}
+      propertyPath: orthographic size
+      value: 127.838135
       objectReference: {fileID: 0}
     - target: {fileID: 20832206120163044, guid: c877b55d7ad264745ba48601d2be3d73, type: 3}
       propertyPath: m_CullingMask.m_Bits
@@ -83605,7 +83613,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8827288251228352809, guid: 28ee4d0cd4ed6134b961a61f06ea75a2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 102.1
       objectReference: {fileID: 0}
     - target: {fileID: 8827288251228352809, guid: 28ee4d0cd4ed6134b961a61f06ea75a2, type: 3}
       propertyPath: m_LocalPosition.y

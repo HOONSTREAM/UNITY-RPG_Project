@@ -8,6 +8,7 @@ public class Quest_Completion_Manager : MonoBehaviour
     private const int KILL_PUNCH_MAN_MAIN_QUEST_ID = 6;
     private const int SECOND_MEET_ROOKISS_QUEST_ID = 7;
     private const int THIRD_MEET_ROOKISS_QUEST_ID = 10;
+    private const int LAST_MEET_ROOKISS_QUEST_ID = 12;
     private const int EQUIPMENT_WEAR_QUEST_ID = 8;
     private const int FIRST_ABILITY_TRAINING_QUEST_ID = 9;
     private const int KILL_KING_SLIME_MAIN_QUEST_ID = 11;
@@ -354,7 +355,7 @@ public class Quest_Completion_Manager : MonoBehaviour
                     Print_Info_Text.Instance.PrintUserText("퀘스트 완료");
 
                     //다음 메인퀘스트 자동 추가
-                    //Player_Quest.Instance.AddQuest(QuestDatabase.instance.QuestDB[1]);
+                    Player_Quest.Instance.AddQuest(QuestDatabase.instance.QuestDB[11]);
 
                     break;
                 }
@@ -363,6 +364,34 @@ public class Quest_Completion_Manager : MonoBehaviour
 
 
             }
+        }
+    }
+
+    public void Rookiss_NPC_Meet_Quest_Conditions_for_completion_Last()
+    {
+        for (int i = 0; i < Player_Quest.Instance.PlayerQuest.Count; i++)
+        {
+            if (Player_Quest.Instance.PlayerQuest[i].Quest_ID != LAST_MEET_ROOKISS_QUEST_ID) { continue; }
+
+            if (Player_Quest.Instance.PlayerQuest[i].npc_meet == false)
+            {
+                Print_Info_Text.Instance.PrintUserText("퀘스트 조건이 충족되지 않았습니다.");
+
+                return;
+            }
+
+            Player_Quest.Instance.PlayerQuest[i].Quest_Clear();
+
+            Player_Quest.Instance.RemoveQuest(i);
+            Player_Quest.Instance.onChangequest.Invoke();
+            Print_Info_Text.Instance.PrintUserText("퀘스트 완료");
+
+            // 에필레니아 귀환서 획득
+            PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Consumable"][4]);
+
+            //다음 메인퀘스트 자동 추가
+            //Player_Quest.Instance.AddQuest(QuestDatabase.instance.QuestDB[10]);
+
         }
     }
     #endregion

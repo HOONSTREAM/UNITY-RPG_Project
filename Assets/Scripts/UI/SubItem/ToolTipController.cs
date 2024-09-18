@@ -90,7 +90,7 @@ public class ToolTipController : MonoBehaviour,IPointerEnterHandler,IPointerExit
 
     private void Dont_Display_Stat_Item_Menu(Item item)
     {
-        if(item.itemname == "¿Ãƒ´∑ÁΩ∫¿« ±Í≈–")
+        if(item.itemname == "∑ÁµßΩ√æ» ±Õ»Øº≠")
         {
             tooltip.num_1.gameObject.SetActive(false);
             tooltip.num_2.gameObject.SetActive(false);

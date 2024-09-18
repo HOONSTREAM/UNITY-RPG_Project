@@ -110,17 +110,11 @@ public class FieldItem : MonoBehaviour
 
 
     public GameObject King_Slime_DropFieldItem() 
-    {
-        
-        GameObject go = Instantiate(fielditemPrefab, pos, Quaternion.identity); //Quaternion.identity는 회전없음을 나타내는 쿼터니언
+    {     
+        GameObject one_hand_sword = Instantiate(fielditemPrefab, pos, Quaternion.identity); //Quaternion.identity는 회전없음을 나타내는 쿼터니언  
+        one_hand_sword.GetComponent<FieldItem>().SetItem(ItemDataBase.instance.GetAllItems()["Weapon_oneHand"][1]);
 
-        go.GetComponent<FieldItem>().SetItem(ItemDataBase.instance.GetAllItems()["Weapon_oneHand"][1]);
-
-        return go;
-
+        return one_hand_sword;
     }
-
-
-
 
 }
