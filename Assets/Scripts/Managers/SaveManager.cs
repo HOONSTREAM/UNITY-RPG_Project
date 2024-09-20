@@ -28,6 +28,11 @@ public class SaveManager : MonoBehaviour
 
     public void SavePlayerData()
     {
+        if(SceneManager.GetActiveScene().name == "남쪽 깊은 곳" || SceneManager.GetActiveScene().name == "루키스의 집") 
+        {
+            Print_Info_Text.Instance.PrintUserText("이 곳에선 저장 할 수 없습니다.");
+            return;
+        }
        
         GameObject player = Managers.Game.GetPlayer();
 

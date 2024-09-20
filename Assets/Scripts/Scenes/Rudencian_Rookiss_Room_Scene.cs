@@ -15,7 +15,7 @@ public class Rudencian_Rookiss_Room_Scene : BaseScene
     {
 
         base.Init();
-
+        
         Managers.Game.Set_Player_and_Save_Data_PreFabs();
         Managers.Save_Manager_Init();
         SceneType = Define.Scene.Rudencian_Rookiss_Room;

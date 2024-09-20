@@ -11,10 +11,12 @@ public class Deep_Place_in_Script : MonoBehaviour
 {
     public GameObject savedata;
     private readonly int KILL_KING_SLIME_QUEST_ID = 11;
+    
 
     private void Start()
     {
         savedata = GameObject.Find("Save_Data").gameObject;
+        
     }
 
 
@@ -24,11 +26,9 @@ public class Deep_Place_in_Script : MonoBehaviour
         {
             if(quest.Quest_ID == KILL_KING_SLIME_QUEST_ID)
             {
-                LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Deep_Place_Scene();
+                Managers.Sound.Play("Coin", Define.Sound.Effect);
+                Managers.Resources.Instantiate("Enter_KingSlime_CANVAS");
 
-                GameObject player = Managers.Game.GetPlayer();
-
-                SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
             }
 
             else if(quest.Quest_ID != KILL_KING_SLIME_QUEST_ID)
