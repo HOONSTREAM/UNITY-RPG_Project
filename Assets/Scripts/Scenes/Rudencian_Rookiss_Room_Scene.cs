@@ -55,7 +55,7 @@ public class Rudencian_Rookiss_Room_Scene : BaseScene
 
         yield return new WaitForSeconds(8f);
 
-        Managers.Sound.Play("오르골", Define.Sound.Bgm);
+        Managers.Sound.Play("루키스의집", Define.Sound.Bgm);
         
 
         yield return new WaitForSeconds(2f);
