@@ -66,7 +66,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uB8E8\uB374\uC2DC\uC548 \uADC0\uD658\uC11C\uB97C \uD68D\uB4DD \uD558\uC600\uC2B5\uB2C8\uB2E4."
+  m_text: "\uBB3C\uC548\uAC1C\uC758 \uC815\uB839\uC11D\uACFC \uB8E8\uB374\uC2DC\uC548
+    \uADC0\uD658\uC11C\uB97C \uD68D\uB4DD \uD558\uC600\uC2B5\uB2C8\uB2E4."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7af731a305306a448af8656270c54fd0, type: 2}
   m_sharedMaterial: {fileID: -6954940463186632848, guid: 7af731a305306a448af8656270c54fd0, type: 2}
@@ -93,8 +94,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45
-  m_fontSizeBase: 45
+  m_fontSize: 35
+  m_fontSizeBase: 35
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

@@ -45,7 +45,7 @@ public class PlayerJewelInven : MonoBehaviour
     public void Save_JEWEL_Inventory()
     {
         JEWEL_UI_Data data = new JEWEL_UI_Data(player_jewel_items);
-        ES3.Save("player_inventory", data);
+        ES3.Save("player_jewel_inventory", data);
 
        
 
@@ -54,9 +54,9 @@ public class PlayerJewelInven : MonoBehaviour
 
     public void Load_JEWEL_Inventory()
     {
-        if (ES3.KeyExists("player_inventory"))
+        if (ES3.KeyExists("player_jewel_inventory"))
         {
-            JEWEL_UI_Data data = ES3.Load<JEWEL_UI_Data>("player_inventory");
+            JEWEL_UI_Data data = ES3.Load<JEWEL_UI_Data>("player_jewel_inventory");
             player_jewel_items = data.jewel_items;
             Debug.Log("Inventory loaded using EasySave3");
         }
@@ -70,7 +70,7 @@ public class PlayerJewelInven : MonoBehaviour
 
     public bool Add_JEWEL_Item(Item _item)
     {
-        player_jewel_items.Add(_item); // 가방 칸이 20 미만이라면 장비아이템 추가 
+        player_jewel_items.Add(_item); 
 
         if (onChangejewel != null)
         {

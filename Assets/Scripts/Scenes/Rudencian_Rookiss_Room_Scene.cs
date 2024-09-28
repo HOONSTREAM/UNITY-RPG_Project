@@ -130,6 +130,8 @@ public class Rudencian_Rookiss_Room_Scene : BaseScene
         PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
         PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
         PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
+
+        PlayerJewelInven.Instance.Add_JEWEL_Item(ItemDataBase.instance.GetAllItems()["Etcs"][2]);
     }
 
     #endregion

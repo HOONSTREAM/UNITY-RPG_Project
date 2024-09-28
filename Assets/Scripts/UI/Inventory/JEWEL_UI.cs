@@ -12,7 +12,7 @@ public class JEWEL_UI : MonoBehaviour
     private GameObject _jewel_canvas;
     private PlayerJewelInven _jewel_inven; //플레이어 인벤토리 참조
 
-    public Slot[] slots;
+    public JEWEL_Slot[] slots;
     public Transform slotHolder;
 
     public bool active_jewel_Inventory = false;
@@ -21,7 +21,7 @@ public class JEWEL_UI : MonoBehaviour
     {
 
         _jewel_inven = PlayerJewelInven.Instance;
-        slots = slotHolder.GetComponentsInChildren<Slot>();
+        slots = slotHolder.GetComponentsInChildren<JEWEL_Slot>();
         _jewel_inven.onChangejewel += RedrawSlotUI;
         Managers.UI.SetCanvas(_jewel_canvas, true);
         //인벤토리 드래그 가능하도록 하는 이벤트
@@ -45,7 +45,7 @@ public class JEWEL_UI : MonoBehaviour
 
             if (child.name == "Content")
             {
-                PlayerInventory.Instance._player_Inven_Content = child.gameObject;
+                PlayerJewelInven.Instance._player_Jewel_Inven_Content = child.gameObject;
             }
         }
     }
@@ -109,9 +109,6 @@ public class JEWEL_UI : MonoBehaviour
             active_jewel_Inventory = !active_jewel_Inventory;
             _jewel_UI_Panel.SetActive(active_jewel_Inventory);
             Managers.Sound.Play("Inven_Open");
-            //Equip_Drop_Selection.gameObject.SetActive(false);
-            //Consumable_use_Drop_Selection.gameObject.SetActive(false);
-
         }
 
         return;
