@@ -54,16 +54,7 @@ public class JEWEL_UI : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.J))
         {
-
             Jewel_Inventory_Button_Open();
-
-            //if (inventoryPanel.activeSelf == false)
-            //{
-            //    Equip_Drop_Selection.gameObject.SetActive(false);
-            //    Consumable_use_Drop_Selection.gameObject.SetActive(false);
-
-            //}
-
         }
 
     }

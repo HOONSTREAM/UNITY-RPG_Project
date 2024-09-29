@@ -91,6 +91,7 @@ public class Item
         {
             isUsed = effect.ExecuteRole(itemtype);
         }
+
         return isUsed;
     }
 

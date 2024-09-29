@@ -91,6 +91,7 @@ public class Slot_Equip_Drop : MonoBehaviour
 
             PlayerInventory.Instance.RemoveItem(slot_number);
         
+
         }
     }
 

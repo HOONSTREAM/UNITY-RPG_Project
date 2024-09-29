@@ -13,6 +13,7 @@ public class JEWEL_Slot : MonoBehaviour, IPointerUpHandler
     public Image itemicon;
 
     public GameObject Unique_Particle;
+    public GameObject Use_Cancel_Panel;
 
     public void UpdateSlotUI()
     {
@@ -33,8 +34,11 @@ public class JEWEL_Slot : MonoBehaviour, IPointerUpHandler
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        Debug.Log("정령석 클릭");
-
+        GameObject go = GameObject.Find("JEWEL_UI").gameObject;
+        JEWEL_Slot_Use_Cancel use_cancel = go.GetComponent<JEWEL_Slot_Use_Cancel>();
+        use_cancel.Get_Slotnum(slotnum); //slot에 대한 정보
+        Use_Cancel_Panel.SetActive(true);
+        Use_Cancel_Panel.transform.position = Input.mousePosition;
     }
 }
 
