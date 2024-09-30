@@ -13,7 +13,7 @@ public class Advanced_Attack : SkillEffect
     private const int ADVANCED_ATTACK_BUFF_AMOUNT = 50;
     private const string SKILL_EFFECT_PATH = "Skill_Effect/Unlock_FX_2";
     private const string SKILL_SOUND_PATH = "spell";
-
+    private int SKILL_MAGIC_POINT_CONSUMPTION;
 
     public bool skillusing = false;
     public int skill_sustainment_time; 
@@ -22,6 +22,7 @@ public class Advanced_Attack : SkillEffect
 
     private void Init()
     {
+        SKILL_MAGIC_POINT_CONSUMPTION = SkillDataBase.instance.SkillDB[2].num_2;
         skill_sustainment_time = SkillDataBase.instance.SkillDB[2].skill_cool_time;
         buff_slot_holder = GameObject.Find("skill_coolTime_Content").gameObject.transform;
         buff_slots = buff_slot_holder.GetComponentsInChildren<Buff_Slot>();
@@ -55,6 +56,7 @@ public class Advanced_Attack : SkillEffect
         GameObject player = Managers.Game.GetPlayer();
         PlayerStat stat = player.GetComponent<PlayerStat>();
 
+        // 스킬이 사용중인지 검사합니다.
         if (skillusing == true)
         {
             Print_Info_Text.Instance.PrintUserText("쿨타임 입니다.");
@@ -62,6 +64,15 @@ public class Advanced_Attack : SkillEffect
             return false;
 
         }
+
+        //마나가 충분한지 검사합니다.
+        if(stat.Mp <= SKILL_MAGIC_POINT_CONSUMPTION)
+        {
+            Print_Info_Text.Instance.PrintUserText("마나가 부족합니다.");
+
+            return false;
+        }
+
 
         skillusing = true;
 
@@ -71,6 +82,7 @@ public class Advanced_Attack : SkillEffect
 
         stat.ATTACK += ADVANCED_ATTACK_BUFF_AMOUNT;
         stat.buff_damage += ADVANCED_ATTACK_BUFF_AMOUNT;
+        stat.Mp -= SKILL_MAGIC_POINT_CONSUMPTION;
         stat.onchangestat.Invoke();
 
         Managers.Sound.Play(SKILL_SOUND_PATH, Define.Sound.Effect);

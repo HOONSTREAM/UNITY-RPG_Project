@@ -9,6 +9,8 @@ public class JEWEL_Slot_Use_Cancel : MonoBehaviour
     public int slot_number; // 슬롯의 번호 참조
     public JEWEL_Slot[] slots; //플레이어 슬롯 참조
     public PlayerStat stat;
+    
+
 
     private const int WATER_SPRITUAL_STONE_ID = 12;
 
@@ -28,6 +30,8 @@ public class JEWEL_Slot_Use_Cancel : MonoBehaviour
 
     public void Spiritual_Stone_Use()
     {
+        Skill skill = SkillDataBase.instance.SkillDB[5];
+
         if (slot_item == null)
         {
             Debug.Log("테스트 : 슬롯에 아무것도 없음");
@@ -41,6 +45,16 @@ public class JEWEL_Slot_Use_Cancel : MonoBehaviour
         {
             case WATER_SPRITUAL_STONE_ID:
                 Debug.Log("물안개의 정령석을 사용하였음.");
+
+                bool isUsed = skill.Skill_Use();
+
+                if (isUsed)
+
+                {
+                    Ability_Script abs = GameObject.Find("Ability_Slot_CANVAS").gameObject.GetAddComponent<Ability_Script>();
+                    abs.start_buff_skill(skill);
+                }
+
                 break;
 
         }

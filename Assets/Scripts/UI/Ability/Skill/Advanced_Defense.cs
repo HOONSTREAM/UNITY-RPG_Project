@@ -10,6 +10,7 @@ public class Advanced_DEFENSE : SkillEffect
     private const int ADVANCED_DEFENSE_BUFF_AMOUNT = 50;
     private const string SKILL_EFFECT_PATH = "Skill_Effect/Unlock_FX_7";
     private const string SKILL_SOUND_PATH = "spell";
+    private int SKILL_MAGIC_POINT_CONSUMPTION;
 
     public bool skillusing = false;
     public int skill_sustainment_time;
@@ -18,7 +19,8 @@ public class Advanced_DEFENSE : SkillEffect
 
     private void Init()
     {
-        skill_sustainment_time= SkillDataBase.instance.SkillDB[3].skill_cool_time;
+        SKILL_MAGIC_POINT_CONSUMPTION = SkillDataBase.instance.SkillDB[3].num_2;
+        skill_sustainment_time = SkillDataBase.instance.SkillDB[3].skill_cool_time;
         buff_slot_holder = GameObject.Find("skill_coolTime_Content").gameObject.transform;
         buff_slots = buff_slot_holder.GetComponentsInChildren<Buff_Slot>();
 
@@ -59,6 +61,13 @@ public class Advanced_DEFENSE : SkillEffect
 
         }
 
+        if (stat.Mp <= SKILL_MAGIC_POINT_CONSUMPTION)
+        {
+            Print_Info_Text.Instance.PrintUserText("마나가 부족합니다.");
+
+            return false;
+        }
+
         skillusing = true;
 
 
@@ -67,6 +76,7 @@ public class Advanced_DEFENSE : SkillEffect
 
         stat.DEFENSE += ADVANCED_DEFENSE_BUFF_AMOUNT;
         stat.buff_DEFENSE += ADVANCED_DEFENSE_BUFF_AMOUNT;
+        stat.Mp -= SKILL_MAGIC_POINT_CONSUMPTION;
         stat.onchangestat.Invoke();
 
         Managers.Sound.Play(SKILL_SOUND_PATH , Define.Sound.Effect);

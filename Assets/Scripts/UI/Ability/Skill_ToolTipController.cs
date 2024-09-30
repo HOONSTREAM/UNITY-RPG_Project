@@ -85,8 +85,10 @@ public class Skill_ToolTipController : MonoBehaviour,IPointerEnterHandler, IPoin
                     case "어드밴스드어택":                        
                     case "난공불락":
                         tooltip.SetupTooltip(skill.skill_name, skill.stat_1, skill.stat_2, skill.num_1, skill.num_2, skill.Description, skill.skill_image);
-                        tooltip.stat_2.gameObject.SetActive(false); // 나타낼 필요 없는 정보            
-                        tooltip.num_2.gameObject.SetActive(false); // 나타낼 필요 없는 정보 
+                        tooltip.stat_1.gameObject.SetActive(true);
+                        tooltip.stat_2.gameObject.SetActive(true);
+                        tooltip.num_1.gameObject.SetActive(true);
+                        tooltip.num_2.gameObject.SetActive(true);
                         break;
 
                     default:
