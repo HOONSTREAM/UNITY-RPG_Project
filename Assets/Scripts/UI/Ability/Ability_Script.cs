@@ -314,7 +314,7 @@ public class Ability_Script : MonoBehaviour
 
         if(skill_quick_slot.Length != 0)
         {
-            StartCoroutine("Start_Skill_Cool_Time_Countdown");
+           // StartCoroutine("Start_Skill_Cool_Time_Countdown");
         }
         
 
