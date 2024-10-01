@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Player_TelePort : MonoBehaviour
 {
-    private const float rollDistance = 3.5f; // 구르기 거리
-    private const float rollDuration = 0.2f; // 구르기 시간
-    private const float rollCooldown = 3.0f; // 구르기 쿨타임
+    private const float rollDistance = 3.5f; // 텔레포트 거리
+    private const float rollDuration = 0.2f; // 텔레포트 시간
+    private const float rollCooldown = 3.0f; // 텔레포트 쿨타임
     private bool isRolling = false;
     private Vector3 rollDirection;
     private float rollTimer;

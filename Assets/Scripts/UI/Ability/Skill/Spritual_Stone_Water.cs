@@ -11,14 +11,13 @@ public class Spritual_Stone_Water : SkillEffect
     private const string SKILL_EFFECT_PATH = "Skill_Effect/Spritual_Stone_Water";
     private const string SKILL_SOUND_PATH = "Player_TelePort_2";
 
-    public bool skillusing = false;
-    public int skill_sustainment_time;
+    public bool skillusing = false;   
     public Buff_Slot[] buff_slots;
     public Transform buff_slot_holder;
 
     private void Init()
     {
-        skill_sustainment_time = SkillDataBase.instance.SkillDB[5].skill_cool_time;
+        
         buff_slot_holder = GameObject.Find("skill_coolTime_Content").gameObject.transform;
         buff_slots = buff_slot_holder.GetComponentsInChildren<Buff_Slot>();
 
@@ -82,7 +81,7 @@ public class Spritual_Stone_Water : SkillEffect
         effect.transform.parent = Managers.Game.GetPlayer().transform; // 부모설정
         effect.transform.position = Managers.Game.GetPlayer().gameObject.transform.position + new Vector3(0.0f, 1.5f, 0.0f);
 
-        Destroy(effect, skill_sustainment_time);
+        Destroy(effect, SkillDataBase.instance.SkillDB[5].skill_cool_time);
 
         _ = DelayedAction();
 
@@ -93,7 +92,7 @@ public class Spritual_Stone_Water : SkillEffect
 
     private async Task DelayedAction()
     {
-        await Task.Delay(skill_sustainment_time * 1000);
+        await Task.Delay(SkillDataBase.instance.SkillDB[5].skill_cool_time * 1000);
         Debuff_update();
     }
 

@@ -30,6 +30,7 @@ using UnityEngine;
         public Sprite skill_image;
         public double Ability = 0.00;
         public int skill_cool_time = 0;
+        public int skill_duration_time = 0;
         public int Ability_Grade = 0;
   
         public List<SkillEffect> efts;
@@ -71,6 +72,7 @@ using UnityEngine;
            skill.efts = this.efts;
            skill.Ability = this.Ability;
            skill.skill_cool_time = this.skill_cool_time;
+           skill.skill_duration_time = this.skill_duration_time;
            skill.CanUseSkill = this.CanUseSkill;
 
             return skill;

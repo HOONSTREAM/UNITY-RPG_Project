@@ -12,12 +12,14 @@ public class Skill_Quick_Slot : MonoBehaviour, IPointerUpHandler
     public Skill skill;
     public Image skill_icon;    
     public Ability_Slot[] Ability_slots;
+    public TextMeshProUGUI skill_cool_time;
     public Transform Ability_slot_holder;
 
     void Awake() // Start, Awake 함수가 클래스의 생성자 (인스턴스변수 초기화)를 대신 해준다.
     {
         skill_icon.gameObject.SetActive(false); //초기화 (아이콘 표시 안함)        
         Ability_slots = Ability_slot_holder.GetComponentsInChildren<Ability_Slot>();
+        skill_cool_time.text = "";
     }
 
     

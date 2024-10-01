@@ -16,14 +16,14 @@ public class Advanced_Attack : SkillEffect
     private int SKILL_MAGIC_POINT_CONSUMPTION;
 
     public bool skillusing = false;
-    public int skill_sustainment_time; 
+    public int skill_duration_time; 
     public Buff_Slot[] buff_slots;
     public Transform buff_slot_holder;
 
     private void Init()
     {
         SKILL_MAGIC_POINT_CONSUMPTION = SkillDataBase.instance.SkillDB[2].num_2;
-        skill_sustainment_time = SkillDataBase.instance.SkillDB[2].skill_cool_time;
+        skill_duration_time = SkillDataBase.instance.SkillDB[2].skill_duration_time;
         buff_slot_holder = GameObject.Find("skill_coolTime_Content").gameObject.transform;
         buff_slots = buff_slot_holder.GetComponentsInChildren<Buff_Slot>();
 
@@ -93,7 +93,7 @@ public class Advanced_Attack : SkillEffect
         effect.transform.parent = Managers.Game.GetPlayer().transform; // 부모설정
         effect.transform.position = Managers.Game.GetPlayer().gameObject.transform.position + new Vector3 (0.0f,2.2f,0.0f);
 
-        Destroy(effect, skill_sustainment_time);
+        Destroy(effect, skill_duration_time);
       
         
 
@@ -106,9 +106,10 @@ public class Advanced_Attack : SkillEffect
 
     private async Task DelayedAction()
     {
-        await Task.Delay(skill_sustainment_time*1000); // 30 second        
+        await Task.Delay(skill_duration_time * 1000); // 30 second        
         Debuff_update();
-      
+        await Task.Delay(SkillDataBase.instance.SkillDB[2].skill_cool_time * 1000);
+        skillusing = false;
     }
 
 
@@ -121,7 +122,7 @@ public class Advanced_Attack : SkillEffect
          stat.ATTACK -= ADVANCED_ATTACK_BUFF_AMOUNT;
         stat.buff_damage -= ADVANCED_ATTACK_BUFF_AMOUNT;
         stat.onchangestat.Invoke();
-         skillusing = false;
+       
 
         return;
     }

@@ -84,6 +84,9 @@ public class Ability_Script : MonoBehaviour
     private Skill skill_info;
     public Buff_Slot[] buff_slot;
     public Transform buff_slot_holder;
+    public Skill_Quick_Slot[] skill_quick_slot;
+    public Transform skill_quick_slot_holder;
+
     #endregion
 
 
@@ -96,6 +99,7 @@ public class Ability_Script : MonoBehaviour
         UI_Base.BindEvent(Ability_Panel, (PointerEventData data) => {Ability_Panel.transform.position = data.position; }, Define.UIEvent.Drag);
         Managers.UI.SetCanvas(Ability_canvas, true);
         buff_slot = buff_slot_holder.GetComponentsInChildren<Buff_Slot>();
+        skill_quick_slot = skill_quick_slot_holder.GetComponentsInChildren<Skill_Quick_Slot>();
 
         Ability_Panel.SetActive(active_Ability_panel);
 
@@ -234,9 +238,9 @@ public class Ability_Script : MonoBehaviour
 
     }
 
-    IEnumerator StartCountdown()
+    IEnumerator Start_Skill_Duration_Time_Countdown()
     {
-        float currentTime = skill_info.skill_cool_time;
+        float currentTime = skill_info.skill_duration_time;
         Skill currentskill = skill_info; 
 
         while (currentTime > 0)
@@ -268,11 +272,51 @@ public class Ability_Script : MonoBehaviour
        
     }
 
+    IEnumerator Start_Skill_Cool_Time_Countdown()
+    {
+        float currentTime = skill_info.skill_cool_time;
+        Skill currentskill = skill_info;
+
+        while (currentTime > 0)
+        {
+            if (Time.timeScale > 0)
+            {
+                for (int i = 0; i < skill_quick_slot.Length; i++)
+                {
+                    if (skill_quick_slot[i].skill == currentskill)
+                    {
+                        skill_quick_slot[i].skill_cool_time.text = currentTime.ToString("0");
+                        currentTime -= Time.deltaTime;
+                        yield return null;
+                    }
+                }
+            }
+
+        }
+
+
+        for (int i = 0; i < buff_slot.Length; i++)
+        {
+            if (skill_quick_slot[i].skill_cool_time.text == "0")
+            {
+                skill_quick_slot[i].skill_cool_time.text = default;
+            }
+        }
+
+
+    }
+
     public void start_buff_skill(Skill _skill_info)
     {
         skill_info = _skill_info;
         PlayerBuff_Slot.Instance.Buff_slot_AddBuffSkill(_skill_info);
-        StartCoroutine("StartCountdown");
+        StartCoroutine("Start_Skill_Duration_Time_Countdown");
+
+        if(skill_quick_slot.Length != 0)
+        {
+            StartCoroutine("Start_Skill_Cool_Time_Countdown");
+        }
+        
 
         return;
     }
