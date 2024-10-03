@@ -41,8 +41,6 @@ public class Advanced_DEFENSE : SkillEffect
 
         }
 
-        skillusing = false;
-
         return;
     }
     public override bool ExecuteRole(SkillType skilltype) 
@@ -96,10 +94,13 @@ public class Advanced_DEFENSE : SkillEffect
 
     private async Task DelayedAction()
     {
-        await Task.Delay(skill_duration_time * 1000); // 25 second        
+        await Task.Delay(skill_duration_time * 1000); // 10 second        
         Debuff_update();
-        await Task.Delay(SkillDataBase.instance.SkillDB[3].skill_cool_time * 1000);
+
+        await Task.Delay(((SkillDataBase.instance.SkillDB[3].skill_cool_time) - (skill_duration_time)) * 1000); // 30-10 = 20second
+
         skillusing = false;
+
     }
 
 

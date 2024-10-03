@@ -27,6 +27,8 @@ public class Advanced_Attack : SkillEffect
         buff_slot_holder = GameObject.Find("skill_coolTime_Content").gameObject.transform;
         buff_slots = buff_slot_holder.GetComponentsInChildren<Buff_Slot>();
 
+        
+
         for (int i = 0; i < buff_slots.Length; i++) //스킬 사용중인지 검사
         {
             
@@ -43,8 +45,6 @@ public class Advanced_Attack : SkillEffect
 
           
         }
-
-        skillusing = false;
 
         return;
     }
@@ -106,10 +106,13 @@ public class Advanced_Attack : SkillEffect
 
     private async Task DelayedAction()
     {
-        await Task.Delay(skill_duration_time * 1000); // 30 second        
+        await Task.Delay(skill_duration_time * 1000); // 10 second        
         Debuff_update();
-        await Task.Delay(SkillDataBase.instance.SkillDB[2].skill_cool_time * 1000);
+
+        await Task.Delay(((SkillDataBase.instance.SkillDB[2].skill_cool_time)-(skill_duration_time)) * 1000); // 30-10 = 20second
+
         skillusing = false;
+
     }
 
 
