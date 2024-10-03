@@ -38,7 +38,6 @@ public class Spritual_Stone_Water : SkillEffect
 
         }
 
-        skillusing = false;
 
         return;
     }

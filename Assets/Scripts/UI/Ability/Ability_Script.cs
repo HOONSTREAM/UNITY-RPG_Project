@@ -285,7 +285,7 @@ public class Ability_Script : MonoBehaviour
                 {
                     if (skill_quick_slot[i].skill == currentskill)
                     {
-                        skill_quick_slot[i].skill_cool_time.text = currentTime.ToString("0");
+                        skill_quick_slot[i].skill_cool_time.text = Mathf.Max(currentTime, 0.0f).ToString("0");
                         currentTime -= Time.deltaTime;
                         yield return null;
                     }
@@ -308,13 +308,29 @@ public class Ability_Script : MonoBehaviour
 
     public void start_buff_skill(Skill _skill_info)
     {
-        skill_info = _skill_info;
-        PlayerBuff_Slot.Instance.Buff_slot_AddBuffSkill(_skill_info);
-        StartCoroutine("Start_Skill_Duration_Time_Countdown");
+        bool isSkillInQuickSlot = false;
+        List<Skill> player_skill = PlayerSkillQuickSlot.Instance.quick_slot_skill;
 
-        if(skill_quick_slot.Length != 0)
+        skill_info = _skill_info;
+
+        PlayerBuff_Slot.Instance.Buff_slot_AddBuffSkill(_skill_info);
+
+     
+        StartCoroutine(Start_Skill_Duration_Time_Countdown());
+
+
+        foreach(Skill skill in player_skill)
         {
-            StartCoroutine("Start_Skill_Cool_Time_Countdown");
+            if (skill != null && skill == skill_info)
+            {
+                isSkillInQuickSlot = true;
+
+                break;
+            }
+        }
+        if (isSkillInQuickSlot)
+        {
+            StartCoroutine(Start_Skill_Cool_Time_Countdown());
         }
         
 
