@@ -14,8 +14,8 @@ public class Enter_KingSlimeZone : MonoBehaviour
     {
         King_Slime_CANVAS = GameObject.Find("Enter_KingSlime_CANVAS").gameObject;
         King_Slime_Enter_Panel.gameObject.SetActive(false);
-        LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Deep_Place_Scene();
-        SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
+        LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.DeepPlaceScene;
+        SceneManager.LoadScene(Managers.Scene_Number.LoadingScene);
         Destroy(King_Slime_CANVAS);
     }
 

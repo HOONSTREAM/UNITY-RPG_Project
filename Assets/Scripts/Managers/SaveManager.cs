@@ -88,9 +88,9 @@ public class SaveManager : MonoBehaviour
 
     private void Set_Player_SaveData()
     {
-        LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_RooKiss_Room_Scene();
+        LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.RooKissRoomScene;
 
-        SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
+        SceneManager.LoadScene(Managers.Scene_Number.LoadingScene);
 
         GameObject player = Managers.Game.GetPlayer();
         if (player == null)
@@ -169,43 +169,43 @@ public class SaveManager : MonoBehaviour
         switch (sceneName)
         {
             case "루덴시안":
-                LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Rudencian_scene();
+                LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.RudencianScene;
                 break;
             case "루덴시안 상점":
-                LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Rudencian_shop();
+                LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.RudencianShop;
                 break;
             case "루덴시안 남쪽":
-                LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Rudencian_south();
+                LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.RudencianSouth;
                 break;
             case "루덴시안 남쪽2":
-                LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Rudencian_South2_Scene();
+                LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.RudencianSouth2Scene;
                 break;
             case "루덴시안 보석상":
-                LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Rudencian_jewel_Scene();
+                LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.RudencianJewelScene;
                 break;
             case "루덴시안 여관":
-                LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Rudencian_inn_Scene();
+                LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.RudencianInnScene;
                 break;
             case "루덴시안 은행":
-                LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Rudencian_bank_Scene();
+                LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.RudencianBankScene;
                 break;
             case "촌장 월터의 집":
-                LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Rudencian_House_chief_Scene();
+                LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.RudencianHouseChiefScene;
                 break;
             case "에필레니아":
-                LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Epilenia_Main_Scene();
+                LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.EpileniaMainScene;
                 break;
             case "루키스의 집":
-                LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_RooKiss_Room_Scene();
+                LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.RooKissRoomScene;
                 break;
 
             default:
-                LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Start_Scene();
+                LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.StartScene;
                 break;
 
         }
 
-        SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
+        SceneManager.LoadScene(Managers.Scene_Number.LoadingScene);
         
     }
 

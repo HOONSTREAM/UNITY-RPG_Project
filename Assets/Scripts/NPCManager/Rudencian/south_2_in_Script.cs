@@ -14,11 +14,11 @@ public class south_2_in_Script : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Rudencian_South2_Scene();
+        LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.RudencianSouth2Scene;
 
         GameObject player = Managers.Game.GetPlayer();
       
 
-        SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
+        SceneManager.LoadScene(Managers.Scene_Number.LoadingScene);
     }
 }

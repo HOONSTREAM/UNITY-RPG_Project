@@ -15,7 +15,7 @@ public class south_in_script : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Rudencian_south();
+        LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.RudencianSouth;
 
         GameObject player = Managers.Game.GetPlayer();
         
@@ -24,15 +24,15 @@ public class south_in_script : MonoBehaviour
         {
             case "·çµ§½Ã¾È":
                 
-                LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Rudencian_south();
+                LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.RudencianSouth;
                 player.transform.position = new Vector3(-1.1499f, 0, -33.6f);
-                SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
+                SceneManager.LoadScene(Managers.Scene_Number.LoadingScene);
                 break;
 
             case "·çµ§½Ã¾È ³²ÂÊ2":
-                LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Rudencian_south();
+                LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.RudencianSouth;
                 player.transform.position = new Vector3(31.82f, 0, -0.14f);            
-                SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
+                SceneManager.LoadScene(Managers.Scene_Number.LoadingScene);
                 break;
 
         }

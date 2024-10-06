@@ -19,74 +19,21 @@ public class Scene_Number_Manager : MonoBehaviour
     private const int RUDENCIAN_DEEP_PLACE = 12;
     private const int RUDENCIAN_ROOKISS_ROOM = 13;
     private const int EPILENIA_MAIN_SCENE_NUMBER = 14;
+    private const int EPILENIA_BANK_SCENE_NUMBER = 15;
 
-
-   public int Get_loading_scene()
-    {
-        return LOADING_SCENE_NUMBER;
-    }
-    public int Get_Rudencian_scene()
-    {
-        return RUDENCIAN_SCENE_NUMBER;
-    }
-
-    public int Get_Rudencian_shop()
-    {
-        return RUDENCIAN_SHOP_SCENE_NUMBER;
-    }
-
-    public int Get_Rudencian_south()
-    {
-        return RUDENCIAN_SOUTH_SCENE_NUMBER;
-    }
-
-    public int Get_Login_Scene()
-    {
-        return LOGIN_SCENE_NUMBER;
-    }
-
-    public int Get_Rudencian_bank_Scene()
-    {
-        return RUDENCIAN_BANK_SCENE_NUMBER;
-    }
-
-    public int Get_Rudencian_jewel_Scene()
-    {
-        return RUDENCIAN_JEWEL_SCENE_NUMBER;
-    }
-
-    public int Get_Rudencian_inn_Scene()
-    {
-        return RUDENCIAN_INN_SCENE_NUMBER;
-    }
-
-    public int Get_Rudencian_South2_Scene()
-    {
-        return RUDENCIAN_SOUTH_2_SCENE_NUMBER;
-    }
-
-    public int Get_Rudencian_House_chief_Scene()
-    {
-        return RUDENCIAN_HOUSE_CHIEF_SCENE_NUMBER;
-    }
-
-    public int Get_Start_Scene()
-    {
-        return START_SCENE_NUMBER;
-    }
-
-    public int Get_Deep_Place_Scene()
-    {
-        return RUDENCIAN_DEEP_PLACE;
-    }
-
-    public int Get_RooKiss_Room_Scene()
-    {
-        return RUDENCIAN_ROOKISS_ROOM;
-    }
-
-    public int Get_Epilenia_Main_Scene()
-    {
-        return EPILENIA_MAIN_SCENE_NUMBER;
-    }
+    public int LoadingScene => LOADING_SCENE_NUMBER;
+    public int RudencianScene => RUDENCIAN_SCENE_NUMBER;
+    public int RudencianShop => RUDENCIAN_SHOP_SCENE_NUMBER;
+    public int RudencianSouth => RUDENCIAN_SOUTH_SCENE_NUMBER;
+    public int LoginScene => LOGIN_SCENE_NUMBER;
+    public int RudencianBankScene => RUDENCIAN_BANK_SCENE_NUMBER;
+    public int RudencianJewelScene => RUDENCIAN_JEWEL_SCENE_NUMBER;
+    public int RudencianInnScene => RUDENCIAN_INN_SCENE_NUMBER;
+    public int RudencianSouth2Scene => RUDENCIAN_SOUTH_2_SCENE_NUMBER;
+    public int RudencianHouseChiefScene => RUDENCIAN_HOUSE_CHIEF_SCENE_NUMBER;
+    public int StartScene => START_SCENE_NUMBER;
+    public int DeepPlaceScene => RUDENCIAN_DEEP_PLACE;
+    public int RooKissRoomScene => RUDENCIAN_ROOKISS_ROOM;
+    public int EpileniaMainScene => EPILENIA_MAIN_SCENE_NUMBER;
+    public int EpileniaBankScene => EPILENIA_BANK_SCENE_NUMBER;
 }

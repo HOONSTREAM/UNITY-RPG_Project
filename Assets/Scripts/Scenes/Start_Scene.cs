@@ -20,7 +20,7 @@ public class Start_Scene : MonoBehaviour
     void Start()
     {
         backgroundImage = BackGround_Object.GetComponent<Image>();
-        LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_RooKiss_Room_Scene();
+        LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.RooKissRoomScene;
         StartCoroutine(TypeAndSwitchScene());
     }
 
@@ -78,6 +78,6 @@ public class Start_Scene : MonoBehaviour
     }
     void LoadNextScene()
     {
-        SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene()); // ¥Ÿ¿Ω æ¿ ∑ŒµÂ
+        SceneManager.LoadScene(Managers.Scene_Number.LoadingScene); // ¥Ÿ¿Ω æ¿ ∑ŒµÂ
     }
 }

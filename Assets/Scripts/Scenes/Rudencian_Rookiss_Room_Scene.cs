@@ -117,9 +117,10 @@ public class Rudencian_Rookiss_Room_Scene : BaseScene
         PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["SkillBook"][0]);
         PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["SkillBook"][1]);
         PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["SkillBook"][1]);
-        
+        PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Consumable"][4]);
 
 
+
         PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
         PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
         PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
@@ -130,6 +131,7 @@ public class Rudencian_Rookiss_Room_Scene : BaseScene
         PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
         PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
         PlayerInventory.Instance.AddItem(ItemDataBase.instance.GetAllItems()["Etcs"][0]);
+
 
         PlayerJewelInven.Instance.Add_JEWEL_Item(ItemDataBase.instance.GetAllItems()["Etcs"][2]);
     }

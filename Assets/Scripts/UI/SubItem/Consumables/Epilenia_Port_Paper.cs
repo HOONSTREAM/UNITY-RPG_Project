@@ -12,8 +12,8 @@ public class Epilenia_Port_Paper : ItemEffect
 
         Print_Info_Text.Instance.PrintUserText("마을로 귀환합니다.");
 
-        LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Epilenia_Main_Scene();
-        SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
+        LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.EpileniaMainScene;
+        SceneManager.LoadScene(Managers.Scene_Number.LoadingScene);
 
         Managers.Game.GetPlayer().gameObject.transform.position = new Vector3(359.5609f, 9.1f, 422f);
 

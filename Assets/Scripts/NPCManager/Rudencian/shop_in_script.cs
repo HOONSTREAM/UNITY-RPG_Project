@@ -15,10 +15,10 @@ public class shop_in_script : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Rudencian_shop();
+        LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.RudencianShop;
         GameObject player = Managers.Game.GetPlayer();
        
-        SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
+        SceneManager.LoadScene(Managers.Scene_Number.LoadingScene);
 
     }
 

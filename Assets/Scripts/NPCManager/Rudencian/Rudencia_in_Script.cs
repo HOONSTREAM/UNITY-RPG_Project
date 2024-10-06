@@ -9,7 +9,7 @@ public class Rudencia_in_Script : MonoBehaviour
     
     private void OnTriggerEnter(Collider other)
     {
-        LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Rudencian_scene();
+        LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.RudencianScene;
 
         GameObject player = Managers.Game.GetPlayer();
         PlayerController pc = player.gameObject.GetComponent<PlayerController>();
@@ -22,7 +22,7 @@ public class Rudencia_in_Script : MonoBehaviour
                 player.transform.position = new Vector3(12.6f, 0, 18.3f);
                 pc.State = Define.State.Idle;      
                 
-                SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
+                SceneManager.LoadScene(Managers.Scene_Number.LoadingScene);
                 break;
 
             case "루덴시안 남쪽":
@@ -30,7 +30,7 @@ public class Rudencia_in_Script : MonoBehaviour
                 player.transform.position = new Vector3(24.3f, 0, 6.67f);               
                 pc.State = Define.State.Idle;
             
-                SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
+                SceneManager.LoadScene(Managers.Scene_Number.LoadingScene);
                 break;
 
             case "루덴시안 상점":
@@ -38,7 +38,7 @@ public class Rudencia_in_Script : MonoBehaviour
                 player.transform.position = new Vector3(29.52f, 0, 23.68f);              
                 pc.State = Define.State.Idle;
 
-                SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
+                SceneManager.LoadScene(Managers.Scene_Number.LoadingScene);
                 break;
 
             case "루덴시안 은행":
@@ -46,7 +46,7 @@ public class Rudencia_in_Script : MonoBehaviour
                 player.transform.position = new Vector3(21.86f, 0, 21.58f);            
                 pc.State = Define.State.Idle;
 
-                SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
+                SceneManager.LoadScene(Managers.Scene_Number.LoadingScene);
                 break;
 
             case "루덴시안 여관":
@@ -56,7 +56,7 @@ public class Rudencia_in_Script : MonoBehaviour
                 player.transform.rotation = new Quaternion(0, 180f, 0, 0);
                 pc.State = Define.State.Idle;
 
-                SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
+                SceneManager.LoadScene(Managers.Scene_Number.LoadingScene);
 
                 break;
 
@@ -66,7 +66,7 @@ public class Rudencia_in_Script : MonoBehaviour
                 player.transform.rotation = new Quaternion(0, 180f, 0, 0);
                 pc.State = Define.State.Idle;
 
-                SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
+                SceneManager.LoadScene(Managers.Scene_Number.LoadingScene);
 
                 break;
 
@@ -77,7 +77,7 @@ public class Rudencia_in_Script : MonoBehaviour
                 player.transform.rotation = new Quaternion(0, 85f, 0, 0);
                 pc.State = Define.State.Idle;
 
-                SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());
+                SceneManager.LoadScene(Managers.Scene_Number.LoadingScene);
 
                 break;
 

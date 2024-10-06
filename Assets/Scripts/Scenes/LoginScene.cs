@@ -25,13 +25,13 @@ public class LoginScene : MonoBehaviour
 
     private void InitializeScene()
     {
-        LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_Start_Scene();
+        LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.StartScene;
         gameObject.AddComponent<CursorController>();
     }
 
     public void New_Game_Start()
     {      
-      SceneManager.LoadScene(Managers.Scene_Number.Get_loading_scene());       
+      SceneManager.LoadScene(Managers.Scene_Number.LoadingScene);       
     }
 
 
@@ -43,8 +43,8 @@ public class LoginScene : MonoBehaviour
     }
     private IEnumerator LoadScene_And_CheckPlayer()
     {
-        LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.Get_RooKiss_Room_Scene();
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(Managers.Scene_Number.Get_loading_scene());
+        LoadingScene.NEXT_SCENE_NUMBER = Managers.Scene_Number.RooKissRoomScene;
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(Managers.Scene_Number.LoadingScene);
         _loading_canvas = Managers.Resources.Instantiate(LOADING_CANVAS_PREPAB_PATH).gameObject;
         DontDestroyOnLoad(_loading_canvas);
 

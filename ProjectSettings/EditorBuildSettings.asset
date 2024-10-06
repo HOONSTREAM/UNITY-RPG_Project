@@ -50,4 +50,7 @@ EditorBuildSettings:
   - enabled: 1
     path: "Assets/Scenes/\uC5D0\uD544\uB808\uB2C8\uC544.unity"
     guid: 118f3d6cbfb656c4f86144edd2651e1e
+  - enabled: 1
+    path: "Assets/Scenes/\uC5D0\uD544\uB808\uB2C8\uC544 \uC740\uD589.unity"
+    guid: f2d5770a9da700146936bd0c70dd1f21
   m_configObjects: {}
