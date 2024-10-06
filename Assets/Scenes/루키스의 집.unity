@@ -2554,11 +2554,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4252341647572668, guid: c877b55d7ad264745ba48601d2be3d73, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.3899999
+      value: 5.1
       objectReference: {fileID: 0}
     - target: {fileID: 4252341647572668, guid: c877b55d7ad264745ba48601d2be3d73, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.55
+      value: 6.6
       objectReference: {fileID: 0}
     - target: {fileID: 4252341647572668, guid: c877b55d7ad264745ba48601d2be3d73, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2631,6 +2631,22 @@ PrefabInstance:
     - target: {fileID: 20771580655855324, guid: c877b55d7ad264745ba48601d2be3d73, type: 3}
       propertyPath: m_CullingMask.m_Bits
       value: 1073756928
+      objectReference: {fileID: 0}
+    - target: {fileID: 20832206120163044, guid: c877b55d7ad264745ba48601d2be3d73, type: 3}
+      propertyPath: orthographic size
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 20832206120163044, guid: c877b55d7ad264745ba48601d2be3d73, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.5471698
+      objectReference: {fileID: 0}
+    - target: {fileID: 20832206120163044, guid: c877b55d7ad264745ba48601d2be3d73, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.5471698
+      objectReference: {fileID: 0}
+    - target: {fileID: 20832206120163044, guid: c877b55d7ad264745ba48601d2be3d73, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.5471698
       objectReference: {fileID: 0}
     - target: {fileID: 20832206120163044, guid: c877b55d7ad264745ba48601d2be3d73, type: 3}
       propertyPath: m_CullingMask.m_Bits
